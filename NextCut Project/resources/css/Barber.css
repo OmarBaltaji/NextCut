@@ -1,0 +1,23 @@
+.show_barber:hover {
+    cursor: pointer;
+}
+
+.barber_header {
+    font-weight: bold;
+    font-size: 21px;
+}
+
+.service {
+    list-style: none;
+}
+
+.service_header {
+    text-decoration: underline;
+    font-size: 18px;
+}
+
+.card_title {
+    font-weight: bold;
+    text-decoration: underline;
+    font-size: 23px;
+}

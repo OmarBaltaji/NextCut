@@ -1,0 +1,89 @@
+.nav_item {
+    text-decoration: none;
+    margin-right: 20px;
+    color: black;
+}
+
+.nav_item:hover{
+    text-decoration: none;
+    margin-right: 20px;
+}
+
+.dropdown_item {
+    text-decoration: none;
+    color: black;
+    padding:0 23px;
+}
+
+.dropdown_item:hover {
+    text-decoration: none;
+    color: black;
+}
+
+.div_dropdown_item:hover {
+    width: 200px;
+    background-color: rgba(197, 193, 193, 0.089);
+    padding: 4px 0;
+}
+
+.login_register {
+    color: #40E0D0;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.login_register:hover {
+    color: #F5F5DC;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.btn_log_reg {
+    background-color: #40E0D0;
+    border-color: #40E0D0;
+    color: #F5F5DC;
+}
+
+.btn_log_reg:hover {
+    background-color: #F5F5DC;
+    border-color: #F5F5DC;
+    color: #40E0D0;
+}
+
+.input::placeholder {
+    color: #40E0D0;
+    opacity: 1;
+}
+
+#password::placeholder {
+    color: #40E0D0;
+    opacity: 1;
+}
+
+.remember_me {
+    color: #40E0D0;
+}
+
+.remember_me:hover {
+    color: #F5F5DC;
+}
+
+.navlink {
+    color: #F5F5DC !important;
+}
+
+.navlink:hover {
+    color: #C0C0C0 !important;
+}
+
+a {
+    color: #F5F5DC !important;
+}
+
+a:hover {
+    color: #C0C0C0 !important;
+}
+
+.user-dropdown .dropdown-menu {
+    min-width: 4rem;
+ }
