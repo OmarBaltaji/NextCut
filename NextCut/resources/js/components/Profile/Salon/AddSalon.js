@@ -82,7 +82,6 @@ export default function AddSalon(props) {
                             required
                             style={{ color: '#40E0D0' }}>
                             {dayOfWeek.forEach(day => {
-                                console.log(day)
                                 return <option>{day}</option>
                                 }
                             )}

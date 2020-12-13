@@ -109061,7 +109061,6 @@ function AddSalon(props) {
       color: '#40E0D0'
     }
   }, dayOfWeek.forEach(function (day) {
-    console.log(day);
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null, day);
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Group, {
     as: react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Col"]
@@ -109492,8 +109491,8 @@ function ShowBarber(props) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/omar/.config/composer/vendor/bin/NextCut/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/omar/.config/composer/vendor/bin/NextCut/resources/css/app.css */"./resources/css/app.css");
+__webpack_require__(/*! /home/omar/.config/composer/vendor/bin/NextCut/NextCut Project/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/omar/.config/composer/vendor/bin/NextCut/NextCut Project/resources/css/app.css */"./resources/css/app.css");
 
 
 /***/ })
