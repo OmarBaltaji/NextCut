@@ -13,7 +13,13 @@ class Service extends Model
         'type',
     ];
 
+    protected $table = 'services';
+
     public function barber() {
         return $this->belongsToMany(Barber::class);
+    }
+
+    public function barber_service() {
+        return $this->hasMany(BarberService::class);
     }
 }

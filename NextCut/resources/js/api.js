@@ -33,8 +33,32 @@ export default{
     updateUserInfo: (user_id, info, headers) =>
     axios.put(`${BASE_URL}/user/${user_id}`, info, headers),
 
+    getSalonInfo: () =>
+    axios.get(`${BASE_URL}/user/salon`),
+
     createSalonInfo: (info) =>
     axios.post(`${BASE_URL}/user/salon`, info),
+
+    editSalonInfo: (info, id) =>
+    axios.put(`${BASE_URL}/user/salon/${id}`, info),
+
+    getAddress: () =>
+    axios.get(`${BASE_URL}/user/address`),
+
+    createAddress: (info) =>
+    axios.post(`${BASE_URL}/user/address`, info),
+
+    editAddress: (info, id) =>
+    axios.put(`${BASE_URL}/user/address/${id}`, info),
+
+    getSchedule: () =>
+    axios.get(`${BASE_URL}/user/schedule`),
+
+    createSchedule: (info) =>
+    axios.post(`${BASE_URL}/user/schedule`, info),
+
+    editSchedule: (info, id) =>
+    axios.put(`${BASE_URL}/user/schedule/${id}`, info),
 
     getAllBarbers: () =>
     axios.get(`${BASE_URL}/barbers`),

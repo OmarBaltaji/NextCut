@@ -8,8 +8,13 @@ use Auth;
 
 class SalonController extends Controller
 {
-    public function store(Request $request) {
+    public function show() {
+        $user = Auth::user();
+        $barber = $user->barber;
+        return response()->json($barber, 200);
+    }
 
+    public function store(Request $request) {
        $attributes = $request->validate([
             'salon_name' => 'string|required',
             'hour_open' => 'string|required',
@@ -25,6 +30,26 @@ class SalonController extends Controller
             'day_open' => $attributes['day_open'],
             'day_close' => $attributes['day_close'],
             'user_id' => Auth::user()->id,
+        ]);
+
+        return response()->json($barber, 200);
+    }
+
+    public function update(Barber $barber, Request $request) {
+       $attributes = $request->validate([
+        'salon_name' => 'string|required',
+        'hour_open' => 'string|required',
+        'hour_close' => 'string|required',
+        'day_open'=> 'string|required',
+        'day_close'=> 'string|required',
+        ]);
+
+        $barber->update([
+            'salon_name' => $attributes['salon_name'],
+            'hour_open' => $attributes['hour_open'],
+            'hour_close' => $attributes['hour_close'],
+            'day_open' => $attributes['day_open'],
+            'day_close' => $attributes['day_close'],
         ]);
 
         return response()->json($barber, 200);

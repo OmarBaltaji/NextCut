@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import api from '../../../api';
-import {Button, Form, Modal, Col, InputGroup} from 'react-bootstrap';
+import {Button, Form, Modal, Col} from 'react-bootstrap';
 
-export default function AddSalon(props) {
+export default function AddSchedule(props) {
     const [openForm, setOpenForm] = useState(true);
-    const [salon, setSalon] = useState('');
     const [hourOpen, setHourOpen] = useState('');
     const [hourClose, setHourClose] = useState('');
     const [dayOpen, setDayOpen] = useState('Monday');
@@ -16,19 +15,19 @@ export default function AddSalon(props) {
         props.setShow(false); //setting Show to false to update it in the parent's component (Profile)
     }
 
-    function handleSalonInfo() {
+    function handleScheduleInfo() {
         event.preventDefault();
         const salonInfo = {
-            'salon_name': salon,
             'hour_open': hourOpen,
             'hour_close': hourClose,
             'day_open': dayOpen,
             'day_close': dayClose,
         }
 
-        api.createSalonInfo(salonInfo)
+        api.createSchedule(salonInfo)
         .then(response => {
             handleClose();
+            window.location.reload();
         })
     }
 
@@ -38,16 +37,7 @@ export default function AddSalon(props) {
             <Modal.Title>Salon Schedule</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <Form onSubmit={handleSalonInfo}>
-                    <Form.Row>
-                        <Form.Group as={Col}>
-                            <Form.Control
-                            type="text"
-                            placeholder="Salon Name"
-                            onChange={(e) => {setSalon(e.target.value)}}
-                            required />
-                        </Form.Group>
-                    </Form.Row>
+                <Form onSubmit={handleScheduleInfo}>
                     <Form.Row>
                         <Form.Group as={Col}>
                             <Form.Control
