@@ -15,13 +15,34 @@ use Illuminate\Support\Facades\Route;
 
 //So the pages don't 404 when navigating between them
 
-Route::view('{path?}', 'app');
+// Route::view('{path?}', 'app');
+
+Route::view('/', 'app');
+
+Route::view('/home', 'app');
+
+Route::view('/aboutus', 'app');
+
+Route::view('/schedule', 'app');
+
+Route::view('/barbers', 'app');
+
+Route::view('/profile', 'app');
+
+Route::view('/login', 'app');
+
+Route::view('/register', 'app');
 
 Route::get('/profile/{profile}/edit', function(){
     return view('app');
 });
 
+Route::get('/profile/services', function(){
+    return view('app');
+});
 
 Route::get('/barbers/{barber}', function(){
     return view('app');
 });
+
+

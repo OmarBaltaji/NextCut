@@ -13,6 +13,7 @@ import EditProfile from './Profile/EditProfile';
 import Schedule from './Schedule';
 import Barbers from './Barbers';
 import ShowBarber from './ShowBarber';
+import Service from './Profile/BarberServices/Service';
 
 export default function App() {
     return (
@@ -26,6 +27,7 @@ export default function App() {
                 <Route exact path="/barbers/:id" component={ShowBarber} />
                 <Route exact path="/profile" component={Profile} />
                 <Route exact path="/profile/:id/edit" component={EditProfile} />
+                <Route exact path="/profile/services" component={Service} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/register" component={Register} />
 

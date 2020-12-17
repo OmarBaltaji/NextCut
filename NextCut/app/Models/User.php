@@ -23,6 +23,7 @@ class User extends Authenticatable
         'phone_number',
         'email',
         'password',
+        'roles',
     ];
 
     /**
@@ -42,6 +43,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        // 'roles' => 'string',
     ];
 
     public function barber() {

@@ -27,4 +27,14 @@ class BarberController extends Controller
         $barber->barber_service;
         return response()->json($barber, 200);
     }
+
+    public function barberSchedule(Barber $barber) {
+        $schedule = $barber->schedule->first();
+        return response()->json($schedule, 200);
+    }
+
+    public function barberGallery(Barber $barber) {
+        $gallery = $barber->gallery;
+        return response()->json($gallery, 200);
+    }
 }

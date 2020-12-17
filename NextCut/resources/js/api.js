@@ -3,16 +3,6 @@ import CookieService from './Service/CookieService';
 
 const BASE_URL = 'http://nextcut.test/api'
 
-// const cookie = CookieService.get('access_token');
-
-// const token = {
-//     headers: {
-//         'Accept': 'application/json',
-//         'Content-type': 'application/json',
-//         'Authorization': 'Bearer ' + cookie
-//     },
-// }
-
 export default{
 
     login: (credentials) =>
@@ -60,12 +50,53 @@ export default{
     editSchedule: (info, id) =>
     axios.put(`${BASE_URL}/user/schedule/${id}`, info),
 
+    getService: () =>
+    axios.get(`${BASE_URL}/user/services`),
+
+    createService: (type) =>
+    axios.post(`${BASE_URL}/user/services`, type),
+
+    editService: (type, id) =>
+    axios.put(`${BASE_URL}/user/services/${id}`, type),
+
+    deleteService: (id) =>
+    axios.delete(`${BASE_URL}/user/services/${id}`),
+
+    //the user is a barber we are getting his/her particular services
+    getBarberService: () =>
+    axios.get(`${BASE_URL}/user/barberservices`),
+
+    createBarberService: (info) =>
+    axios.post(`${BASE_URL}/user/barberservices`, info),
+
+    editBarberService: (info, id) =>
+    axios.put(`${BASE_URL}/user/barberservices/${id}`, info),
+
+    deleteBarberService: (id) =>
+    axios.delete(`${BASE_URL}/user/barberservices/${id}`),
+
+    getGalleries: () =>
+    axios.get(`${BASE_URL}/user/galleries`),
+
+    createGallery: (info, headers) =>
+    axios.post(`${BASE_URL}/user/galleries`, info, headers),
+
+    deleteGallery: (id) =>
+    axios.delete(`${BASE_URL}/user/galleries/${id}`),
+
     getAllBarbers: () =>
     axios.get(`${BASE_URL}/barbers`),
 
     getOneBarber: (id) =>
     axios.get(`${BASE_URL}/barbers/${id}`),
 
+    //get a particular barber's services after browsing through barbers as a customer
     getBarberServices: (id) =>
     axios.get(`${BASE_URL}/barbers/${id}/services`),
+
+    getBarberSchedule: (id) =>
+    axios.get(`${BASE_URL}/barbers/${id}/schedule`),
+
+    getBarberGallery: (id) =>
+    axios.get(`${BASE_URL}/barbers/${id}/gallery`),
 }

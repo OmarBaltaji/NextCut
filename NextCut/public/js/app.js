@@ -9942,7 +9942,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, ".show_barber:hover {\n    cursor: pointer;\n}\n\n.barber_header {\n    font-weight: bold;\n    font-size: 21px;\n}\n\n.service {\n    list-style: none;\n}\n\n.service_header {\n    text-decoration: underline;\n    font-size: 18px;\n}\n\n.card_title {\n    font-weight: bold;\n    text-decoration: underline;\n    font-size: 23px;\n}\n", ""]);
+exports.push([module.i, ".show_barber:hover {\n    cursor: pointer;\n}\n\n.barber_header {\n    font-weight: bold;\n    font-size: 21px;\n}\n\n.service {\n    list-style: none;\n}\n\n.service_header {\n    text-decoration: underline;\n    font-size: 18px;\n}\n\n.card_title {\n    font-weight: bold;\n    text-decoration: underline;\n    font-size: 23px;\n}\n\n.clickable_photos:hover {\n    cursor: pointer;\n}\n", ""]);
 
 // exports
 
@@ -9961,7 +9961,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, ".nav_item {\n    text-decoration: none;\n    margin-right: 20px;\n    color: black;\n}\n\n.nav_item:hover{\n    text-decoration: none;\n    margin-right: 20px;\n}\n\n.dropdown_item {\n    text-decoration: none;\n    color: black;\n    padding:0 23px;\n}\n\n.dropdown_item:hover {\n    text-decoration: none;\n    color: black;\n}\n\n.div_dropdown_item:hover {\n    width: 200px;\n    background-color: rgba(197, 193, 193, 0.089);\n    padding: 4px 0;\n}\n\n.login_register {\n    color: #40E0D0;\n    text-decoration: underline;\n    font-weight: bold;\n}\n\n.login_register:hover {\n    color: #F5F5DC;\n    text-decoration: underline;\n    font-weight: bold;\n}\n\n.btn_log_reg {\n    background-color: #40E0D0;\n    border-color: #40E0D0;\n    color: #F5F5DC;\n}\n\n.btn_log_reg:hover {\n    background-color: #F5F5DC;\n    border-color: #F5F5DC;\n    color: #40E0D0;\n}\n\n.input::placeholder {\n    color: #40E0D0;\n    opacity: 1;\n}\n\n#password::placeholder {\n    color: #40E0D0;\n    opacity: 1;\n}\n\n.remember_me {\n    color: #40E0D0;\n}\n\n.remember_me:hover {\n    color: #F5F5DC;\n}\n\n.navlink {\n    color: #F5F5DC !important;\n}\n\n.navlink:hover {\n    color: #C0C0C0 !important;\n}\n\na {\n    color: #F5F5DC !important;\n}\n\na:hover {\n    color: #C0C0C0 !important;\n}\n\n.user-dropdown .dropdown-menu {\n    min-width: 4rem;\n }\n", ""]);
+exports.push([module.i, ".nav_item {\n    text-decoration: none;\n    margin-right: 20px;\n    color: black;\n}\n\n.nav_item:hover{\n    text-decoration: none;\n    margin-right: 20px;\n}\n\n.dropdown_item {\n    text-decoration: none;\n    color: black;\n    padding:0 23px;\n}\n\n.dropdown_item:hover {\n    text-decoration: none;\n    color: black;\n}\n\n.div_dropdown_item:hover {\n    width: 200px;\n    background-color: rgba(197, 193, 193, 0.089);\n    padding: 4px 0;\n}\n\n.login_register {\n    color: #40E0D0;\n    text-decoration: underline;\n    font-weight: bold;\n}\n\n.login_register:hover {\n    color: #F5F5DC;\n    text-decoration: underline;\n    font-weight: bold;\n}\n\n.btn_log_reg {\n    background-color: #40E0D0;\n    border-color: #40E0D0;\n    color: #F5F5DC;\n}\n\n.btn_log_reg:hover {\n    background-color: #F5F5DC;\n    border-color: #F5F5DC;\n    color: #40E0D0;\n}\n\n.input::placeholder {\n    color: #40E0D0;\n    opacity: 1;\n}\n\n#password::placeholder {\n    color: #40E0D0;\n    opacity: 1;\n}\n\n.remember_me {\n    color: #40E0D0;\n}\n\n.remember_me:hover {\n    color: #F5F5DC;\n}\n\n.navlink {\n    color: #F5F5DC !important;\n}\n\n.navlink:hover {\n    color: #C0C0C0 !important;\n}\n\na {\n    color: #F5F5DC !important;\n}\n\na:hover {\n    color: #C0C0C0 !important;\n}\n\n.user-dropdown .dropdown-menu {\n    min-width: 8rem;\n }\n", ""]);
 
 // exports
 
@@ -9980,7 +9980,26 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, ".edit_profile {\n    color: white !important;\n}\n", ""]);
+exports.push([module.i, ".edit_profile {\n    color: white !important;\n}\n\n.card_link {\n    color: black !important;\n}\n\n.card_link:hover {\n    text-decoration: underline;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./resources/css/Service.css":
+/*!*******************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/postcss-loader/src??ref--6-2!./resources/css/Service.css ***!
+  \*******************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".service_table {\n    background-color: white;\n}\n\n.type_row {\n    display: flex;\n    align-items: baseline;\n}\n\n.label {\n    margin-top: 5px;\n}\n", ""]);
 
 // exports
 
@@ -107839,6 +107858,36 @@ if(false) {}
 
 /***/ }),
 
+/***/ "./resources/css/Service.css":
+/*!***********************************!*\
+  !*** ./resources/css/Service.css ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../node_modules/css-loader??ref--6-1!../../node_modules/postcss-loader/src??ref--6-2!./Service.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./resources/css/Service.css");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./resources/css/app.css":
 /*!*******************************!*\
   !*** ./resources/css/app.css ***!
@@ -107912,15 +107961,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Service_CookieService__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Service/CookieService */ "./resources/js/Service/CookieService.js");
 
 
-var BASE_URL = 'http://nextcut.test/api'; // const cookie = CookieService.get('access_token');
-// const token = {
-//     headers: {
-//         'Accept': 'application/json',
-//         'Content-type': 'application/json',
-//         'Authorization': 'Bearer ' + cookie
-//     },
-// }
-
+var BASE_URL = 'http://nextcut.test/api';
 /* harmony default export */ __webpack_exports__["default"] = ({
   login: function login(credentials) {
     return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("".concat(BASE_URL, "/login"), credentials);
@@ -107967,14 +108008,55 @@ var BASE_URL = 'http://nextcut.test/api'; // const cookie = CookieService.get('a
   editSchedule: function editSchedule(info, id) {
     return axios__WEBPACK_IMPORTED_MODULE_0___default.a.put("".concat(BASE_URL, "/user/schedule/").concat(id), info);
   },
+  getService: function getService() {
+    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("".concat(BASE_URL, "/user/services"));
+  },
+  createService: function createService(type) {
+    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("".concat(BASE_URL, "/user/services"), type);
+  },
+  editService: function editService(type, id) {
+    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.put("".concat(BASE_URL, "/user/services/").concat(id), type);
+  },
+  deleteService: function deleteService(id) {
+    return axios__WEBPACK_IMPORTED_MODULE_0___default.a["delete"]("".concat(BASE_URL, "/user/services/").concat(id));
+  },
+  //the user is a barber we are getting his/her particular services
+  getBarberService: function getBarberService() {
+    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("".concat(BASE_URL, "/user/barberservices"));
+  },
+  createBarberService: function createBarberService(info) {
+    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("".concat(BASE_URL, "/user/barberservices"), info);
+  },
+  editBarberService: function editBarberService(info, id) {
+    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.put("".concat(BASE_URL, "/user/barberservices/").concat(id), info);
+  },
+  deleteBarberService: function deleteBarberService(id) {
+    return axios__WEBPACK_IMPORTED_MODULE_0___default.a["delete"]("".concat(BASE_URL, "/user/barberservices/").concat(id));
+  },
+  getGalleries: function getGalleries() {
+    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("".concat(BASE_URL, "/user/galleries"));
+  },
+  createGallery: function createGallery(info, headers) {
+    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("".concat(BASE_URL, "/user/galleries"), info, headers);
+  },
+  deleteGallery: function deleteGallery(id) {
+    return axios__WEBPACK_IMPORTED_MODULE_0___default.a["delete"]("".concat(BASE_URL, "/user/galleries/").concat(id));
+  },
   getAllBarbers: function getAllBarbers() {
     return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("".concat(BASE_URL, "/barbers"));
   },
   getOneBarber: function getOneBarber(id) {
     return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("".concat(BASE_URL, "/barbers/").concat(id));
   },
+  //get a particular barber's services after browsing through barbers as a customer
   getBarberServices: function getBarberServices(id) {
     return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("".concat(BASE_URL, "/barbers/").concat(id, "/services"));
+  },
+  getBarberSchedule: function getBarberSchedule(id) {
+    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("".concat(BASE_URL, "/barbers/").concat(id, "/schedule"));
+  },
+  getBarberGallery: function getBarberGallery(id) {
+    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("".concat(BASE_URL, "/barbers/").concat(id, "/gallery"));
   }
 });
 
@@ -108135,6 +108217,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Schedule__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./Schedule */ "./resources/js/components/Schedule.js");
 /* harmony import */ var _Barbers__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./Barbers */ "./resources/js/components/Barbers.js");
 /* harmony import */ var _ShowBarber__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./ShowBarber */ "./resources/js/components/ShowBarber.js");
+/* harmony import */ var _Profile_BarberServices_Service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./Profile/BarberServices/Service */ "./resources/js/components/Profile/BarberServices/Service.js");
+
 
 
 
@@ -108183,6 +108267,10 @@ function App() {
     component: _Profile_EditProfile__WEBPACK_IMPORTED_MODULE_9__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     exact: true,
+    path: "/profile/services",
+    component: _Profile_BarberServices_Service__WEBPACK_IMPORTED_MODULE_13__["default"]
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+    exact: true,
     path: "/login",
     component: _Login__WEBPACK_IMPORTED_MODULE_6__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
@@ -108192,6 +108280,33 @@ function App() {
   })));
 }
 react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(App, null), document.getElementById('app'));
+
+/***/ }),
+
+/***/ "./resources/js/components/BarberSchedule.js":
+/*!***************************************************!*\
+  !*** ./resources/js/components/BarberSchedule.js ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return BarberSchedule; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/index.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _css_Barber_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../css/Barber.css */ "./resources/css/Barber.css");
+/* harmony import */ var _css_Barber_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_css_Barber_css__WEBPACK_IMPORTED_MODULE_3__);
+
+
+
+
+function BarberSchedule(props) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Opening Hour: ", props.props.hour_open), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Closing Hour: ", props.props.hour_close), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Available From: ", props.props.day_open), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "To: ", props.props.day_close), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null));
+}
 
 /***/ }),
 
@@ -108280,7 +108395,7 @@ function Barber() {
         variant: "top",
         src: "/Images/userImage/".concat(barber.user.profile_photo),
         height: "350px"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["Card"].Body, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["Card"].Title, null, barber.user.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["Card"].Text, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Salon: ", barber.salon_name), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Opening Hours: ", barber.hour_open), "  ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Closing Hours: ", barber.hour_close), "  ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Mobile: ", barber.user.phone_number), "  ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "City: ", barber.user.address[0].city))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["Card"].Footer, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["Card"].Body, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["Card"].Title, null, barber.user.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["Card"].Text, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Salon: ", barber.salon_name), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Opening Hours: ", barber.hour_open), "  ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Closing Hours: ", barber.hour_close), "  ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Mobile: ", barber.user.phone_number), "  ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "City: ", barber.user.address.length != 0 ? barber.user.address[0].city : 'Not Available'))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["Card"].Footer, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", {
         className: "text-muted"
       }, "Joined: ", moment__WEBPACK_IMPORTED_MODULE_6___default()(barber.user.created_at).format('DD/MM/YYYY'))));
     }));
@@ -108292,6 +108407,81 @@ function Barber() {
       textDecoration: 'underline'
     }
   }, "Meet Your Barbers"), displayBarbers());
+}
+
+/***/ }),
+
+/***/ "./resources/js/components/Gallery.js":
+/*!********************************************!*\
+  !*** ./resources/js/components/Gallery.js ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return GallerySlideShow; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/index.js");
+/* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../api */ "./resources/js/api.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+function GallerySlideShow(props) {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(true),
+      _useState2 = _slicedToArray(_useState, 2),
+      openForm = _useState2[0],
+      setOpenForm = _useState2[1];
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
+      _useState4 = _slicedToArray(_useState3, 2),
+      galleryInfo = _useState4[0],
+      setGalleryInfo = _useState4[1];
+
+  var handleClose = function handleClose() {
+    setOpenForm(false); //to be able to close the form after opening it
+
+    props.setShow(false); //setting Show to false to update it in the parent's component (Profile)
+  };
+
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    getGalleryInfo();
+  }, []);
+
+  function getGalleryInfo() {
+    _api__WEBPACK_IMPORTED_MODULE_2__["default"].getBarberGallery(props.info).then(function (response) {
+      setGalleryInfo(response.data);
+    });
+  }
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Modal"], {
+    show: openForm ? props.props : false,
+    onHide: function onHide() {
+      return handleClose();
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Modal"].Header, {
+    closeButton: true
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Modal"].Title, null, "Gallery")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Modal"].Body, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Carousel"], null, galleryInfo.map(function (photo) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Carousel"].Item, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+      className: "d-block w-100",
+      width: "500px",
+      height: "500px",
+      src: "/Images/barberGallery/".concat(photo.image)
+    }));
+  }))));
 }
 
 /***/ }),
@@ -108335,39 +108525,28 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 function Header() {
   var history = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["useHistory"])();
 
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
       _useState2 = _slicedToArray(_useState, 2),
-      activeKey = _useState2[0],
-      setActiveKey = _useState2[1];
+      userInfo = _useState2[0],
+      setUserInfo = _useState2[1];
 
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(),
-      _useState4 = _slicedToArray(_useState3, 2),
-      userInfo = _useState4[0],
-      setUserInfo = _useState4[1];
-
-  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(),
-      _useState6 = _slicedToArray(_useState5, 2),
-      loggedIn = _useState6[0],
-      setLoggedIn = _useState6[1];
-
+  var cookie = _Service_CookieService__WEBPACK_IMPORTED_MODULE_4__["default"].get('access_token');
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    return getUserDetails();
+    if (cookie) {
+      getUserDetails();
+    }
   }, []);
 
   function getUserDetails() {
     _api__WEBPACK_IMPORTED_MODULE_2__["default"].getUserInfo().then(function (response) {
-      // console.log(response.data);
       setUserInfo(response.data);
-      setLoggedIn(true);
-    })["catch"](function (error) {
-      setLoggedIn(false);
     });
   }
 
   function logoutHandler(e) {
     e.preventDefault();
     _api__WEBPACK_IMPORTED_MODULE_2__["default"].logout().then(function (response) {
-      console.log(response);
+      window.localStorage.clear();
       _Service_CookieService__WEBPACK_IMPORTED_MODULE_4__["default"].remove('access_token');
       history.push('/login');
     });
@@ -108392,7 +108571,8 @@ function Header() {
       },
       onClick: function onClick(e) {
         return logoutHandler(e);
-      }
+      },
+      href: "/login"
     }, "Logout"));
   }
 
@@ -108421,13 +108601,13 @@ function Header() {
   }, "Home"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Nav"].Link, {
     className: "navlink",
     href: "/aboutus"
-  }, "About Us"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Nav"].Link, {
+  }, "About Us"), userInfo.roles == 'Customer' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Nav"].Link, {
     className: "navlink",
     href: "/schedule"
-  }, "Schedule"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Nav"].Link, {
+  }, "Schedule") : '', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Nav"].Link, {
     className: "navlink",
     href: "/barbers"
-  }, "Barbers")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Nav"], null, loggedIn ? displayUser() : displayGuest())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null));
+  }, "Barbers")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Nav"], null, cookie ? displayUser() : displayGuest())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null));
 }
 
 /***/ }),
@@ -108512,6 +108692,11 @@ function Login() {
       errs = _useState8[0],
       setErrs = _useState8[1];
 
+  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(''),
+      _useState10 = _slicedToArray(_useState9, 2),
+      invalid = _useState10[0],
+      setInvalid = _useState10[1];
+
   function logInHandler(event) {
     event.preventDefault();
     var credentials = {
@@ -108520,7 +108705,6 @@ function Login() {
       'remember_me': rememberMe
     };
     _api__WEBPACK_IMPORTED_MODULE_3__["default"].login(credentials).then(function (response) {
-      console.log(response.data);
       var options = {
         Path: "/",
         Expires: response.data.expires_at,
@@ -108529,10 +108713,10 @@ function Login() {
       _Service_CookieService__WEBPACK_IMPORTED_MODULE_2__["default"].set('access_token', response.data.access_token, options);
       history.push("/home");
     })["catch"](function (error) {
-      if (email == '' || password == '') {
+      if (error.response.status == 422) {
         setErrs(error.response.data.errors);
-      } else {
-        alert('invalid username/password comibation');
+      } else if (error.response.status == 401) {
+        setInvalid(error.response.data.message);
       }
     });
   }
@@ -108542,16 +108726,17 @@ function Login() {
       //checks if field(username or password) exists within errs array
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         style: {
-          color: 'red'
+          color: 'red',
+          fontWeight: "bold"
         }
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, errs[field]), " ");
+      }, errs[field], " ");
     }
   }
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["Card"], {
     style: {
       margin: '150px auto',
-      width: '300px',
+      width: '320px',
       padding: '20px',
       backgroundColor: '#B7410E'
     }
@@ -108589,7 +108774,12 @@ function Login() {
     onChange: function onChange(e) {
       setPassword(e.target.value);
     }
-  }), displayError('password'))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["Form"].Group, {
+  }), displayError('password'))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    style: {
+      color: 'red',
+      fontWeight: 'bold'
+    }
+  }, invalid), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["Form"].Group, {
     controlId: "formBasicCheckbox"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "remember_me"
@@ -108895,6 +109085,667 @@ function AddAddress(props) {
 
 /***/ }),
 
+/***/ "./resources/js/components/Profile/BarberServices/AddBarberService.js":
+/*!****************************************************************************!*\
+  !*** ./resources/js/components/Profile/BarberServices/AddBarberService.js ***!
+  \****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return AddSalon; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../api */ "./resources/js/api.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/index.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+function AddSalon(props) {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(true),
+      _useState2 = _slicedToArray(_useState, 2),
+      openForm = _useState2[0],
+      setOpenForm = _useState2[1];
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(),
+      _useState4 = _slicedToArray(_useState3, 2),
+      newPrice = _useState4[0],
+      setNewPrice = _useState4[1];
+
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(),
+      _useState6 = _slicedToArray(_useState5, 2),
+      newTime = _useState6[0],
+      setNewTime = _useState6[1];
+
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(),
+      _useState8 = _slicedToArray(_useState7, 2),
+      newBarberService = _useState8[0],
+      setNewBarberService = _useState8[1];
+
+  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
+      _useState10 = _slicedToArray(_useState9, 2),
+      services = _useState10[0],
+      setServices = _useState10[1];
+
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    getServiceInfo();
+  }, []);
+
+  var handleClose = function handleClose() {
+    setOpenForm(false); //to be able to close the form after opening it
+
+    props.setShow(false); //setting Show to false to update it in the parent's component (Profile)
+  };
+
+  function BarberServiceSubmitHandler() {
+    event.preventDefault();
+    var info = {
+      'price': newPrice,
+      'estimated_time': newTime,
+      'service_id': parseInt(newBarberService)
+    };
+    _api__WEBPACK_IMPORTED_MODULE_1__["default"].createBarberService(info).then(function (response) {
+      console.log(response);
+      window.location.reload();
+    });
+  }
+
+  function getServiceInfo() {
+    _api__WEBPACK_IMPORTED_MODULE_1__["default"].getService().then(function (response) {
+      setServices(response.data);
+      setNewBarberService(response.data[0].id);
+    });
+  }
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Modal"], {
+    show: openForm ? props.props : false,
+    onHide: function onHide() {
+      return handleClose();
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Modal"].Header, {
+    closeButton: true
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Modal"].Title, null, "Enter A new Service")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Modal"].Body, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"], {
+    onSubmit: BarberServiceSubmitHandler
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Row, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Label, {
+    className: "label"
+  }, "Price: "), " \xA0", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Group, {
+    as: react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Col"]
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Control, {
+    type: "number",
+    placeholder: "price",
+    onChange: function onChange(e) {
+      return setNewPrice(e.target.value);
+    },
+    required: true
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Row, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Label, {
+    className: "label"
+  }, "Time: "), " \xA0", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Group, {
+    as: react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Col"]
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Control, {
+    type: "number",
+    placeholder: "Estimated Time",
+    onChange: function onChange(e) {
+      return setNewTime(e.target.value);
+    },
+    required: true
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Row, {
+    className: "type_row"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Label, null, "Type: "), " \xA0", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Group, {
+    as: react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Col"]
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Control, {
+    as: "select",
+    onChange: function onChange(e) {
+      return setNewBarberService(e.target.value);
+    },
+    required: true
+  }, services.map(function (service) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+      key: service.id,
+      value: service.id
+    }, service.type);
+  })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Button"], {
+    type: "submit"
+  }, "Enter"))));
+}
+
+/***/ }),
+
+/***/ "./resources/js/components/Profile/BarberServices/EditBarberService.js":
+/*!*****************************************************************************!*\
+  !*** ./resources/js/components/Profile/BarberServices/EditBarberService.js ***!
+  \*****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return EditBarberService; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../api */ "./resources/js/api.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/index.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+function EditBarberService(props) {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(true),
+      _useState2 = _slicedToArray(_useState, 2),
+      openForm = _useState2[0],
+      setOpenForm = _useState2[1];
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(props.info.price),
+      _useState4 = _slicedToArray(_useState3, 2),
+      newPrice = _useState4[0],
+      setNewPrice = _useState4[1];
+
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(props.info.estimated_time),
+      _useState6 = _slicedToArray(_useState5, 2),
+      newTime = _useState6[0],
+      setNewTime = _useState6[1];
+
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(props.info.service.id),
+      _useState8 = _slicedToArray(_useState7, 2),
+      newServiceType = _useState8[0],
+      setNewServiceType = _useState8[1];
+
+  var handleClose = function handleClose() {
+    setOpenForm(false); //to be able to close the form after opening it
+
+    props.setShow(false); //setting Show to false to update it in the parent's component (Profile)
+  };
+
+  function handleBarberService() {
+    event.preventDefault();
+    var info = {
+      'price': newPrice,
+      'estimated_time': newTime,
+      'service_id': parseInt(newServiceType)
+    };
+    _api__WEBPACK_IMPORTED_MODULE_1__["default"].editBarberService(info, props.info.id).then(function (response) {
+      handleClose();
+      window.location.reload();
+    });
+  }
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Modal"], {
+    show: openForm ? props.props : false,
+    onHide: function onHide() {
+      return handleClose();
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Modal"].Header, {
+    closeButton: true
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Modal"].Title, null, "Edit Service")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Modal"].Body, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"], {
+    onSubmit: handleBarberService
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Row, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Label, {
+    className: "label"
+  }, "Price: "), " \xA0", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Group, {
+    as: react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Col"]
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Control, {
+    type: "number",
+    placeholder: "price",
+    onChange: function onChange(e) {
+      setNewPrice(e.target.value);
+    },
+    defaultValue: newPrice,
+    required: true
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Row, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Label, {
+    className: "label"
+  }, "Time: "), " \xA0", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Group, {
+    as: react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Col"]
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Control, {
+    type: "number",
+    placeholder: "Estimated Time",
+    onChange: function onChange(e) {
+      setNewTime(e.target.value);
+    },
+    defaultValue: newTime,
+    required: true
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Row, {
+    className: "type_row"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Label, null, "Type: "), " \xA0", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Group, {
+    as: react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Col"]
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Control, {
+    as: "select",
+    onChange: function onChange(e) {
+      setNewServiceType(e.target.value);
+    },
+    defaultValue: newServiceType,
+    required: true
+  }, props.services.map(function (service) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+      key: service.id,
+      value: service.id
+    }, service.type);
+  })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Button"], {
+    type: "submit"
+  }, "Enter"))));
+}
+
+/***/ }),
+
+/***/ "./resources/js/components/Profile/BarberServices/EditService.js":
+/*!***********************************************************************!*\
+  !*** ./resources/js/components/Profile/BarberServices/EditService.js ***!
+  \***********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return EditService; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../api */ "./resources/js/api.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/index.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+function EditService(props) {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(true),
+      _useState2 = _slicedToArray(_useState, 2),
+      openForm = _useState2[0],
+      setOpenForm = _useState2[1];
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(props.info.type),
+      _useState4 = _slicedToArray(_useState3, 2),
+      newType = _useState4[0],
+      setNewType = _useState4[1];
+
+  var handleClose = function handleClose() {
+    setOpenForm(false); //to be able to close the form after opening it
+
+    props.setShow(false); //setting Show to false to update it in the parent's component (Profile)
+  };
+
+  function handleService() {
+    event.preventDefault();
+    var type = {
+      'type': newType
+    };
+    _api__WEBPACK_IMPORTED_MODULE_1__["default"].editService(type, props.info.id).then(function (response) {
+      handleClose();
+      window.location.reload();
+    });
+  }
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Modal"], {
+    show: openForm ? props.props : false,
+    onHide: function onHide() {
+      return handleClose();
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Modal"].Header, {
+    closeButton: true
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Modal"].Title, null, "Service Type")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Modal"].Body, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"], {
+    onSubmit: handleService
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Row, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Group, {
+    as: react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Col"]
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Control, {
+    type: "text",
+    placeholder: "Service Type",
+    onChange: function onChange(e) {
+      setNewType(e.target.value);
+    },
+    defaultValue: newType,
+    required: true
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Button"], {
+    type: "submit"
+  }, "Submit"))));
+}
+
+/***/ }),
+
+/***/ "./resources/js/components/Profile/BarberServices/ProfileService.js":
+/*!**************************************************************************!*\
+  !*** ./resources/js/components/Profile/BarberServices/ProfileService.js ***!
+  \**************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ProfileService; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/index.js");
+/* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../api */ "./resources/js/api.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+function ProfileService() {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
+      _useState2 = _slicedToArray(_useState, 2),
+      barberServices = _useState2[0],
+      setBarberServices = _useState2[1];
+
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    getBarberServiceInfo();
+  }, []);
+
+  function getBarberServiceInfo() {
+    _api__WEBPACK_IMPORTED_MODULE_2__["default"].getBarberService().then(function (response) {
+      console.log(response.data);
+      setBarberServices(response.data);
+    });
+  }
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Table"], {
+    striped: true,
+    bordered: true,
+    hover: true
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "#"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Type"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Price"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Time"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, barberServices.map(function (barberService, index) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
+      key: barberService.id
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, index), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, barberService.service.type), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, barberService.price), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, barberService.estimated_time));
+  })));
+}
+
+/***/ }),
+
+/***/ "./resources/js/components/Profile/BarberServices/Service.js":
+/*!*******************************************************************!*\
+  !*** ./resources/js/components/Profile/BarberServices/Service.js ***!
+  \*******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Service; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../api */ "./resources/js/api.js");
+/* harmony import */ var _Header__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../Header */ "./resources/js/components/Header.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _Service_CookieService__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../Service/CookieService */ "./resources/js/Service/CookieService.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/index.js");
+/* harmony import */ var _css_Service_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../../css/Service.css */ "./resources/css/Service.css");
+/* harmony import */ var _css_Service_css__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_css_Service_css__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _EditService__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./EditService */ "./resources/js/components/Profile/BarberServices/EditService.js");
+/* harmony import */ var _EditBarberService__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./EditBarberService */ "./resources/js/components/Profile/BarberServices/EditBarberService.js");
+/* harmony import */ var _AddBarberService__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./AddBarberService */ "./resources/js/components/Profile/BarberServices/AddBarberService.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+
+
+
+
+
+function Service() {
+  axios__WEBPACK_IMPORTED_MODULE_4___default.a.defaults.headers.common['Authorization'] = 'Bearer ' + _Service_CookieService__WEBPACK_IMPORTED_MODULE_5__["default"].get('access_token');
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
+      _useState2 = _slicedToArray(_useState, 2),
+      services = _useState2[0],
+      setServices = _useState2[1];
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
+      _useState4 = _slicedToArray(_useState3, 2),
+      barberServices = _useState4[0],
+      setBarberServices = _useState4[1];
+
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(''),
+      _useState6 = _slicedToArray(_useState5, 2),
+      type = _useState6[0],
+      setType = _useState6[1];
+
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(),
+      _useState8 = _slicedToArray(_useState7, 2),
+      editService = _useState8[0],
+      setEditService = _useState8[1];
+
+  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(),
+      _useState10 = _slicedToArray(_useState9, 2),
+      editBarberService = _useState10[0],
+      setEditBarberService = _useState10[1];
+
+  var servicesByBarber = localStorage.getItem('services_by_barber');
+
+  var _useState11 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState12 = _slicedToArray(_useState11, 2),
+      showEditService = _useState12[0],
+      setShowEditService = _useState12[1];
+
+  var handleShowEditService = function handleShowEditService() {
+    return setShowEditService(true);
+  };
+
+  var _useState13 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState14 = _slicedToArray(_useState13, 2),
+      showEditBarberService = _useState14[0],
+      setShowEditBarberService = _useState14[1];
+
+  var handleShowEditBarberService = function handleShowEditBarberService() {
+    return setShowEditBarberService(true);
+  };
+
+  var _useState15 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState16 = _slicedToArray(_useState15, 2),
+      showAddBarberService = _useState16[0],
+      setShowAddBarberService = _useState16[1];
+
+  var handleShowAddBarberService = function handleShowAddBarberService() {
+    return setShowAddBarberService(true);
+  };
+
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    showServices();
+    showBarberServices();
+  }, []);
+
+  function showServices() {
+    _api__WEBPACK_IMPORTED_MODULE_2__["default"].getService().then(function (response) {
+      setServices(response.data);
+    });
+  }
+
+  function showBarberServices() {
+    _api__WEBPACK_IMPORTED_MODULE_2__["default"].getBarberService().then(function (response) {
+      setBarberServices(response.data);
+    });
+  }
+
+  function hanldeDeleteService(id) {
+    var confirm_delete = confirm('Delete Service Type?');
+
+    if (confirm_delete == true) {
+      _api__WEBPACK_IMPORTED_MODULE_2__["default"].deleteService(id).then(function (response) {
+        window.location.reload();
+      });
+    }
+  }
+
+  function hanldeDeleteBarberService(id) {
+    var confirm_delete = confirm('Delete Service?');
+
+    if (confirm_delete == true) {
+      _api__WEBPACK_IMPORTED_MODULE_2__["default"].deleteBarberService(id).then(function (response) {
+        window.location.reload();
+      });
+    }
+  }
+
+  function renderService() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, services.map(function (service, index) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
+        key: service.id
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, index), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, service.type), servicesByBarber.includes(service.id) ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["ButtonGroup"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["Button"], {
+        onClick: function onClick() {
+          handleShowEditService();
+          setEditService(service);
+        }
+      }, "Edit"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["Button"], {
+        onClick: function onClick() {
+          return hanldeDeleteService(service.id);
+        }
+      }, "Delete"))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, 'Not Available'));
+    }));
+  }
+
+  function renderBarberService() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, barberServices.map(function (barberService, index) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
+        key: barberService.id
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, index), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, barberService.service.type), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, barberService.price), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, barberService.estimated_time), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["ButtonGroup"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["Button"], {
+        onClick: function onClick() {
+          handleShowEditBarberService();
+          setEditBarberService(barberService);
+        }
+      }, "Edit"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["Button"], {
+        onClick: function onClick() {
+          return hanldeDeleteBarberService(barberService.id);
+        }
+      }, "Delete"))));
+    }));
+  }
+
+  function typeSubmitHandler() {
+    event.preventDefault();
+    var newType = {
+      'type': type
+    };
+    _api__WEBPACK_IMPORTED_MODULE_2__["default"].createService(newType).then(function (response) {
+      console.log(response);
+      window.location.reload();
+    });
+  }
+
+  function displayEditService() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_EditService__WEBPACK_IMPORTED_MODULE_8__["default"], {
+      props: showEditService,
+      info: editService,
+      setShow: setShowEditService
+    });
+  }
+
+  function displayBarberEditService() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_EditBarberService__WEBPACK_IMPORTED_MODULE_9__["default"], {
+      props: showEditBarberService,
+      services: services,
+      info: editBarberService,
+      setShow: setShowEditBarberService
+    });
+  }
+
+  function displayAddBarberService(showAddBarberService) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_AddBarberService__WEBPACK_IMPORTED_MODULE_10__["default"], {
+      props: showAddBarberService,
+      setShow: setShowAddBarberService
+    });
+  }
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Header__WEBPACK_IMPORTED_MODULE_3__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["Container"], {
+    fluid: true
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+    style: {
+      textDecoration: 'underline'
+    }
+  }, "Manage Your Services"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["Button"], {
+    onClick: function onClick() {
+      return handleShowAddBarberService();
+    },
+    style: {
+      position: 'relative',
+      top: '15px'
+    }
+  }, "Add Services"), showAddBarberService ? displayAddBarberService(showAddBarberService) : ''), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["Row"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["Col"], {
+    lg: 8
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["Table"], {
+    striped: true,
+    bordered: true,
+    hover: true,
+    className: "service_table"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "#"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Service Type"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Price"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Estimated Time"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Action"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, renderBarberService())), showEditBarberService ? displayBarberEditService() : ''), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["Col"], {
+    lg: 4
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["Card"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["Card"].Body, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["Card"].Title, null, "Existing Services' Type"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["Form"], {
+    onSubmit: typeSubmitHandler
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["Form"].Row, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["InputGroup"], {
+    as: react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["Col"]
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["Form"].Control, {
+    type: "text",
+    placeholder: "Service Type",
+    onChange: function onChange(e) {
+      setType(e.target.value);
+    },
+    required: true
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["InputGroup"].Append, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["Button"], {
+    type: "submit",
+    variant: "outline-secondary"
+  }, "Enter"))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["Table"], {
+    striped: true,
+    bordered: true,
+    hover: true
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "#"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Service Type"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Action"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, renderService())), showEditService ? displayEditService() : ''))))));
+}
+
+/***/ }),
+
 /***/ "./resources/js/components/Profile/EditProfile.js":
 /*!********************************************************!*\
   !*** ./resources/js/components/Profile/EditProfile.js ***!
@@ -108982,28 +109833,28 @@ function EditProfile() {
   }
 
   function editHandler(event) {
-    event.preventDefault();
-    var newInfo = new FormData();
-    newInfo.append('name', name);
-    newInfo.append('email', email);
-    newInfo.append('phone_number', phoneNumber);
-    newInfo.append('profile_photo', profilePhoto); // const newInfo = {
-    //     'name': name,
-    //     'email': email,
-    //     'phone_number': phoneNumber,
-    //     'profile_photo': profilePhoto,
-    // };
+    event.preventDefault(); //   const newInfo = new FormData();
+    //   newInfo.append('name', name);
+    //   newInfo.append('email', email);
+    //   newInfo.append('phone_number', phoneNumber);
+    //   newInfo.append('profile_photo', profilePhoto);
 
+    var newInfo = {
+      'name': name,
+      'email': email,
+      'phone_number': phoneNumber,
+      'profile_photo': profilePhoto
+    };
     _api__WEBPACK_IMPORTED_MODULE_3__["default"].updateUserInfo(param.id, newInfo, {
       headers: {
         'Accept': "application/json",
-        'Content-Type': "multipart/form-data"
-      } //
-
+        'Content-Type': "application/json"
+      }
     }).then(function (response) {
-      console.log(response.data); // history.push('/profile');
+      // console.log(response.data);
+      history.push('/profile');
     })["catch"](function (error) {
-      console.log(error);
+      setErrs(error.response.data.errors);
     });
   }
 
@@ -109011,9 +109862,10 @@ function EditProfile() {
     if (errs[field]) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         style: {
-          color: 'red'
+          color: 'red',
+          fontWeight: 'bold'
         }
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, errs[field]));
+      }, errs[field]);
     }
   }
 
@@ -109033,7 +109885,7 @@ function EditProfile() {
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["Form"].Label, null, "Full Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["Form"].Control, {
     type: "text",
-    value: userInfo.name,
+    value: name,
     onChange: function onChange(e) {
       setName(e.target.value);
     }
@@ -109041,22 +109893,15 @@ function EditProfile() {
     controlId: "formGroupEmail"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["Form"].Label, null, "Email Address"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["Form"].Control, {
     type: "email",
-    value: userInfo.email,
+    value: email,
     onChange: function onChange(e) {
       setEmail(e.target.value);
     }
   }), displayError('email')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["Form"].Group, {
-    controlId: "formGroupFile"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["Form"].File, {
-    label: "Profile Photo",
-    onChange: function onChange(e) {
-      setProfilePhoto(e.target.files[0]);
-    }
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["Form"].Group, {
     controlId: "formGroupInput"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["Form"].Label, null, "Phone Number"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["Form"].Control, {
     type: "tel",
-    value: userInfo.phone_number,
+    value: phoneNumber,
     onChange: function onChange(e) {
       setPhoneNumber(e.target.value);
     }
@@ -109064,6 +109909,95 @@ function EditProfile() {
     variant: "primary",
     type: "submit"
   }, "Update"))));
+}
+
+/***/ }),
+
+/***/ "./resources/js/components/Profile/Gallery/AddGallery.js":
+/*!***************************************************************!*\
+  !*** ./resources/js/components/Profile/Gallery/AddGallery.js ***!
+  \***************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return AddAddress; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/index.js");
+/* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../api */ "./resources/js/api.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+function AddAddress(props) {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(true),
+      _useState2 = _slicedToArray(_useState, 2),
+      openForm = _useState2[0],
+      setOpenForm = _useState2[1];
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(''),
+      _useState4 = _slicedToArray(_useState3, 2),
+      newImage = _useState4[0],
+      setNewImage = _useState4[1];
+
+  var handleClose = function handleClose() {
+    setOpenForm(false); //to be able to close the form after opening it
+
+    props.setShow(false); //setting Show to false to update it in the parent's component (Profile)
+  };
+
+  function handleAddressInfo() {
+    event.preventDefault();
+    var info = new FormData();
+    info.append('image', newImage);
+    _api__WEBPACK_IMPORTED_MODULE_3__["default"].createGallery(info, {
+      headers: {
+        'Accept': "application/json",
+        'Content-Type': "multipart/form-data"
+      }
+    }).then(function (response) {
+      console.log(response);
+      handleClose();
+      window.location.reload();
+    });
+  }
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Modal"], {
+    show: openForm ? props.props : false,
+    onHide: function onHide() {
+      return handleClose();
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Modal"].Header, {
+    closeButton: true
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Modal"].Title, null, "Salon Address")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Modal"].Body, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"], {
+    onSubmit: handleAddressInfo,
+    encType: "multipart/form-data"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Row, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Group, {
+    as: react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Col"]
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].File, {
+    label: "Upload Image",
+    onChange: function onChange(e) {
+      setNewImage(e.target.files[0]);
+    },
+    required: true
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Button"], {
+    type: "submit"
+  }, "Submit"))));
 }
 
 /***/ }),
@@ -109124,6 +110058,9 @@ function AddSchedule(props) {
       setDayClose = _useState10[1];
 
   var dayOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    document.getElementById('closing_day').value = '';
+  }, []);
 
   var handleClose = function handleClose() {
     setOpenForm(false); //to be able to close the form after opening it
@@ -109145,6 +110082,40 @@ function AddSchedule(props) {
     });
   }
 
+  function hourOpenHandler(e) {
+    if (e.target.value != hourClose && e.target.value < hourClose || hourClose == '') setHourOpen(String(e.target.value));else {
+      alert('Closing Hours needs to be later than Opening Hours');
+      document.getElementById('opening_hour').value = '';
+    }
+  }
+
+  function hourCloseHandler(e) {
+    if (e.target.value != hourOpen && e.target.value > hourOpen) setHourClose(String(e.target.value));else {
+      alert('Closing Hours needs to be later than Opening Hours');
+      document.getElementById('closing_hour').value = '';
+    }
+  }
+
+  function dayOpenHandler(e) {
+    var openIndex = dayOfWeek.indexOf(e.target.value);
+    var closeIndex = dayOfWeek.indexOf(dayClose);
+    if (openIndex != closeIndex && openIndex < closeIndex || dayClose == '') setDayOpen(e.target.value);else {
+      alert('Closing days needs to be later than Opening days');
+      document.getElementById('opening_day').value = '';
+      setDayOpen('');
+    }
+  }
+
+  function dayCloseHandler(e) {
+    var openIndex = dayOfWeek.indexOf(dayOpen);
+    var closeIndex = dayOfWeek.indexOf(e.target.value);
+    if (openIndex != closeIndex && openIndex < closeIndex) setDayClose(e.target.value);else {
+      alert('Closing days needs to be later than Opening days');
+      document.getElementById('closing_day').value = '';
+      setDayClose('');
+    }
+  }
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Modal"], {
     show: openForm ? props.props : false,
     onHide: function onHide() {
@@ -109159,27 +110130,29 @@ function AddSchedule(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Control, {
     type: "time",
     placeholder: "Opening Hour",
+    id: "opening_hour",
     onChange: function onChange(e) {
-      setHourOpen(String(e.target.value));
+      hourOpenHandler(e);
     },
     required: true
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Text, null, "am"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Group, {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Group, {
     as: react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Col"]
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Control, {
     type: "time",
+    id: "closing_hour",
     placeholder: "Closing Hour",
     onChange: function onChange(e) {
-      setHourClose(String(e.target.value));
+      hourCloseHandler(e);
     },
     required: true
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Text, null, "pm")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Row, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Group, {
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Row, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Group, {
     as: react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Col"]
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Text, null, "From"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Control, {
     as: "select",
     onChange: function onChange(e) {
-      setDayOpen(e.target.value);
+      dayOpenHandler(e);
     },
-    value: dayOpen,
+    id: "opening_day",
     required: true
   }, dayOfWeek.map(function (day, index) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
@@ -109191,9 +110164,9 @@ function AddSchedule(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Text, null, "To"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Control, {
     as: "select",
     onChange: function onChange(e) {
-      setDayClose(e.target.value);
+      dayCloseHandler(e);
     },
-    value: dayClose,
+    id: "closing_day",
     required: true
   }, dayOfWeek.map(function (day, index) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
@@ -109270,6 +110243,40 @@ function EditSalon(props) {
     props.setShow(false); //setting Show to false to update it in the parent's component (Profile)
   };
 
+  function hourOpenHandler(e) {
+    if (e.target.value != hourClose && e.target.value < hourClose || hourClose == '') setHourOpen(String(e.target.value));else {
+      alert('Closing Hours needs to be later than Opening Hours');
+      document.getElementById('opening_hour').value = '';
+    }
+  }
+
+  function hourCloseHandler(e) {
+    if (e.target.value != hourOpen && e.target.value > hourOpen) setHourClose(String(e.target.value));else {
+      alert('Closing Hours needs to be later than Opening Hours');
+      document.getElementById('closing_hour').value = '';
+    }
+  }
+
+  function dayOpenHandler(e) {
+    var openIndex = dayOfWeek.indexOf(e.target.value);
+    var closeIndex = dayOfWeek.indexOf(dayClose);
+    if (openIndex != closeIndex && openIndex < closeIndex || dayClose == '') setDayOpen(e.target.value);else {
+      alert('Closing days needs to be later than Opening days');
+      document.getElementById('opening_day').value = '';
+      setDayOpen('');
+    }
+  }
+
+  function dayCloseHandler(e) {
+    var openIndex = dayOfWeek.indexOf(dayOpen);
+    var closeIndex = dayOfWeek.indexOf(e.target.value);
+    if (openIndex != closeIndex && openIndex < closeIndex) setDayClose(e.target.value);else {
+      alert('Closing days needs to be later than Opening days');
+      document.getElementById('closing_day').value = '';
+      setDayClose('');
+    }
+  }
+
   function handleScheduleInfo() {
     event.preventDefault();
     var salonInfo = {
@@ -109297,30 +110304,33 @@ function EditSalon(props) {
     as: react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Col"]
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Control, {
     type: "time",
+    id: "opening_hour",
     placeholder: "Opening Hour",
     onChange: function onChange(e) {
-      setHourOpen(String(e.target.value));
+      hourOpenHandler(e);
     },
     defaultValue: hourOpen,
     required: true
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Text, null, "am"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Group, {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Group, {
     as: react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Col"]
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Control, {
     type: "time",
+    id: "closing_hour",
     placeholder: "Closing Hour",
     onChange: function onChange(e) {
-      setHourClose(String(e.target.value));
+      hourCloseHandler(e);
     },
     defaultValue: hourClose,
     required: true
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Text, null, "pm")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Row, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Group, {
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Row, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Group, {
     as: react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Col"]
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Text, null, "From"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Control, {
     as: "select",
+    id: "opening_day",
     onChange: function onChange(e) {
-      setDayOpen(e.target.value);
+      dayOpenHandler(e);
     },
-    defaultValue: dayOpen,
+    defaultValue: props.info.day_open,
     required: true
   }, dayOfWeek.map(function (day, index) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
@@ -109331,8 +110341,9 @@ function EditSalon(props) {
     as: react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Col"]
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Text, null, "To"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Control, {
     as: "select",
+    id: "closing_day",
     onChange: function onChange(e) {
-      setDayClose(e.target.value);
+      dayCloseHandler(e);
     },
     defaultValue: dayClose,
     required: true
@@ -109364,7 +110375,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function SalonInfo(props) {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Opens: ", props.props.hour_open, " am"), " \xA0", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "| \xA0Closes: ", props.props.hour_close, " pm"), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "From ", props.props.day_open), " \xA0", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "To ", props.props.day_close));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Opens: ", props.props.hour_open), " \xA0", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "| \xA0Closes: ", props.props.hour_close), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "From ", props.props.day_open), " \xA0", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "To ", props.props.day_close));
 }
 
 /***/ }),
@@ -109399,6 +110410,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Private_Schedule_Schedule__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./Private Schedule/Schedule */ "./resources/js/components/Profile/Private Schedule/Schedule.js");
 /* harmony import */ var _Private_Schedule_AddSchedule__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./Private Schedule/AddSchedule */ "./resources/js/components/Profile/Private Schedule/AddSchedule.js");
 /* harmony import */ var _Private_Schedule_EditSchedule__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./Private Schedule/EditSchedule */ "./resources/js/components/Profile/Private Schedule/EditSchedule.js");
+/* harmony import */ var _BarberServices_ProfileService__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./BarberServices/ProfileService */ "./resources/js/components/Profile/BarberServices/ProfileService.js");
+/* harmony import */ var _Gallery_AddGallery__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./Gallery/AddGallery */ "./resources/js/components/Profile/Gallery/AddGallery.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -109410,6 +110423,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
 
 
 
@@ -109451,67 +110466,91 @@ function Profile() {
       scheduleInfo = _useState8[0],
       setScheduleInfo = _useState8[1];
 
+  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
+      _useState10 = _slicedToArray(_useState9, 2),
+      barberServiceInfo = _useState10[0],
+      setBarberServiceInfo = _useState10[1];
+
+  var _useState11 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
+      _useState12 = _slicedToArray(_useState11, 2),
+      galleryInfo = _useState12[0],
+      setGalleryInfo = _useState12[1];
+
   var history = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["useHistory"])();
 
-  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
-      _useState10 = _slicedToArray(_useState9, 2),
-      showAddSalon = _useState10[0],
-      setShowAddSalon = _useState10[1];
+  var _useState13 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState14 = _slicedToArray(_useState13, 2),
+      showAddSalon = _useState14[0],
+      setShowAddSalon = _useState14[1];
 
   var handleShowAddSalon = function handleShowAddSalon() {
     return setShowAddSalon(true);
   };
 
-  var _useState11 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
-      _useState12 = _slicedToArray(_useState11, 2),
-      showEditSalon = _useState12[0],
-      setShowEditSalon = _useState12[1];
+  var _useState15 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState16 = _slicedToArray(_useState15, 2),
+      showEditSalon = _useState16[0],
+      setShowEditSalon = _useState16[1];
 
   var handleShowEditSalon = function handleShowEditSalon() {
     return setShowEditSalon(true);
   };
 
-  var _useState13 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
-      _useState14 = _slicedToArray(_useState13, 2),
-      showAddAddress = _useState14[0],
-      setShowAddAddress = _useState14[1];
+  var _useState17 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState18 = _slicedToArray(_useState17, 2),
+      showAddAddress = _useState18[0],
+      setShowAddAddress = _useState18[1];
 
   var handleShowAddAddress = function handleShowAddAddress() {
     return setShowAddAddress(true);
   };
 
-  var _useState15 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
-      _useState16 = _slicedToArray(_useState15, 2),
-      showEditAddress = _useState16[0],
-      setShowEditAddress = _useState16[1];
+  var _useState19 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState20 = _slicedToArray(_useState19, 2),
+      showEditAddress = _useState20[0],
+      setShowEditAddress = _useState20[1];
 
   var handleShowEditAddress = function handleShowEditAddress() {
     return setShowEditAddress(true);
   };
 
-  var _useState17 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
-      _useState18 = _slicedToArray(_useState17, 2),
-      showAddSchedule = _useState18[0],
-      setShowAddSchedule = _useState18[1];
+  var _useState21 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState22 = _slicedToArray(_useState21, 2),
+      showAddSchedule = _useState22[0],
+      setShowAddSchedule = _useState22[1];
 
   var handleShowAddSchedule = function handleShowAddSchedule() {
     return setShowAddSchedule(true);
   };
 
-  var _useState19 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
-      _useState20 = _slicedToArray(_useState19, 2),
-      showEditSchedule = _useState20[0],
-      setShowEditSchedule = _useState20[1];
+  var _useState23 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState24 = _slicedToArray(_useState23, 2),
+      showEditSchedule = _useState24[0],
+      setShowEditSchedule = _useState24[1];
 
   var handleShowEditSchedule = function handleShowEditSchedule() {
     return setShowEditSchedule(true);
   };
 
+  var _useState25 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState26 = _slicedToArray(_useState25, 2),
+      showAddGallery = _useState26[0],
+      setShowAddGallery = _useState26[1];
+
+  var handleShowAddGallery = function handleShowAddGallery() {
+    return setShowAddGallery(true);
+  };
+
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     getUserDetails();
     getSalonInfo();
-    getAddressInfo();
-    getScheduleInfo();
+
+    if (salonInfo) {
+      getAddressInfo();
+      getScheduleInfo();
+      getServicesDetails();
+      getGalleryInfo();
+    }
   }, []);
 
   function getUserDetails() {
@@ -109589,7 +110628,7 @@ function Profile() {
     _api__WEBPACK_IMPORTED_MODULE_3__["default"].getSchedule().then(function (response) {
       console.log(response.data);
       setScheduleInfo(response.data);
-    });
+    })["catch"](function (error) {});
   }
 
   function displayAddSchedule(showAddSchedule) {
@@ -109609,12 +110648,48 @@ function Profile() {
       info: scheduleInfo,
       setShow: setShowEditSchedule
     });
+  } //Services
+
+
+  function getServicesDetails() {
+    _api__WEBPACK_IMPORTED_MODULE_3__["default"].getBarberService().then(function (response) {
+      console.log(response.data);
+      setBarberServiceInfo(response.data);
+      var servicesByBarber = [];
+      response.data.forEach(function (barberService) {
+        servicesByBarber.push(barberService.service.id);
+        localStorage.setItem('services_by_barber', JSON.stringify(servicesByBarber)); //this will be used later in Service.js
+      });
+    })["catch"](function (error) {});
+  } //Gallery
+
+
+  function getGalleryInfo() {
+    _api__WEBPACK_IMPORTED_MODULE_3__["default"].getGalleries().then(function (response) {
+      // console.log(response.data);
+      setGalleryInfo(response.data);
+    })["catch"](function (error) {});
   }
 
-  function displayImage() {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["Container"], {
-      fluid: true
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["Row"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["Col"], {
+  function displayAddGallery() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Gallery_AddGallery__WEBPACK_IMPORTED_MODULE_18__["default"], {
+      props: showAddGallery,
+      setShow: setShowAddGallery
+    });
+  }
+
+  function deleteGalleryHandler(id) {
+    var confirm_delete = confirm('Delete gallery?');
+
+    if (confirm_delete == true) {
+      _api__WEBPACK_IMPORTED_MODULE_3__["default"].deleteGallery(id).then(function (response) {
+        window.location.reload();
+      });
+    }
+  }
+
+  function displayProfileInfo() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["Col"], {
       lg: 4
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["Card"], {
       style: {
@@ -109635,15 +110710,19 @@ function Profile() {
       onClick: function onClick() {
         deleteProfileHandler();
       }
-    }, "Delete"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["Card"].Text, null, "Email: \xA0", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, userInfo.email), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Phone Number: \xA0", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, userInfo.phone_number), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Joined: \xA0", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, moment__WEBPACK_IMPORTED_MODULE_6___default()(userInfo.created_at).format('DD/MM/YYYY')))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["Col"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["Row"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["Col"], {
+    }, "Delete"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["Card"].Text, null, "Email: \xA0", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, userInfo.email), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Phone Number: \xA0", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, userInfo.phone_number), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Joined: \xA0", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, moment__WEBPACK_IMPORTED_MODULE_6___default()(userInfo.created_at).format('DD/MM/YYYY'))))));
+  }
+
+  function displayBarberSection() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["Col"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["Row"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["Col"], {
       lg: 6
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["Card"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["Card"].Body, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["Card"].Title, null, "Salon Information", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["ButtonGroup"], {
       style: {
         position: 'relative',
         left: '10px'
       }
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["Button"], {
-      disabled: handleSalonDisable(),
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["Button"] // disabled = {() => handleSalonDisable()}
+    , {
       onClick: function onClick() {
         return handleShowAddSalon();
       }
@@ -109651,7 +110730,7 @@ function Profile() {
       onClick: function onClick() {
         return handleShowEditSalon();
       }
-    }, "Edit"), showEditSalon ? displayEditSalon(showEditSalon) : '')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["Card"].Text, null, salonInfo.length != 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Salon_SalonInfo__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    }, "Edit"), showEditSalon ? displayEditSalon(showEditSalon) : '')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["Card"].Text, null, salonInfo ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Salon_SalonInfo__WEBPACK_IMPORTED_MODULE_10__["default"], {
       props: salonInfo
     }) : 'Nothing yet')))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["Col"], {
       lg: 6
@@ -109660,8 +110739,8 @@ function Profile() {
         position: 'relative',
         left: '10px'
       }
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["Button"], {
-      disabled: handleAddressDisable(),
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["Button"] // disabled = {() => handleAddressDisable()}
+    , {
       onClick: function onClick() {
         return handleShowAddAddress();
       }
@@ -109678,8 +110757,8 @@ function Profile() {
         position: 'relative',
         left: '10px'
       }
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["Button"], {
-      disabled: handleScheduleDisable(),
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["Button"] // disabled = {() => handleScheduleDisable()}
+    , {
       onClick: function onClick() {
         return handleShowAddSchedule();
       }
@@ -109687,19 +110766,75 @@ function Profile() {
       onClick: function onClick() {
         return handleShowEditSchedule();
       }
-    }, "Edit"), showEditSchedule ? displayEditSchedule(showEditSchedule) : '')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["Card"].Text, null, scheduleInfo ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Private_Schedule_Schedule__WEBPACK_IMPORTED_MODULE_14__["default"], {
+    }, "Edit"), showEditSchedule ? displayEditSchedule(showEditSchedule) : '')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["Card"].Text, null, scheduleInfo.length != 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Private_Schedule_Schedule__WEBPACK_IMPORTED_MODULE_14__["default"], {
       props: scheduleInfo
     }) : 'Nothing Yet')))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["Col"], {
       lg: 6
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["Card"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["Card"].Body, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["Card"].Title, null, "Services", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["ButtonGroup"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["Card"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["Card"].Body, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["Card"].Title, null, "Services", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["Card"].Link, {
+      href: "/profile/services",
+      className: "card_link"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["Button"], {
       style: {
-        position: 'relative',
-        left: '10px'
+        marginLeft: '20px'
       }
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["Button"], null, "Add"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["Button"], null, "Edit"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["Card"].Text, null, "Something"))))))));
+    }, "Manage Your Services"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["Card"].Text, null, barberServiceInfo ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_BarberServices_ProfileService__WEBPACK_IMPORTED_MODULE_17__["default"], null) : 'Nothing Yet')))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["Row"], {
+      style: {
+        margin: '20px 0'
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["Col"], {
+      lg: 12
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["Card"], {
+      style: {
+        marginLeft: '10px'
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      style: {
+        display: 'flex',
+        alignItems: 'center'
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+      style: {
+        margin: '20px 0 0 40px'
+      }
+    }, "Gallery"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["Button"], {
+      onClick: function onClick() {
+        return handleShowAddGallery();
+      },
+      style: {
+        margin: '25px 0 0 20px'
+      }
+    }, "Upload Photo"), showAddGallery ? displayAddGallery(showAddGallery) : ''), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["CardColumns"], {
+      style: {
+        padding: '30px 40px'
+      }
+    }, galleryInfo ? galleryInfo.map(function (gallery) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["Card"], {
+        key: gallery.id,
+        style: {
+          marginBottom: '20px'
+        }
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["Card"].Img, {
+        src: "/Images/barberGallery/".concat(gallery.image),
+        height: "300px"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["Card"].Body, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["Card"].Title, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["Button"], {
+        onClick: function onClick() {
+          deleteGalleryHandler(gallery.id);
+        }
+      }, "Delete"))));
+    }) : 'No Photos Yet')))));
   }
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Header__WEBPACK_IMPORTED_MODULE_2__["default"], null), displayImage());
+  function checkRole() {
+    if (userInfo.roles == 'Barber') {
+      return displayBarberSection();
+    }
+
+    return '';
+  }
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Header__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["Container"], {
+    fluid: true
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["Row"], null, displayProfileInfo(), userInfo ? checkRole() : '')));
 }
 
 /***/ }),
@@ -109765,6 +110900,9 @@ function AddSalon(props) {
       setDayClose = _useState12[1];
 
   var dayOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    document.getElementById('closing_day').value = '';
+  }, []);
 
   var handleClose = function handleClose() {
     setOpenForm(false); //to be able to close the form after opening it
@@ -109783,7 +110921,42 @@ function AddSalon(props) {
     };
     _api__WEBPACK_IMPORTED_MODULE_1__["default"].createSalonInfo(salonInfo).then(function (response) {
       handleClose();
+      window.location.reload();
     });
+  }
+
+  function hourOpenHandler(e) {
+    if (e.target.value != hourClose && e.target.value < hourClose || hourClose == '') setHourOpen(String(e.target.value));else {
+      alert('Closing Hours needs to be later than Opening Hours');
+      document.getElementById('opening_hour').value = '';
+    }
+  }
+
+  function hourCloseHandler(e) {
+    if (e.target.value != hourOpen && e.target.value > hourOpen) setHourClose(String(e.target.value));else {
+      alert('Closing Hours needs to be later than Opening Hours');
+      document.getElementById('closing_hour').value = '';
+    }
+  }
+
+  function dayOpenHandler(e) {
+    var openIndex = dayOfWeek.indexOf(e.target.value);
+    var closeIndex = dayOfWeek.indexOf(dayClose);
+    if (openIndex != closeIndex && openIndex < closeIndex || dayClose == '') setDayOpen(e.target.value);else {
+      alert('Closing days needs to be later than Opening days');
+      document.getElementById('opening_day').value = '';
+      setDayOpen('');
+    }
+  }
+
+  function dayCloseHandler(e) {
+    var openIndex = dayOfWeek.indexOf(dayOpen);
+    var closeIndex = dayOfWeek.indexOf(e.target.value);
+    if (openIndex != closeIndex && openIndex < closeIndex) setDayClose(e.target.value);else {
+      alert('Closing days needs to be later than Opening days');
+      document.getElementById('closing_day').value = '';
+      setDayClose('');
+    }
   }
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Modal"], {
@@ -109809,27 +110982,29 @@ function AddSalon(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Control, {
     type: "time",
     placeholder: "Opening Hour",
+    id: "opening_hour",
     onChange: function onChange(e) {
-      setHourOpen(String(e.target.value));
+      hourOpenHandler(e);
     },
     required: true
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Text, null, "am"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Group, {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Group, {
     as: react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Col"]
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Control, {
     type: "time",
+    id: "closing_hour",
     placeholder: "Closing Hour",
     onChange: function onChange(e) {
-      setHourClose(String(e.target.value));
+      hourCloseHandler(e);
     },
     required: true
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Text, null, "pm")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Row, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Group, {
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Row, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Group, {
     as: react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Col"]
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Text, null, "From"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Control, {
     as: "select",
+    id: "opening_day",
     onChange: function onChange(e) {
-      setDayOpen(e.target.value);
+      dayOpenHandler(e);
     },
-    value: dayOpen,
     required: true
   }, dayOfWeek.map(function (day, index) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
@@ -109841,9 +111016,9 @@ function AddSalon(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Text, null, "To"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Control, {
     as: "select",
     onChange: function onChange(e) {
-      setDayClose(e.target.value);
+      dayCloseHandler(e);
     },
-    value: dayClose,
+    id: "closing_day",
     required: true
   }, dayOfWeek.map(function (day, index) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
@@ -109940,6 +111115,40 @@ function EditSalon(props) {
     });
   }
 
+  function hourOpenHandler(e) {
+    if (e.target.value != hourClose && e.target.value < hourClose || hourClose == '') setHourOpen(String(e.target.value));else {
+      alert('Closing Hours needs to be later than Opening Hours');
+      document.getElementById('opening_hour').value = '';
+    }
+  }
+
+  function hourCloseHandler(e) {
+    if (e.target.value != hourOpen && e.target.value > hourOpen) setHourClose(String(e.target.value));else {
+      alert('Closing Hours needs to be later than Opening Hours');
+      document.getElementById('closing_hour').value = '';
+    }
+  }
+
+  function dayOpenHandler(e) {
+    var openIndex = dayOfWeek.indexOf(e.target.value);
+    var closeIndex = dayOfWeek.indexOf(dayClose);
+    if (openIndex != closeIndex && openIndex < closeIndex || dayClose == '') setDayOpen(e.target.value);else {
+      alert('Closing days needs to be later than Opening days');
+      document.getElementById('opening_day').value = '';
+      setDayOpen('');
+    }
+  }
+
+  function dayCloseHandler(e) {
+    var openIndex = dayOfWeek.indexOf(dayOpen);
+    var closeIndex = dayOfWeek.indexOf(e.target.value);
+    if (openIndex != closeIndex && openIndex < closeIndex) setDayClose(e.target.value);else {
+      alert('Closing days needs to be later than Opening days');
+      document.getElementById('closing_day').value = '';
+      setDayClose('');
+    }
+  }
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Modal"], {
     show: openForm ? props.props : false,
     onHide: function onHide() {
@@ -109963,30 +111172,33 @@ function EditSalon(props) {
     as: react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Col"]
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Control, {
     type: "time",
+    id: "opening_hour",
     placeholder: "Opening Hour",
     onChange: function onChange(e) {
-      setHourOpen(String(e.target.value));
+      hourOpenHandler(e);
     },
     defaultValue: hourOpen,
     required: true
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Text, null, "am"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Group, {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Group, {
     as: react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Col"]
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Control, {
     type: "time",
+    id: "closing_hour",
     placeholder: "Closing Hour",
     onChange: function onChange(e) {
-      setHourClose(String(e.target.value));
+      hourCloseHandler(e);
     },
     defaultValue: hourClose,
     required: true
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Text, null, "pm")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Row, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Group, {
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Row, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Group, {
     as: react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Col"]
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Text, null, "From"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Control, {
     as: "select",
+    id: "opening_day",
     onChange: function onChange(e) {
-      setDayOpen(e.target.value);
+      dayOpenHandler(e);
     },
-    defaultValue: dayOpen,
+    defaultValue: props.info.day_open,
     required: true
   }, dayOfWeek.map(function (day, index) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
@@ -109997,8 +111209,9 @@ function EditSalon(props) {
     as: react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Col"]
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Text, null, "To"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Control, {
     as: "select",
+    id: "closing_day",
     onChange: function onChange(e) {
-      setDayClose(e.target.value);
+      dayCloseHandler(e);
     },
     defaultValue: dayClose,
     required: true
@@ -110027,10 +111240,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../api */ "./resources/js/api.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_2__);
+
 
 
 function SalonInfo(props) {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Salon Name: ", props.props.salon_name), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Opens: ", props.props.hour_open, " am"), " \xA0", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "| \xA0Closes: ", props.props.hour_close, " pm"), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "From ", props.props.day_open), " \xA0", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "To ", props.props.day_close));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Salon Name: ", props.props.salon_name), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Opens: ", props.props.hour_open), " \xA0", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "| \xA0Closes: ", props.props.hour_close), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "From ", props.props.day_open), " \xA0", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "To ", props.props.day_close));
 }
 
 /***/ }),
@@ -110103,10 +111319,15 @@ function Register() {
       phoneNumber = _useState12[0],
       setPhoneNumber = _useState12[1];
 
-  var _useState13 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
+  var _useState13 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])('ROLE_CUSTOMER'),
       _useState14 = _slicedToArray(_useState13, 2),
-      errs = _useState14[0],
-      setErrs = _useState14[1];
+      role = _useState14[0],
+      setRole = _useState14[1];
+
+  var _useState15 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
+      _useState16 = _slicedToArray(_useState15, 2),
+      errs = _useState16[0],
+      setErrs = _useState16[1];
 
   function RegistrationHandler(event) {
     event.preventDefault();
@@ -110117,6 +111338,7 @@ function Register() {
     info.append('password_confirmation', confirmedPassword);
     info.append('profile_photo', profilePhoto);
     info.append('phone_number', phoneNumber);
+    info.append('roles', role);
     _api__WEBPACK_IMPORTED_MODULE_2__["default"].register(info, {
       headers: {
         'Accept': "application/json",
@@ -110236,7 +111458,22 @@ function Register() {
     onChange: function onChange(e) {
       setPhoneNumber(e.target.value);
     }
-  }), displayError('phone_number'))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Button"], {
+  }), displayError('phone_number'))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Form"].Group, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["InputGroup"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Form"].Label, {
+    style: {
+      margin: '5px 10px 0 0'
+    }
+  }, "Register As"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Form"].Control, {
+    onChange: function onChange(e) {
+      return setRole(e.target.value);
+    },
+    as: "select"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    key: 0,
+    value: 'ROLE_CUSTOMER'
+  }, "Customer"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    key: 1,
+    value: 'ROLE_BARBER'
+  }, "Barber")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Button"], {
     className: "btn_log_reg",
     type: "submit"
   }, "Register")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["Form"].Row, {
@@ -110297,6 +111534,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var _css_Barber_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../css/Barber.css */ "./resources/css/Barber.css");
 /* harmony import */ var _css_Barber_css__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_css_Barber_css__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _BarberSchedule__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./BarberSchedule */ "./resources/js/components/BarberSchedule.js");
+/* harmony import */ var _Gallery__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Gallery */ "./resources/js/components/Gallery.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -110308,6 +111547,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
 
 
 
@@ -110356,9 +111597,30 @@ function ShowBarber(props) {
       closeHours = _useState14[0],
       setCloseHours = _useState14[1];
 
+  var _useState15 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
+      _useState16 = _slicedToArray(_useState15, 2),
+      barberSchedule = _useState16[0],
+      setBarberSchedule = _useState16[1];
+
+  var _useState17 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
+      _useState18 = _slicedToArray(_useState17, 2),
+      galleryInfo = _useState18[0],
+      setGalleryInfo = _useState18[1];
+
+  var _useState19 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState20 = _slicedToArray(_useState19, 2),
+      showGallerySlideShow = _useState20[0],
+      setShowGallerySlideShow = _useState20[1];
+
+  var handleShowGallerySlideShow = function handleShowGallerySlideShow() {
+    return setShowGallerySlideShow(true);
+  };
+
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     getBarberDetails();
     getServices();
+    getBarberSchedule();
+    getGalleryInfo();
   }, []);
 
   function getBarberDetails() {
@@ -110377,6 +111639,28 @@ function ShowBarber(props) {
       // console.log(response.data.service);
       setServices(response.data.service);
       setBarberService(response.data.barber_service);
+    });
+  }
+
+  function getBarberSchedule() {
+    _api__WEBPACK_IMPORTED_MODULE_4__["default"].getBarberSchedule(param.id).then(function (response) {
+      // console.log(response.data);
+      setBarberSchedule(response.data);
+    });
+  }
+
+  function getGalleryInfo() {
+    _api__WEBPACK_IMPORTED_MODULE_4__["default"].getBarberGallery(param.id).then(function (response) {
+      // console.log(response.data);
+      setGalleryInfo(response.data);
+    });
+  }
+
+  function displayGallerySlideShow() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Gallery__WEBPACK_IMPORTED_MODULE_9__["default"], {
+      props: showGallerySlideShow,
+      info: param.id,
+      setShow: setShowGallerySlideShow
     });
   }
 
@@ -110401,7 +111685,9 @@ function ShowBarber(props) {
     }, "Contact"), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Mobile: ", userDetails.phone_number), "  ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Email: ", userDetails.email))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["Card"].Footer, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", {
       className: "text-muted"
     }, "Joined: ", moment__WEBPACK_IMPORTED_MODULE_6___default()(userDetails.created_at).format('DD/MM/YYYY'))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["Col"], {
-      lg: 4
+      lg: 8
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["Row"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["Col"], {
+      lg: 7
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["Card"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["Card"].Body, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["Card"].Title, {
       className: "card_title"
     }, "Services"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["Card"].Text, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["Row"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["Col"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
@@ -110426,10 +111712,45 @@ function ShowBarber(props) {
         className: "service"
       }, service.estimated_time, " mins");
     }))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["Col"], {
-      lg: 4
+      lg: 5
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["Card"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["Card"].Body, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["Card"].Title, {
       className: "card_title"
-    }, "Private Schedule"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["Card"].Text, null))))));
+    }, "Private Schedule"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["Card"].Text, null, barberSchedule ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_BarberSchedule__WEBPACK_IMPORTED_MODULE_8__["default"], {
+      props: barberSchedule
+    }) : 'Nothing Yet')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["Card"].Footer, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, "Last Updated: ", moment__WEBPACK_IMPORTED_MODULE_6___default()(barberSchedule.last_updated).format('DD/MM/YYYY')))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["Row"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["Col"], {
+      lg: 12
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["Card"], {
+      style: {
+        marginLeft: '10px'
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      style: {
+        display: 'flex',
+        alignItems: 'center'
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+      style: {
+        margin: '20px 0 0 20px'
+      }
+    }, "Gallery")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["CardColumns"], {
+      style: {
+        padding: '30px 0 0 40px'
+      }
+    }, galleryInfo.map(function (gallery) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["Card"], {
+        key: gallery.id,
+        style: {
+          marginBottom: '20px'
+        },
+        className: "clickable_photos",
+        onClick: function onClick() {
+          return handleShowGallerySlideShow(galleryInfo);
+        }
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["Card"].Img, {
+        src: "/Images/barberGallery/".concat(gallery.image),
+        height: "250px"
+      }));
+    }))))), showGallerySlideShow ? displayGallerySlideShow(showGallerySlideShow) : '')));
   }
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Header__WEBPACK_IMPORTED_MODULE_2__["default"], null), displayBarberDetails());

@@ -10,6 +10,7 @@ export default function Login() {
     const [password, setPassword] = useState('');
     const [rememberMe, setRememberMe] = useState(false);
     const [errs, setErrs] = useState([]);
+    const [invalid, setInvalid] = useState('');
 
     function logInHandler(event) {
         event.preventDefault();
@@ -21,15 +22,14 @@ export default function Login() {
 
         api.login(credentials)
         .then((response) => {
-            console.log(response.data);
             const options = {Path: "/" , Expires: response.data.expires_at, Secure: true};
             CookieService.set('access_token', response.data.access_token, options);
             history.push("/home");
         }).catch(error => {
-            if(email == '' || password == '') {
+            if(error.response.status == 422) {
                 setErrs(error.response.data.errors);
-            } else {
-                alert('invalid username/password comibation');
+            } else if(error.response.status == 401) {
+                setInvalid(error.response.data.message);
             }
         });
     }
@@ -37,15 +37,15 @@ export default function Login() {
     function displayError (field) {
         if (errs[field]) { //checks if field(username or password) exists within errs array
             return (
-                <span style={{ color: 'red' }}>
-                    <strong>{errs[field]}</strong> {/*displays the value in errs assosiative array*/}
+                <span style={{ color: 'red', fontWeight: "bold" }}>
+                    {errs[field]} {/*displays the value in errs assosiative array*/}
                 </span>
             )
         }
     }
 
     return (
-        <Card style={{margin:'150px auto', width: '300px', padding: '20px', backgroundColor:'#B7410E'}}>
+        <Card style={{margin:'150px auto', width: '320px', padding: '20px', backgroundColor:'#B7410E'}}>
             <Form onSubmit={logInHandler}>
                 <Form.Group controlId="formBasicEmail" style={{ paddingTop: '20px' }}>
                     <InputGroup>
@@ -78,7 +78,7 @@ export default function Login() {
                         {displayError('password')}
                     </InputGroup>
                 </Form.Group>
-
+                <span style={{ color:'red', fontWeight:'bold' }}>{invalid}</span>
                 <Form.Group controlId="formBasicCheckbox" >
                 <div className="remember_me">
                     <Form.Check

@@ -24,7 +24,7 @@ class AuthController extends Controller
 
         //if user not logged in
         if (!Auth::attempt($credentials)) {
-            return response()->json(['message' => 'unauthorized'], 401);
+            return response()->json(['message' => 'invalid email/password combination'], 401);
         }
 
         $user = auth()->user();
@@ -45,13 +45,17 @@ class AuthController extends Controller
         'expires_at' => Carbon::parse($token->expires_at)->toDateTimeString()], 200);//To human readable form
     }
 
+    //response()->json(['error' => ''])
+    // if ($user->email == '' | $user->password == '')
+
     public function register(Request $request) {
         $attributes = $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:200',
             'email' => 'required|string|email',
             'password' => 'required|string|confirmed',
-            'profile_photo' => '',
+            // 'profile_photo' => '',
             'phone_number' => 'required|string|max:20',
+            'roles' => 'required',
         ]);
 
         //Image
@@ -79,6 +83,7 @@ class AuthController extends Controller
             'password' => bcrypt($attributes['password']),
             'profile_photo' => $publicPhotoName,
             'phone_number' => $attributes['phone_number'],
+            'roles' => $attributes['roles'],
         ]);
 
         $result_token = $user->createToken('Personal Access Token'); //to login immediately after registering

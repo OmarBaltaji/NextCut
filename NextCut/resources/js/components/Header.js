@@ -1,34 +1,34 @@
 import React, {useState, useEffect} from 'react';
 import {Nav, Navbar, NavDropdown} from 'react-bootstrap';
 import api from '../api';
-import {useHistory, Link, NavLink} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 import CookieService from '../Service/CookieService';
 import '../../css/Home.css';
 
 export default function Header() {
 
     const history = useHistory();
-    const [activeKey, setActiveKey] = useState("");
-    const [userInfo, setUserInfo] = useState();
-    const [loggedIn, setLoggedIn] = useState();
+    const [userInfo, setUserInfo] = useState([]);
+    const cookie = CookieService.get('access_token');
 
-    useEffect(() => getUserDetails(), []);
+    useEffect(() => {
+        if(cookie) {
+            getUserDetails();
+        }
+
+    }, []);
 
     function getUserDetails() {
         api.getUserInfo()
         .then(response => {
-            // console.log(response.data);
             setUserInfo(response.data);
-            setLoggedIn(true);
-        }).catch(error => {
-            setLoggedIn(false);
-        });
+        })
     }
 
     function logoutHandler(e) {
         e.preventDefault();
         api.logout().then(response => {
-            console.log(response);
+            window.localStorage.clear();
             CookieService.remove('access_token');
             history.push('/login');
         })
@@ -37,10 +37,12 @@ export default function Header() {
     function displayUser() {
         return (
 
-                <NavDropdown style={{ marginRight: '20px' }} className="user-dropdown" title={userInfo.name} id="collasible-nav-dropdown">
+                <NavDropdown style={{ marginRight: '20px' }} className="user-dropdown"  title={userInfo.name} id="collasible-nav-dropdown">
                     <NavDropdown.Item style = {{ color: '#40E0D0'}} href="/profile">Profile</NavDropdown.Item>
                     <NavDropdown.Divider />
-                    <NavDropdown.Item style = {{ color: '#40E0D0' }} onClick={(e) => logoutHandler(e)}>Logout</NavDropdown.Item>
+                    <NavDropdown.Item style = {{ color: '#40E0D0' }} onClick={(e) => logoutHandler(e)} href='/login'>
+                        Logout
+                    </NavDropdown.Item>
                 </NavDropdown>
 
         );
@@ -62,11 +64,12 @@ export default function Header() {
                 <Nav className="mr-auto">
                     <Nav.Link className="navlink" href="/home">Home</Nav.Link>
                     <Nav.Link className="navlink" href="/aboutus">About Us</Nav.Link>
-                    <Nav.Link className="navlink" href="/schedule">Schedule</Nav.Link>
+                    {userInfo.roles == 'Customer' ?
+                    <Nav.Link className="navlink" href="/schedule">Schedule</Nav.Link> : '' }
                     <Nav.Link className="navlink" href="/barbers">Barbers</Nav.Link>
                 </Nav>
                 <Nav>
-                    {loggedIn ? displayUser() : displayGuest()}
+                    {cookie ? displayUser() : displayGuest()}
                 </Nav>
         </Navbar>
         <br/>

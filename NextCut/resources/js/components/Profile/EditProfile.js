@@ -34,35 +34,35 @@ export default function EditProfile() {
     function editHandler(event) {
       event.preventDefault();
 
-      const newInfo = new FormData();
-      newInfo.append('name', name);
-      newInfo.append('email', email);
-      newInfo.append('phone_number', phoneNumber);
-      newInfo.append('profile_photo', profilePhoto);
+    //   const newInfo = new FormData();
+    //   newInfo.append('name', name);
+    //   newInfo.append('email', email);
+    //   newInfo.append('phone_number', phoneNumber);
+    //   newInfo.append('profile_photo', profilePhoto);
 
-    // const newInfo = {
-    //     'name': name,
-    //     'email': email,
-    //     'phone_number': phoneNumber,
-    //     'profile_photo': profilePhoto,
-    // };
+    const newInfo = {
+        'name': name,
+        'email': email,
+        'phone_number': phoneNumber,
+        'profile_photo': profilePhoto,
+    };
 
       api.updateUserInfo(
-        param.id, newInfo, {headers:{'Accept': "application/json", 'Content-Type':"multipart/form-data"}
-        //
+        param.id, newInfo, {headers:{'Accept': "application/json", 'Content-Type':"application/json"}
+
         }).then(response => {
-            console.log(response.data);
-            // history.push('/profile');
+            // console.log(response.data);
+            history.push('/profile');
         }).catch(error => {
-            console.log(error);
+            setErrs(error.response.data.errors);
         });
     }
 
     function displayError (field) {
         if (errs[field]) {
             return (
-                <span style={{ color: 'red' }}>
-                    <strong>{errs[field]}</strong>
+                <span style={{ color: 'red', fontWeight:'bold' }}>
+                    {errs[field]}
                 </span>
             );
         }
@@ -79,7 +79,7 @@ export default function EditProfile() {
                         <Form.Label>Full Name</Form.Label>
                         <Form.Control
                         type="text"
-                        value={userInfo.name}
+                        value={name}
                         onChange={(e) => {setName(e.target.value)}} />
                         {displayError('name')}
                     </Form.Group>
@@ -87,20 +87,20 @@ export default function EditProfile() {
                         <Form.Label>Email Address</Form.Label>
                         <Form.Control
                         type="email"
-                        value={userInfo.email}
+                        value={email}
                         onChange={(e) => {setEmail(e.target.value)}} />
                         {displayError('email')}
                     </Form.Group>
-                    <Form.Group controlId="formGroupFile">
+                    {/* <Form.Group controlId="formGroupFile">
                         <Form.File
                         label="Profile Photo"
                         onChange={(e) => {setProfilePhoto(e.target.files[0])}} />
-                    </Form.Group>
+                    </Form.Group> */}
                     <Form.Group controlId="formGroupInput">
                         <Form.Label>Phone Number</Form.Label>
                         <Form.Control
                         type="tel"
-                        value={userInfo.phone_number}
+                        value={phoneNumber}
                         onChange={(e) => {setPhoneNumber(e.target.value)}} />
                         {displayError('phone_number')}
                     </Form.Group>

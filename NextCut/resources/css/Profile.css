@@ -1,3 +1,11 @@
 .edit_profile {
     color: white !important;
 }
+
+.card_link {
+    color: black !important;
+}
+
+.card_link:hover {
+    text-decoration: underline;
+}

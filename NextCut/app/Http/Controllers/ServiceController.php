@@ -9,21 +9,25 @@ use Illuminate\Http\Request;
 
 class ServiceController extends Controller
 {
-    public function show() {
+    public function showService() {
+        $services = Service::all();
+
+        return response()->json($services, 200); //returns all available services (services are common between all barbers)
+    }
+
+    public function showBarberService() { //shows the services by this particular barber
         $user = Auth::user();
         $barber = $user->barber->first();
         $barber_services = $barber->barber_service;
 
-        $services = [];
-
         foreach($barber_services as $barber_service) {
-            array_push($services, $barber_service->service);
+            $barber_service->service;
         }
 
-        return response()->json($services, 200);
+        return response()->json($barber_services, 200);
     }
 
-    public function create(Request $request) {
+    public function storeService(Request $request) { //Can store new service (which can be used by others)
         $attributes = $request->validate([
             'type' => 'string|required',
         ]);
@@ -32,13 +36,17 @@ class ServiceController extends Controller
             'type' => $attributes['type'],
         ]);
 
+        return response()->json($service, 200);
+    }
+
+    public function storeBarberService(Request $request) { //store a new service for a particular barber
         $user = Auth::user();
 
         $barber = $user->barber->first();
 
         $attrs = $request->validate([
-            'price' => 'string|required',
-            'estimated_time' => 'string|required',
+            'price' => 'integer|required',
+            'estimated_time' => 'integer|required',
             'service_id' => 'integer|required',
         ]);
 
@@ -52,7 +60,41 @@ class ServiceController extends Controller
         return response()->json($barber_service, 200);
     }
 
-    public function update(Service $service, Request $request) {
+    public function updateService(Service $service, Request $request) {
+        $attributes = $request->validate([
+            'type' => 'string|required',
+        ]);
 
+        $service->update([
+            'type' => $attributes['type'],
+        ]);
+
+        return response()->json($service, 200);
+    }
+
+    public function updateBarberService(BarberService $barberService, Request $request) {
+        $attrs = $request->validate([
+            'price' => 'integer|required',
+            'estimated_time' => 'integer|required',
+            'service_id' => 'integer|required',
+        ]);
+
+        $barberService->update([
+            'price' => $attrs['price'],
+            'estimated_time' => $attrs['estimated_time'],
+            'service_id' => $attrs['service_id'],
+        ]);
+
+        return response()->json($barberService, 200);
+    }
+
+    public function deleteService(Service $service) {
+        $service->delete();
+        return response()->json(['message' => 'deleted successfully'], 200);
+    }
+
+    public function deleteBarberService(BarberService $barberService) {
+        $barberService->delete();
+        return response()->json(['message' => 'deleted successfully'], 200);
     }
 }

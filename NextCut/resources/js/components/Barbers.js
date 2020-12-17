@@ -42,7 +42,7 @@ export default function Barber() {
                             <span>Opening Hours: {barber.hour_open}</span>  <br/>
                             <span>Closing Hours: {barber.hour_close}</span>  <br/>
                             <span>Mobile: {barber.user.phone_number}</span>  <br/>
-                            <span>City: {barber.user.address[0].city}</span>
+                            <span>City: {barber.user.address.length != 0 ? barber.user.address[0].city : 'Not Available'}</span>
                         </Card.Text>
                     </Card.Body>
                     <Card.Footer>

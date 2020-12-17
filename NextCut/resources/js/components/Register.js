@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import api from '../api';
-import { Button, Card, Form, InputGroup } from 'react-bootstrap';
+import { Button, Card, Form, FormControl, InputGroup } from 'react-bootstrap';
 import CookieService from '../Service/CookieService';
 
 export default function Register() {
@@ -13,6 +13,7 @@ export default function Register() {
     const [confirmedPassword, setConfirmedPassword] = useState('');
     const [profilePhoto, setProfilePhoto] = useState();
     const [phoneNumber, setPhoneNumber] = useState('');
+    const [role, setRole] = useState('ROLE_CUSTOMER');
     const [errs, setErrs] = useState([]);
 
     function RegistrationHandler(event) {
@@ -25,6 +26,7 @@ export default function Register() {
         info.append('password_confirmation', confirmedPassword);
         info.append('profile_photo', profilePhoto);
         info.append('phone_number', phoneNumber);
+        info.append('roles', role);
 
         api.register(info, {headers:{'Accept': "application/json", 'Content-Type':"multipart/form-data"}
         }).then(response => {
@@ -133,6 +135,17 @@ export default function Register() {
                         onChange={(e) => {setPhoneNumber(e.target.value)}}  />
                         {displayError('phone_number')}
                     </InputGroup>
+                </Form.Group>
+                <Form.Group>
+                    <InputGroup>
+                            <Form.Label style={{ margin: '5px 10px 0 0' }}>Register As</Form.Label>
+                            <Form.Control
+                            onChange={(e) => setRole(e.target.value)}
+                            as="select">
+                                <option key={0} value={'ROLE_CUSTOMER'}>Customer</option>
+                                <option key={1} value={'ROLE_BARBER'}>Barber</option>
+                            </Form.Control>
+                        </InputGroup>
                 </Form.Group>
                 <Button className="btn_log_reg" type="submit">
                     Register

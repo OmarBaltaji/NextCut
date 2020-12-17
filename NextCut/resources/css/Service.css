@@ -1,0 +1,12 @@
+.service_table {
+    background-color: white;
+}
+
+.type_row {
+    display: flex;
+    align-items: baseline;
+}
+
+.label {
+    margin-top: 5px;
+}
