@@ -99,4 +99,7 @@ export default{
 
     getBarberGallery: (id) =>
     axios.get(`${BASE_URL}/barbers/${id}/gallery`),
+
+    getOneBarberServiceDetails: (id) =>
+    axios.get(`${BASE_URL}/barbers/${id}/barberservice`),
 }

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import {useHistory, Link} from 'react-router-dom';
 import Header from '../Header';
 import api from '../../api';
-import {Button, Card, CardColumns, Row, Col, ButtonGroup, Container, Image} from 'react-bootstrap';
+import {Button, Card, CardColumns, Row, Col, ButtonGroup, Container} from 'react-bootstrap';
 import CookieService from '../../Service/CookieService';
 import moment from 'moment';
 import '../../../css/Profile.css';
@@ -55,6 +55,7 @@ export default function Profile() {
     useEffect(() => {
         getUserDetails();
         getSalonInfo();
+
         if (salonInfo) {
             getAddressInfo();
             getScheduleInfo();
@@ -96,13 +97,6 @@ export default function Profile() {
         );
     }
 
-    function handleSalonDisable() {
-        if(salonInfo.length == 0)
-            return false;
-        else
-            return true;
-    }
-
     function displayEditSalon() {
         return(
             <EditSalon props={showEditSalon} info={salonInfo} setShow={setShowEditSalon} />
@@ -123,13 +117,6 @@ export default function Profile() {
         );
     }
 
-    function handleAddressDisable () {
-        if(!addressInfo)
-            return false;
-        else
-        return true;
-    }
-
     function displayEditAddress() {
         return(
             <EditAddress props={showEditAddress} info={addressInfo} setShow={setShowEditAddress} />
@@ -140,8 +127,7 @@ export default function Profile() {
     function getScheduleInfo() {
         api.getSchedule()
         .then(response => {
-            console.log(response.data);
-            setScheduleInfo(response.data);
+            setScheduleInfo(response.data[0]);
         }).catch(error => {
 
         });
@@ -151,13 +137,6 @@ export default function Profile() {
         return(
             <AddSchedule props={showAddSchedule} setShow={setShowAddSchedule} />
         );
-    }
-
-    function handleScheduleDisable () {
-        if(!scheduleInfo)
-            return false;
-        else
-        return true;
     }
 
     function displayEditSchedule() {
@@ -175,7 +154,8 @@ export default function Profile() {
             let servicesByBarber = [];
             response.data.forEach(barberService => {
                 servicesByBarber.push(barberService.service.id);
-                localStorage.setItem('services_by_barber', JSON.stringify(servicesByBarber)); //this will be used later in Service.js
+                localStorage.setItem('services_by_barber', JSON.stringify(servicesByBarber));
+                //this will be used later in Service.js
             })
         }).catch(error => {
 
@@ -207,40 +187,36 @@ export default function Profile() {
             })
         }
     }
+    console.log(userInfo.profile_photo)
 
-    function displayProfileInfo() {
-        return (
-            <Col lg={4}>
-                <Card style={{ marginLeft:'10px' }}>
-                    <Card.Img src={`/Images/userImage/${userInfo.profile_photo}`} alt="profile photo"/>
-                    <Card.Body>
-                        <Card.Title>
-                            {userInfo.name}
-                            <ButtonGroup style={{ position:'relative', left:'10px' }}>
-                                <Button href={`/profile/${userInfo.id}/edit`} className='edit_profile'>
-                                Edit
-                                </Button>
-                                <Button onClick={() => {deleteProfileHandler()}}>
-                                Delete
-                                </Button>
-                            </ButtonGroup>
-                        </Card.Title>
-                        <br/>
-                        <Card.Text>
-                            Email: &nbsp;<span>{userInfo.email}</span> <br/>
-                            Phone Number: &nbsp;<span>{userInfo.phone_number}</span> <br/>
-                            Joined: &nbsp;<span>{moment(userInfo.created_at).format('DD/MM/YYYY')}</span>
-                        </Card.Text>
-                    </Card.Body>
-                </Card>
-            </Col>
-        );
-    }
-
-    function displayBarberSection() {
+    function displayProfileInfoBarber() {
         return (
             <>
-                <Col>
+                <Col lg={4}>
+                    <Card style={{ marginLeft:'15px' }}>
+                        <Card.Img src={userInfo.profile_photo} alt="profile photo"/>
+                        <Card.Body>
+                            <Card.Title>
+                                {userInfo.name}
+                                <ButtonGroup style={{ position:'relative', left:'10px' }}>
+                                    <Button href={`/profile/${userInfo.id}/edit`} className='edit_profile'>
+                                    Edit
+                                    </Button>
+                                    <Button onClick={() => {deleteProfileHandler()}}>
+                                    Delete
+                                    </Button>
+                                </ButtonGroup>
+                            </Card.Title>
+                            <br/>
+                            <Card.Text>
+                                Email: &nbsp;<span>{userInfo.email}</span> <br/>
+                                Phone Number: &nbsp;<span>{userInfo.phone_number}</span> <br/>
+                                Joined: &nbsp;<span>{moment(userInfo.created_at).format('DD/MM/YYYY')}</span>
+                            </Card.Text>
+                        </Card.Body>
+                    </Card>
+                </Col>
+                <Col lg={8}>
                     <Row>
                         <Col lg={6}>
                             <Card>
@@ -248,11 +224,14 @@ export default function Profile() {
                                     <Card.Title>
                                         Salon Information
                                         <ButtonGroup style={{ position:'relative', left:'10px' }}>
-                                            <Button
-                                            // disabled = {() => handleSalonDisable()}
-                                            onClick = {() => handleShowAddSalon()}>
-                                                Add
-                                            </Button>
+
+                                            {!salonInfo ?
+                                                <Button
+                                                onClick = {() => handleShowAddSalon()}>
+                                                    Add
+                                                </Button>
+                                                : ''}
+
                                             {showAddSalon ? displayAddSalon(showAddSalon) : ''}
                                                 {/**to alternate between showing the model and closing it */}
                                             <Button onClick = {() => handleShowEditSalon()}>
@@ -274,11 +253,13 @@ export default function Profile() {
                                     <Card.Title>
                                         Location
                                         <ButtonGroup style={{ position:'relative', left:'10px' }}>
-                                            <Button
-                                            // disabled = {() => handleAddressDisable()}
-                                            onClick = {() => handleShowAddAddress()}>
-                                                Add
-                                            </Button>
+                                            {!addressInfo ?
+                                                <Button
+                                                onClick = {() => handleShowAddAddress()}>
+                                                    Add
+                                                </Button>
+                                            : ''}
+
                                             {showAddAddress ? displayAddAddress(showAddAddress) : ''}
                                             <Button onClick = {() => handleShowEditAddress()}>
                                                 Edit
@@ -301,11 +282,12 @@ export default function Profile() {
                                     <Card.Title>
                                         Private Schedule
                                         <ButtonGroup style={{ position:'relative', left:'10px' }}>
+                                            {!scheduleInfo ?
                                             <Button
-                                            // disabled = {() => handleScheduleDisable()}
                                             onClick = {() => handleShowAddSchedule()}>
                                                 Add
                                             </Button>
+                                            : ''}
                                             {showAddSchedule ? displayAddSchedule(showAddSchedule) : ''}
                                             <Button onClick = {() => handleShowEditSchedule()}>
                                                 Edit
@@ -314,7 +296,8 @@ export default function Profile() {
                                         </ButtonGroup>
                                     </Card.Title>
                                     <Card.Text>
-                                        {scheduleInfo.length != 0 ? <Schedule props={scheduleInfo} /> : 'Nothing Yet'}
+                                        {scheduleInfo ? <Schedule props={scheduleInfo} />
+                                        : 'Nothing Yet'}
                                     </Card.Text>
                                 </Card.Body>
                             </Card>
@@ -329,50 +312,85 @@ export default function Profile() {
                                         </Card.Link>
                                     </Card.Title>
                                     <Card.Text>
-                                        {barberServiceInfo ? <ProfileService /> : 'Nothing Yet'}
+                                        {barberServiceInfo.length != 0 ? <ProfileService /> : 'Nothing Yet'}
                                     </Card.Text>
                                 </Card.Body>
                             </Card>
                         </Col>
                     </Row>
                 </Col>
-                <Row style={{ margin:'20px 0' }}>
-                    <Col lg={12}>
-                        <Card style={{ marginLeft:'10px' }}>
-                            <div style={{ display:'flex', alignItems:'center' }}>
-                                <h2 style={{ margin: '20px 0 0 40px' }}>Gallery</h2>
-                                <Button onClick={() => handleShowAddGallery()}
-                                style={{ margin:'25px 0 0 20px' }}>
-                                    Upload Photo
-                                </Button>
-                                {showAddGallery ? displayAddGallery(showAddGallery) : ''}
-                            </div>
-                            <CardColumns style={{ padding:'30px 40px' }}>
-                            {galleryInfo ? galleryInfo.map(gallery => {
-                               return(
-                                   <Card key={gallery.id} style={{ marginBottom:'20px' }}>
-                                    <Card.Img src={`/Images/barberGallery/${gallery.image}`} height="300px"/>
-                                    <Card.Body>
-                                        <Card.Title>
-                                            <Button onClick={() => {deleteGalleryHandler(gallery.id)}}>Delete</Button>
-                                        </Card.Title>
-                                    </Card.Body>
-                                </Card>
-                               )
-                            }) : 'No Photos Yet'}
-                            </CardColumns>
-                        </Card>
-                    </Col>
-                </Row>
+                <Col>
+                    <Row style={{ margin:'20px 0' }} >
+                        <Col lg={12}>
+                            <Card>
+                                <div style={{ display:'flex', alignItems:'center' }}>
+                                    <h2 style={{ margin: '20px 0 0 40px' }}>Gallery</h2>
+                                    <Button onClick={() => handleShowAddGallery()}
+                                    style={{ margin:'25px 0 0 20px' }}>
+                                        Upload Photo
+                                    </Button>
+                                    {showAddGallery ? displayAddGallery(showAddGallery) : ''}
+                                </div>
+                                <CardColumns style={{ padding:'30px 40px' }}>
+                                {galleryInfo.length !=0 ? galleryInfo.map(gallery => {
+                                return(
+                                    <Card key={gallery.id} style={{ marginBottom:'20px' }}>
+                                        <Card.Img src={gallery.image} height="300px"/>
+                                        <Card.Body>
+                                            <Card.Title>
+                                                <Button onClick={() => {deleteGalleryHandler(gallery.id)}}>
+                                                    Delete
+                                                </Button>
+                                            </Card.Title>
+                                        </Card.Body>
+                                    </Card>
+                                )
+                                }) : 'No Photos Yet'}
+                                </CardColumns>
+                            </Card>
+                        </Col>
+                    </Row>
+                </Col>
+                </>
+        );
+    }
+
+    function displayProfileInfoCustomer() {
+        return (
+            <>
+                <Col lg={4}>
+                    <Card style={{ marginLeft:'15px' }}>
+                        <Card.Img src={userInfo.profile_photo} alt="profile photo"/>
+                        <Card.Body>
+                            <Card.Title>
+                                {userInfo.name}
+                                <ButtonGroup style={{ position:'relative', left:'10px' }}>
+                                    <Button href={`/profile/${userInfo.id}/edit`} className='edit_profile'>
+                                    Edit
+                                    </Button>
+                                    <Button onClick={() => {deleteProfileHandler()}}>
+                                    Delete
+                                    </Button>
+                                </ButtonGroup>
+                            </Card.Title>
+                            <br/>
+                            <Card.Text>
+                                Email: &nbsp;<span>{userInfo.email}</span> <br/>
+                                Phone Number: &nbsp;<span>{userInfo.phone_number}</span> <br/>
+                                Joined: &nbsp;<span>{moment(userInfo.created_at).format('DD/MM/YYYY')}</span>
+                            </Card.Text>
+                        </Card.Body>
+                    </Card>
+                </Col>
             </>
         );
     }
 
     function checkRole() {
         if(userInfo.roles == 'Barber') {
-            return displayBarberSection();
-        }
-        return '';
+            return displayProfileInfoBarber();
+        } else
+            return displayProfileInfoCustomer();
     }
 
     return (
@@ -380,7 +398,6 @@ export default function Profile() {
             <Header/>
             <Container fluid>
                 <Row>
-                    {displayProfileInfo()}
                     {userInfo ? checkRole() : ''}
                 </Row>
             </Container>

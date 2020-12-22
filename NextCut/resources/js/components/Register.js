@@ -13,7 +13,7 @@ export default function Register() {
     const [confirmedPassword, setConfirmedPassword] = useState('');
     const [profilePhoto, setProfilePhoto] = useState();
     const [phoneNumber, setPhoneNumber] = useState('');
-    const [role, setRole] = useState('ROLE_CUSTOMER');
+    const [role, setRole] = useState('Customer');
     const [errs, setErrs] = useState([]);
 
     function RegistrationHandler(event) {
@@ -52,7 +52,7 @@ export default function Register() {
     }
 
     return (
-        <Card style={{margin:'65px auto', width: '300px', padding: '20px', backgroundColor:'#B7410E'}}>
+        <Card style={{margin:'65px auto', width: '300px', padding: '20px', backgroundColor:'#DAA520'}}>
             <Form onSubmit={RegistrationHandler}
             encType="multipart/form-data">
                 <Form.Group controlId="formBasicEmail" style={{ paddingTop: '20px' }}>
@@ -118,7 +118,7 @@ export default function Register() {
                 <Form.Group controlId="formGroupFile">
                     <Form.File
                     label="Profile Photo"
-                    style= {{ color: '#40E0D0' }}
+                    style= {{ color: '#00356f', fontWeight: 'bold' }}
                     onChange={(e) => {setProfilePhoto(e.target.files[0])}} />
                 </Form.Group>
                 <Form.Group controlId="formGroupInput">
@@ -138,12 +138,19 @@ export default function Register() {
                 </Form.Group>
                 <Form.Group>
                     <InputGroup>
-                            <Form.Label style={{ margin: '5px 10px 0 0' }}>Register As</Form.Label>
+                            <Form.Label style={{ margin: '5px 10px 0 0', color:'#00356f', fontWeight: 'bold' }}>
+                                Register As
+                            </Form.Label>
                             <Form.Control
+                            style={{ color: '#00356f' }}
                             onChange={(e) => setRole(e.target.value)}
                             as="select">
-                                <option key={0} value={'ROLE_CUSTOMER'}>Customer</option>
-                                <option key={1} value={'ROLE_BARBER'}>Barber</option>
+                                <option style={{ color: '#00356f' }} key={0} value={'Customer'}>
+                                    Customer
+                                </option>
+                                <option style={{ color: '#00356f' }} key={1} value={'Barber '}>
+                                    Barber
+                                </option>
                             </Form.Control>
                         </InputGroup>
                 </Form.Group>
@@ -151,7 +158,7 @@ export default function Register() {
                     Register
                 </Button>
             </Form>
-            <Form.Row style={{ padding: '15px 5px', color: '#40E0D0' }}>
+            <Form.Row style={{ padding: '15px 5px', color: '#00356f' }}>
                 Already have an account? &nbsp; <Link className='login_register' to="/login">Login</Link>
             </Form.Row>
         </Card>

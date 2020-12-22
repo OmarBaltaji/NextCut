@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 export default function Address(props) {
-
+    console.log(props);
     return (
         <>
             <span>City: {props.props.city}</span> <br/>

@@ -31,7 +31,11 @@ export default function About() {
             if you wish to do so.<br/> <br/>
             Interested in the idea? then book your next appoitnment now!
             </p>
-            <Button style={{ margin: '0 0 20px 20px', fontSize:'30px' }} size='lg' href="/schedule">Book an Appointment</Button>
+            {localStorage.getItem('role') != 'Barber' ?
+            <Button style={{ margin: '0 0 20px 20px', fontSize:'30px' }} size='lg' href="/booking">
+                Book an Appointment
+            </Button>
+            : ''}
         </div>
     );
 }

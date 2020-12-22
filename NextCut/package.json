@@ -26,9 +26,9 @@
     },
     "dependencies": {
         "moment": "^2.29.1",
-        "react-availability-calendar": "^0.3.13",
         "react-bootstrap": "^1.4.0",
         "react-router-dom": "^5.2.0",
+        "react-schedule-meeting": "^0.2.1",
         "universal-cookie": "^4.0.4"
     }
 }

@@ -28,14 +28,14 @@ export default function GallerySlideShow(props) {
             </Modal.Header>
             <Modal.Body>
                 <Carousel>
-                    {galleryInfo.map(photo => {
+                    {galleryInfo.map((photo, index) => {
                         return(
                             <Carousel.Item>
                                 <img
                                 className="d-block w-100"
                                 width="500px"
                                 height="500px"
-                                src={`/Images/barberGallery/${photo.image}`}
+                                src={photo.image}
                                 />
                             </Carousel.Item>
                         )}

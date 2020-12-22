@@ -21,7 +21,9 @@ export default function Header() {
     function getUserDetails() {
         api.getUserInfo()
         .then(response => {
+
             setUserInfo(response.data);
+            localStorage.setItem('role', response.data.roles)
         })
     }
 
@@ -64,9 +66,9 @@ export default function Header() {
                 <Nav className="mr-auto">
                     <Nav.Link className="navlink" href="/home">Home</Nav.Link>
                     <Nav.Link className="navlink" href="/aboutus">About Us</Nav.Link>
-                    {userInfo.roles == 'Customer' ?
-                    <Nav.Link className="navlink" href="/schedule">Schedule</Nav.Link> : '' }
                     <Nav.Link className="navlink" href="/barbers">Barbers</Nav.Link>
+                    {localStorage.getItem('role') != 'Barber' ?
+                    <Nav.Link className="navlink" href="/booking">Book!</Nav.Link> : '' }
                 </Nav>
                 <Nav>
                     {cookie ? displayUser() : displayGuest()}

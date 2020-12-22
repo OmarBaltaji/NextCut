@@ -10,10 +10,11 @@ import Login from './Login';
 import Register from './Register';
 import Profile from './Profile/Profile';
 import EditProfile from './Profile/EditProfile';
-import Schedule from './Schedule';
-import Barbers from './Barbers';
-import ShowBarber from './ShowBarber';
+import Barbers from './Barbers Section/Barbers';
+import ShowBarber from './Barbers Section/ShowBarber';
 import Service from './Profile/BarberServices/Service';
+import BookBarber from './Booking Section/BookBarber';
+import Booking from './Booking Section/Booking';
 
 export default function App() {
     return (
@@ -22,7 +23,8 @@ export default function App() {
                 <Route exact path="/" component={Home} />
                 <Route exact path="/home" component={Home} />
                 <Route exact path="/aboutus" component={About} />
-                <Route exact path="/schedule" component={Schedule} />
+                <Route exact path="/booking" component={Booking} />
+                <Route exact path="/booking/:id" component={BookBarber} />
                 <Route exact path="/barbers" component={Barbers} />
                 <Route exact path="/barbers/:id" component={ShowBarber} />
                 <Route exact path="/profile" component={Profile} />

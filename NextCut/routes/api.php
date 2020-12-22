@@ -41,6 +41,9 @@ Route::get('/barbers/{barber}/schedule', [BarberController::class, 'barberSchedu
 
 Route::get('/barbers/{barber}/gallery', [BarberController::class, 'barberGallery']);
 
+Route::get('/barbers/{barber}/barberservice', [BarberController::class, 'barberServiceDetails']);
+
+Route::post('/booking/searchedbarber', [BarberController::class, 'searchedBarber']);
 
 Route::group(['middleware' => 'auth:api'], function () {
 

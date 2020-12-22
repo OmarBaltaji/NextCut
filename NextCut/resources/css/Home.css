@@ -27,41 +27,41 @@
 }
 
 .login_register {
-    color: #40E0D0;
+    color: #00356f !important;
     text-decoration: underline;
     font-weight: bold;
 }
 
 .login_register:hover {
-    color: #F5F5DC;
+    color: #F5F5DC !important;
     text-decoration: underline;
     font-weight: bold;
 }
 
 .btn_log_reg {
-    background-color: #40E0D0;
-    border-color: #40E0D0;
+    background-color: #00356f;
+    border-color: #00356f;
     color: #F5F5DC;
 }
 
 .btn_log_reg:hover {
     background-color: #F5F5DC;
     border-color: #F5F5DC;
-    color: #40E0D0;
+    color: #00356f;
 }
 
 .input::placeholder {
-    color: #40E0D0;
+    color: #00356f;
     opacity: 1;
 }
 
 #password::placeholder {
-    color: #40E0D0;
+    color: #00356f;
     opacity: 1;
 }
 
 .remember_me {
-    color: #40E0D0;
+    color: #00356f;
 }
 
 .remember_me:hover {
@@ -73,7 +73,7 @@
 }
 
 .navlink:hover {
-    color: #C0C0C0 !important;
+    color: #00356f !important;
 }
 
 a {
@@ -81,9 +81,10 @@ a {
 }
 
 a:hover {
-    color: #C0C0C0 !important;
+    color: #00356f !important;
 }
 
 .user-dropdown .dropdown-menu {
     min-width: 8rem;
+    background-color: #DAA520;
  }

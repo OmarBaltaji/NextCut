@@ -11,7 +11,7 @@ class ScheduleController extends Controller
     public function show() {
         $user = Auth::user();
         $barber = $user->barber->first();
-        $schedule = $barber->schedule->first();
+        $schedule = $barber->schedule;
 
         return response()->json($schedule, 200);
     }

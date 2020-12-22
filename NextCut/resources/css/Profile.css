@@ -9,3 +9,12 @@
 .card_link:hover {
     text-decoration: underline;
 }
+
+.image_row {
+    display: flex;
+    /* flex-wrap: wrap; */
+ }
+
+ /* .image_row > div[class*='col-'] {
+   display: flex;
+ } */

@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
-use Illuminate\Support\Facades\File;
+// use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class AuthController extends Controller
 {
@@ -53,7 +54,7 @@ class AuthController extends Controller
             'name' => 'required|string|max:200',
             'email' => 'required|string|email',
             'password' => 'required|string|confirmed',
-            // 'profile_photo' => '',
+            'profile_photo' => '',
             'phone_number' => 'required|string|max:20',
             'roles' => 'required',
         ]);
@@ -61,19 +62,11 @@ class AuthController extends Controller
         //Image
         if($request->hasFile('profile_photo')) {
             $profile_photo = $request->file('profile_photo');
-            $PhotoNameWithExtension = $profile_photo->getClientOriginalName();
-            $PhotoNameOnly = pathinfo($PhotoNameWithExtension, PATHINFO_FILENAME);
-            $photoExtension = $profile_photo->getClientOriginalExtension();
-            $publicPhotoName = $PhotoNameOnly . '_' . time() . '.' . $photoExtension;
-
-            if(!File::exists(public_path()."/Images/userImage")){
-                File::makeDirectory(public_path()."/Images/userImage");
-            }
-
-            $profile_photo->move(public_path().'/Images/userImage/', $publicPhotoName );
-
+            $photo = $request['profile_photo']->store(env('PROFILE_PICTURES_PATH'));
+            $photoInDB = Storage::url($photo);
         } else {
-            $publicPhotoName = "none.png";
+            $defaultPhoto = env('PROFILE_PICTURES_PATH') . "/none.png";
+            $photoInDB = Storage::url($defaultPhoto);
         }
 
         //create a new user
@@ -81,7 +74,7 @@ class AuthController extends Controller
             'name' => $attributes['name'],
             'email' => $attributes['email'],
             'password' => bcrypt($attributes['password']),
-            'profile_photo' => $publicPhotoName,
+            'profile_photo' => $photoInDB,
             'phone_number' => $attributes['phone_number'],
             'roles' => $attributes['roles'],
         ]);

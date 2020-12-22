@@ -45,7 +45,7 @@ export default function Login() {
     }
 
     return (
-        <Card style={{margin:'150px auto', width: '320px', padding: '20px', backgroundColor:'#B7410E'}}>
+        <Card style={{margin:'150px auto', width: '320px', padding: '20px', backgroundColor:'#DAA520'}}>
             <Form onSubmit={logInHandler}>
                 <Form.Group controlId="formBasicEmail" style={{ paddingTop: '20px' }}>
                     <InputGroup>
@@ -92,7 +92,7 @@ export default function Login() {
                     Login
                 </Button>
             </Form>
-            <Form.Row style={{ padding: '15px 0', color: '#40E0D0' }}>
+            <Form.Row style={{ padding: '15px 0', color: '#00356f' }}>
                 Don't have an account? &nbsp;<Link className='login_register' to="/register">Register</Link>
             </Form.Row>
         </Card>
