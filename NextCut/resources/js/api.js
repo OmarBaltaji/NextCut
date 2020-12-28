@@ -102,4 +102,25 @@ export default{
 
     getOneBarberServiceDetails: (id) =>
     axios.get(`${BASE_URL}/barbers/${id}/barberservice`),
+
+    getSearchedBarber: (name) =>
+    axios.post(`${BASE_URL}/booking/searchedbarber`, name),
+
+    storeCustomerRequest: (info) =>
+    axios.post(`${BASE_URL}/booking/confirmation`,info),
+
+    setCustomer: () =>
+    axios.post(`${BASE_URL}/customer`),
+
+    getRequestDetails: () =>
+    axios.get(`${BASE_URL}/requests`),
+
+    alterStatus: (info) =>
+    axios.post(`${BASE_URL}/alterstatus`, info),
+
+    getPreviousBookings: () =>
+    axios.get(`${BASE_URL}/previousbookings`),
+
+    getBookedTimes: () =>
+    axios.get(`${BASE_URL}/bookedtimes`),
 }

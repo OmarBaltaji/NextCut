@@ -7,6 +7,8 @@ import CookieService from '../../Service/CookieService';
 import moment from 'moment';
 import '../../../css/Profile.css';
 
+import EditProfile from './EditProfile';
+
 import AddSalon from './Salon/AddSalon';
 import EditSalon from './Salon/EditSalon';
 import SalonInfo from './Salon/SalonInfo';
@@ -25,7 +27,7 @@ import AddGallery from './Gallery/AddGallery';
 
 export default function Profile() {
 
-    axios.defaults.headers.common['Authorization'] = 'Bearer ' + CookieService.get('access_token');
+    // axios.defaults.headers.common['Authorization'] = 'Bearer ' + CookieService.get('access_token');
     const [userInfo, setUserInfo] = useState([]);
     const [salonInfo, setSalonInfo] = useState([]);
     const [addressInfo, setAddressInfo] = useState([]);
@@ -33,6 +35,9 @@ export default function Profile() {
     const [barberServiceInfo, setBarberServiceInfo] = useState([]);
     const [galleryInfo, setGalleryInfo] = useState([]);
     const history = useHistory();
+
+    const [showEditProfile, setShowEditProfile] = useState(false);
+    const handleShowEditProfile = () => setShowEditProfile(true);
 
     const [showAddSalon, setShowAddSalon] = useState(false);
     const handleShowAddSalon = () => setShowAddSalon(true);
@@ -69,6 +74,9 @@ export default function Profile() {
         .then(response => {
             setUserInfo(response.data);
         }).catch(error => {
+            if(error.response.status == 401) {
+                history.push('/home')
+            }
         });
     }
 
@@ -80,6 +88,12 @@ export default function Profile() {
                 history.push('/login');
             })
         }
+    }
+
+    function displayEditProfile() {
+        return(
+            <EditProfile props={showEditProfile} info={userInfo} setShow={setShowEditProfile} />
+        );
     }
 
     //Salon
@@ -127,7 +141,7 @@ export default function Profile() {
     function getScheduleInfo() {
         api.getSchedule()
         .then(response => {
-            setScheduleInfo(response.data[0]);
+            setScheduleInfo(response.data);
         }).catch(error => {
 
         });
@@ -149,7 +163,6 @@ export default function Profile() {
     function getServicesDetails() {
         api.getBarberService()
         .then(response => {
-            console.log(response.data);
             setBarberServiceInfo(response.data);
             let servicesByBarber = [];
             response.data.forEach(barberService => {
@@ -166,7 +179,6 @@ export default function Profile() {
     function getGalleryInfo() {
         api.getGalleries()
         .then(response => {
-            // console.log(response.data);
             setGalleryInfo(response.data);
         }).catch(error => {
 
@@ -187,7 +199,6 @@ export default function Profile() {
             })
         }
     }
-    console.log(userInfo.profile_photo)
 
     function displayProfileInfoBarber() {
         return (
@@ -199,9 +210,13 @@ export default function Profile() {
                             <Card.Title>
                                 {userInfo.name}
                                 <ButtonGroup style={{ position:'relative', left:'10px' }}>
-                                    <Button href={`/profile/${userInfo.id}/edit`} className='edit_profile'>
+                                {/* href={`/profile/${userInfo.id}/edit`} */}
+                                    <Button onClick={() => handleShowEditProfile()} className='edit_profile'>
                                     Edit
                                     </Button>
+
+                                    {showEditProfile ? displayEditProfile(showEditProfile) : ''}
+
                                     <Button onClick={() => {deleteProfileHandler()}}>
                                     Delete
                                     </Button>
@@ -234,9 +249,12 @@ export default function Profile() {
 
                                             {showAddSalon ? displayAddSalon(showAddSalon) : ''}
                                                 {/**to alternate between showing the model and closing it */}
-                                            <Button onClick = {() => handleShowEditSalon()}>
-                                                Edit
-                                            </Button>
+
+                                            {salonInfo ?
+                                                <Button onClick = {() => handleShowEditSalon()}>
+                                                    Edit
+                                                </Button>
+                                            : ''}
                                             {showEditSalon ? displayEditSalon(showEditSalon) : ''}
                                             {/**to alternate between showing the model and closing it */}
                                         </ButtonGroup>
@@ -261,9 +279,12 @@ export default function Profile() {
                                             : ''}
 
                                             {showAddAddress ? displayAddAddress(showAddAddress) : ''}
-                                            <Button onClick = {() => handleShowEditAddress()}>
-                                                Edit
-                                            </Button>
+
+                                            {addressInfo ?
+                                                <Button onClick = {() => handleShowEditAddress()}>
+                                                    Edit
+                                                </Button>
+                                            : ''}
                                             {showEditAddress ? displayEditAddress(showEditAddress) : ''}
                                         </ButtonGroup>
                                     </Card.Title>
@@ -282,21 +303,25 @@ export default function Profile() {
                                     <Card.Title>
                                         Private Schedule
                                         <ButtonGroup style={{ position:'relative', left:'10px' }}>
-                                            {!scheduleInfo ?
+                                            {scheduleInfo.length == 0 ?
                                             <Button
                                             onClick = {() => handleShowAddSchedule()}>
                                                 Add
                                             </Button>
                                             : ''}
                                             {showAddSchedule ? displayAddSchedule(showAddSchedule) : ''}
-                                            <Button onClick = {() => handleShowEditSchedule()}>
-                                                Edit
-                                            </Button>
+
+                                            {scheduleInfo.length != 0 ?
+                                                <Button onClick = {() => handleShowEditSchedule()}>
+                                                    Edit
+                                                </Button>
+                                            : ''}
+
                                             {showEditSchedule ? displayEditSchedule(showEditSchedule) : ''}
                                         </ButtonGroup>
                                     </Card.Title>
                                     <Card.Text>
-                                        {scheduleInfo ? <Schedule props={scheduleInfo} />
+                                        {scheduleInfo.length != 0 ? <Schedule props={scheduleInfo} />
                                         : 'Nothing Yet'}
                                     </Card.Text>
                                 </Card.Body>

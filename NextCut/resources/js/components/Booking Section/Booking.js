@@ -1,18 +1,29 @@
 import React, {useEffect, useState} from 'react';
+import {useHistory} from 'react-router-dom';
 import Header from '../Header';
 import CookieService from '../../Service/CookieService';
 import api from '../../api';
 import {CardColumns, Card, Button, Container, Col, Row, InputGroup, Form, FormControl} from 'react-bootstrap';
 
 export default function Booking() {
-    axios.defaults.headers.common['Authorization'] = 'Bearer ' + CookieService.get('access_token');
+    const history = useHistory();
     const [barbers, setBarbers] = useState([]);
     const[searchedBarber, setSearchedBarber] = useState([]);
     const [searchBox, setSearchBox] = useState('');
 
     useEffect(() => {
+        getUserDetails();
         getAllBarbers();
     }, []);
+
+    function getUserDetails() {
+        api.getUserInfo()
+        .then(response => {
+            if(response.data.roles != 'Customer') {
+                history.push('/home');
+            }
+        })
+    }
 
     function getAllBarbers() {
         api.getAllBarbers()
@@ -23,14 +34,12 @@ export default function Booking() {
 
     function handleSearch() {
         if(searchBox) {
-            let searchResult = searchBox.split(' ');
-            let capitalizedName = [];
-            for(let i = 0; i < searchResult.length; i++) {
-                capitalizedName.push(searchResult[i][0].toUpperCase() + searchResult[i].slice(1).toLowerCase());
-            }
-            let capitalizedResult = capitalizedName.join(' ');
-            let resultBarber = barbers.filter(barber => barber.user.name == capitalizedResult);
-            setSearchedBarber(resultBarber);
+            console.log(searchBox);
+            api.getSearchedBarber({'searched_name' : searchBox})
+            .then(response => {
+                console.log(response.data);
+                setSearchedBarber(response.data);
+            })
         }
     }
 
@@ -44,7 +53,6 @@ export default function Booking() {
                     <FormControl
                     type="text"
                     placeholder="Search Barber"
-                    // value={searchBox}
                     onChange={(e) => setSearchBox(e.target.value)} />
 
                     <InputGroup.Append>
@@ -57,7 +65,7 @@ export default function Booking() {
                             <Button
                             variant="outline-primary"
                             onClick={() => setSearchedBarber([])}>
-                                <i class="fas fa-times" />
+                                <i className="fas fa-times" />
                             </Button>
                         : ''}
                     </InputGroup.Append>
@@ -65,19 +73,25 @@ export default function Booking() {
                 <br/>
                 <CardColumns as= {Row}>
                 {searchedBarber.length != 0 ?
-                    <Card style={{ width:'350px' }} lg={4} key={searchedBarber[0].id}>
-                        <Card.Img src={searchedBarber[0].user.profile_photo} height="300px"/>
-                        <Card.Body>
-                            <Card.Title>{searchedBarber[0].user.name}</Card.Title>
-                            <Card.Text>
-                                <span>Salon Name: {searchedBarber[0].salon_name}</span> <br/>
-                                <span>Location: {searchedBarber[0].user.address.length != 0 ? searchedBarber[0].user.address[0].city : 'Not Available'}</span>
-                            </Card.Text>
-                        </Card.Body>
-                        <Card.Footer>
-                            <Button href={`/booking/${searchedBarber[0].id}`}>Book Now</Button>
-                        </Card.Footer>
-                    </Card>
+                    searchedBarber.map(barber_user => {
+                        return (
+                            <Card style={{ width:'350px' }} lg={4} key={barber_user.id}>
+                                <Card.Img src={barber_user.profile_photo} height="300px"/>
+                                <Card.Body>
+                                    <Card.Title>{barber_user.name}</Card.Title>
+                                    <Card.Text>
+                                        <span>Salon Name: {barber_user.barber[0].salon_name}</span> <br/>
+                                        <span>Location: {barber_user.address.length != 0
+                                        ? barber_user.address[0].city : 'Not Available'}</span>
+                                    </Card.Text>
+                                </Card.Body>
+                                <Card.Footer>
+                                { console.log(barber_user.id)}
+                                    <Button href={`/booking/${barber_user.id}`}>Book This Barber</Button>
+                                </Card.Footer>
+                            </Card>
+                        )
+                    })
                     :
                     <>
                     {barbers.map(barber =>
@@ -87,11 +101,12 @@ export default function Booking() {
                                 <Card.Title>{barber.user.name}</Card.Title>
                                 <Card.Text>
                                     <span>Salon Name: {barber.salon_name}</span> <br/>
-                                    <span>Location: {barber.user.address.length != 0 ? barber.user.address[0].city : 'Not Available'}</span>
+                                    <span>Location: {barber.user.address.length != 0 ?
+                                    barber.user.address[0].city : 'Not Available'}</span>
                                 </Card.Text>
                             </Card.Body>
                             <Card.Footer>
-                                <Button href={`/booking/${barber.id}`}>Book Now</Button>
+                                <Button href={`/booking/${barber.id}`}>Book This Barber</Button>
                             </Card.Footer>
                         </Card>
                     )}

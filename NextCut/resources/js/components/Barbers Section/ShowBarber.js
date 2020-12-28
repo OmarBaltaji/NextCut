@@ -215,7 +215,7 @@ export default function ShowBarber(props) {
                             <Col>
                                 {localStorage.getItem('role') != 'Barber' ?
                                 <Button size='lg' href={`/booking/${barberDetails.id}`}>
-                                    Book Now
+                                    Book This Barber
                                 </Button>
                                 : ''}
                             </Col>

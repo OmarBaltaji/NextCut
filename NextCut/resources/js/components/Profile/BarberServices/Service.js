@@ -2,25 +2,18 @@ import React, { useEffect, useState } from 'react';
 import {useHistory} from 'react-router-dom';
 import api from '../../../api';
 import Header from '../../Header';
-import axios from 'axios';
-import CookieService from '../../../Service/CookieService';
 import {Col, Container, Row, Form, Button, Card, Table, InputGroup, ButtonGroup} from 'react-bootstrap';
 import '../../../../css/Service.css';
-import EditService from './EditService';
+// import EditService from './EditService';
 import EditBarberService from './EditBarberService';
 import AddBarberService from './AddBarberService';
 
 export default function Service() {
-    axios.defaults.headers.common['Authorization'] = 'Bearer ' + CookieService.get('access_token');
+    const history = useHistory();
     const [services, setServices] = useState([]);
     const [barberServices, setBarberServices] = useState([]);
-    const [type, setType] = useState('');
-    const [editService, setEditService] = useState();
-    const [editBarberService, setEditBarberService] = useState();
-    const servicesByBarber = localStorage.getItem('services_by_barber');
 
-    const [showEditService, setShowEditService] = useState(false);
-    const handleShowEditService = () => setShowEditService(true);
+    const [editBarberService, setEditBarberService] = useState();
 
     const [showEditBarberService, setShowEditBarberService] = useState(false);
     const handleShowEditBarberService = () => setShowEditBarberService(true);
@@ -29,9 +22,23 @@ export default function Service() {
     const handleShowAddBarberService = () => setShowAddBarberService(true);
 
     useEffect(() => {
+        getUserDetails();
         showServices();
         showBarberServices();
     }, []);
+
+    function getUserDetails() {
+        api.getUserInfo()
+        .then(response => {
+            if(response.data.roles != 'Barber') {
+                history.push('/home');
+            }
+        }).catch(error => {
+            if(error.response.status == 401) {
+                history.push('/home')
+            }
+        })
+    }
 
     function showServices() {
         api.getService()
@@ -44,17 +51,8 @@ export default function Service() {
         api.getBarberService()
         .then(response => {
             setBarberServices(response.data);
+            console.log(response.data)
         })
-    }
-
-    function hanldeDeleteService(id) {
-        let confirm_delete = confirm('Delete Service Type?');
-        if (confirm_delete == true) {
-            api.deleteService(id)
-            .then(response => {
-                window.location.reload();
-            });
-        }
     }
 
     function hanldeDeleteBarberService(id) {
@@ -67,43 +65,10 @@ export default function Service() {
         }
     }
 
-    function renderService() {
-        return (
-            <>
-                {services.map((service, index) => {
-                    return (
-                        <tr key={service.id}>
-                            <td>{index}</td>
-                            <td>{service.type}</td>
-
- {/*see if the service belongs to the authenticated barber,if yes,
- then the barber can edit and delete the service types that belongs to him/her */}
-                            {servicesByBarber.includes(service.id) ?
-                                <td>
-                                    <ButtonGroup>
-                                        <Button
-                                        onClick={() => {
-                                        handleShowEditService();
-                                        setEditService(service);
-                                        }}>
-                                            Edit
-                                        </Button>
-                                        <Button onClick={() => hanldeDeleteService(service.id)}>Delete</Button>
-                                    </ButtonGroup>
-                                </td>
-                                : <td>{'Not Available'}</td>
-                            }
-                        </tr>
-                        )
-                })}
-            </>
-        );
-    }
-
     function renderBarberService() {
         return (
             <>
-                {barberServices.map((barberService, index) => {
+                {barberServices.length != 0 ? barberServices.map((barberService, index) => {
                     return (
                         <tr key={barberService.id}>
                             <td>{index}</td>
@@ -126,28 +91,8 @@ export default function Service() {
                             </td>
                         </tr>
                         )
-                })}
+                }) : <tr><td>Nothing Yet</td></tr>}
             </>
-        );
-    }
-
-    function typeSubmitHandler() {
-        event.preventDefault();
-
-        const newType = {
-            'type': type,
-        }
-
-        api.createService(newType)
-        .then(response => {
-            console.log(response);
-            window.location.reload();
-        });
-    }
-
-    function displayEditService() {
-        return(
-            <EditService props={showEditService} info={editService} setShow={setShowEditService} />
         );
     }
 
@@ -194,43 +139,7 @@ export default function Service() {
                         </Table>
                         {showEditBarberService ? displayBarberEditService() : ''}
                     </Col>
-                    <Col lg={4}>
-                        <Card>
-                            <Card.Body>
-                                <Card.Title>Existing Services' Type</Card.Title>
-                                 <Form onSubmit={typeSubmitHandler}>
-                                    <Form.Row>
-                                        <InputGroup as={Col}>
-                                            <Form.Control
-                                            type="text"
-                                            placeholder="Service Type"
-                                            onChange={(e) => {setType(e.target.value)}}
-                                            required />
-                                               <InputGroup.Append>
-                                                    <Button type="submit" variant="outline-secondary">
-                                                        Enter
-                                                    </Button>
-                                                </InputGroup.Append>
-                                        </InputGroup>
-                                    </Form.Row>
-                                </Form>
-                                <br/>
-                                <Table striped bordered hover>
-                                    <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Service Type</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {renderService()}
-                                    </tbody>
-                                </Table>
-                                {showEditService ? displayEditService() : ''}
-                            </Card.Body>
-                        </Card>
-                    </Col>
+
                 </Row>
             </Container>
         </>

@@ -25,4 +25,8 @@ class BarberService extends Model
     public function service() {
         return $this->belongsTo(Service::class);
     }
+
+    public function service_request() {
+        return $this->hasMany(ServiceRequest::class);
+    }
 }

@@ -3,11 +3,12 @@ import api from '../../../api';
 import {Button, Form, Modal, Col} from 'react-bootstrap';
 
 export default function EditSalon(props) {
+    console.log(props)
     const [openForm, setOpenForm] = useState(true);
-    const [hourOpen, setHourOpen] = useState(props.info.hour_open);
-    const [hourClose, setHourClose] = useState(props.info.hour_close);
-    const [dayOpen, setDayOpen] = useState(props.info.day_open);
-    const [dayClose, setDayClose] = useState(props.info.day_close);
+    const [hourOpen, setHourOpen] = useState(props.info[0].hour_open);
+    const [hourClose, setHourClose] = useState(props.info[0].hour_close);
+    const [dayOpen, setDayOpen] = useState(props.info[0].day_open);
+    const [dayClose, setDayClose] = useState(props.info[0].day_close);
     const dayOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
     const handleClose = () => {
@@ -66,7 +67,7 @@ export default function EditSalon(props) {
             'day_close': dayClose,
         }
 
-        api.editSchedule(salonInfo, props.info.id)
+        api.editSchedule(salonInfo, props.info[0].id)
         .then(response => {
             handleClose();
             window.location.reload();

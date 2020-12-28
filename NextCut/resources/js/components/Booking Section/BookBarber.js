@@ -1,147 +1,52 @@
 import React, {useEffect, useState} from 'react';
-import {useParams} from 'react-router-dom';
+import {useParams, useHistory} from 'react-router-dom';
 import Header from '../Header';
-import CookieService from '../../Service/CookieService';
-import { ScheduleMeeting } from 'react-schedule-meeting';
 import { InputGroup, Form, Container, Col, Row, Button } from 'react-bootstrap';
 import api from '../../api';
+import TimeCalendar from "react-timecalendar";
 
 export default function BookBarber() {
-    axios.defaults.headers.common['Authorization'] = 'Bearer ' + CookieService.get('access_token');
     const[barber, setBarber] = useState([]);
     const[barberServicesInfo, setBarberServicesInfo] = useState([]);
     const [chosenServices, setChosenServices] = useState([]);
     const [appLocation, setAppLocation] = useState('Home');
     const [barberPrivateSchedule, setBarberPrivateSchedule] = useState([])
+    const [timeSelected, setTimeSelected] = useState();
+    const [paymentMethod, setPaymentMethod] = useState('cash');
+    const [customerRequest, setCustomerRequest] = useState([]);
+    const [previousBookings, setPreviousBookings] = useState(false);
+    const [bookedTimeslots, setBookedTimeslots] = useState([]);
     const param = useParams();
-
+    const history = useHistory();
+    let openHours = [];
+    let bookings = [];
     const weekdays = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-    var d_salon = new Date(); //current date
-    var available_salon_days = [];
-    var d_home = new Date();
-    var available_home_days = [];
-    // d_salon.setDate(29);
-    // d_home.setDate(22f);
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
-    if(barber.length != 0) {
-        let salon_opening_day = weekdays.indexOf(barber.day_open);
-        let salon_closing_day = weekdays.indexOf(barber.day_close);
-        if (d_salon.getDay() == 0 && salon_closing_day != 0) {//if sunday is not included in the schedule
-            available_salon_days = [];
-        }
-        else if(d_salon.getDay() < salon_closing_day) {
-            for(let j = 0; j < salon_closing_day + 1 - (d_salon.getDay()); j++) { //available days during the week
-                available_salon_days.push(j);
-            }
-        }
-        else if(d_salon.getDay() == salon_closing_day) {
-            available_salon_days.push(0); //we only have this day left within the week
-        }
-        for(let i = 0; i < salon_closing_day + 1; i++) {
-            if(weekdays[i] == barber.day_open) {
-                if(salon_opening_day == d_salon.getDay()) //if opening day is the current date
-                    d_salon.setDate(d_salon.getDate() + (i + 7 - d_salon.getDay()) % 7); //set the starting time to the current day
-            }
-        }
-        //for next week
-        let next_week_salon_opening_day = salon_opening_day + 6;
-        let next_week_salon_closing_day = salon_closing_day + 7;
+    if(barber.length != 0 && appLocation == 'Salon')
+        getOpenHours(barber);
+    else if (barberPrivateSchedule.length != 0 && appLocation == 'Home')
+        getOpenHours(barberPrivateSchedule);
 
-        for(let k = next_week_salon_opening_day; k < next_week_salon_closing_day; k++) {
-            available_salon_days.push(k + 1 - d_salon.getDay());
-        }
-        //for next next week
-        let next_next_week_salon_opening_day = salon_opening_day + 13;
-        let next_next_week_salon_closing_day = salon_closing_day + 14;
-
-        for(let l = next_next_week_salon_opening_day; l < next_next_week_salon_closing_day; l++) {
-            available_salon_days.push(l + 1 - d_salon.getDay());
-        }
-    }
-
-    if(barberPrivateSchedule.length != 0) {
-        let home_opening_day = weekdays.indexOf(barberPrivateSchedule.day_open);
-        let home_closing_day = weekdays.indexOf(barberPrivateSchedule.day_close);
-        if (d_home.getDay() == 0 && home_closing_day != 0) { //if sunday is not included in the schedule
-            available_home_days = [];
-        }
-        else if(d_home.getDay() < home_closing_day) {
-            for(let j = 0; j < home_closing_day + 1 - (d_home.getDay()); j++) { //available days during the week
-                available_home_days.push(j);
-            }
-        }
-        else if(d_home.getDay() == home_closing_day) {
-            available_home_days.push(0); //we only have this day left within the week
-        }
-        for(let i = 0; i < home_closing_day + 1; i++) {
-            if(weekdays[i] == barberPrivateSchedule.day_open) {
-                if(home_opening_day == d_home.getDay()) //if opening day is the current date
-                d_home.setDate(d_home.getDate() + (i + 7 - d_home.getDay()) % 7); //set the starting time to the current day
-            }
-        }
-        //for next week
-        let next_week_home_opening_day = home_opening_day + 6;
-        let next_week_home_closing_day = home_closing_day + 7;
-
-        for(let k = next_week_home_opening_day; k < next_week_home_closing_day; k++) {
-            available_home_days.push(k + 1 - d_home.getDay());
-        }
-        //for next next week
-        let next_next_week_home_opening_day = home_opening_day + 13;
-        let next_next_week_home_closing_day = home_closing_day + 14;
-
-        for(let l = next_next_week_home_opening_day; l < next_next_week_home_closing_day; l++) {
-            available_home_days.push(l + 1 - d_home.getDay());
-        }
-    }
-
-    //Calendar
-
-    // which days are available for booking
-    const availableTimeslots = (barber.length != 0 && appLocation == 'Salon') ?
-        available_salon_days.map((id) => {
-            return {
-                id,
-                startTime: new Date(new Date(new Date().setDate(d_salon.getDate() + id)).setHours(barber.hour_open.split(':')[0], 0, 0, 0)),
-                endTime: new Date(new Date(new Date().setDate(d_salon.getDate() + id)).setHours(barber.hour_close.split(':')[0], 0, 0, 0)),
-                };
-            })
-
-        : barberPrivateSchedule.length != 0 && appLocation == 'Home' ?
-        available_home_days.map((id) => {
-            return {
-                id,
-                startTime: new Date(new Date(new Date().setDate(d_home.getDate() + id)).setHours(barberPrivateSchedule.hour_open.split(':')[0], 0, 0, 0)),
-                endTime: new Date(new Date(new Date().setDate(d_home.getDate() + id)).setHours(barberPrivateSchedule.hour_close.split(':')[0], 0, 0, 0)),
-                };
-            })
-
-        : [0].map((id) => {
-            return {
-                id,
-                startTime: new Date(new Date(new Date().setDate(new Date().getDate() + id)).setHours(0, 0, 0, 0)),
-                endTime: new Date(new Date(new Date().setDate(new Date().getDate() + id)).setHours(0, 0, 0, 0)),
-                };
-            });
+    insertBookedTimes();
 
     useEffect(() => {
+        getUserDetails();
         getThisBarberInfo();
         getBarberServiceDetails();
         getBarberPrivateSchedule();
+        getPreviousBookignsDetails();
+        getAllPrevBookedTimes();
+
     }, []);
 
-    function displayScheduler() {
-        if (availableTimeslots) {
-            return(
-                <ScheduleMeeting
-                borderRadius={10}
-                primaryColor="#3f5b85"
-                eventDurationInMinutes={60}
-                availableTimeslots={availableTimeslots}
-                onStartTimeSelect={console.log}
-                />
-            );
-        }
+    function getUserDetails() {
+        api.getUserInfo()
+        .then(response => {
+            if(response.data.roles != 'Customer') {
+                history.push('/home');
+            }
+        })
     }
 
     function getThisBarberInfo() {
@@ -165,6 +70,97 @@ export default function BookBarber() {
         });
     }
 
+    //check if user has previous incomplete bookings
+    function getPreviousBookignsDetails() {
+        api.getPreviousBookings()
+        .then(response => {
+            setCustomerRequest(response.data.service_request);
+            let requests = response.data.service_request;
+            requests.forEach(request => {
+                if(request.customer_request.completed == 0) {
+                    setPreviousBookings(true);
+                }
+            })
+        });
+    }
+
+    function getAllPrevBookedTimes() {
+        api.getBookedTimes()
+        .then(response => {
+            setBookedTimeslots(response.data);
+        })
+    }
+
+    function getOpenHours(schedule) {
+        let open_hours = schedule.hour_open.split(':');
+        if(open_hours[0] < 10) { //if the hour is for example 09
+            open_hours = parseInt(open_hours[0].split('')[1]); //it would take the number 9 only (so it works properly with the external library)
+        } else {
+            open_hours = parseInt(open_hours[0]);
+        }
+
+        let closing_hours = schedule.hour_close.split(':');
+        if(closing_hours[0] < 10) {
+            closing_hours = parseInt(closing_hours[0].split('')[1]);
+        } else {
+            closing_hours = parseInt(closing_hours[0]);
+        }
+
+        if(schedule.day_close != 'Sunday') {
+            let remaining_days = 0;
+            openHours.push([0,0]) //Fill Sunday where the barber is not open
+            for (let l = 1; l < weekdays.indexOf(schedule.day_open); l++) { //Fill Days where barber is not open before the opening_day
+                openHours.push([0,0]);
+            }
+            for(let i = weekdays.indexOf(schedule.day_open); i <= weekdays.indexOf(schedule.day_close); i++) {
+                openHours.push([open_hours, closing_hours]); //Fill all days up to closing_day
+                remaining_days = i;
+            }
+            for (let j = remaining_days; j < weekdays.indexOf('Saturday'); j++ ) {
+                openHours.push([0,0]); //Fill the remaining days where the barber is not open
+            }
+        } else {
+            openHours.push([open_hours, closing_hours]); //Fill Sunday
+            for (let m = 1; m < weekdays.indexOf(schedule.day_open); m++) { //Fill Days where barber is not open before the opening_day
+                openHours.push([0,0]);
+            }
+            for(let k = weekdays.indexOf(schedule.day_open); k < weekdays.indexOf(schedule.day_close) + 6; k++) {
+                openHours.push([open_hours, closing_hours]); //Fill all days before Sunday
+            }
+        }
+
+    }
+
+    function insertBookedTimes() {
+        let id_to_insert = 1;
+        if(bookedTimeslots.length != 0) {
+            bookedTimeslots.forEach(timeSlot => {
+                let splitDate = timeSlot.date_booked.split(' ');
+                let month = months.indexOf(splitDate[1]) + 1
+                if (month < 10) {
+                    month = '0' + String(month);
+                }
+                let startTime = timeSlot.time_booked;
+                let start_date_time = `${splitDate[3]}-${month}-${splitDate[2]} ${startTime}:00`;
+
+                let timeSplit = timeSlot.time_booked.split(':');
+                let timeSlot_end = parseInt(timeSplit[0]) + Math.round((timeSlot.total_time)/60); //session takes an hour to end
+                console.log(timeSlot_end);
+                let endTime = `${timeSlot_end}:00:00`;
+                let end_date_time = `${splitDate[3]}-${month}-${splitDate[2]} ${endTime}`;
+
+                let time_booked = {
+                    id: id_to_insert,
+                    start_time: start_date_time,
+                    end_time: end_date_time,
+                }
+                bookings.push(time_booked);
+                id_to_insert += 1;
+            });
+        }
+    }
+
+
     function hanldeChosenServices(e) {
         setChosenServices(Array.from(e.target.selectedOptions, option => option.value));
     }
@@ -184,8 +180,12 @@ export default function BookBarber() {
 
         return (
             <>
-            {chosenServices.length != 0 ?
-            <span>Total: {sum_price}$, {sum_time} mins</span> : ''}
+                {
+                <span>
+                    Total: {chosenServices.length != 0 ? sum_price + '$, ': ''}
+                    {chosenServices.length != 0 ? sum_time + ' mins' : ''}
+                </span>
+                }
             </>
         );
     }
@@ -193,11 +193,80 @@ export default function BookBarber() {
     function handleAppLocation(e) {
         if(e.target.value == 'Salon') {
             setAppLocation('Salon');
-            alert("HI");
         } else if (e.target.value == 'Home') {
             setAppLocation('Home');
         }
     }
+
+    function displayChosenDateAndTime() {
+        let time_select_array = (String(timeSelected).split(' '));
+        let hour_selected = time_select_array[4].split(':');
+
+        return (
+            <>
+                <span>{time_select_array[0] + ', '}</span>
+                <span>{time_select_array[1] + ' ' + time_select_array[2] + ' ' + time_select_array[3] + 'at '}</span>
+                <span>{hour_selected[0] + ':' + hour_selected[1]}</span>
+            </>
+        );
+    }
+
+    function handleRedirectToConfirmation() {
+        let sum_price = 0;
+        let sum_time = 0;
+        let services_id = [];
+
+        chosenServices.map(service => {
+            let s = service.split(',');
+            sum_price += parseInt(s[0]);
+            sum_time += parseInt(s[1]);
+            services_id.push(parseInt(s[2]));
+        });
+
+        let time_select_array = (String(timeSelected).split(' '));
+        let hour_selected = time_select_array[4].split(':');
+
+        let booked_date = time_select_array[0] + ' ' + time_select_array[1] + ' ' + time_select_array[2] + ' ' + time_select_array[3];
+        let booked_time = hour_selected[0] + ':' + hour_selected[1];
+
+        const info = {
+            date_booked: booked_date,
+            time_booked: booked_time,
+            total_price: sum_price,
+            total_time: sum_time,
+            appointment_location: appLocation,
+            barber_service_id: services_id,
+        };
+
+        api.storeCustomerRequest(info)
+        .then(response => {
+            history.push({
+                pathname: '/confirmedbooking',
+                state: {
+                        payment_method: paymentMethod,
+                        time_selected: String(timeSelected).split(' '),
+                        chosen_services: chosenServices,
+                        app_location: appLocation,
+                        barber_name: barber.user.name,
+                    }
+                });
+        }).catch(error => {
+        })
+    }
+
+    function handleTimeSelected(time) {
+        setTimeSelected(time);
+      }
+      const MyCalendar = () => (
+        <TimeCalendar
+          disableHistory
+          clickable
+          timeSlot={60}
+          openHours={openHours}
+          onTimeClick={handleTimeSelected}
+          bookings={bookings}
+        />
+      );
 
     return (
         <>
@@ -205,44 +274,94 @@ export default function BookBarber() {
             <Container>
                 <Row>
                     <Col>
-                        <h3>You are booking an appointment with {barber.length != 0 ? barber.user.name : ''}</h3>
+                        <h3>
+                            You are booking an appointment with {barber.length != 0 ? barber.user.name : ''}
+                        </h3>
                     </Col>
                 </Row>
                 <br/>
-                <Row>
-                    <Col lg={6}>
-                        <InputGroup>
-                            <Form.Label>Services: &nbsp;</Form.Label>
-                            <Form.Control
-                            as="select"
-                            multiple
-                            onChange={(e) => hanldeChosenServices(e)}>
-                                {barberServicesInfo.length != 0 ?
-                                barberServicesInfo.map(barberService =>
-                                <option key={barberService.id} value={[barberService.price, barberService.estimated_time]}>{`${barberService.service.type} - ${barberService.price}$, ${barberService.estimated_time} mins`}</option>)
-                                : ''}
-                            </Form.Control>
-                        </InputGroup>
-                        <br/>
-                        {displayChosenServices()}
-                    </Col>
-                    <Col lg={6}>
-                        <InputGroup>
-                            <Form.Label>Appointment Location:  &nbsp;</Form.Label>
-                            <Form.Control
-                            as="select"
-                            id = 'appointment'
-                            onChange={(e) => handleAppLocation(e)}>
-                                <option key={0} value={'Home'}>Home</option>
-                                <option key={1} value={'Salon'}>Salon</option>
-                            </Form.Control>
-                        </InputGroup>
-                    </Col>
-                </Row>
-                <br/>
-                <Row>
-                {availableTimeslots ? displayScheduler() : ''}
-                </Row>
+                    <Row>
+                        <Col lg={6}>
+                            <InputGroup>
+                                <Form.Label>Services: &nbsp;</Form.Label>
+                                <Form.Control
+                                as="select"
+                                multiple
+                                required
+                                onChange={(e) => hanldeChosenServices(e)}>
+                                    {barberServicesInfo.length != 0 ?
+                                    barberServicesInfo.map(barberService =>
+                                    <option key={barberService.id}
+                                    value={[
+                                        barberService.price, barberService.estimated_time,
+                                        barberService.id, barberService.service.type
+                                    ]}>
+                                        {`${barberService.service.type} - ${barberService.price}$,
+                                        ${barberService.estimated_time} mins`}
+                                    </option>)
+                                    : ''}
+                                </Form.Control>
+                            </InputGroup>
+                            <br/>
+                            {displayChosenServices()}
+                        </Col>
+                        <Col lg={6}>
+                            <InputGroup>
+                                <Form.Label>Appointment Location:  &nbsp;</Form.Label>
+                                <Form.Control
+                                as="select"
+                                id = 'appointment'
+                                required
+                                onChange={(e) => handleAppLocation(e)}>
+                                    <option key={0} value={'Home'}>Home</option>
+                                    <option key={1} value={'Salon'}>Salon</option>
+                                </Form.Control>
+                            </InputGroup>
+                        </Col>
+                    </Row>
+                    <br/>
+                    <Row>
+                        <Col>
+                            {MyCalendar()}
+                        </Col>
+                    </Row>
+                    <br/>
+                    <Row>
+                        <Col>
+                            <span>Time Selected: &nbsp;</span>
+                            {timeSelected ? displayChosenDateAndTime(): ''}
+                        </Col>
+                    </Row>
+                    <br/>
+                    <Row>
+                        <Col lg={3}>
+                            <Form.Group key={'inline-radio'}>
+                                <Form.Label as="legend">Payment Method</Form.Label>
+                                    <Form.Check
+                                    type="radio"
+                                    label="By Cash"
+                                    name="formHorizontalRadios"
+                                    inline
+                                    value='cash'
+                                    onClick={(e) => setPaymentMethod(e.target.value)}
+                                    defaultChecked
+                                    />
+                                    <Form.Check
+                                    type="radio"
+                                    label="Online Payment"
+                                    name="formHorizontalRadios"
+                                    inline
+                                    value='online'
+                                    onClick={(e) => setPaymentMethod(e.target.value)}
+                                    />
+                            </Form.Group>
+                        </Col>
+                    </Row>
+                    <br/>
+                    {previousBookings == true ?
+                    <span>Cannot Book New Appointment Before The Previous One is completed</span>
+                    : <Button size='lg' block onClick={() => handleRedirectToConfirmation()}>Book Now!</Button> }
+
             </Container>
         </>
     );

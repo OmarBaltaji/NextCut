@@ -21,6 +21,7 @@ class CreateSchedulesTable extends Migration
             $table->string('day_close');
             $table->timestamps();
             $table->foreignId('barber_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $table->unique('barber_id');
         });
     }
 

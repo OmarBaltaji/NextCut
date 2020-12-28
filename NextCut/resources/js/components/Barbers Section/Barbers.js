@@ -8,7 +8,7 @@ import moment from 'moment';
 import '../../../css/Barber.css';
 
 export default function Barber() {
-    axios.defaults.headers.common['Authorization'] = 'Bearer ' + CookieService.get('access_token');
+    // axios.defaults.headers.common['Authorization'] = 'Bearer ' + CookieService.get('access_token');
     const [barbers, setBarbers] = useState([]);
     const history = useHistory();
 

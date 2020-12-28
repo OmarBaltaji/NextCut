@@ -3,12 +3,17 @@
 use App\Http\Controllers\AddressController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BarberController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\FirebaseController;
 use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\CustomerRequestController;
 use App\Http\Controllers\SalonController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\ServiceRequestController;
 use App\Http\Controllers\UserController;
+use App\Models\Customer;
+use App\Models\CustomerRequest;
 use Illuminate\Support\Facades\Route;
 
 
@@ -32,7 +37,6 @@ Route::post('/register', [AuthController::class, 'register']);
 
 Route::get('/barbers', [BarberController::class, 'index']);
 
-
 Route::get('/barbers/{barber}', [BarberController::class, 'show']);
 
 Route::get('/barbers/{barber}/services', [BarberController::class, 'services']);
@@ -43,7 +47,7 @@ Route::get('/barbers/{barber}/gallery', [BarberController::class, 'barberGallery
 
 Route::get('/barbers/{barber}/barberservice', [BarberController::class, 'barberServiceDetails']);
 
-Route::post('/booking/searchedbarber', [BarberController::class, 'searchedBarber']);
+Route::get('/bookedtimes', [CustomerRequestController::class, 'showBookedTimes']);
 
 Route::group(['middleware' => 'auth:api'], function () {
 
@@ -54,6 +58,14 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::put('/user/{user}', [UserController::class, 'update']);
 
     Route::delete('/user/{user}', [UserController::class, 'destroy']);
+
+    Route::post('/customer', [CustomerController::class, 'store']);
+
+    Route::post('/booking/searchedbarber', [BarberController::class, 'searchedBarber']);
+
+    Route::post('/booking/confirmation', [CustomerRequestController::class, 'store']);
+
+    Route::get('/previousbookings', [CustomerRequestController::class, 'CheckPreviousBookings']);
 
     Route::group(['middleware' => 'check_role_barber:api'],function() {
 
@@ -96,6 +108,10 @@ Route::group(['middleware' => 'auth:api'], function () {
         Route::post('/user/galleries' , [GalleryController::class, 'store']);
 
         Route::delete('/user/galleries/{gallery}' , [GalleryController::class, 'destroy']);
+
+        Route::get('/requests' , [ServiceRequestController::class, 'showBarberRequests']);
+
+        Route::post('/alterstatus', [CustomerRequestController::class, 'updateStatus']);
     });
 
 });

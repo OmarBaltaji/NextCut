@@ -10,29 +10,37 @@ export default function Header() {
     const history = useHistory();
     const [userInfo, setUserInfo] = useState([]);
     const cookie = CookieService.get('access_token');
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + CookieService.get('access_token');
+    let role = localStorage.getItem('role');
 
     useEffect(() => {
         if(cookie) {
             getUserDetails();
         }
-
     }, []);
 
     function getUserDetails() {
         api.getUserInfo()
         .then(response => {
-
             setUserInfo(response.data);
-            localStorage.setItem('role', response.data.roles)
+            localStorage.setItem('role', response.data.roles);
+            if(response.data.roles == 'Customer') {
+                api.setCustomer()
+                .then(response => {
+                }).catch(error => {
+
+                });
+            }
         })
     }
 
     function logoutHandler(e) {
         e.preventDefault();
         api.logout().then(response => {
-            window.localStorage.clear();
             CookieService.remove('access_token');
+            window.localStorage.clear();
             history.push('/login');
+            window.location.reload;
         })
     }
 
@@ -67,8 +75,15 @@ export default function Header() {
                     <Nav.Link className="navlink" href="/home">Home</Nav.Link>
                     <Nav.Link className="navlink" href="/aboutus">About Us</Nav.Link>
                     <Nav.Link className="navlink" href="/barbers">Barbers</Nav.Link>
-                    {localStorage.getItem('role') != 'Barber' ?
-                    <Nav.Link className="navlink" href="/booking">Book!</Nav.Link> : '' }
+                    {userInfo.roles != 'Barber' || role != 'Barber' ?
+                    <Nav.Link className="navlink" href="/booking">Book!</Nav.Link>
+                    : ''}
+                    {userInfo.roles == 'Barber' || role == 'Barber'?
+                    <Nav.Link className="navlik" href="/requests" >Requests</Nav.Link>
+                    : ''}
+                    {userInfo.roles == 'Barber' || role == 'Barber'?
+                    <Nav.Link className="navlik" href="/statistics" >Statistics</Nav.Link>
+                    : ''}
                 </Nav>
                 <Nav>
                     {cookie ? displayUser() : displayGuest()}

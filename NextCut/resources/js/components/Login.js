@@ -23,6 +23,7 @@ export default function Login() {
         api.login(credentials)
         .then((response) => {
             const options = {Path: "/" , Expires: response.data.expires_at, Secure: true};
+            console.log(options)
             CookieService.set('access_token', response.data.access_token, options);
             history.push("/home");
         }).catch(error => {

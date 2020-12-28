@@ -46,9 +46,6 @@ class AuthController extends Controller
         'expires_at' => Carbon::parse($token->expires_at)->toDateTimeString()], 200);//To human readable form
     }
 
-    //response()->json(['error' => ''])
-    // if ($user->email == '' | $user->password == '')
-
     public function register(Request $request) {
         $attributes = $request->validate([
             'name' => 'required|string|max:200',

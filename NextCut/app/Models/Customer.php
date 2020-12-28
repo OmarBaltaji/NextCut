@@ -13,11 +13,11 @@ class Customer extends Model
         'user_id',
     ];
 
-    public function request() {
-        return $this->hasMany(Request::class);
-    }
-
     public function user() {
         return $this->belongsTo(User::class);
+    }
+
+    public function service_request() {
+        return $this->hasMany(ServiceRequest::class);
     }
 }

@@ -4,7 +4,7 @@ import CookieService from '../Service/CookieService';
 import {Button} from 'react-bootstrap';
 
 export default function About() {
-    axios.defaults.headers.common['Authorization'] = 'Bearer ' + CookieService.get('access_token');
+    // axios.defaults.headers.common['Authorization'] = 'Bearer ' + CookieService.get('access_token');
 
     return (
         <div>
