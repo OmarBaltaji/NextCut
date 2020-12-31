@@ -3,7 +3,7 @@ import {useParams} from 'react-router-dom';
 import Header from '../Header';
 import CookieService from '../../Service/CookieService';
 import api from '../../api';
-import {Card, Col, Container, Row, CardColumns, Button} from 'react-bootstrap';
+import {Card, Col, Container, Row, CardColumns, Button, Table} from 'react-bootstrap';
 import moment from 'moment';
 import '../../../css/Barber.css';
 import BarberSchedule from './BarberSchedule';
@@ -14,8 +14,7 @@ export default function ShowBarber(props) {
     const param = useParams();
     const [barberDetails, setBarberDetails] = useState([]);
     const [userDetails, setUserDetails] = useState([]);
-    const [addressDetails, setAddressDetails] = useState([]);
-    const [services, setServices] = useState([]);
+    const [addressDetails, setAddressDetails] = useState([]);;
     const [barberService, setBarberService] = useState([]);
     const [openHours, setOpenHours] = useState([]);
     const [closeHours, setCloseHours] = useState([]);
@@ -46,8 +45,7 @@ export default function ShowBarber(props) {
     function getServices() {
         api.getBarberServices(param.id)
         .then(response => {
-            setServices(response.data.service);
-            setBarberService(response.data.barber_service);
+            setBarberService(response.data);
         }).catch(error => {
 
         });
@@ -83,7 +81,7 @@ export default function ShowBarber(props) {
         return(
             <Container fluid>
                 <Row>
-                    <Col lg={4} sm>
+                    <Col lg={4} xs>
                         <Card key={barberDetails.id}>
                             <Card.Img variant="top" src={userDetails.profile_photo}
                             height='350px' />
@@ -122,57 +120,38 @@ export default function ShowBarber(props) {
                     </Col>
                     <Col lg={8}>
                         <Row>
-                            <Col lg={7}>
-                                <Card>
+                            <Col lg={6} xs={12}>
+                                <Card style={{ height:'49%' }}>
                                     <Card.Body>
                                         <Card.Title className="card_title">Services</Card.Title>
-                                        <Card.Text>
-                                            <Row>
-                                                <Col>
-                                                    <span className='service_header'>Type</span>
-                                                    {services.length != 0 ? services.map(service =>
-                                                        <li key={service.id} className="service">
-                                                            {service.type}
-                                                        </li>
-                                                    )
-                                                    :
-                                                    <>
-                                                        <br/>
-                                                        <span>Not Availabe</span>
-                                                    </> }
-                                                </Col>
-                                                <Col>
-                                                    <span className='service_header'>Price</span>
-                                                    {barberService.length != 0 ? barberService.map(service =>
-                                                        <li key={service.id} className="service">
-                                                            {service.price}$
-                                                        </li>
-                                                    )
-                                                    :
-                                                    <>
-                                                        <br/>
-                                                        <span>Not Availabe</span>
-                                                    </> }
-                                                </Col>
-                                                <Col>
-                                                    <span className='service_header'>Time</span>
-                                                    {barberService.length != 0 ? barberService.map(service =>
-                                                        <li key={service.id} className="service">
-                                                            {service.estimated_time} mins
-                                                        </li>
-                                                    )
-                                                    :
-                                                    <>
-                                                        <br/>
-                                                        <span>Not Availabe</span>
-                                                    </> }
-                                                </Col>
-                                            </Row>
-                                        </Card.Text>
                                     </Card.Body>
+                                    <div className="div_table">
+                                            <Table hover striped bordered>
+                                                <thead>
+                                                    <tr>
+                                                        <th>Type</th>
+                                                        <th>Price</th>
+                                                        <th>Time</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {barberService.length != 0 ?
+                                                    barberService.map(barber_service => {
+                                                        return (
+                                                            <tr key={barber_service.id}>
+                                                                <td>{barber_service.service.type}</td>
+                                                                <td>{barber_service.price}</td>
+                                                                <td>{barber_service.estimated_time}</td>
+                                                            </tr>
+                                                        );
+                                                    })
+                                                    : <tr><td>Not Available</td></tr>}
+                                                </tbody>
+                                            </Table>
+                                        </div>
                                 </Card>
                             </Col>
-                            <Col lg={5}>
+                            <Col lg={6} xs={12}>
                                 <Card>
                                     <Card.Body>
                                         <Card.Title  className="card_title">Private Schedule</Card.Title>
@@ -186,40 +165,39 @@ export default function ShowBarber(props) {
                                 </Card>
                             </Col>
                         </Row>
-                        <br/>
-                        <Row>
-                            <Col lg={12}>
-                                <Card>
+                        <Row style={{ position:'absolute', top:'270px', right:'14px', left:'15px' }}>
+                        <Col lg={12} xs={12}>
+                                <Card style={{ height:'525px'}}>
                                     <h2 style={{ margin: '20px 0 0 20px' }}>Gallery</h2>
                                     <CardColumns style={{ padding:'20px 20px 0 20px' }}>
-                                    {galleryInfo.length != 0 ? galleryInfo.map((gallery) => {
-                                    return(
-                                        <Card key={gallery.id} style={{ marginBottom:'20px' }}
-                                        className="clickable_photos"
-                                        onClick={() => handleShowGallerySlideShow(galleryInfo)}>
-                                            <Card.Img src={gallery.image} height="250px"/>
-                                        </Card>
-                                    )
-                                    })
-                                    :
-                                    <>
-                                        <span>Not Available</span>
-                                    </>}
+                                        {galleryInfo.length != 0 ? galleryInfo.map((gallery) => {
+                                        return(
+                                            <Card key={gallery.id} style={{ marginBottom:'20px' }}
+                                            className="clickable_photos"
+                                            onClick={() => handleShowGallerySlideShow(galleryInfo)}>
+                                                <Card.Img src={gallery.image} height="250px"/>
+                                            </Card>
+                                        )
+                                        })
+                                        :
+                                        <>
+                                            <span>Not Available</span>
+                                        </>}
                                     </CardColumns>
                                 </Card>
                             </Col>
                         </Row>
                         {showGallerySlideShow ? displayGallerySlideShow(showGallerySlideShow) : ''}
                         <br/>
-                        <Row>
-                            <Col>
-                                {localStorage.getItem('role') != 'Barber' ?
-                                <Button size='lg' href={`/booking/${barberDetails.id}`}>
-                                    Book This Barber
-                                </Button>
-                                : ''}
-                            </Col>
-                        </Row>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        {localStorage.getItem('role') != 'Barber' ?
+                        <Button size='lg' href={`/booking/${barberDetails.id}`} style={{ marginTop:'20px' }}>
+                            Book This Barber
+                        </Button>
+                        : ''}
                     </Col>
                 </Row>
             </Container>

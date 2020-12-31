@@ -128,7 +128,6 @@ export default function BookBarber() {
                 openHours.push([open_hours, closing_hours]); //Fill all days before Sunday
             }
         }
-
     }
 
     function insertBookedTimes() {
@@ -144,8 +143,7 @@ export default function BookBarber() {
                 let start_date_time = `${splitDate[3]}-${month}-${splitDate[2]} ${startTime}:00`;
 
                 let timeSplit = timeSlot.time_booked.split(':');
-                let timeSlot_end = parseInt(timeSplit[0]) + Math.round((timeSlot.total_time)/60); //session takes an hour to end
-                console.log(timeSlot_end);
+                let timeSlot_end = parseInt(timeSplit[0]) + Math.round((timeSlot.total_time)/60);
                 let endTime = `${timeSlot_end}:00:00`;
                 let end_date_time = `${splitDate[3]}-${month}-${splitDate[2]} ${endTime}`;
 
@@ -160,6 +158,7 @@ export default function BookBarber() {
         }
     }
 
+    console.log(openHours)
 
     function hanldeChosenServices(e) {
         setChosenServices(Array.from(e.target.selectedOptions, option => option.value));
@@ -205,7 +204,7 @@ export default function BookBarber() {
         return (
             <>
                 <span>{time_select_array[0] + ', '}</span>
-                <span>{time_select_array[1] + ' ' + time_select_array[2] + ' ' + time_select_array[3] + 'at '}</span>
+                <span>{time_select_array[1] + ' ' + time_select_array[2] + ' ' + time_select_array[3] + ' at '}</span>
                 <span>{hour_selected[0] + ':' + hour_selected[1]}</span>
             </>
         );

@@ -5,6 +5,9 @@ const BASE_URL = 'http://nextcut.test/api'
 
 export default{
 
+    firebaseLogin: (fbtoken) =>
+    axios.post(`${BASE_URL}/signin`, fbtoken),
+
     login: (credentials) =>
     axios.post(`${BASE_URL}/login`, credentials),
 

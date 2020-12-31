@@ -6,7 +6,7 @@ export default function SalonInfo(props) {
     return (
         <>
             <span>Opens: {props.props[0].hour_open}</span> &nbsp;
-            <span>| &nbsp;Closes: {props.props[0].hour_close}</span> <br/>
+            <span>| &nbsp;Closes: {props.props[0].hour_close}</span> <br/> <br/>
             <span>From {props.props[0].day_open}</span> &nbsp;
             <span>To {props.props[0].day_close}</span>
         </>

@@ -210,7 +210,6 @@ export default function Profile() {
                             <Card.Title>
                                 {userInfo.name}
                                 <ButtonGroup style={{ position:'relative', left:'10px' }}>
-                                {/* href={`/profile/${userInfo.id}/edit`} */}
                                     <Button onClick={() => handleShowEditProfile()} className='edit_profile'>
                                     Edit
                                     </Button>
@@ -222,10 +221,9 @@ export default function Profile() {
                                     </Button>
                                 </ButtonGroup>
                             </Card.Title>
-                            <br/>
                             <Card.Text>
-                                Email: &nbsp;<span>{userInfo.email}</span> <br/>
-                                Phone Number: &nbsp;<span>{userInfo.phone_number}</span> <br/>
+                                Email: &nbsp;<span>{userInfo.email}</span> <br/> <br/>
+                                Phone Number: &nbsp;<span>{userInfo.phone_number}</span> <br/> <br/>
                                 Joined: &nbsp;<span>{moment(userInfo.created_at).format('DD/MM/YYYY')}</span>
                             </Card.Text>
                         </Card.Body>
@@ -266,39 +264,7 @@ export default function Profile() {
                             </Card>
                         </Col>
                         <Col lg={6}>
-                            <Card>
-                                <Card.Body>
-                                    <Card.Title>
-                                        Location
-                                        <ButtonGroup style={{ position:'relative', left:'10px' }}>
-                                            {!addressInfo ?
-                                                <Button
-                                                onClick = {() => handleShowAddAddress()}>
-                                                    Add
-                                                </Button>
-                                            : ''}
-
-                                            {showAddAddress ? displayAddAddress(showAddAddress) : ''}
-
-                                            {addressInfo ?
-                                                <Button onClick = {() => handleShowEditAddress()}>
-                                                    Edit
-                                                </Button>
-                                            : ''}
-                                            {showEditAddress ? displayEditAddress(showEditAddress) : ''}
-                                        </ButtonGroup>
-                                    </Card.Title>
-                                    <Card.Text>
-                                        {addressInfo ? <Address props={addressInfo} /> : 'Nothing Yet'}
-                                    </Card.Text>
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                    </Row>
-                    <br/>
-                    <Row>
-                        <Col lg={6}>
-                            <Card>
+                            <Card style={{ height:'100%' }}>
                                 <Card.Body>
                                     <Card.Title>
                                         Private Schedule
@@ -327,8 +293,40 @@ export default function Profile() {
                                 </Card.Body>
                             </Card>
                         </Col>
+                    </Row>
+                    <br/>
+                    <Row>
                         <Col lg={6}>
-                            <Card>
+                            <Card style={{ height:'50%' }}>
+                                <Card.Body>
+                                    <Card.Title>
+                                        Location
+                                        <ButtonGroup style={{ position:'relative', left:'10px' }}>
+                                            {!addressInfo ?
+                                                <Button
+                                                onClick = {() => handleShowAddAddress()}>
+                                                    Add
+                                                </Button>
+                                            : ''}
+
+                                            {showAddAddress ? displayAddAddress(showAddAddress) : ''}
+
+                                            {addressInfo ?
+                                                <Button onClick = {() => handleShowEditAddress()}>
+                                                    Edit
+                                                </Button>
+                                            : ''}
+                                            {showEditAddress ? displayEditAddress(showEditAddress) : ''}
+                                        </ButtonGroup>
+                                    </Card.Title>
+                                    <Card.Text>
+                                        {addressInfo ? <Address props={addressInfo} /> : 'Nothing Yet'}
+                                    </Card.Text>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                        <Col lg={6}>
+                            <Card style={{ height:'50%' }}>
                                 <Card.Body>
                                     <Card.Title>
                                         Services
@@ -336,46 +334,42 @@ export default function Profile() {
                                             <Button style={{ marginLeft: '20px' }}>Manage Your Services</Button>
                                         </Card.Link>
                                     </Card.Title>
-                                    <Card.Text>
-                                        {barberServiceInfo.length != 0 ? <ProfileService /> : 'Nothing Yet'}
-                                    </Card.Text>
                                 </Card.Body>
+                                {barberServiceInfo.length != 0 ? <ProfileService /> : 'Nothing Yet'}
                             </Card>
                         </Col>
                     </Row>
                 </Col>
-                <Col>
-                    <Row style={{ margin:'20px 0' }} >
-                        <Col lg={12}>
-                            <Card>
-                                <div style={{ display:'flex', alignItems:'center' }}>
-                                    <h2 style={{ margin: '20px 0 0 40px' }}>Gallery</h2>
-                                    <Button onClick={() => handleShowAddGallery()}
-                                    style={{ margin:'25px 0 0 20px' }}>
-                                        Upload Photo
-                                    </Button>
-                                    {showAddGallery ? displayAddGallery(showAddGallery) : ''}
-                                </div>
-                                <CardColumns style={{ padding:'30px 40px' }}>
-                                {galleryInfo.length !=0 ? galleryInfo.map(gallery => {
-                                return(
-                                    <Card key={gallery.id} style={{ marginBottom:'20px' }}>
-                                        <Card.Img src={gallery.image} height="300px"/>
-                                        <Card.Body>
-                                            <Card.Title>
-                                                <Button onClick={() => {deleteGalleryHandler(gallery.id)}}>
-                                                    Delete
-                                                </Button>
-                                            </Card.Title>
-                                        </Card.Body>
-                                    </Card>
-                                )
-                                }) : 'No Photos Yet'}
-                                </CardColumns>
-                            </Card>
-                        </Col>
-                    </Row>
-                </Col>
+                <Row style={{position:'absolute', top:'640px' , right:'1.3%', left:'2.3%', paddingBottom:'20px' }} >
+                    <Col lg={12}>
+                        <Card>
+                            <div style={{ display:'flex', alignItems:'center' }}>
+                                <h2 style={{ margin: '20px 0 0 40px' }}>Gallery</h2>
+                                <Button onClick={() => handleShowAddGallery()}
+                                style={{ margin:'25px 0 0 20px' }}>
+                                    Upload Photo
+                                </Button>
+                                {showAddGallery ? displayAddGallery(showAddGallery) : ''}
+                            </div>
+                            <CardColumns style={{ padding:'30px 40px' }}>
+                            {galleryInfo.length !=0 ? galleryInfo.map(gallery => {
+                            return(
+                                <Card key={gallery.id} style={{ marginBottom:'20px' }}>
+                                    <Card.Img src={gallery.image} height="300px"/>
+                                    <Card.Body>
+                                        <Card.Title>
+                                            <Button onClick={() => {deleteGalleryHandler(gallery.id)}}>
+                                                Delete
+                                            </Button>
+                                        </Card.Title>
+                                    </Card.Body>
+                                </Card>
+                            )
+                            }) : 'No Photos Yet'}
+                            </CardColumns>
+                        </Card>
+                    </Col>
+                </Row>
                 </>
         );
     }
@@ -398,10 +392,9 @@ export default function Profile() {
                                     </Button>
                                 </ButtonGroup>
                             </Card.Title>
-                            <br/>
                             <Card.Text>
-                                Email: &nbsp;<span>{userInfo.email}</span> <br/>
-                                Phone Number: &nbsp;<span>{userInfo.phone_number}</span> <br/>
+                                Email: &nbsp;<span>{userInfo.email}</span> <br/> <br/>
+                                Phone Number: &nbsp;<span>{userInfo.phone_number}</span> <br/> <br/>
                                 Joined: &nbsp;<span>{moment(userInfo.created_at).format('DD/MM/YYYY')}</span>
                             </Card.Text>
                         </Card.Body>

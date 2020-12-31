@@ -3,7 +3,7 @@ import {useHistory} from 'react-router-dom';
 import Header from '../Header';
 import CookieService from '../../Service/CookieService';
 import api from '../../api';
-import {Card, CardColumns, Row} from 'react-bootstrap';
+import {Card, CardColumns, Row, Container} from 'react-bootstrap';
 import moment from 'moment';
 import '../../../css/Barber.css';
 
@@ -30,11 +30,12 @@ export default function Barber() {
 
     function displayBarbers() {
         return (
-            <CardColumns as={Row} style={{ margin: '0 70px' }}>
+            <Container fluid>
+            <CardColumns as={Row} style={{ margin: '0 53px' }}>
                 {barbers.map((barber) =>
                 <Card key={barber.id} style={{ margin: '10px 0', width:'350px' }}
                 className="show_barber" onClick={() => displayOneBarber(barber.id)}>
-                    <Card.Img variant="top" src={barber.user.profile_photo} height='350px' />
+                    <Card.Img variant="top" src={barber.user.profile_photo} height='250em' />
                     <Card.Body>
                         <Card.Title>{barber.user.name}</Card.Title>
                         <Card.Text>
@@ -53,6 +54,7 @@ export default function Barber() {
                 </Card>
                 )}
             </CardColumns>
+            </Container>
         );
     }
 

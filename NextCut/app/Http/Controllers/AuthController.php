@@ -8,9 +8,64 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 // use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
+use Firebase\Auth\Token\Exception\InvalidToken;
 
 class AuthController extends Controller
 {
+    public function firebaseLogin(Request $request) {
+        // Launch Firebase Auth
+        $auth = app('firebase.auth');
+        // Retrieve the Firebase credential's token
+        $idTokenString = $request->input('Firebasetoken');
+
+
+        try { // Try to verify the Firebase credential token with Google
+
+            $verifiedIdToken = $auth->verifyIdToken($idTokenString);
+
+        } catch (\InvalidArgumentException $e) { // If the token has the wrong format
+
+            return response()->json([
+                'message' => 'Unauthorized - Can\'t parse the token: ' . $e->getMessage()
+            ], 401);
+
+        } catch (InvalidToken $e) { // If the token is invalid (expired ...)
+
+            return response()->json([
+                'message' => 'Unauthorized - Token is invalide: ' . $e->getMessage()
+            ], 401);
+
+        }
+
+        // Retrieve the UID (User ID) from the verified Firebase credential's token
+        $uid = $verifiedIdToken->getClaim('sub');
+
+        // Retrieve the user model linked with the Firebase UID
+        $user = User::where('firebaseUID',$uid)->first();
+        $tokenResult = $user->createToken('Personal Access Token');
+
+        // Store the created token
+        $token = $tokenResult->token;
+
+        // Add a expiration date to the token
+        $token->expires_at = Carbon::now()->addWeeks(1);
+
+        // Save the token to the user
+        $token->save();
+
+        // Return a JSON object containing the token datas
+        // You may format this object to suit your needs
+        return response()->json([
+            'id' => $user->id,
+            'access_token' => $tokenResult->accessToken,
+            'token_type' => 'Bearer',
+            'expires_at' => Carbon::parse(
+            $tokenResult->token->expires_at
+            )->toDateTimeString()
+        ]);
+
+    }
+
     public function login(Request $request) {
         $attributes = $request->validate([
             'email' => 'required|string|email',

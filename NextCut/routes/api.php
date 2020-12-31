@@ -33,6 +33,8 @@ Route::get('/firebase', [FirebaseController::class, 'index']);
 
 Route::post('/login', [AuthController::class, 'login']);
 
+Route::post('/signin', [AuthController::class, 'firebaseLogin']);
+
 Route::post('/register', [AuthController::class, 'register']);
 
 Route::get('/barbers', [BarberController::class, 'index']);
@@ -87,7 +89,7 @@ Route::group(['middleware' => 'auth:api'], function () {
 
         Route::put('/user/schedule/{schedule}' , [ScheduleController::class, 'update']);
 
-        Route::get('/user/services' , [ServiceController::class, 'showService']);
+        Route::get('/user/services' , [ServiceController::class, 'showAllServices']);
 
         Route::get('/user/barberservices' , [ServiceController::class, 'showBarberService']);
 

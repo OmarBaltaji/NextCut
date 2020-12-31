@@ -182,57 +182,57 @@ export default function Requests() {
         <>
             <Header/>
             <Container fluid>
-            <h3>Incompleted Requests</h3>
-            <Table bordered hover style={{ marginBottom:'25px' }}>
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Customer Name</th>
-                        <th>Phone Number</th>
-                        <th>Services Requested</th>
-                        <th>Date/Time <br/> Booked</th>
-                        <th>Total Price/Time</th>
-                        <th>Location</th>
-                        <th>Booking Submitted</th>
-                        <th>State</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {displayIncompletedBookingDetails()}
-                </tbody>
-            </Table>
-            <hr/>
-            <h3>Completed Requests</h3>
-            <Table bordered hover>
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Customer Name</th>
-                        <th>Phone Number</th>
-                        <th>Services Requested</th>
-                        <th>Date/Time <br/> Booked</th>
-                        <th>Total Price/Time</th>
-                        <th>Location</th>
-                        <th>Booking Submitted</th>
-                        <th>State</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {displayCompletedBookingDetails()}
-                </tbody>
-            </Table>
-            <br/><br/>
-            <Calendar
-            localizer={localizer}
-            events={myEventsList}
-            startAccessor='start'
-            endAccessor='end'
-            defaultDate={moment().toDate()} //current Date
-            style={{ height: '250pt'}}
-            />
-            <br/>
+                <h3>Incompleted Requests</h3>
+                <Table bordered hover style={{ marginBottom:'25px' }}>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Customer Name</th>
+                            <th>Phone Number</th>
+                            <th>Services Requested</th>
+                            <th>Date/Time <br/> Booked</th>
+                            <th>Total Price/Time</th>
+                            <th>Location</th>
+                            <th>Booking Submitted</th>
+                            <th>State</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {displayIncompletedBookingDetails()}
+                    </tbody>
+                </Table>
+                <hr/>
+                <h3>Completed Requests</h3>
+                <Table bordered hover>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Customer Name</th>
+                            <th>Phone Number</th>
+                            <th>Services Requested</th>
+                            <th>Date/Time <br/> Booked</th>
+                            <th>Total Price/Time</th>
+                            <th>Location</th>
+                            <th>Booking Submitted</th>
+                            <th>State</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {displayCompletedBookingDetails()}
+                    </tbody>
+                </Table>
+                <br/><br/>
+                <Calendar
+                localizer={localizer}
+                events={myEventsList}
+                startAccessor='start'
+                endAccessor='end'
+                defaultDate={moment().toDate()} //current Date
+                style={{ height: '250pt'}}
+                />
+                <br/>
             </Container>
         </>
     );

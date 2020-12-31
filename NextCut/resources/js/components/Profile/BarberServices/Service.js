@@ -2,9 +2,8 @@ import React, { useEffect, useState } from 'react';
 import {useHistory} from 'react-router-dom';
 import api from '../../../api';
 import Header from '../../Header';
-import {Col, Container, Row, Form, Button, Card, Table, InputGroup, ButtonGroup} from 'react-bootstrap';
+import {Col, Container, Row, Form, Button, Card, Table, InputGroup, ButtonGroup, Image} from 'react-bootstrap';
 import '../../../../css/Service.css';
-// import EditService from './EditService';
 import EditBarberService from './EditBarberService';
 import AddBarberService from './AddBarberService';
 
@@ -123,20 +122,22 @@ export default function Service() {
                 <br/>
                 <Row>
                     <Col lg={8}>
-                        <Table striped bordered hover className='service_table'>
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Service Type</th>
-                                    <th>Price</th>
-                                    <th>Estimated Time</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            {renderBarberService()}
-                            </tbody>
-                        </Table>
+                        <div className='div_table'>
+                            <Table striped bordered hover className='service_table'>
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Service Type</th>
+                                        <th>Price</th>
+                                        <th>Estimated Time</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {renderBarberService()}
+                                </tbody>
+                            </Table>
+                        </div>
                         {showEditBarberService ? displayBarberEditService() : ''}
                     </Col>
 

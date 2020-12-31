@@ -25,3 +25,13 @@
 .clickable_photos:hover {
     cursor: pointer;
 }
+
+.div_table {
+    height: 45%;
+    overflow: auto;
+}
+
+.no_margin {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}

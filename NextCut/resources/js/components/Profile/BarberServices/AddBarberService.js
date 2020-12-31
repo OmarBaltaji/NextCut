@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import api from '../../../api';
 import {Button, Form, Modal, Col, Row, InputGroup} from 'react-bootstrap';
-import AddType from './AddType';
 import '../../../../css/Service.css'
 
 export default function AddSalon(props) {
@@ -11,14 +10,12 @@ export default function AddSalon(props) {
     const [newTime, setNewTime] = useState();
     const [newBarberService, setNewBarberService] = useState();
     const [services, setServices] = useState([]);
+    const [allBarberServices, setAllBarberServices] = useState([]);
     const [serviceResponse, setServiceResponse] = useState([]);
-
-    // const [showAddType, setShowAddType] = useState(false);
-    // const handleShowAddType = () => setShowAddType(true);
 
     useEffect(() => {
         getServiceInfo();
-        // document.getElementById('select_type').value = '';
+        showBarberServices();
     }, [])
 
     const handleClose = () => {
@@ -28,6 +25,24 @@ export default function AddSalon(props) {
 
     function BarberServiceSubmitHandler() {
         event.preventDefault();
+
+        let isExist = false;
+
+        allBarberServices.forEach(barberService => {
+            if(barberService.service.id == newBarberService) {
+                alert('You Already Have This Service Type Included');
+                isExist = true;
+                document.getElementById('price').value = '';
+                document.getElementById('time').value = '';
+                document.getElementById('select_type').value = '';
+                return;
+            }
+        })
+
+        if(isExist == true) {
+            return;
+        }
+
         const info = {
             'price': newPrice,
             'estimated_time': newTime,
@@ -36,8 +51,15 @@ export default function AddSalon(props) {
 
         api.createBarberService(info)
         .then(response => {
-            console.log(response);
             window.location.reload();
+        })
+    }
+
+    function showBarberServices() {
+        api.getBarberService()
+        .then(response => {
+            setAllBarberServices(response.data);
+            console.log(response.data)
         })
     }
 
@@ -45,26 +67,35 @@ export default function AddSalon(props) {
         api.getService()
         .then(response => {
             setServices(response.data);
-            setNewBarberService(response.data[0].id);
+            setNewBarberService(response.data[0].id); //so the newBarberService is not null in case the user did not select any type
         })
     }
 
     function handleSelectBarberService(value) {
         if(value == "Add Type") {
-            // handleShowAddType();
+
         } else {
             setNewBarberService(value);
         }
     }
 
-    // function displayAddType() {
-    //     return(
-    //         <AddType props={showAddType} setShow={setShowAddType} />
-    //     );
-    // }
-
     function typeSubmitHandler() {
         event.preventDefault();
+
+        let isExist = false;
+
+        services.forEach(service => {
+            if(service.type === type) {
+                isExist = true;
+                alert('Type Already Exist');
+                document.getElementById('add_type').value = '';
+                return; //exit the loop
+            }
+        })
+
+        if(isExist == true) {
+            return; //exit the function
+        }
 
         const newType = {
             'type': type,
@@ -73,12 +104,13 @@ export default function AddSalon(props) {
         api.createService(newType)
         .then(response => {
             setServiceResponse(response.data);
-            console.log(response.data);
             let select = document.getElementById('select_type');
             let option = document.createElement('option');
             option.value = response.data.id;
             option.text = response.data.type;
             select.append(option);
+            document.getElementById('add_type').value = '';
+            alert('New Service Type Added!');
         });
     }
 
@@ -94,6 +126,7 @@ export default function AddSalon(props) {
                         <Form.Group as={Col}>
                             <Form.Control
                             type="number"
+                            id="price"
                             placeholder="price"
                             onChange={(e) => setNewPrice(e.target.value)}
                             required />
@@ -104,28 +137,13 @@ export default function AddSalon(props) {
                         <Form.Group as={Col}>
                             <Form.Control
                             type="number"
+                            id="time"
                             placeholder="Estimated Time"
                             onChange={(e) => setNewTime(e.target.value)}
                             required />
                         </Form.Group>
                     </Form.Row>
                     <hr/>
-                    <Form.Row>
-                        <InputGroup as={Col} style={{ display:'flex', alignItems: 'center' }}>
-                            <Form.Label>Add New Type</Form.Label> &nbsp;&nbsp;
-                            <Form.Control
-                            type="text"
-                            placeholder="Service Type"
-                            onChange={(e) => {setType(e.target.value)}}
-                            required />
-                            <InputGroup.Append>
-                                <Button onClick={() => typeSubmitHandler()} variant="outline-secondary">
-                                    Enter
-                                </Button>
-                            </InputGroup.Append>
-                        </InputGroup>
-                    </Form.Row>
-                    <br/>
                     <Form.Row className="type_row">
                         <Form.Label>Type: </Form.Label> &nbsp;
                         <Form.Group as={Col}>
@@ -141,11 +159,28 @@ export default function AddSalon(props) {
                                         </option>
                                     )
                                 })}
-                                {/* <option key={1000} value={"Add Type"}>+ Add Type</option> */}
                             </Form.Control>
                         </Form.Group>
                     </Form.Row>
-                    {/* {showAddType ? displayAddType(showAddType) : ''} */}
+                    <Form.Row>
+                        <InputGroup style={{ width:'60%', marginLeft:'10%' }}>
+                            <Form.Control
+                            type="text"
+                            id="add_type"
+                            placeholder="Add New Service Type"
+                            onChange={(e) => {setType(e.target.value)}}
+                            />
+                            <InputGroup.Append>
+                                <Button onClick={() => typeSubmitHandler()} variant="outline-secondary">
+                                    Add
+                                </Button>
+                            </InputGroup.Append>
+                        </InputGroup>
+                    </Form.Row>
+                    <Form.Text style={{ marginLeft:'10%' }} className="text-muted">
+                        Can't find the type you want? Add one!
+                    </Form.Text>
+                    <br/>
                     <Button type='submit'>
                         Enter
                     </Button>

@@ -20,6 +20,8 @@
             }
         </style>
         <script src="https://kit.fontawesome.com/fd79e3678e.js" crossorigin="anonymous"></script>
+        <script src="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.js"></script>
+        <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.css" />
     </head>
     <body style="background-color:#C0C0C0">
         <div id="app">

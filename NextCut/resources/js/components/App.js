@@ -17,6 +17,7 @@ import Booking from './Booking Section/Booking';
 import ConfirmationPage from './ConfirmationPage';
 import Requests from './Requests';
 import Statistics from './Statistics';
+import LoginFire from '../Firebase/LoginFirebase';
 
 export default function App() {
     return (
@@ -36,6 +37,7 @@ export default function App() {
                 <Route exact path="/booking/:id" component={BookBarber} />
                 <Route exact path="/barbers/:id" component={ShowBarber} />
                 <Route exact path="/profile/services" component={Service} />
+                <Route exact path='/signin' component={LoginFire}/>
             </Switch>
         </BrowserRouter>
     );

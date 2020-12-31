@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class ServiceController extends Controller
 {
-    public function showService() {
+    public function showAllServices() {
         $services = Service::all();
 
         return response()->json($services, 200); //returns all available services (services are common between all barbers)

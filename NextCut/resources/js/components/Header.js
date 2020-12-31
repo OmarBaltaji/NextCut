@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from 'react';
-import {Nav, Navbar, NavDropdown} from 'react-bootstrap';
+import {Nav, Navbar, NavDropdown, Image} from 'react-bootstrap';
 import api from '../api';
 import {useHistory} from 'react-router-dom';
 import CookieService from '../Service/CookieService';
 import '../../css/Home.css';
+import logo from '../../../public/Images/logo.png';
 
 export default function Header() {
 
@@ -69,8 +70,13 @@ export default function Header() {
 
     return (
        <>
-        <Navbar  expand='sm' sticky="top" style={{ backgroundColor: '#DAA520' }}>
-            <Navbar.Brand className="navlink"  href="/home">NextCut</Navbar.Brand>
+        <Navbar collapseOnSelect expand='lg' sticky="top" style={{ backgroundColor: '#DAA520' }}>
+            <Navbar.Brand className="navlink"  href="/home">
+                <Image src={logo} height="60px" width="70px"
+                alt="logo" />
+             </Navbar.Brand>
+            <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+            <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="mr-auto">
                     <Nav.Link className="navlink" href="/home">Home</Nav.Link>
                     <Nav.Link className="navlink" href="/aboutus">About Us</Nav.Link>
@@ -81,14 +87,16 @@ export default function Header() {
                     {userInfo.roles == 'Barber' || role == 'Barber'?
                     <Nav.Link className="navlik" href="/requests" >Requests</Nav.Link>
                     : ''}
-                    {userInfo.roles == 'Barber' || role == 'Barber'?
+                    {/* {userInfo.roles == 'Barber' || role == 'Barber'?
                     <Nav.Link className="navlik" href="/statistics" >Statistics</Nav.Link>
-                    : ''}
+                    : ''} */}
                 </Nav>
                 <Nav>
                     {cookie ? displayUser() : displayGuest()}
                 </Nav>
+                </Navbar.Collapse>
         </Navbar>
+
         <br/>
         </>
     );

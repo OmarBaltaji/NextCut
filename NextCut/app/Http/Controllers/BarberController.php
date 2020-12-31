@@ -25,9 +25,13 @@ class BarberController extends Controller
     }
 
     public function services(Barber $barber) {
-        $barber->service;
-        $barber->barber_service;
-        return response()->json($barber, 200);
+        $barber_services = $barber->barber_service;
+
+        foreach($barber_services as $barber_service) {
+            $barber_service->service;
+        }
+
+        return response()->json($barber_services, 200);
     }
 
     public function barberSchedule(Barber $barber) {

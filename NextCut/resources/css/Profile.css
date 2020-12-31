@@ -12,9 +12,10 @@
 
 .image_row {
     display: flex;
-    /* flex-wrap: wrap; */
+
  }
 
- /* .image_row > div[class*='col-'] {
-   display: flex;
- } */
+.div_table {
+    height: 40%;
+    overflow: auto;
+}

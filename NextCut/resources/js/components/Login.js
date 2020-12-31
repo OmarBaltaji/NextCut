@@ -1,8 +1,9 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Link, useHistory} from 'react-router-dom';
 import CookieService from '../Service/CookieService';
 import api from '../api';
 import {Card, Form, Button, InputGroup} from 'react-bootstrap';
+import '../../css/Home.css';
 
 export default function Login() {
     const history = useHistory();
@@ -11,6 +12,10 @@ export default function Login() {
     const [rememberMe, setRememberMe] = useState(false);
     const [errs, setErrs] = useState([]);
     const [invalid, setInvalid] = useState('');
+
+    useEffect(() => {
+        redirectHome();
+    }, [])
 
     function logInHandler(event) {
         event.preventDefault();
@@ -45,6 +50,13 @@ export default function Login() {
         }
     }
 
+    function redirectHome() {
+        let cookie = CookieService.get('access_token');
+        if(cookie) {
+            history.push('/home');
+        }
+    }
+
     return (
         <Card style={{margin:'150px auto', width: '320px', padding: '20px', backgroundColor:'#DAA520'}}>
             <Form onSubmit={logInHandler}>
@@ -60,7 +72,7 @@ export default function Login() {
                         className = "input"
                         placeholder="Enter Email"
                         onChange={(e) => {setEmail(e.target.value)}}
-                        style={{ color: '#40E0D0' }} />
+                        style={{ color: '#00356f' }} />
                         {displayError('email')}
                     </InputGroup>
                 </Form.Group>

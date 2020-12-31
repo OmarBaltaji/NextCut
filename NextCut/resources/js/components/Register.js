@@ -1,8 +1,9 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import api from '../api';
 import { Button, Card, Form, FormControl, InputGroup } from 'react-bootstrap';
 import CookieService from '../Service/CookieService';
+import '../../css/Home.css';
 
 export default function Register() {
 
@@ -15,6 +16,10 @@ export default function Register() {
     const [phoneNumber, setPhoneNumber] = useState('');
     const [role, setRole] = useState('Customer');
     const [errs, setErrs] = useState([]);
+
+    useEffect(() => {
+        redirectHome();
+    }, []);
 
     function RegistrationHandler(event) {
         event.preventDefault();
@@ -48,6 +53,13 @@ export default function Register() {
                     <strong>{errs[field]}</strong>
                 </span>
             )
+        }
+    }
+
+    function redirectHome() {
+        let cookie = CookieService.get('access_token');
+        if(cookie) {
+            history.push('/home');
         }
     }
 
