@@ -7,6 +7,13 @@ import moment from 'moment';
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import { error } from 'jquery';
+import '../../css/Request.css';
+import firebase from 'firebase';
+
+const db = firebase.firestore();
+db.settings({
+    timestampsInSnapshots: true
+    });
 
 export default function Requests() {
     const [bookingDetails, setBookingDetails] = useState([]);
@@ -17,12 +24,23 @@ export default function Requests() {
 
     if(bookingDetails.length != 0) {
         bookingDetails.forEach(detail => {
-           let time_ends = parseInt(detail.time_booked.split(':')[0]) + Math.round((detail.total_time)/60);
+            let time_end;
+            let time_start = detail.time_booked.split(':');
+            if(parseInt(detail.total_time) < 60) {
+                time_end = `${time_start[0]}:${detail.total_time}:00`;
+                console.log(time_end)
+            } else {
+                let hour_to_add = Math.floor(parseInt(detail.total_time)/60);
+                let mins_remaining =  parseInt(detail.total_time) - hour_to_add*60;
+                time_end = `${parseInt(time_start[0]) + parseInt(hour_to_add)}:${mins_remaining}:00`;
+            }
+
+        //    let time_end = parseInt(detail.time_booked.split(':')[0]) + Math.ceil((detail.total_time)/60);
             myEventsList.push(
                     {
                         title: detail.service_request[0].customer.user.name,
-                        start: new Date(`${detail.date_booked} ${detail.time_booked}:00 GMT+0200 (Eastern European Standard Time)`),
-                        end: new Date(`${detail.date_booked} ${time_ends}:00:00 GMT+0200 (Eastern European Standard Time)`),
+                        start: new Date(`${detail.date_booked} ${detail.time_booked} GMT+0200 (Eastern European Standard Time)`),
+                        end: new Date(`${detail.date_booked} ${time_end} GMT+0200 (Eastern European Standard Time)`),
                     }
                 );
         })
@@ -36,7 +54,7 @@ export default function Requests() {
     function getBookingDetails() {
         api.getRequestDetails()
         .then(response => {
-            console.log(response.data)
+            // console.log(response.data)
             setBookingDetails(response.data);
         });
     }
@@ -96,29 +114,109 @@ export default function Requests() {
         });
     }
 
+    function statusToAccept(e, request_id) {
+        let info;
+        if(e.target.checked) {
+            info = {
+                completed: 0,
+                customer_request_id: request_id,
+                state: 1,
+            };
+        }
+        api.alterStatus(info)
+        .then(response => {
+            setChangedRequestStatus(response.data);
+        });
+    }
+
+    function statusToDecline(e, request_id) {
+        let info;
+        if(e.target.checked) {
+            api.deleteRequest(request_id)
+            .then(response => {
+                setChangedRequestStatus(response.data);
+
+                db.collection('notifications').doc(`${request_id}`).delete()
+                .then((response) => {
+                    console.log('doc deleted');
+                }).catch((error) => {
+                   console.log('delete error', error)
+            })
+            })
+        }
+
+    }
+
+    function displayPendingRequests() {
+        return (
+            <>
+             {bookingDetails.length != 0 ?
+                bookingDetails.map((detail, index) => {
+                   if(detail.completed == 0 && detail.state == 0) {
+                        let date = detail.date_booked.split(' ');
+                        date = `${date[1]} ${date[2]} ${date[3]}`;
+                        return (
+                        <tr key={detail.id}>
+                                <td className="td_request">{index}</td>
+                                <td className="td_request">{detail.service_request[0].customer.user.name}</td>
+                                <td>{detail.service_request.map(service => {
+                                    return <li key={service.id}>{service.barber_service.service.type}</li>
+                                })}</td>
+                                <td>{date} <br/> {' at ' + detail.time_booked}</td>
+                                <td className="td_request">{detail.total_price + '$, ' + detail.total_time + ' mins'}</td>
+                                <td className="td_request">{detail.appointment_location}</td>
+                                <td className="td_request">{displayState(detail.state)}</td>
+                                <td className="td_request">
+                                    <div  style={{ display:'flex', alignItems:'center', justifyContent:'space-between' }}>
+                                        <Form.Check
+                                        label='Accept'
+                                        style={{ textAlign:'center' }}
+                                        onChange={(e) => statusToAccept(e, detail.id)}
+                                        size='sm' type='checkbox' /> &nbsp; &nbsp;
+                                        <Form.Check
+                                        label='Decline'
+                                        style={{ textAlign:'center' }}
+                                        onChange={(e) => statusToDecline(e, detail.id)}
+                                        size='sm' type='checkbox' />
+                                    </div>
+                                </td>
+                        </tr>
+                        )
+                    }
+                })
+                :
+                <tr>
+                    <td colSpan="10">No Request As of Yet</td>
+                </tr>}
+            </>
+        );
+    }
+
     function displayIncompletedBookingDetails() {
         return (
             <>
                 {bookingDetails.length != 0 ?
                 bookingDetails.map((detail, index) => {
-                   if(detail.completed == 0) {
+                   if(detail.completed == 0 && detail.state == 1) {
+                        let date = detail.date_booked.split(' ');
+                        date = `${date[1]} ${date[2]} ${date[3]}`;
                         return (
                         <tr key={detail.id}>
-                                <td>{index}</td>
-                                <td>{detail.service_request[0].customer.user.name}</td>
-                                <td>{detail.service_request[0].customer.user.phone_number}</td>
+                                <td className="td_request">{index}</td>
+                                <td className="td_request">{detail.service_request[0].customer.user.name}</td>
+                                <td className="td_request">{detail.service_request[0].customer.user.phone_number}</td>
                                 <td>{detail.service_request.map(service => {
                                     return <li key={service.id}>{service.barber_service.service.type}</li>
                                 })}</td>
-                                <td style={{ width:'13%' }}>{detail.date_booked} <br/> {' at ' + detail.time_booked}</td>
-                                <td>{detail.total_price + '$, ' + detail.total_time + ' mins'}</td>
-                                <td style={{ width:'7%' }}>{detail.appointment_location}</td>
-                                <td style={{ width:'10%' }}>
+                                <td>{date} <br/> {' at ' + detail.time_booked}</td>
+                                <td className="td_request">{detail.total_price + '$, ' + detail.total_time + ' mins'}</td>
+                                <td className="td_request">{detail.appointment_location}</td>
+                                <td>
                                     {moment(detail.created_at).format('MMM DD YYYY')} <br/> {' at '
                                     + moment(detail.created_at).format('h:mm')}
                                 </td>
-                                <td>{displayState(detail.state)}</td>
-                                <td>
+                                <td className="td_request">{displayState(detail.state)}</td>
+                                <td className="td_request">
                                 {displayIfCompleted(detail.completed)}
                                     <Form.Check
                                     style={{ textAlign:'center' }}
@@ -143,23 +241,25 @@ export default function Requests() {
                 {bookingDetails.length != 0 ?
                 bookingDetails.map((detail, index) => {
                    if(detail.completed != 0) {
+                       let date = detail.date_booked.split(' ');
+                       date = `${date[1]} ${date[2]} ${date[3]}`;
                         return (
                         <tr key={detail.id}>
-                                <td>{index}</td>
-                                <td>{detail.service_request[0].customer.user.name}</td>
-                                <td>{detail.service_request[0].customer.user.phone_number}</td>
+                                <td className="td_request">{index}</td>
+                                <td className="td_request">{detail.service_request[0].customer.user.name}</td>
+                                <td className="td_request">{detail.service_request[0].customer.user.phone_number}</td>
                                 <td>{detail.service_request.map(service => {
                                     return <li key={service.id}>{service.barber_service.service.type}</li>
                                 })}</td>
-                                <td style={{ width:'13%' }}>{detail.date_booked} <br/> {' at ' + detail.time_booked}</td>
-                                <td>{detail.total_price + '$, ' + detail.total_time + ' mins'}</td>
-                                <td style={{ width:'7%' }}>{detail.appointment_location}</td>
-                                <td style={{ width:'10%' }}>
+                                <td>{date} <br/> {' at ' + detail.time_booked}</td>
+                                <td className="td_request">{detail.total_price + '$, ' + detail.total_time + ' mins'}</td>
+                                <td className="td_request">{detail.appointment_location}</td>
+                                <td>
                                     {moment(detail.created_at).format('MMM DD YYYY')} <br/> {' at '
                                     + moment(detail.created_at).format('h:mm')}
                                 </td>
-                                <td>{displayState(detail.state)}</td>
-                                <td>
+                                <td className="td_request">{displayState(detail.state)}</td>
+                                <td className="td_request">
                                     {displayIfCompleted(detail.completed)}
                                     <Form.Check
                                     style={{ textAlign:'center' }}
@@ -181,21 +281,41 @@ export default function Requests() {
     return (
         <>
             <Header/>
+            <br/>
             <Container fluid>
+                <h3>Pending Requests</h3>
+                <Table bordered hover style={{ marginBottom:'25px', width: '1000px' }}>
+                    <thead>
+                        <tr>
+                            <th style={{ width: '30px' }}>#</th>
+                            <th className="td_request" style={{ width: '145px' }}>Customer Name</th>
+                            <th className="td_request" style={{ width: '170px' }}>Services Requested</th>
+                            <th className="td_request" style={{ width: '120px' }}>Date/Time <br/> Booked</th>
+                            <th className="td_request" style={{ width: '145px' }}>Total Price/Time</th>
+                            <th style={{ width: '70px' }}>Location</th>
+                            <th className="td_request" style={{ width: '145px' }}>State</th>
+                            <th className="td_request" style={{ width: '180px' }}>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {displayPendingRequests()}
+                    </tbody>
+                </Table>
+                <hr/>
                 <h3>Incompleted Requests</h3>
                 <Table bordered hover style={{ marginBottom:'25px' }}>
                     <thead>
                         <tr>
-                            <th>#</th>
-                            <th>Customer Name</th>
-                            <th>Phone Number</th>
-                            <th>Services Requested</th>
-                            <th>Date/Time <br/> Booked</th>
-                            <th>Total Price/Time</th>
-                            <th>Location</th>
-                            <th>Booking Submitted</th>
-                            <th>State</th>
-                            <th>Status</th>
+                            <th style={{ width: '30px' }}>#</th>
+                            <th className="td_request" style={{ width: '145px' }}>Customer Name</th>
+                            <th style={{ width: '135px' }}>Phone Number</th>
+                            <th className="td_request" style={{ width: '170px' }}>Services Requested</th>
+                            <th className="td_request" style={{ width: '120px' }}>Date/Time <br/> Booked</th>
+                            <th className="td_request" style={{ width: '145px' }}>Total Price/Time</th>
+                            <th style={{ width: '70px' }}>Location</th>
+                            <th className="td_request" style={{ width: '120px' }}>Booking Submitted</th>
+                            <th className="td_request" style={{ width: '145px' }}>State</th>
+                            <th className="td_request" style={{ width: '145px' }}>Status</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -207,16 +327,16 @@ export default function Requests() {
                 <Table bordered hover>
                     <thead>
                         <tr>
-                            <th>#</th>
-                            <th>Customer Name</th>
-                            <th>Phone Number</th>
-                            <th>Services Requested</th>
-                            <th>Date/Time <br/> Booked</th>
-                            <th>Total Price/Time</th>
-                            <th>Location</th>
-                            <th>Booking Submitted</th>
-                            <th>State</th>
-                            <th>Status</th>
+                            <th style={{ width:'30px' }}>#</th>
+                            <th className="td_request" style={{ width:'145px' }}>Customer Name</th>
+                            <th style={{ width: '135px' }}>Phone Number</th>
+                            <th className="td_request" style={{ width:'170px' }}>Services Requested</th>
+                            <th className="td_request" style={{ width:'120px' }}>Date/Time <br/> Booked</th>
+                            <th className="td_request" style={{ width: '145px' }}>Total Price/Time</th>
+                            <th style={{ width: '70px' }}>Location</th>
+                            <th className="td_request" style={{ width: '120px' }}>Booking Submitted</th>
+                            <th className="td_request" style={{ width: '145px' }}>State</th>
+                            <th className="td_request" style={{ width: '145px' }}>Status</th>
                         </tr>
                     </thead>
                     <tbody>

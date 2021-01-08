@@ -12,6 +12,37 @@ export default function ConfirmationPage() {
     const time = location.state ? location.state.time_selected[4].split(':') : '';
     const services = location.state ? location.state.chosen_services : '';
 
+    useEffect(() => {
+        getUserDetails();
+    }, []);
+
+    function getUserDetails() {
+        api.getUserInfo()
+        .then(response => {
+            if(response.data.roles != 'Customer') {
+                history.push('/home');
+            } else if(response.data.roles == 'Customer') {
+                if(!location.state) {
+                    history.push('/booking');
+                }
+            }
+
+            const info = {
+                'email': response.data.email,
+                'name': response.data.name,
+            }
+
+            api.sendMailConfirmation(info)
+            .then(response => {
+                console.log(response.data);
+            })
+        }).catch(error => {
+            if(error.response.status == 401) {
+                history.push('/home')
+            }
+        })
+    }
+
     function totalPrice() {
         let sum_price = 0;
         if(location.state) {
@@ -34,48 +65,34 @@ export default function ConfirmationPage() {
         return sum_time;
     }
 
-    useEffect(() => {
-        getUserDetails();
-    }, []);
-
-    function getUserDetails() {
-        api.getUserInfo()
-        .then(response => {
-            if(response.data.roles != 'Customer') {
-                history.push('/home');
-            } else if(response.data.roles == 'Customer') {
-                if(!location.state) {
-                    history.push('/booking');
-                }
-            }
-        }).catch(error => {
-            if(error.response.status == 401) {
-                history.push('/home')
-            }
-        })
-    }
-
     return (
         <>
             <Header/>
+            <br/>
             <Container fluid>
-                <Col lg={6}>
+                <Col lg={12}>
                     <Row>
-                        <Card style={{ marginLeft:'10px' }}>
+                        <Card style={{ margin:'auto' }}>
                             <Card.Header>
                                 <h2>Your Booking Was A Success!</h2>
                             </Card.Header>
                             <Card.Body>
                             <Card.Title>Booking Information</Card.Title>
-                                    <span>Barber: {location.state ? location.state.barber_name : ''}</span> <br/> <br/>
-                                    <span>Payment Method: {location.state ? location.state.payment_method : ''}</span> <br/> <br/>
-                                    <span>
+                                    <span className="booking_info">
+                                        Barber: {location.state ? location.state.barber_name : ''}
+                                    </span> <br/>
+                                    <span className="booking_info">
+                                        Payment Method: {location.state ? location.state.payment_method : ''}
+                                    </span> <br/>
+                                    <span className="booking_info">
                                         Appointment Date: {`${date[0]}, ${date[1]} ${date[2]} ${date[3]}`}
-                                    </span> <br/> <br/>
-                                    <span>
+                                    </span> <br/>
+                                    <span className="booking_info">
                                         Appointment Time: {`${time[0]}:${time[1]}`}
+                                    </span> <br/>
+                                    <span className="booking_info">
+                                        Appointment Location: {location.state ? location.state.app_location : ''}
                                     </span> <br/> <br/>
-                                    <span>Appointment Location: {location.state ? location.state.app_location : ''}</span> <br/> <br/>
 
                                 <Table striped bordered size='md'>
                                     <thead>

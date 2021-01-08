@@ -167,7 +167,7 @@ export default function ShowBarber(props) {
                         </Row>
                         <Row style={{ position:'absolute', top:'270px', right:'14px', left:'15px' }}>
                         <Col lg={12} xs={12}>
-                                <Card style={{ height:'525px'}}>
+                                <Card style={{ height:'540px', marginBottom:'20px', overflowY:'scroll'}}>
                                     <h2 style={{ margin: '20px 0 0 20px' }}>Gallery</h2>
                                     <CardColumns style={{ padding:'20px 20px 0 20px' }}>
                                         {galleryInfo.length != 0 ? galleryInfo.map((gallery) => {
@@ -207,6 +207,7 @@ export default function ShowBarber(props) {
     return (
         <>
             <Header/>
+            <br/>
             {displayBarberDetails()}
         </>
     );

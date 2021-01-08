@@ -4,6 +4,10 @@ import api from '../api';
 import { Button, Card, Form, FormControl, InputGroup } from 'react-bootstrap';
 import CookieService from '../Service/CookieService';
 import '../../css/Home.css';
+import firebaseConfig from '../Firebase/FirebaseConfig';
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/firestore';
 
 export default function Register() {
 
@@ -24,27 +28,58 @@ export default function Register() {
     function RegistrationHandler(event) {
         event.preventDefault();
 
-        const info = new FormData();
-        info.append('name', name);
-        info.append('email', email);
-        info.append('password', password);
-        info.append('password_confirmation', confirmedPassword);
-        info.append('profile_photo', profilePhoto);
-        info.append('phone_number', phoneNumber);
-        info.append('roles', role);
+        if (!firebase.apps.length) {
+            firebase.initializeApp(firebaseConfig);
+        } else {
+            firebase.app(); // if already initialized
+        }
 
-        api.register(info, {headers:{'Accept': "application/json", 'Content-Type':"multipart/form-data"}
-        }).then(response => {
-            console.log(response.data);
-            const options = {Path: "/",Expires: response.data.expires, Secure: true};
-            CookieService.set('access_token', response.data.access_token, options);
-            history.push("/home");
-        }).catch(error => {
-            if(name == '' | email == '' | password == '' | confirmedPassword == '' | phoneNumber == '') {
-                setErrs(error.response.data.errors);
-            }
+        firebase.auth().createUserWithEmailAndPassword(email, password)
+        .then((auth) => {
+            auth.user.getIdToken().then(function(accessToken) {
+                if(auth.additionalUserInfo.isNewUser == true) {
+                    const info = new FormData();
+                    info.append('Firebasetoken', accessToken);
+                    info.append('name', name);
+                    info.append('email', email);
+                    info.append('password', password);
+                    info.append('password_confirmation', confirmedPassword);
+                    info.append('profile_photo', profilePhoto);
+                    info.append('phone_number', phoneNumber);
+                    info.append('roles', role);
+
+                    api.register(info, {headers:{'Accept': "application/json", 'Content-Type':"multipart/form-data"}
+                    }).then(response => {
+                        console.log(response.data);
+                        const options = {Path: "/",Expires: response.data.expires, Secure: true};
+                        CookieService.set('access_token', response.data.access_token, options);
+                        history.push("/home");
+                        window.location.reload();
+                    }).catch(error => {
+                        if(name == '' | email == '' | password == '' | confirmedPassword == '' | phoneNumber == '') {
+                            setErrs(error.response.data.errors);
+                        }
+                    });
+                }
+            })
+        }).catch((error) => {
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            // ..
         });
     }
+
+        // api.register(info, {headers:{'Accept': "application/json", 'Content-Type':"multipart/form-data"}
+        // }).then(response => {
+        //     console.log(response.data);
+        //     const options = {Path: "/",Expires: response.data.expires, Secure: true};
+        //     CookieService.set('access_token', response.data.access_token, options);
+        //     history.push("/home");
+        // }).catch(error => {
+        //     if(name == '' | email == '' | password == '' | confirmedPassword == '' | phoneNumber == '') {
+        //         setErrs(error.response.data.errors);
+        //     }
+        // });
 
     function displayError (field) {
         if (errs[field]) {

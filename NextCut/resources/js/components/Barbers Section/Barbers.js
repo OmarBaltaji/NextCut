@@ -61,6 +61,7 @@ export default function Barber() {
     return (
         <div>
             <Header/>
+            <br/>
             <h1 style={{ margin:'0 0 20px 70px', textDecoration:'underline' }}>Meet Your Barbers</h1>
             {displayBarbers()}
         </div>

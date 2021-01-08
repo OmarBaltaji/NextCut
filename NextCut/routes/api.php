@@ -57,6 +57,10 @@ Route::group(['middleware' => 'auth:api'], function () {
 
     Route::get('/userinfo', [AuthController::class, 'userInfo']);
 
+    Route::get('/users', [UserController::class, 'index']);
+
+    Route::post('/savefcmtoken', [ FirebaseController::class, 'save_fcm_token']);
+
     Route::put('/user/{user}', [UserController::class, 'update']);
 
     Route::delete('/user/{user}', [UserController::class, 'destroy']);
@@ -66,6 +70,8 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::post('/booking/searchedbarber', [BarberController::class, 'searchedBarber']);
 
     Route::post('/booking/confirmation', [CustomerRequestController::class, 'store']);
+
+    Route::post('/booking/confirmationtomail', [CustomerRequestController::class, 'storeToMail']);
 
     Route::get('/previousbookings', [CustomerRequestController::class, 'CheckPreviousBookings']);
 
@@ -114,6 +120,8 @@ Route::group(['middleware' => 'auth:api'], function () {
         Route::get('/requests' , [ServiceRequestController::class, 'showBarberRequests']);
 
         Route::post('/alterstatus', [CustomerRequestController::class, 'updateStatus']);
+
+        Route::delete('/request/{CustomerRequest}', [CustomerRequestController::class, 'destroy']);
     });
 
 });

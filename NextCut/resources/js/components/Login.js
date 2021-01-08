@@ -4,6 +4,10 @@ import CookieService from '../Service/CookieService';
 import api from '../api';
 import {Card, Form, Button, InputGroup} from 'react-bootstrap';
 import '../../css/Home.css';
+import firebaseConfig from '../Firebase/FirebaseConfig';
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/firestore';
 
 export default function Login() {
     const history = useHistory();
@@ -19,24 +23,44 @@ export default function Login() {
 
     function logInHandler(event) {
         event.preventDefault();
-        const credentials = {
-            'email': email,
-            'password': password,
-            'remember_me': rememberMe,
-        };
 
-        api.login(credentials)
-        .then((response) => {
-            const options = {Path: "/" , Expires: response.data.expires_at, Secure: true};
-            console.log(options)
-            CookieService.set('access_token', response.data.access_token, options);
-            history.push("/home");
+        if (!firebase.apps.length) {
+            firebase.initializeApp(firebaseConfig);
+        } else {
+            firebase.app(); // if already initialized
+        }
+
+        firebase.auth().signInWithEmailAndPassword(email, password)
+        .then((auth) => {
+            auth.user.getIdToken().then(function(accessToken) {
+                // console.log(accessToken);
+                if(auth.additionalUserInfo.isNewUser == false) {
+                    const credentials = {
+                        'Firebasetoken': accessToken,
+                        'email': email,
+                        'password': password,
+                        'remember_me': rememberMe,
+                    }
+
+                    api.firebaseLogin(credentials)
+                    .then(response => {
+                        const options = {Path: '/' , Expires: response.data.expires_at, Secure: true};
+                        CookieService.set('access_token', response.data.access_token, options);
+                        history.push('/home');
+                        window.location.reload();
+                    })
+                    // .catch(error => {
+                    //         if(error.response.status == 422) {
+                    //             setErrs(error.response.data.errors);
+                    //         } else if(error.response.status == 401) {
+                    //             setInvalid(error.response.data.message);
+                    //         }
+                    //     });
+                }
+            })
         }).catch(error => {
-            if(error.response.status == 422) {
-                setErrs(error.response.data.errors);
-            } else if(error.response.status == 401) {
-                setInvalid(error.response.data.message);
-            }
+            setErrs(error.message);
+            setInvalid(error.message)
         });
     }
 

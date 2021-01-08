@@ -232,7 +232,7 @@ export default function Profile() {
                 <Col lg={8}>
                     <Row>
                         <Col lg={6}>
-                            <Card>
+                            <Card style={{ height:'210px' }}>
                                 <Card.Body>
                                     <Card.Title>
                                         Salon Information
@@ -297,7 +297,7 @@ export default function Profile() {
                     <br/>
                     <Row>
                         <Col lg={6}>
-                            <Card style={{ height:'50%' }}>
+                            <Card style={{ height:'367px' }}>
                                 <Card.Body>
                                     <Card.Title>
                                         Location
@@ -326,7 +326,7 @@ export default function Profile() {
                             </Card>
                         </Col>
                         <Col lg={6}>
-                            <Card style={{ height:'50%' }}>
+                            <Card style={{ height:'367px' }}>
                                 <Card.Body>
                                     <Card.Title>
                                         Services
@@ -334,15 +334,16 @@ export default function Profile() {
                                             <Button style={{ marginLeft: '20px' }}>Manage Your Services</Button>
                                         </Card.Link>
                                     </Card.Title>
+                                    {barberServiceInfo.length == 0 ? 'Nothing Yet' : ''}
                                 </Card.Body>
-                                {barberServiceInfo.length != 0 ? <ProfileService /> : 'Nothing Yet'}
+                                {barberServiceInfo.length != 0 ? <ProfileService /> : ''}
                             </Card>
                         </Col>
                     </Row>
                 </Col>
-                <Row style={{position:'absolute', top:'640px' , right:'1.3%', left:'2.3%', paddingBottom:'20px' }} >
+                <Row style={{position:'absolute', top:'740px' , right:'15px', left:'30px', paddingBottom:'20px' }} >
                     <Col lg={12}>
-                        <Card>
+                        <Card style={{ height:'600px', overflowY:'scroll' }}>
                             <div style={{ display:'flex', alignItems:'center' }}>
                                 <h2 style={{ margin: '20px 0 0 40px' }}>Gallery</h2>
                                 <Button onClick={() => handleShowAddGallery()}
@@ -414,6 +415,7 @@ export default function Profile() {
     return (
         <>
             <Header/>
+            <br/>
             <Container fluid>
                 <Row>
                     {userInfo ? checkRole() : ''}

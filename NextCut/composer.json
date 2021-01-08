@@ -18,7 +18,8 @@
         "laravel/framework": "^8.12",
         "laravel/passport": "^10.1",
         "laravel/tinker": "^2.5",
-        "laravel/ui": "^3.1"
+        "laravel/ui": "^3.1",
+        "lcobucci/jwt": "^3.4"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.8",

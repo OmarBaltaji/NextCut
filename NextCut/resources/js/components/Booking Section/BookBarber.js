@@ -4,8 +4,34 @@ import Header from '../Header';
 import { InputGroup, Form, Container, Col, Row, Button } from 'react-bootstrap';
 import api from '../../api';
 import TimeCalendar from "react-timecalendar";
+import firebase from 'firebase';
+import firebaseConfig from '../../Firebase/FirebaseConfig';
+
+if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+} else {
+    firebase.app(); // if already initialized
+}
+
+if ("serviceWorker" in navigator) {
+    navigator.serviceWorker
+      .register("./firebase-messaging-sw.js")
+      .then(function(registration) {
+        console.log("Registration successful, scope is:", registration.scope);
+      })
+      .catch(function(err) {
+        console.log("Service worker registration failed, error:", err);
+      });
+}
+
+const db = firebase.firestore();
+
+db.settings({
+    timestampsInSnapshots: true
+});
 
 export default function BookBarber() {
+    const [userInfo, setUserInfo] = useState([]);
     const[barber, setBarber] = useState([]);
     const[barberServicesInfo, setBarberServicesInfo] = useState([]);
     const [chosenServices, setChosenServices] = useState([]);
@@ -43,6 +69,7 @@ export default function BookBarber() {
     function getUserDetails() {
         api.getUserInfo()
         .then(response => {
+            setUserInfo(response.data);
             if(response.data.roles != 'Customer') {
                 history.push('/home');
             }
@@ -92,11 +119,11 @@ export default function BookBarber() {
     }
 
     function getOpenHours(schedule) {
-        let open_hours = schedule.hour_open.split(':');
+        let open_hours = schedule.hour_open.split(':'); //the opening hours in the db is a string
         if(open_hours[0] < 10) { //if the hour is for example 09
-            open_hours = parseInt(open_hours[0].split('')[1]); //it would take the number 9 only (so it works properly with the external library)
+            open_hours = parseInt(open_hours[0].split('')[1]); //it would take a single digit without the 0(so it works properly with the external library)
         } else {
-            open_hours = parseInt(open_hours[0]);
+            open_hours = parseInt(open_hours[0]); //here it's a double digit
         }
 
         let closing_hours = schedule.hour_close.split(':');
@@ -142,9 +169,16 @@ export default function BookBarber() {
                 let startTime = timeSlot.time_booked;
                 let start_date_time = `${splitDate[3]}-${month}-${splitDate[2]} ${startTime}:00`;
 
-                let timeSplit = timeSlot.time_booked.split(':');
-                let timeSlot_end = parseInt(timeSplit[0]) + Math.round((timeSlot.total_time)/60);
-                let endTime = `${timeSlot_end}:00:00`;
+                let timeSplit = timeSlot.time_booked.split(':'); //get hour
+                let endTime;
+                if(parseInt(timeSlot.total_time) < 60) {
+                    endTime= `${timeSplit[0]}:${timeSlot.total_time}:00`
+                } else {
+                    let hour_to_add = Math.floor(parseInt(timeSlot.total_time)/60);
+                    let mins_remaining =  parseInt(timeSlot.total_time) - hour_to_add*60;
+                    endTime = `${parseInt(timeSplit[0]) + parseInt(hour_to_add)}:${mins_remaining}:00`;
+                }
+
                 let end_date_time = `${splitDate[3]}-${month}-${splitDate[2]} ${endTime}`;
 
                 let time_booked = {
@@ -152,13 +186,20 @@ export default function BookBarber() {
                     start_time: start_date_time,
                     end_time: end_date_time,
                 }
+
                 bookings.push(time_booked);
-                id_to_insert += 1;
+                id_to_insert += 1; //to add different ids to different booking times (starts at 1)
             });
+            bookings.forEach(booking => {
+                let start_date = new Date(booking.start_time);
+                let today_date = new Date();
+                if(start_date < today_date) {
+                    let index_to_remove = bookings.indexOf(booking);
+                    bookings.splice(index_to_remove, 1);
+                }
+            })
         }
     }
-
-    console.log(openHours)
 
     function hanldeChosenServices(e) {
         setChosenServices(Array.from(e.target.selectedOptions, option => option.value));
@@ -249,7 +290,16 @@ export default function BookBarber() {
                         barber_name: barber.user.name,
                     }
                 });
+
+            const query = db.collection('fcm_token').where('userID', '==', barber.user.FirebaseUID).get();
+
+            query.then(snapshot => {
+                    let data = snapshot.docs[0].data();
+                    notification(data.userToken, response.data.id);
+                })
+
         }).catch(error => {
+            //
         })
     }
 
@@ -260,16 +310,50 @@ export default function BookBarber() {
         <TimeCalendar
           disableHistory
           clickable
-          timeSlot={60}
+          timeSlot={30}
           openHours={openHours}
           onTimeClick={handleTimeSelected}
           bookings={bookings}
         />
       );
 
+      function notification(fcm_token, request_id) {
+        const notification = {
+            "notification": {
+                "title": "Incoming Request",
+                "body": `${userInfo.name} has requested a session`,
+                "click_action": "http://127.0.0.1:8000/requests",
+            },
+            "to": fcm_token,
+        }
+
+        const header = {
+            headers: {
+                'Content-type': 'application/json',
+                'Authorization': 'Key=AAAAR2QjVTI:APA91bFnVdfPo0kXeeEHURUik1Q0gN-MaPCmlnJWP5Fc2oXwX591yjpqoqRBUBwulUHqBisFYX0r46rwab2QJI2BH-qvTJiaV865_ktw-ljuFQGRo4H3Ljo-VdiomIJmRFe01bvTdbNi'
+                },
+            }
+
+        axios.post('https://fcm.googleapis.com/fcm/send', notification , header)
+        .then((response) => {
+                let request_id_str = String(request_id);
+                const notificationRef = db.collection('notifications').doc(request_id_str);
+
+                notificationRef.set({
+                    title: 'Booking Request',
+                    message: `${userInfo.name} wants to book an appointment`,
+                    toUserID: barber.user.FirebaseUID, //barber
+                    fromUserID: userInfo.FirebaseUID, //logged in user
+                    isOpened: false,
+                });
+                console.log(response.data);
+            });
+    }
+
     return (
         <>
             <Header />
+            <br/>
             <Container>
                 <Row>
                     <Col>

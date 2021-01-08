@@ -46,9 +46,10 @@ export default function Booking() {
     return (
         <div>
             <Header/>
-            <h1 style={{margin: '0 0 20px 68px'}}>Book Your Next Appointemnt</h1>
-            <Container>
+            <br/>
 
+            <Container>
+            <h1 style={{margin: '0 0 20px -15px'}}>Book Your Next Appointemnt</h1>
                 <InputGroup as={Row} lg={4}>
                     <FormControl
                     type="text"

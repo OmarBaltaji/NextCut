@@ -1,3 +1,7 @@
 .confirmation_list {
     list-style-type: none;
 }
+
+.booking_info {
+    margin-bottom: 15px !important;
+}

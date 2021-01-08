@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
+        <link href="{{asset('css/app.css')}}" rel="stylesheet">
         <title>NextCut</title>
         <link rel="icon" type="image/png" href="/Images/logo1.png"/>
         <!-- Fonts -->
@@ -22,8 +22,21 @@
         <script src="https://kit.fontawesome.com/fd79e3678e.js" crossorigin="anonymous"></script>
         <script src="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.js"></script>
         <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.css" />
+
+        <link rel="manifest" href="/manifest.json"/>
+
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.js"></script> <script> //paste this code under head tag or in a seperate js file.
+            // Wait for window load
+            $(window).load(function() {
+                // Animate loader off screen
+                $(".se-pre-con").fadeOut("slow");
+                });
+        </script>
     </head>
     <body style="background-color:#C0C0C0">
+        <div class="se-pre-con"></div>
+
         <div id="app">
         </div>
         <script src="{{ asset('js/app.js') }}"></script>

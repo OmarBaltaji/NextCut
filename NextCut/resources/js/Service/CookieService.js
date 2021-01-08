@@ -12,8 +12,8 @@ class CookieService {
         cookie.set(key, value, options);
     }
 
-    remove(key){
-        cookie.remove(key);
+    remove(key, options){
+        cookie.remove(key, options);
     }
 }
 

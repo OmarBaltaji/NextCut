@@ -26,16 +26,24 @@
     },
     "dependencies": {
         "@remotelock/react-week-scheduler": "^3.5.8",
+        "child_process": "^1.0.2",
         "firebase": "^8.2.1",
         "firebase-admin": "^9.4.2",
         "firebaseui": "^4.7.1",
+        "fs": "^0.0.1-security",
         "moment": "^2.29.1",
+        "net": "^1.0.2",
         "react-big-calendar": "^0.30.0",
         "react-bootstrap": "^1.4.0",
+        "react-firebase-hooks": "^2.2.0",
+        "react-loading": "^2.0.3",
         "react-router-dom": "^5.2.0",
         "react-timecalendar": "^2.0.1",
+        "react-toastify": "^6.2.0",
         "recharts": "^1.8.5",
-        "universal-cookie": "^4.0.4"
+        "tls": "^0.0.1",
+        "universal-cookie": "^4.0.4",
+        "uuid": "^3.4.0"
     },
     "resolutions": {
         "@turf/difference": "6.0.1"

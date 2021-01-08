@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import ReactDOM from 'react-dom';
 import  {BrowserRouter, Route, Switch} from 'react-router-dom';
 
@@ -17,9 +17,10 @@ import Booking from './Booking Section/Booking';
 import ConfirmationPage from './ConfirmationPage';
 import Requests from './Requests';
 import Statistics from './Statistics';
-import LoginFire from '../Firebase/LoginFirebase';
+import Main from './New Chat/Main/Main';
 
 export default function App() {
+
     return (
         <BrowserRouter>
             <Switch>
@@ -37,10 +38,11 @@ export default function App() {
                 <Route exact path="/booking/:id" component={BookBarber} />
                 <Route exact path="/barbers/:id" component={ShowBarber} />
                 <Route exact path="/profile/services" component={Service} />
-                <Route exact path='/signin' component={LoginFire}/>
+                <Route exact path='/chat' component={Main} />
             </Switch>
         </BrowserRouter>
     );
 }
 
 ReactDOM.render(<App />, document.getElementById('app'));
+

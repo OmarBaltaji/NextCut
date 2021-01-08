@@ -1,12 +1,18 @@
 import axios from 'axios';
 import CookieService from './Service/CookieService';
 
-const BASE_URL = 'http://nextcut.test/api'
+const BASE_URL = '/api';
 
 export default{
 
-    firebaseLogin: (fbtoken) =>
-    axios.post(`${BASE_URL}/signin`, fbtoken),
+    firebaseLogin: (credentials) =>
+    axios.post(`${BASE_URL}/signin`, credentials),
+
+    firebaseRegister: (FirebaseToken) =>
+    axios.post(`${BASE_URL}/signin`, FirebaseToken),
+
+    storeNotification: (data) =>
+    axios.post(`${BASE_URL}/savefcmtoken`, data),
 
     login: (credentials) =>
     axios.post(`${BASE_URL}/login`, credentials),
@@ -112,6 +118,9 @@ export default{
     storeCustomerRequest: (info) =>
     axios.post(`${BASE_URL}/booking/confirmation`,info),
 
+    sendMailConfirmation: (info) =>
+    axios.post(`${BASE_URL}/booking/confirmationtomail`,info),
+
     setCustomer: () =>
     axios.post(`${BASE_URL}/customer`),
 
@@ -121,9 +130,15 @@ export default{
     alterStatus: (info) =>
     axios.post(`${BASE_URL}/alterstatus`, info),
 
+    deleteRequest: (id) =>
+    axios.delete(`${BASE_URL}/request/${id}`),
+
     getPreviousBookings: () =>
     axios.get(`${BASE_URL}/previousbookings`),
 
     getBookedTimes: () =>
     axios.get(`${BASE_URL}/bookedtimes`),
+
+    getUsers: () =>
+    axios.get(`${BASE_URL}/users`),
 }
