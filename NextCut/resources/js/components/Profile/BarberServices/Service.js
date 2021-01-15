@@ -20,10 +20,14 @@ export default function Service() {
     const [showAddBarberService, setShowAddBarberService] = useState(false);
     const handleShowAddBarberService = () => setShowAddBarberService(true);
 
+    const role = localStorage.getItem('role');
+
     useEffect(() => {
         getUserDetails();
-        showServices();
-        showBarberServices();
+        if(role) {
+            showServices();
+            showBarberServices();
+        }
     }, []);
 
     function getUserDetails() {
@@ -50,7 +54,6 @@ export default function Service() {
         api.getBarberService()
         .then(response => {
             setBarberServices(response.data);
-            console.log(response.data)
         })
     }
 

@@ -10,10 +10,13 @@ export default function Booking() {
     const [input, setInput] = useState('');
     const [listDefault, setListDefault] = useState([]);
     const [list, setList] = useState([]);
+    const role = localStorage.getItem('role');
 
     useEffect(() => {
         getUserDetails();
-        getAllBarbers();
+        if(role) {
+            getAllBarbers();
+        }
     }, []);
 
     function getUserDetails() {

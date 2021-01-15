@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import  {BrowserRouter, Route, Switch} from 'react-router-dom';
 
@@ -16,7 +16,6 @@ import BookBarber from './Booking Section/BookBarber';
 import Booking from './Booking Section/Booking';
 import ConfirmationPage from './ConfirmationPage';
 import Requests from './Requests';
-import Statistics from './Statistics';
 import Main from './New Chat/Main/Main';
 
 export default function App() {
@@ -33,7 +32,6 @@ export default function App() {
                 <Route exact path="/requests" component={Requests} />
                 <Route exact path="/confirmedbooking" component={ConfirmationPage} />
                 <Route exact path="/profile" component={Profile} />
-                <Route exact path="/statistics" component={Statistics} />
                 <Route exact path="/barbers" component={Barbers} />
                 <Route exact path="/booking/:id" component={BookBarber} />
                 <Route exact path="/barbers/:id" component={ShowBarber} />

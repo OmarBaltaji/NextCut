@@ -23,6 +23,7 @@ export default function Requests() {
     const localizer = momentLocalizer(moment);
     let myEventsList = [];
     const CURRENT_DATE = new Date().setDate(new Date().getDate()-1);
+    const role = localStorage.getItem('role');
 
     if(bookingDetails.length != 0) {
         bookingDetails.forEach(detail => {
@@ -60,9 +61,10 @@ export default function Requests() {
     }
 
     useEffect(() => {
-        getBookingDetails();
         getUserDetails();
-
+        if(role) {
+            getBookingDetails();
+        }
     }, [changedRequestStatus]);
 
     function getBookingDetails() {

@@ -34,8 +34,6 @@
                 $(".se-pre-con").fadeOut("slow");
                 });
         </script>
-        <script src="/__/firebase/6.6.2/firebase-app.js"></script>
-        <script src="/__/firebase/6.6.2/firebase-messaging.js"></script>
     </head>
     <body style="background-image: url('/images/light-grey-terrazzo.png')">
         <div class="se-pre-con"></div>

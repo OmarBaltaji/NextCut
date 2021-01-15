@@ -43,6 +43,7 @@ export default function BookBarber() {
     const [previousBookings, setPreviousBookings] = useState(false);
     const [bookedTimeslots, setBookedTimeslots] = useState([]);
     const [customerAddress, setCustomerAddress] = useState([]);
+    const role = localStorage.getItem('role');
     const param = useParams();
     const history = useHistory();
     let openHours = [];
@@ -59,12 +60,14 @@ export default function BookBarber() {
 
     useEffect(() => {
         getUserDetails();
-        getThisBarberInfo();
-        getBarberServiceDetails();
-        getBarberPrivateSchedule();
-        getPreviousBookignsDetails();
-        getAllPrevBookedTimes();
-        getCustomerAddressInfo();
+        if(role) {
+            getThisBarberInfo();
+            getBarberServiceDetails();
+            getBarberPrivateSchedule();
+            getPreviousBookignsDetails();
+            getAllPrevBookedTimes();
+            getCustomerAddressInfo();
+        }
     }, []);
 
     function getUserDetails() {
@@ -378,7 +381,7 @@ export default function BookBarber() {
                     toUserID: barber.user.FirebaseUID, //barber
                     fromUserID: userInfo.FirebaseUID, //logged in user
                     isOpened: false,
-                    created: firebase.database.ServerValue.TIMESTAMP,
+                    created: firebase.firestore.Timestamp.now(),
                 });
                 console.log(response.data);
             });

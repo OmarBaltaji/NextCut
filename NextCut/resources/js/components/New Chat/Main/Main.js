@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import {useHistory} from 'react-router-dom';
 import images from '../Themes/Images';
 import WelcomeBoard from '../WelcomeBoard/WelcomeBoard';
 import './Main.css'
@@ -9,6 +10,7 @@ import Header from '../../Header';
 import api from '../../../api';
 
 export  default function Main(){
+    const history = useHistory();
     const [currentPeerUser, setCurrentPeerUser] =  useState([]);
     const [userInfo, setUserInfo] =  useState([]);
     const [listUser, setListUser ]=   useState([]);
@@ -16,13 +18,19 @@ export  default function Main(){
 
     useEffect(() => {
         getAuthInfo();
-        getListUser();
+        if(role) {
+            getListUser();
+        }
     },[]);
 
     function getAuthInfo() {
         api.getUserInfo()
         .then(response => {
             setUserInfo(response.data);
+        }).catch(error => {
+            if(error.response.status == 401) {
+                history.push('/home');
+            }
         })
     }
 

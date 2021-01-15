@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import api from '../../../api';
 
 export default function SalonInfo(props) {
-    console.log(props.props[0])
     return (
         <>
             <span className="schedule_spans"><u>Opens:</u> {props.props[0].hour_open}</span> &nbsp;

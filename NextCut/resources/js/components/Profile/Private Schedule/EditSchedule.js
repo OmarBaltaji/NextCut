@@ -4,7 +4,6 @@ import {Button, Form, Modal, Col} from 'react-bootstrap';
 import '../../../../css/Profile.css';
 
 export default function EditSalon(props) {
-    console.log(props)
     const [openForm, setOpenForm] = useState(true);
     const [hourOpen, setHourOpen] = useState(props.info[0].hour_open);
     const [hourClose, setHourClose] = useState(props.info[0].hour_close);

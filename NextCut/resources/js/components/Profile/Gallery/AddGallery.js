@@ -22,7 +22,6 @@ export default function AddAddress(props) {
 
         api.createGallery(info, {headers:{'Accept': "application/json", 'Content-Type':"multipart/form-data"}
         }).then(response => {
-            console.log(response);
             handleClose();
             window.location.reload();
         })

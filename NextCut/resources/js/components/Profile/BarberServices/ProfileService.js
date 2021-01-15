@@ -13,7 +13,6 @@ export default function ProfileService() {
     function getBarberServiceInfo() {
         api.getBarberService()
         .then(response => {
-            console.log(response.data);
             setBarberServices(response.data);
         });
     }

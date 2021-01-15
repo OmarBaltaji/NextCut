@@ -9,7 +9,9 @@ export default function Home() {
     const role = localStorage.getItem('role');
 
     useEffect(() => {
-        getUserDetails();
+        if(role) {
+            getUserDetails();
+        }
     }, []);
 
     function getUserDetails() {

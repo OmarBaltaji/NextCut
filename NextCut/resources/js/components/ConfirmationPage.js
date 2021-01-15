@@ -57,9 +57,9 @@ export default function ConfirmationPage() {
             });
 
         }).catch(error => {
-            // if(error.response.status == 401) {
-                // history.push('/home')
-            // }
+            if(error.response.status == 401) {
+                history.push('/home')
+            }
         })
     }
 
@@ -114,7 +114,7 @@ export default function ConfirmationPage() {
                                         <u>Appointment Location:</u> {location.state ? location.state.app_location : ''}
                                     </span> <br/>
 
-                                    {location.state.customer_address.length != 0 && location.state.app_location == 'Home' ?
+                                    {location.state && location.state.customer_address.length != 0 && location.state.app_location == 'Home' ?
                                     <span className="booking_info">
                                         <u>Your Address:</u> {`${address.city}, ${street}, ${building}, ${address.near}`}
                                         </span>

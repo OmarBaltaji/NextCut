@@ -55,22 +55,21 @@ export default function Header() {
         }
     }, []);
 
-    // [isUserNotified, notificationOpened]
     useEffect(() => {
-        getNotificationInfo(userInfo);
+        if(cookie) {
+            getNotificationInfo(userInfo);
+        }
     }, [userInfo, isUserNotified, notificationOpened])
 
     function getUserDetails() {
         api.getUserInfo()
         .then(response => {
             setUserInfo(response.data);
-            // getNotificationInfo(response.data);
 
             messaging.requestPermission()
             .then(async function() {
                 const token = await messaging.getToken();
 
-                console.log(token)
                 const userRef = db.collection('fcm_token').doc(token);
 
                 userRef.set({
@@ -95,7 +94,7 @@ export default function Header() {
     }
 
     function getNotificationInfo(user_details) {
-        const query = db.collection('notifications');
+        const query = db.collection('notifications').orderBy('created', 'desc');
         let count = 0;
         let messages = [];
 
@@ -157,7 +156,8 @@ export default function Header() {
     function displayUser() {
         return (
 
-                <NavDropdown style={{ marginRight: '20px' }} className="user-dropdown" title={userInfo.name} id="collasible-nav-dropdown">
+                <NavDropdown style={{ marginRight: '20px' }} className="user-dropdown"
+                title={userInfo.length != 0 ? userInfo.name : ''} id="collasible-nav-dropdown">
                     <NavDropdown.Item style = {{ color: '#40E0D0'}} href="/profile">Profile</NavDropdown.Item>
                     <NavDropdown.Divider />
                     <NavDropdown.Item style = {{ color: '#40E0D0' }} onClick={(e) => logoutHandler(e)} href='/login'>
@@ -201,7 +201,7 @@ export default function Header() {
 
                 </Nav>
 
-                {cookie ?
+                {cookie && (userInfo.roles == 'Barber' || role == 'Barber') ?
                     <div className="dropdown-container" style={{ position: 'relative' }}>
 
                         <DropdownButton
@@ -224,18 +224,19 @@ export default function Header() {
                             <div style={{ height:'180px',  minWidth:'400px' }}>
                                 {notificationInfo.messages.map((message, index) => {
                                     return (
-                                        <>
+                                        <div key={'div'+index}>
                                             <Dropdown.Item href='/requests'  key={index}
                                             className="notification_dropItem">
                                                 {message}
                                             </Dropdown.Item>
                                             {index == notificationInfo.messages.length - 1 ?
-                                            <span key={`random+ ${index}`}> </span> : <Dropdown.Divider key={index+100}/>}
-                                        </>
+                                            '' :
+                                            <Dropdown.Divider key={index+'divider'}/>}
+                                        </div>
                                     );
                                 })}
                             </div>
-                            : <li key={'random200'} style={{ marginLeft:'20px', color:'beige' }}>no notifications</li>
+                            : <li key={'random1200'} style={{ marginLeft:'20px', color:'beige' }}>no notifications</li>
                             : ''}
                         </DropdownButton>
                     </div>

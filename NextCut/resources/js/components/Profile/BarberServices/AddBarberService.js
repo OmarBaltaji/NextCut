@@ -69,7 +69,6 @@ export default function AddSalon(props) {
         api.getBarberService()
         .then(response => {
             setAllBarberServices(response.data);
-            console.log(response.data)
         })
     }
 

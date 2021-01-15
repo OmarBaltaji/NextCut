@@ -37,7 +37,6 @@ export default function AddAddress(props) {
 
         api.createAddress(addressInfo)
         .then(response => {
-            console.log(response);
             handleClose();
             window.location.reload();
         })

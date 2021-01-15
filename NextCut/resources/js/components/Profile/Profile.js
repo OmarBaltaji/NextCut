@@ -450,7 +450,7 @@ export default function Profile() {
                             <CardColumns as={Row} style={{ marginLeft:'30px', width:'1205px' }}>
                             {galleryInfo.length !=0 ? galleryInfo.map(gallery => {
                             return(
-                                <Card key={gallery.id} style={{width:'350px', margin:'20px 20px 20px 10px' }} lg={4}
+                                <Card key={gallery.id} style={{width:'350px', margin:'20px 25px 20px 10px' }} lg={4}
                                  className="profile_card">
                                     <Card.Img src={gallery.image} height="300px"/>
                                     <Card.Body>
@@ -554,7 +554,7 @@ export default function Profile() {
                                     <small style={{ fontSize:'16px' }} className="text-muted">
                                         This address will only be shown to the barber if
                                         you choose <strong>Home</strong> as the appointment location.
-                                        Also, you must fill it if you wish to request an appointment at your home
+                                        Also, you must fill it if you wish to request an appointment at your home.
                                     </small>
                                 </Card.Title>
                                 <Card.Text>
