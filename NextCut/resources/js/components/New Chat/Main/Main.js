@@ -40,6 +40,7 @@ export  default function Main(){
                 {user.id !== userInfo.id && user.roles == "Customer" ?
 
                     <button
+                    style={{ backgroundColor:'beige' }}
                     key={user.id}
                     className={
                     currentPeerUser &&
@@ -73,6 +74,7 @@ export  default function Main(){
                 {user.id !== userInfo.id && user.roles == "Barber" ?
 
                     <button
+                    style={{ backgroundColor:'beige' }}
                     key={user.id}
                     className={
                     currentPeerUser &&

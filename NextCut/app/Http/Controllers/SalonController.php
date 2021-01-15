@@ -16,11 +16,11 @@ class SalonController extends Controller
 
     public function store(Request $request) {
        $attributes = $request->validate([
-            'salon_name' => 'string|required',
-            'hour_open' => 'string|required',
-            'hour_close' => 'string|required',
-            'day_open'=> 'string|required',
-            'day_close'=> 'string|required',
+            'salon_name' => 'required',
+            'hour_open' => 'required',
+            'hour_close' => 'required',
+            'day_open'=> 'required',
+            'day_close'=> 'required',
         ]);
 
         $barber = Barber::create([
@@ -37,11 +37,11 @@ class SalonController extends Controller
 
     public function update(Barber $barber, Request $request) {
        $attributes = $request->validate([
-        'salon_name' => 'string|required',
-        'hour_open' => 'string|required',
-        'hour_close' => 'string|required',
-        'day_open'=> 'string|required',
-        'day_close'=> 'string|required',
+        'salon_name' => 'required',
+        'hour_open' => 'required',
+        'hour_close' => 'required',
+        'day_open'=> 'required',
+        'day_close'=> 'required',
         ]);
 
         $barber->update([

@@ -4,4 +4,23 @@
 
 .booking_info {
     margin-bottom: 15px !important;
+    color: #00356f;
+    line-height: 190%;
+}
+
+.confirmed_subheaders {
+    color: #00356f;
+}
+
+.confirmed_table {
+    margin-top: 10px;
+    background-color: silver;
+}
+
+.confirmed_table > tbody > tr > td {
+    border: 1px beige solid !important;
+}
+
+.confirmed_table > thead > tr > th {
+    border: 1px beige solid !important;
 }

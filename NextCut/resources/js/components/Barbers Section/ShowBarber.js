@@ -7,7 +7,7 @@ import {Card, Col, Container, Row, CardColumns, Button, Table} from 'react-boots
 import moment from 'moment';
 import '../../../css/Barber.css';
 import BarberSchedule from './BarberSchedule';
-import Gallery from '../Gallery';
+import Gallery from './Gallery';
 
 export default function ShowBarber(props) {
     axios.defaults.headers.common['Authorization'] = 'Bearer ' + CookieService.get('access_token');
@@ -20,9 +20,13 @@ export default function ShowBarber(props) {
     const [closeHours, setCloseHours] = useState([]);
     const [barberSchedule, setBarberSchedule] = useState([]);
     const [galleryInfo, setGalleryInfo] = useState([]);
+    const [activeIdx, setActiveIdx] = useState();
 
     const [showGallerySlideShow, setShowGallerySlideShow] = useState(false);
-    const handleShowGallerySlideShow = () => setShowGallerySlideShow(true);
+    const handleShowGallerySlideShow = (index) => {
+        setShowGallerySlideShow(true)
+        setActiveIdx(index);
+    };
 
     useEffect(() => {
         getBarberDetails();
@@ -54,8 +58,11 @@ export default function ShowBarber(props) {
     function getBarberSchedule() {
         api.getBarberSchedule(param.id)
         .then(response => {
-            // console.log(response.data);
-            setBarberSchedule(response.data);
+            if(Object.keys(response.data).length == 0) {
+                // console.log('empty')
+            }else {
+                setBarberSchedule(response.data);;
+            }
         }).catch(error => {
 
         });
@@ -73,7 +80,7 @@ export default function ShowBarber(props) {
 
     function displayGallerySlideShow() {
         return (
-            <Gallery props={showGallerySlideShow} info={param.id} setShow={setShowGallerySlideShow}/>
+            <Gallery props={showGallerySlideShow} info={param.id} index={activeIdx} setShow={setShowGallerySlideShow}/>
         )
     }
 
@@ -82,33 +89,34 @@ export default function ShowBarber(props) {
             <Container fluid>
                 <Row>
                     <Col lg={4} xs>
-                        <Card key={barberDetails.id}>
+                        <Card key={barberDetails.id} className="onebarber_card">
                             <Card.Img variant="top" src={userDetails.profile_photo}
                             height='350px' />
                             <Card.Body>
-                                <Card.Title>{userDetails.name}</Card.Title>
+                                <Card.Title style={{ fontSize:'21px', color:'#DAA520' }}>{userDetails.name}</Card.Title>
                                 <Card.Text>
-                                    <span>Salon Name: {barberDetails.salon_name}</span> <br/>
-                                    <span className="barber_header">Schedule</span> <br/>
-                                    <span>From {barberDetails.day_open} to {barberDetails.day_close}: </span><br/>
-                                    <span>Opening Hours: {barberDetails.hour_open}</span> <br/>
-                                    <span>Closing Hours: {barberDetails.hour_close}</span> <br/>
-                                    <span className="barber_header">Location</span> <br/>
+                                    <span className="onebarber_info"><u>Salon Name:</u> {barberDetails.salon_name}</span> <br/>
+                                    <span className="onebarber_info" style={{ color:'#DAA520', fontSize: '21px'}}>Salon Schedule</span> <br/>
+                                    <span className="onebarber_info"><u>Opening Hours:</u> {barberDetails.hour_open}</span> <br/>
+                                    <span className="onebarber_info"><u>Closing Hours:</u> {barberDetails.hour_close}</span> <br/>
+                                    <span className="onebarber_info"><u>From:</u> {barberDetails.day_open}</span><br/>
+                                    <span className="onebarber_info"><u>To:</u> {barberDetails.day_close}</span> <br/>
+                                    <span className="onebarber_info" style={{ color:'#DAA520', fontSize: '21px'}}>Location</span> <br/>
                                     {addressDetails ?
                                     <>
-                                        <span>City: {addressDetails.city}</span> <br/>
-                                        <span>Street: {addressDetails.street}</span> <br/>
-                                        <span>Building: {addressDetails.building}</span> <br/>
-                                        <span>Near: {addressDetails.near}</span> <br/>
+                                        <span className="onebarber_info"><u>City:</u> {addressDetails.city}</span> <br/>
+                                        <span className="onebarber_info"><u>Street:</u> {addressDetails.street}</span> <br/>
+                                        <span className="onebarber_info"><u>Building:</u> {addressDetails.building}</span> <br/>
+                                        <span className="onebarber_info"><u>Near:</u> {addressDetails.near}</span> <br/>
                                     </>
                                     :
                                     <>
-                                        <span>Address Not Available</span> <br/>
+                                        <span style={{ color:'#00356f' }}>Address Not Available</span> <br/>
                                     </>}
 
-                                    <span className="barber_header">Contact</span> <br/>
-                                    <span>Mobile: {userDetails.phone_number}</span>  <br/>
-                                    <span>Email: {userDetails.email}</span>
+                                    <span className="onebarber_info" style={{ color:'#DAA520', fontSize: '21px'}}>Contact</span> <br/>
+                                    <span className="onebarber_info"><u>Mobile:</u> {userDetails.phone_number}</span>  <br/>
+                                    <span className="onebarber_info"><u>Email:</u> {userDetails.email}</span>
                                 </Card.Text>
                             </Card.Body>
                             <Card.Footer>
@@ -121,17 +129,18 @@ export default function ShowBarber(props) {
                     <Col lg={8}>
                         <Row>
                             <Col lg={6} xs={12}>
-                                <Card style={{ height:'49%' }}>
+                                <Card style={{ height:'250px' }} className="service_card">
                                     <Card.Body>
-                                        <Card.Title className="card_title">Services</Card.Title>
+                                        <Card.Title style={{ paddingTop: '15px', position:'absolute', left:'13px', top:'5px' }} className="card_title">Services</Card.Title>
                                     </Card.Body>
+                                    <br/>
                                     <div className="div_table">
-                                            <Table hover striped bordered>
+                                            <Table className="table_barber" hover bordered>
                                                 <thead>
                                                     <tr>
-                                                        <th>Type</th>
-                                                        <th>Price</th>
-                                                        <th>Time</th>
+                                                        <th className="onebarber_thd">Type</th>
+                                                        <th className="onebarber_thd">Price</th>
+                                                        <th className="onebarber_thd">Time</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -139,24 +148,26 @@ export default function ShowBarber(props) {
                                                     barberService.map(barber_service => {
                                                         return (
                                                             <tr key={barber_service.id}>
-                                                                <td>{barber_service.service.type}</td>
-                                                                <td>{barber_service.price}</td>
-                                                                <td>{barber_service.estimated_time}</td>
+                                                                <td className="onebarber_thd">{barber_service.service.type}</td>
+                                                                <td className="onebarber_thd">{barber_service.price}</td>
+                                                                <td className="onebarber_thd">{barber_service.estimated_time}</td>
                                                             </tr>
                                                         );
                                                     })
-                                                    : <tr><td>Not Available</td></tr>}
+                                                    :   <tr><td colSpan="3" style={{color: '#00356f'}}>
+                                                            Not Available
+                                                        </td></tr>}
                                                 </tbody>
                                             </Table>
                                         </div>
                                 </Card>
                             </Col>
                             <Col lg={6} xs={12}>
-                                <Card>
+                                <Card style={{ height:'250px' }} className="onebarber_card">
                                     <Card.Body>
                                         <Card.Title  className="card_title">Private Schedule</Card.Title>
                                         <Card.Text>
-                                            {barberSchedule ? <BarberSchedule props={barberSchedule} /> : ''}
+                                            {barberSchedule ? <BarberSchedule props={barberSchedule} /> :  <span style={{ color:'#00356f' }}>Not Available</span>}
                                         </Card.Text>
                                     </Card.Body>
                                     <Card.Footer>
@@ -165,23 +176,25 @@ export default function ShowBarber(props) {
                                 </Card>
                             </Col>
                         </Row>
-                        <Row style={{ position:'absolute', top:'270px', right:'14px', left:'15px' }}>
+                        <Row style={{ position:'absolute', top:'270px', right:'15px', left:'15px' }}>
                         <Col lg={12} xs={12}>
-                                <Card style={{ height:'540px', marginBottom:'20px', overflowY:'scroll'}}>
-                                    <h2 style={{ margin: '20px 0 0 20px' }}>Gallery</h2>
-                                    <CardColumns style={{ padding:'20px 20px 0 20px' }}>
-                                        {galleryInfo.length != 0 ? galleryInfo.map((gallery) => {
+                                <Card className="gallery_card">
+                                    <h4 style={{ margin: '20px 0 0 10px', color:'#DAA520', fontSize:'24px' }}>
+                                        Gallery
+                                    </h4>
+                                    <CardColumns as={Row} style={{ width:'800px', marginLeft:'12px', marginTop:'10px'}}>
+                                        {galleryInfo.length != 0 ? galleryInfo.map((gallery, index) => {
                                         return(
-                                            <Card key={gallery.id} style={{ marginBottom:'20px' }}
+                                            <Card key={gallery.id} lg={3} style={{width:'250px', }}
                                             className="clickable_photos"
-                                            onClick={() => handleShowGallerySlideShow(galleryInfo)}>
-                                                <Card.Img src={gallery.image} height="250px"/>
+                                            onClick={() => handleShowGallerySlideShow(index)}>
+                                                <Card.Img src={gallery.image} height="190px"/>
                                             </Card>
                                         )
                                         })
                                         :
                                         <>
-                                            <span>Not Available</span>
+                                            <span style={{ color:'#00356f' }}>Not Available</span>
                                         </>}
                                     </CardColumns>
                                 </Card>
@@ -193,8 +206,9 @@ export default function ShowBarber(props) {
                 </Row>
                 <Row>
                     <Col>
-                        {localStorage.getItem('role') != 'Barber' ?
-                        <Button size='lg' href={`/booking/${barberDetails.id}`} style={{ marginTop:'20px' }}>
+                        {localStorage.getItem('role') == 'Customer' ?
+                        <Button className="onebarber_btn" size='lg'
+                        href={`/booking/${barberDetails.id}`} style={{ marginTop:'20px' }}>
                             Book This Barber
                         </Button>
                         : ''}

@@ -14,6 +14,7 @@ class BarberController extends Controller
 
         foreach($barbers as $barber) {
             $barber->user->address;
+            $barber->barber_service;
         }
 
         return $barbers;

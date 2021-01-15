@@ -3,7 +3,7 @@ import {Nav, Navbar, NavDropdown, Image, DropdownButton, Dropdown, Badge} from '
 import api from '../api';
 import {useHistory} from 'react-router-dom';
 import CookieService from '../Service/CookieService';
-import '../../css/Home.css';
+import '../../css/Head_Log_Reg.css';
 import logo from '../../../public/Images/logo.png';
 
 import firebase from 'firebase';
@@ -53,18 +53,24 @@ export default function Header() {
         if(cookie) {
             getUserDetails();
         }
-    }, [isUserNotified, notificationOpened]);
+    }, []);
+
+    // [isUserNotified, notificationOpened]
+    useEffect(() => {
+        getNotificationInfo(userInfo);
+    }, [userInfo, isUserNotified, notificationOpened])
 
     function getUserDetails() {
         api.getUserInfo()
         .then(response => {
             setUserInfo(response.data);
-            getNotificationInfo(response.data);
+            // getNotificationInfo(response.data);
 
             messaging.requestPermission()
             .then(async function() {
                 const token = await messaging.getToken();
 
+                console.log(token)
                 const userRef = db.collection('fcm_token').doc(token);
 
                 userRef.set({
@@ -165,8 +171,8 @@ export default function Header() {
     function displayGuest() {
         return (
             <>
-                <Nav.Link href="/login">Login</Nav.Link>
-                <Nav.Link href="/register">Register</Nav.Link>
+                <Nav.Link className='navlink' href="/login">Login</Nav.Link>
+                <Nav.Link className='navlink' href="/register">Register</Nav.Link>
             </>
         );
     }
@@ -174,8 +180,8 @@ export default function Header() {
     return (
        <>
         <Navbar collapseOnSelect expand='lg' sticky="top" style={{ backgroundColor: '#DAA520' }}>
-            <Navbar.Brand className="navlink"  href="/home">
-                <Image src={logo} height="60px" width="70px"
+            <Navbar.Brand  href="/home">
+                <Image src={logo} height="50px" width="60px"
                 alt="logo" />
              </Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -184,44 +190,56 @@ export default function Header() {
                     <Nav.Link className="navlink" href="/home">Home</Nav.Link>
                     <Nav.Link className="navlink" href="/aboutus">About Us</Nav.Link>
                     <Nav.Link className="navlink" href="/barbers">Barbers</Nav.Link>
+
                     {userInfo.roles == 'Customer' || role == 'Customer' ?
                     <Nav.Link className="navlink" href="/booking">Book!</Nav.Link>
                     : ''}
+
                     {userInfo.roles == 'Barber' || role == 'Barber'?
-                    <Nav.Link className="navlik" href="/requests" >Requests</Nav.Link>
+                    <Nav.Link className="navlink" href="/requests" >Requests</Nav.Link>
                     : ''}
+
                 </Nav>
-                <div className="dropdown-container" style={{ position: 'relative' }}>
-                    <DropdownButton
-                    menuAlign='right'
-                    id="notification_dropdown"
-                    title={
-                        <>
-                            <i className="far fa-bell" />
-                            &nbsp;
-                            <span
-                            style={{ backgroundColor:'#00356f' }}>
-                                <Badge style={{ color: 'white' }}>{notificationInfo.count}</Badge>
-                            </span>
-                        </>
-                    }
-                    onClick={() => handleNotifications()}>
-                        {notificationInfo.length != 0 ?
-                        notificationInfo.messages.map((message, index) => {
-                            return (
-                                <>
-                                    <Dropdown.Item href='/requests'  key={index}
-                                    className="notification_dropItem">
-                                        {message}
-                                    </Dropdown.Item>
-                                    {index == notificationInfo.messages.length - 1 ?
-                                    <> </> : <Dropdown.Divider key={index+100}/>}
-                                </>
-                            );
-                        })
-                        : ''}
-                    </DropdownButton>
-                </div>
+
+                {cookie ?
+                    <div className="dropdown-container" style={{ position: 'relative' }}>
+
+                        <DropdownButton
+                        menuAlign='right'
+                        id="notification_dropdown"
+                        title={
+                            <>
+                                <i className="far fa-bell" />
+                                &nbsp;
+                                <span
+                                style={{ backgroundColor:'#00356f' }}>
+                                    <Badge style={{ color: 'white' }}>{notificationInfo.count}</Badge>
+                                </span>
+                            </>
+                        }
+                        onClick={() => handleNotifications()}>
+
+                            {notificationInfo.length != 0 ?
+                            notificationInfo.messages ?
+                            <div style={{ height:'180px',  minWidth:'400px' }}>
+                                {notificationInfo.messages.map((message, index) => {
+                                    return (
+                                        <>
+                                            <Dropdown.Item href='/requests'  key={index}
+                                            className="notification_dropItem">
+                                                {message}
+                                            </Dropdown.Item>
+                                            {index == notificationInfo.messages.length - 1 ?
+                                            <span key={`random+ ${index}`}> </span> : <Dropdown.Divider key={index+100}/>}
+                                        </>
+                                    );
+                                })}
+                            </div>
+                            : <li key={'random200'} style={{ marginLeft:'20px', color:'beige' }}>no notifications</li>
+                            : ''}
+                        </DropdownButton>
+                    </div>
+                : ''}
 
                 {cookie ? <Nav.Link href="/chat"><i className="fas fa-comments" /></Nav.Link>
                 : ''}

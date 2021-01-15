@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import {useHistory} from 'react-router-dom';
 import {Button, Form, Modal, Col} from 'react-bootstrap';
 import api from '../../../api';
+import '../../../../css/Profile.css';
 
 export default function AddAddress(props) {
     const [openForm, setOpenForm] = useState(true);
@@ -29,21 +30,20 @@ export default function AddAddress(props) {
 
     return(
         <Modal show={openForm ? props.props : false} onHide={() => handleClose()}>
-            <Modal.Header closeButton>
-            <Modal.Title>Salon Address</Modal.Title>
+            <Modal.Header style={{ backgroundColor:'beige' }} closeButton>
+            <Modal.Title style={{ color: '#DAA520' }}>Upload Image</Modal.Title>
             </Modal.Header>
-            <Modal.Body>
+            <Modal.Body style={{ backgroundColor:'beige' }}>
                 <Form onSubmit={handleAddressInfo}
                 encType="multipart/form-data">
                     <Form.Row>
                         <Form.Group as={Col}>
                             <Form.File
-                            label="Upload Image"
                             onChange={(e) => {setNewImage(e.target.files[0])}}
                             required />
                         </Form.Group>
                     </Form.Row>
-                    <Button type='submit'>
+                    <Button className="profile_btn" type='submit'>
                         Submit
                     </Button>
                 </Form>

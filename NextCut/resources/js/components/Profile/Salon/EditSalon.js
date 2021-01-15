@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import api from '../../../api';
 import {Button, Form, Modal, Col, InputGroup} from 'react-bootstrap';
+import '../../../../css/Profile.css';
+import { validate } from 'uuid';
 
 export default function EditSalon(props) {
     const [openForm, setOpenForm] = useState(true);
@@ -9,6 +11,7 @@ export default function EditSalon(props) {
     const [hourClose, setHourClose] = useState(props.info.hour_close);
     const [dayOpen, setDayOpen] = useState(props.info.day_open);
     const [dayClose, setDayClose] = useState(props.info.day_close);
+    const [validated, setValidated] = useState(false);
     const dayOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
     const handleClose = () => {
@@ -16,8 +19,16 @@ export default function EditSalon(props) {
         props.setShow(false); //setting Show to false to update it in the parent's component (Profile)
     }
 
-    function handleSalonInfo() {
+    function handleSalonInfo(event) {
+        const form = event.currentTarget;
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+
         event.preventDefault();
+        setValidated(true);
+
         const salonInfo = {
             'salon_name': salon,
             'hour_open': hourOpen,
@@ -39,6 +50,7 @@ export default function EditSalon(props) {
         else {
             alert('Closing Hours needs to be later than Opening Hours');
             document.getElementById('opening_hour').value = '';
+            setHourOpen('');
         }
     }
 
@@ -48,6 +60,7 @@ export default function EditSalon(props) {
         else {
             alert('Closing Hours needs to be later than Opening Hours');
             document.getElementById('closing_hour').value = '';
+            setHourClose('');
         }
     }
 
@@ -77,19 +90,23 @@ export default function EditSalon(props) {
 
     return(
         <Modal show={openForm ? props.props : false} onHide={() => handleClose()}>
-            <Modal.Header closeButton>
-            <Modal.Title>Salon Schedule</Modal.Title>
+            <Modal.Header  style={{ backgroundColor:'beige' }} closeButton>
+            <Modal.Title style={{ color: '#DAA520' }}>Salon Info</Modal.Title>
             </Modal.Header>
-            <Modal.Body>
-                <Form onSubmit={handleSalonInfo}>
+            <Modal.Body  style={{ backgroundColor:'beige' }}>
+                <Form noValidate validated={validated} onSubmit={handleSalonInfo}>
                     <Form.Row>
                         <Form.Group as={Col}>
                             <Form.Control
                             type="text"
+                            className="profile_input"
                             placeholder="Salon Name"
                             onChange={(e) => {setSalon(e.target.value)}}
                             defaultValue={salon}
                             required />
+                            <Form.Control.Feedback type="invalid">
+                                Please provide a valid name.
+                            </Form.Control.Feedback>
                         </Form.Group>
                     </Form.Row>
                     <Form.Row>
@@ -97,52 +114,68 @@ export default function EditSalon(props) {
                             <Form.Control
                             type="time"
                             id='opening_hour'
+                            className="profile_input"
                             placeholder="Opening Hour"
                             onChange={(e) => {hourOpenHandler(e)}}
                             defaultValue={hourOpen}
                             required />
+                            <Form.Control.Feedback type="invalid">
+                                Please provide a valid hour.
+                            </Form.Control.Feedback>
                         </Form.Group>
                         <Form.Group as={Col}>
                             <Form.Control
                             type="time"
                             id='closing_hour'
+                            className="profile_input"
                             placeholder="Closing Hour"
                             onChange={(e) => {hourCloseHandler(e)}}
                             defaultValue={hourClose}
                             required />
+                            <Form.Control.Feedback type="invalid">
+                                Please provide a valid hour.
+                            </Form.Control.Feedback>
                         </Form.Group>
                     </Form.Row>
                     <Form.Row>
                         <Form.Group as={Col}>
-                            <Form.Text>From</Form.Text>
+                            <Form.Text style={{ color:'#00356f' }}>From</Form.Text>
                             <Form.Control
                             as="select"
+                            className="profile_input"
                             id = "opening_day"
                             onChange={(e) => {dayOpenHandler(e)}}
                             defaultValue={props.info.day_open}
-                            required>
+                            required >
                                 {dayOfWeek.map((day, index) => {
                                     return <option key={index} value={day}>{day}</option>
                                     }
                                 )}
                             </Form.Control>
+                            <Form.Control.Feedback type="invalid">
+                                Please provide a valid day.
+                            </Form.Control.Feedback>
                         </Form.Group>
                         <Form.Group as={Col}>
-                            <Form.Text>To</Form.Text>
+                            <Form.Text style={{ color:'#00356f' }}>To</Form.Text>
                             <Form.Control
                             as="select"
+                            className="profile_input"
                             id='closing_day'
                             onChange={(e) => {dayCloseHandler(e)}}
                             defaultValue={dayClose}
-                            required>
+                            required >
                                 {dayOfWeek.map((day, index) => {
                                     return <option key={index} value={day}>{day}</option>
                                     }
                                 )}
                             </Form.Control>
+                            <Form.Control.Feedback type="invalid">
+                                Please provide a valid day.
+                            </Form.Control.Feedback>
                         </Form.Group>
                     </Form.Row>
-                    <Button type='submit'>
+                    <Button className="profile_btn" type='submit'>
                         Submit
                     </Button>
                 </Form>

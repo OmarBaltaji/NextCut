@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import api from '../../../api';
 import {Button, Form, Modal, Col} from 'react-bootstrap';
+import '../../../../css/Profile.css';
 
 export default function AddSchedule(props) {
     const [openForm, setOpenForm] = useState(true);
@@ -8,6 +9,7 @@ export default function AddSchedule(props) {
     const [hourClose, setHourClose] = useState('');
     const [dayOpen, setDayOpen] = useState('Monday');
     const [dayClose, setDayClose] = useState('');
+    const [validated, setValidated] = useState(false);
     const dayOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
     useEffect(() => {
@@ -19,8 +21,17 @@ export default function AddSchedule(props) {
         props.setShow(false); //setting Show to false to update it in the parent's component (Profile)
     }
 
-    function handleScheduleInfo() {
+    function handleScheduleInfo(event) {
+        const form = event.currentTarget;
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+
         event.preventDefault();
+
+        setValidated(true);
+
         const salonInfo = {
             'hour_open': hourOpen,
             'hour_close': hourClose,
@@ -79,34 +90,43 @@ export default function AddSchedule(props) {
 
     return(
         <Modal show={openForm ? props.props : false} onHide={() => handleClose()}>
-            <Modal.Header closeButton>
-            <Modal.Title>Salon Schedule</Modal.Title>
+            <Modal.Header style={{ backgroundColor:'beige' }} closeButton>
+            <Modal.Title style={{ color: '#DAA520' }}>Private Schedule</Modal.Title>
             </Modal.Header>
-            <Modal.Body>
-                <Form onSubmit={handleScheduleInfo}>
+            <Modal.Body style={{ backgroundColor:'beige' }}>
+                <Form noValidate validated={validated} onSubmit={handleScheduleInfo}>
                     <Form.Row>
                         <Form.Group as={Col}>
                             <Form.Control
                             type="time"
+                            className="profile_input"
                             placeholder="Opening Hour"
                             id="opening_hour"
                             onChange={(e) => {hourOpenHandler(e)}}
                             required />
+                            <Form.Control.Feedback type="invalid">
+                                Please provide a valid hour.
+                            </Form.Control.Feedback>
                         </Form.Group>
                         <Form.Group as={Col}>
                             <Form.Control
                             type="time"
+                            className="profile_input"
                             id='closing_hour'
                             placeholder="Closing Hour"
                             onChange={(e) => {hourCloseHandler(e)}}
                             required />
+                            <Form.Control.Feedback type="invalid">
+                                Please provide a valid hour.
+                            </Form.Control.Feedback>
                         </Form.Group>
                     </Form.Row>
                     <Form.Row>
                         <Form.Group as={Col}>
-                            <Form.Text>From</Form.Text>
+                            <Form.Text style={{ color:'#00356f' }}>From</Form.Text>
                             <Form.Control
                             as="select"
+                            className="profile_input"
                             onChange={(e) => {dayOpenHandler(e)}}
                             id='opening_day'
                             required>
@@ -115,11 +135,15 @@ export default function AddSchedule(props) {
                                     }
                                 )}
                             </Form.Control>
+                            <Form.Control.Feedback type="invalid">
+                                Please provide a valid day.
+                            </Form.Control.Feedback>
                         </Form.Group>
                         <Form.Group as={Col}>
-                            <Form.Text>To</Form.Text>
+                            <Form.Text style={{ color:'#00356f' }}>To</Form.Text>
                             <Form.Control
                             as="select"
+                            className="profile_input"
                             onChange={(e) => {dayCloseHandler(e)}}
                             id='closing_day'
                             required>
@@ -128,9 +152,12 @@ export default function AddSchedule(props) {
                                     }
                                 )}
                             </Form.Control>
+                            <Form.Control.Feedback type="invalid">
+                                Please provide a valid day.
+                            </Form.Control.Feedback>
                         </Form.Group>
                     </Form.Row>
-                    <Button type='submit'>
+                    <Button className="profile_btn" type='submit'>
                         Submit
                     </Button>
                 </Form>

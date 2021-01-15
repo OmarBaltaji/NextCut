@@ -32,16 +32,17 @@ db.settings({
 
 export default function BookBarber() {
     const [userInfo, setUserInfo] = useState([]);
-    const[barber, setBarber] = useState([]);
-    const[barberServicesInfo, setBarberServicesInfo] = useState([]);
+    const [barber, setBarber] = useState([]);
+    const [barberServicesInfo, setBarberServicesInfo] = useState([]);
     const [chosenServices, setChosenServices] = useState([]);
-    const [appLocation, setAppLocation] = useState('Home');
+    const [appLocation, setAppLocation] = useState('Salon');
     const [barberPrivateSchedule, setBarberPrivateSchedule] = useState([])
     const [timeSelected, setTimeSelected] = useState();
-    const [paymentMethod, setPaymentMethod] = useState('cash');
+    const [paymentMethod, setPaymentMethod] = useState('Cash');
     const [customerRequest, setCustomerRequest] = useState([]);
     const [previousBookings, setPreviousBookings] = useState(false);
     const [bookedTimeslots, setBookedTimeslots] = useState([]);
+    const [customerAddress, setCustomerAddress] = useState([]);
     const param = useParams();
     const history = useHistory();
     let openHours = [];
@@ -63,7 +64,7 @@ export default function BookBarber() {
         getBarberPrivateSchedule();
         getPreviousBookignsDetails();
         getAllPrevBookedTimes();
-
+        getCustomerAddressInfo();
     }, []);
 
     function getUserDetails() {
@@ -73,7 +74,11 @@ export default function BookBarber() {
             if(response.data.roles != 'Customer') {
                 history.push('/home');
             }
-        })
+        }).catch(error=> {
+            if(error.response.status == 401) {
+                history.push('/home');
+            }
+        });
     }
 
     function getThisBarberInfo() {
@@ -93,7 +98,11 @@ export default function BookBarber() {
     function getBarberPrivateSchedule() {
         api.getBarberSchedule(param.id)
         .then(response => {
-            setBarberPrivateSchedule(response.data);
+            if(Object.keys(response.data).length == 0) {
+                // console.log('empty')
+            }else {
+                setBarberPrivateSchedule(response.data);
+            }
         });
     }
 
@@ -111,10 +120,19 @@ export default function BookBarber() {
         });
     }
 
+    console.log(previousBookings)
+
     function getAllPrevBookedTimes() {
         api.getBookedTimes()
         .then(response => {
             setBookedTimeslots(response.data);
+        })
+    }
+
+    function getCustomerAddressInfo() {
+        api.getCustomerAddress()
+        .then(response => {
+            setCustomerAddress(response.data[0]);
         })
     }
 
@@ -169,14 +187,14 @@ export default function BookBarber() {
                 let startTime = timeSlot.time_booked;
                 let start_date_time = `${splitDate[3]}-${month}-${splitDate[2]} ${startTime}:00`;
 
-                let timeSplit = timeSlot.time_booked.split(':'); //get hour
+                let timeSplit = timeSlot.time_booked.split(':'); //split hour and mins
                 let endTime;
                 if(parseInt(timeSlot.total_time) < 60) {
-                    endTime= `${timeSplit[0]}:${timeSlot.total_time}:00`
+                    endTime= `${timeSplit[0]}:${parseInt(timeSplit[1]) + parseInt(timeSlot.total_time)}:00`
                 } else {
                     let hour_to_add = Math.floor(parseInt(timeSlot.total_time)/60);
                     let mins_remaining =  parseInt(timeSlot.total_time) - hour_to_add*60;
-                    endTime = `${parseInt(timeSplit[0]) + parseInt(hour_to_add)}:${mins_remaining}:00`;
+                    endTime = `${parseInt(timeSplit[0])+parseInt(hour_to_add)}:${parseInt(timeSplit[1])+mins_remaining}:00`;
                 }
 
                 let end_date_time = `${splitDate[3]}-${month}-${splitDate[2]} ${endTime}`;
@@ -221,8 +239,10 @@ export default function BookBarber() {
         return (
             <>
                 {
-                <span>
-                    Total: {chosenServices.length != 0 ? sum_price + '$, ': ''}
+                <span style={{ color:'#00356f' }}>
+                    <strong style={{ textDecoration:'underline', color:'#00356f' }}>Total price and time:</strong>
+                    &nbsp;
+                    {chosenServices.length != 0 ? sum_price + '$, ': 0}
                     {chosenServices.length != 0 ? sum_time + ' mins' : ''}
                 </span>
                 }
@@ -244,14 +264,22 @@ export default function BookBarber() {
 
         return (
             <>
-                <span>{time_select_array[0] + ', '}</span>
-                <span>{time_select_array[1] + ' ' + time_select_array[2] + ' ' + time_select_array[3] + ' at '}</span>
-                <span>{hour_selected[0] + ':' + hour_selected[1]}</span>
+                <span className="time_selected">{time_select_array[0] + ', '}</span>
+                <span className="time_selected">{time_select_array[1] + ' ' + time_select_array[2] + ' ' + time_select_array[3] + ' at '}</span>
+                <span className="time_selected">{hour_selected[0] + ':' + hour_selected[1]}</span>
             </>
         );
     }
 
     function handleRedirectToConfirmation() {
+        if(chosenServices.length == 0) {
+            alert('You need to select services first');
+            return;
+        } else if (!timeSelected) {
+            alert('You need to select date and time');
+            return;
+        }
+
         let sum_price = 0;
         let sum_time = 0;
         let services_id = [];
@@ -269,12 +297,16 @@ export default function BookBarber() {
         let booked_date = time_select_array[0] + ' ' + time_select_array[1] + ' ' + time_select_array[2] + ' ' + time_select_array[3];
         let booked_time = hour_selected[0] + ':' + hour_selected[1];
 
+        const address =
+        customerAddress && appLocation == 'Home' ? `${customerAddress.city}, ${customerAddress.street}, ${customerAddress.building}, ${customerAddress.near}` : '';
+
         const info = {
             date_booked: booked_date,
             time_booked: booked_time,
             total_price: sum_price,
             total_time: sum_time,
             appointment_location: appLocation,
+            customer_address: address,
             barber_service_id: services_id,
         };
 
@@ -288,6 +320,7 @@ export default function BookBarber() {
                         chosen_services: chosenServices,
                         app_location: appLocation,
                         barber_name: barber.user.name,
+                        customer_address: customerAddress ?  customerAddress : '',
                     }
                 });
 
@@ -299,7 +332,7 @@ export default function BookBarber() {
                 })
 
         }).catch(error => {
-            //
+            console.log(error)
         })
     }
 
@@ -345,6 +378,7 @@ export default function BookBarber() {
                     toUserID: barber.user.FirebaseUID, //barber
                     fromUserID: userInfo.FirebaseUID, //logged in user
                     isOpened: false,
+                    created: firebase.database.ServerValue.TIMESTAMP,
                 });
                 console.log(response.data);
             });
@@ -357,7 +391,7 @@ export default function BookBarber() {
             <Container>
                 <Row>
                     <Col>
-                        <h3>
+                        <h3 className="book_subheaders">
                             You are booking an appointment with {barber.length != 0 ? barber.user.name : ''}
                         </h3>
                     </Col>
@@ -366,15 +400,17 @@ export default function BookBarber() {
                     <Row>
                         <Col lg={6}>
                             <InputGroup>
-                                <Form.Label>Services: &nbsp;</Form.Label>
+                                <Form.Label className="book_labels">Services: &nbsp;</Form.Label>
                                 <Form.Control
                                 as="select"
+                                className="booking_input"
                                 multiple
                                 required
                                 onChange={(e) => hanldeChosenServices(e)}>
                                     {barberServicesInfo.length != 0 ?
                                     barberServicesInfo.map(barberService =>
                                     <option key={barberService.id}
+                                    className="option"
                                     value={[
                                         barberService.price, barberService.estimated_time,
                                         barberService.id, barberService.service.type
@@ -390,16 +426,25 @@ export default function BookBarber() {
                         </Col>
                         <Col lg={6}>
                             <InputGroup>
-                                <Form.Label>Appointment Location:  &nbsp;</Form.Label>
+                                <Form.Label className="book_labels">Appointment Location:  &nbsp;</Form.Label>
                                 <Form.Control
+                                className="booking_input"
                                 as="select"
                                 id = 'appointment'
                                 required
                                 onChange={(e) => handleAppLocation(e)}>
-                                    <option key={0} value={'Home'}>Home</option>
-                                    <option key={1} value={'Salon'}>Salon</option>
+                                    <option key={0} value={'Salon'}>Salon</option>
+                                    {barberPrivateSchedule.length == 0 || !customerAddress ?
+                                    <option key={1} disabled>Home</option>
+                                    : <option key={1} value={'Home'}>Home</option>}
                                 </Form.Control>
                             </InputGroup>
+                            {barberPrivateSchedule.length != 0 ?
+                            <></>
+                            :
+                            <small className="text-muted" style={{ marginLeft:'170px', fontWeight:'bold' }}>
+                                This barber doesn't provide service at home
+                            </small>}
                         </Col>
                     </Row>
                     <br/>
@@ -411,40 +456,25 @@ export default function BookBarber() {
                     <br/>
                     <Row>
                         <Col>
-                            <span>Time Selected: &nbsp;</span>
-                            {timeSelected ? displayChosenDateAndTime(): ''}
-                        </Col>
-                    </Row>
-                    <br/>
-                    <Row>
-                        <Col lg={3}>
-                            <Form.Group key={'inline-radio'}>
-                                <Form.Label as="legend">Payment Method</Form.Label>
-                                    <Form.Check
-                                    type="radio"
-                                    label="By Cash"
-                                    name="formHorizontalRadios"
-                                    inline
-                                    value='cash'
-                                    onClick={(e) => setPaymentMethod(e.target.value)}
-                                    defaultChecked
-                                    />
-                                    <Form.Check
-                                    type="radio"
-                                    label="Online Payment"
-                                    name="formHorizontalRadios"
-                                    inline
-                                    value='online'
-                                    onClick={(e) => setPaymentMethod(e.target.value)}
-                                    />
-                            </Form.Group>
+                            <span className="book_labels" style={{ textDecoration:'underline' }}>
+                                Time Selected:
+                            </span>
+                            &nbsp;
+                            {timeSelected ? displayChosenDateAndTime()
+                            : <span style={{ color:'#00356f' }}>None chosen yet</span>}
                         </Col>
                     </Row>
                     <br/>
                     {previousBookings == true ?
-                    <span>Cannot Book New Appointment Before The Previous One is completed</span>
-                    : <Button size='lg' block onClick={() => handleRedirectToConfirmation()}>Book Now!</Button> }
-
+                    <span style={{ color: '#00356f', fontWeight:'bold', fontSize:'18px', marginLeft:'390px',
+                    paddingBottom:'10px' }}>
+                        Cannot book more than one appointment
+                    </span>
+                    : <Button className="booking_btn" size='lg' block
+                    onClick={() => handleRedirectToConfirmation()}>
+                        Book Now!
+                    </Button> }
+                    <br/>
             </Container>
         </>
     );

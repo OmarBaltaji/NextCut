@@ -1,0 +1,158 @@
+.booking_btn {
+    background-color: #DAA520;
+    border-color: #DAA520;
+}
+
+.booking_btn:hover {
+    background-color: #00356f;
+    color: beige !important;
+}
+
+.booking_btn:active {
+    background-color: #00356f !important;
+    color: beige !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.booking_btn:focus {
+    box-shadow: none !important;
+    background-color: #00356f !important;
+    outline: none !important;
+    outline-offset: none !important;
+}
+
+.barberBooking_cards {
+    background-color: beige;
+}
+
+.booking_spans {
+    color: #00356f;
+    line-height: 200%;
+}
+
+.search_bar {
+    color: #00356f !important;
+}
+
+.search_bar:focus {
+    box-shadow: none;
+    outline: none !important;
+}
+
+.search_bar:active {
+    outline: none !important;
+    box-shadow: none;
+}
+
+.book_subheaders{
+    color: #DAA520;
+}
+
+.book_labels {
+    color: #00356f;
+    font-weight: bold;
+}
+
+.time_selected {
+    color: #00356f;
+}
+
+.booking_btn {
+    background-color: #DAA520;
+    border-color: #DAA520;
+}
+
+.booking_btn:hover {
+    background-color: #00356f;
+    color: beige !important;
+}
+
+.booking_btn:active {
+    background-color: #00356f !important;
+    color: beige !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.booking_btn:focus {
+    box-shadow: none !important;
+    outline: none !important;
+    outline-offset: none !important;
+}
+
+.booking_input{
+    color: #00356f;
+}
+
+.booking_input:focus{
+    box-shadow: none;
+    outline: none;
+}
+
+.booking_input::-webkit-scrollbar-track {
+    padding: 0 0;
+    background-color: #e8e8e8;
+}
+
+.booking_input::-webkit-scrollbar {
+    width: 6px;
+}
+
+.booking_input::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    box-shadow: inset 0 0 6px rgba(202, 190, 190, 0.3);
+    background-color: #00356f;
+    height: 10px !important;
+}
+
+.calendar {
+    background-color: beige;
+    color: #00356f;
+    box-shadow: 10px 10px 5px rgba(0,0,0,0.2) !important;
+}
+
+.calendar .body .row .col {
+    background-color: beige;
+    color: #00356f;
+}
+
+.calendar .body .row .col:hover {
+    background-color: rgb(233, 233, 208);
+    /* color: #00356f; */
+}
+
+.calendar .body .row .disabled {
+    color: silver;
+}
+
+.calendar .timeSelector{
+    background-color: beige;
+    color: #00356f;
+    box-shadow: 10px 10px 5px rgba(0,0,0,0.2) !important;
+}
+
+.calendar .body .row .selected {
+    border: solid 4px #DAA520;
+    border-inline: transparent;
+}
+
+.calendar .body .row .selected:focus {
+    outline: #DAA520;
+    border-inline: transparent;
+}
+
+.calendar .body .row .selected:active {
+    outline: #DAA520;
+    border-inline: transparent;
+}
+
+.calendar .body .col:active {
+    outline: none;
+}
+
+.form-control:focus {
+    border-color: inherit;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }

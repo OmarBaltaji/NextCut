@@ -269,7 +269,7 @@ export  default function ChatBoard(props){
                                 <time>{moment(Number(item.timestamp)).format('lll')}</time>
                             </div>
                         )
-                    } else if (item.type === 1) {
+                    } else if (item.type === 1) { //if image is sent
                         viewListMessage.push(
                             <div className="viewItemRight2" key={item.timestamp}>
                                 <img
@@ -284,7 +284,7 @@ export  default function ChatBoard(props){
 
                         )
                     } else {
-                        viewListMessage.push(
+                        viewListMessage.push( //if gif is sent
                             <div className="viewItemRight3" key={item.timestamp}>
                                 <img
                                     className="gifItemRight"
@@ -310,25 +310,28 @@ export  default function ChatBoard(props){
                                 </div>
                             </div>
                         )
-                    } else if (item.type === 1) {
+                    } else if (item.type === 1) { //if image sent
                         viewListMessage.push(
-                            <div className="viewWrapItemLeft2" key={item.timestamp}>
-                                <div className="viewWrapItemLeft3">
-                                    <div className="viewItemLeft2">
-                                        <img
-                                            className="imgItemLeft"
-                                            src={item.content}
-                                            alt="content message"
-                                        />
-                                        <time className="textTimeLeft">
-                                            {moment(Number(item.timestamp)).format('lll')}
-                                        </time>
+                            <>
+                                <div className="viewWrapItemLeft2" key={item.timestamp}>
+                                    <div className="viewWrapItemLeft3">
+                                        <div className="viewItemLeft2">
+                                            <img
+                                                className="imgItemLeft"
+                                                src={item.content}
+                                                alt="content message"
+                                            />
+                                        </div>
+
                                     </div>
                                 </div>
-                            </div>
+                                <time className="textTimeLeft">
+                                                {moment(Number(item.timestamp)).format('lll')}
+                                </time>
+                            </>
                         )
                     } else {
-                        viewListMessage.push(
+                        viewListMessage.push( //if gif sent
                             <div className="viewWrapItemLeft2" key={item.timestamp}>
                                 <div className="viewWrapItemLeft3">
                                     <div className="viewItemLeft3" key={item.timestamp}>
@@ -339,9 +342,9 @@ export  default function ChatBoard(props){
                                         />
                                     </div>
                                 </div>
-                                <time style={{ float:'left' }} className="textTimeLeft">
-                                        {moment(Number(item.timestamp)).format('lll')}
-                                    </time>
+                                <time style={{ float:'left' }} className="textTimeLeftGif">
+                                    {moment(Number(item.timestamp)).format('lll')}
+                                </time>
                             </div>
                         )
                     }

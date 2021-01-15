@@ -10,8 +10,8 @@
 }
 
 .headerChatBoard {
-    border-bottom: 1px solid #ffffff;
-    background-color: #ffffff;
+    border-bottom: 1px solid beige;
+    background-color: beige;
     padding: 5px;
     display: flex;
     align-items: center;
@@ -21,7 +21,7 @@
 
 .textHeaderChatBoard {
     font-weight: bold;
-    color: #203152;
+    color: #00356f;
     margin-left: 10px;
 }
 
@@ -36,7 +36,7 @@
 
 time {
     font-size: 11px;
-    color: rgb(97, 94, 94);
+    color: #2f2f2f;
     float: right;
 }
 
@@ -51,7 +51,7 @@ time {
 .viewListContentChat::-webkit-scrollbar-thumb {
     border-radius: 10px;
     box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-    background-color: #203152;
+    background-color: #00356f;
     height: 70px;
 }
 
@@ -61,7 +61,7 @@ time {
     align-items: center;
     justify-content: center;
     height: 70px;
-    border-top: 1px solid #ffffff;
+    border-top: 1px solid beige;
 }
 
 .icOpenGallery {
@@ -93,6 +93,7 @@ time {
 }
 
 .viewInput {
+    background-color: beige;
     flex: 1;
     border-radius: 4px;
     padding-left: 10px;
@@ -103,6 +104,7 @@ time {
 
 .viewInput:focus {
     outline: 0;
+    background-color: beige;
 }
 
 input::placeholder {
@@ -114,7 +116,7 @@ input::placeholder {
 .viewItemRight { /*message sent*/
     width: 300px;
     height: auto;
-    background-color: #eaea8b;
+    background-color: #DAA520;
     align-self: flex-end;
     margin-right: 20px;
     margin-top: 10px;
@@ -184,7 +186,7 @@ input::placeholder {
 .viewItemLeft {  /*message received*/
     width: 300px;
     height: auto;
-    background-color: #cfdfff;
+    background-color: beige;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
     border-bottom-left-radius: 0px;
@@ -285,21 +287,27 @@ input::placeholder {
 }
 
 .textTimeRight {
-    color: #808888;
-    font-size: 12px;
-    font-style: italic;
+    color: #404040;
+    font-size: 11px;
     margin-left: 50px;
     margin-top: 5px;
 }
 
 .textTimeLeft {
     margin-top: 5px;
+    width: 150px;
+    padding-right:5px;
+}
+
+.textTimeLeftGif {
+    margin-top: 5px;
+    margin-bottom: 15px;
+    width: 150px;
 }
 
 .textTimeRightGif {
-    color: #808888;
-    font-size: 12px;
-    font-style: italic;
+    color: #404040;
+    font-size: 11px;
     margin-left: 20px;
 }
 

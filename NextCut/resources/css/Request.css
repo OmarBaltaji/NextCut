@@ -1,3 +1,56 @@
 .td_request {
     text-align: center;
+    vertical-align: middle !important;
+}
+
+.request_table {
+    background-color: beige;
+}
+
+.request_thd {
+    color: #00356f;
+    text-align: center;
+    vertical-align: middle !important;
+}
+
+table.table-bordered > tbody > tr > td {
+    border:1px solid silver;
+}
+
+table.table-bordered > thead > tr > th {
+    border:1px solid silver;
+}
+
+.request_thd li {
+    list-style-type: square;
+    text-align: left;
+}
+
+.request_subheaders {
+    color: #DAA520;
+}
+
+.rbc-day-slot .rbc-time-slot {
+    border: unset;
+}
+
+.rbc-timeslot-group:nth-child(4n+1),
+.rbc-timeslot-group:nth-child(4n+2),
+.rbc-timeslot-group:nth-child(4n+3),
+.rbc-timeslot-group:nth-child(4n+4) {
+       /* or 4n+1 */
+    background-color: #fefefe;
+    border-width:0px;
+    margin:0;
+    /* padding: 0 135px; */
+    border-color:black;
+}
+
+
+.rbc-timeslot-group:nth-child(4n+1) {
+     border-top: 1px solid #ccc;
+}
+
+.nothing_request {
+    color: #00356f;
 }

@@ -1,17 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import {useHistory, useParams} from 'react-router-dom';
-import Header from '../Header';
 import api from '../../api';
-import axios from 'axios';
 import {Button, Form, InputGroup, Col, Card, Modal} from 'react-bootstrap';
-import CookieService from '../../Service/CookieService';
+import '../../../css/Profile.css';
 
 export default function EditProfile(props) {
     const [openForm, setOpenForm] = useState(true);
-    const [userInfo, setUserInfo] = useState([]);
-    const [name, setName] = useState(props.info.name);
+    const [duplicateError, setDuplicateError] = useState();
     const [phoneNumber, setPhoneNumber] = useState(props.info.phone_number);
-    const [email, setEmail] = useState(props.info.email);
     const [errs, setErrs] = useState([]);
 
     const handleClose = () => {
@@ -22,9 +17,7 @@ export default function EditProfile(props) {
     function editHandler(event) {
         event.preventDefault();
         const newInfo = {
-            'name': name,
-            'email': email,
-            'phone_number': phoneNumber,
+            'phone_number': String(phoneNumber),
         };
 
         api.updateUserInfo(
@@ -33,14 +26,18 @@ export default function EditProfile(props) {
                 handleClose();
                 window.location.reload();
             }).catch(error => {
-                setErrs(error.response.data.errors);
-            });
+                if(error.response.status == 500) {
+                    setDuplicateError('Phone number already in use. Duplicate phone numbers cannot exist')
+                } else {
+                    setErrs(error.response.data.errors);
+                }
+            })
     }
 
     function displayError (field) {
         if (errs[field]) {
             return (
-                <span style={{ color: 'red', fontWeight:'bold' }}>
+                <span style={{ color: '#980000' }}>
                     {errs[field]}
                 </span>
             );
@@ -49,37 +46,24 @@ export default function EditProfile(props) {
 
     return (
         <Modal show={openForm ? props.props : false} onHide={() => handleClose()}>
-            <Modal.Header closeButton>
-            <Modal.Title>Salon Schedule</Modal.Title>
+            <Modal.Header style={{ backgroundColor:'beige' }} closeButton>
+                <Modal.Title style={{ color: '#DAA520' }}>Profile Info</Modal.Title>
             </Modal.Header>
-            <Modal.Body>
+            <Modal.Body  style={{ backgroundColor:'beige' }} >
                 <Form onSubmit={editHandler}>
                 {/* encType="multipart/form-data"> */}
-                    <Form.Group controlId="formBasicEmail" style={{ paddingTop: '20px' }}>
-                        <Form.Label>Full Name</Form.Label>
-                        <Form.Control
-                        type="text"
-                        defaultValue={props.info.name}
-                        onChange={(e) => {setName(e.target.value)}} />
-                        {displayError('name')}
-                    </Form.Group>
-                    <Form.Group controlId="formGroupEmail">
-                        <Form.Label>Email Address</Form.Label>
-                        <Form.Control
-                        type="email"
-                        defaultValue={props.info.email}
-                        onChange={(e) => {setEmail(e.target.value)}} />
-                        {displayError('email')}
-                    </Form.Group>
                     <Form.Group controlId="formGroupInput">
-                        <Form.Label>Phone Number</Form.Label>
+                        <Form.Label className="profile_label">Phone Number</Form.Label>
                         <Form.Control
-                        type="tel"
+                        type="number"
+                        placeholder="your mobile number"
+                        className="profile_input"
                         defaultValue={props.info.phone_number}
                         onChange={(e) => {setPhoneNumber(e.target.value)}} />
                         {displayError('phone_number')}
                     </Form.Group>
-                    <Button variant="primary" type="submit">
+                    <span style={{ color:'#980000', display:'block', marginBottom:'5px' }}>{duplicateError}</span>
+                    <Button className="profile_btn" type="submit">
                         Update
                     </Button>
                 </Form>

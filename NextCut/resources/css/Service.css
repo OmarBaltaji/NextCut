@@ -1,9 +1,9 @@
 .service_table {
-    background-color: white;
+    background-color: beige;
 }
 
 .div_table {
-    height: 26.8rem !important;
+    height: 365px !important;
     overflow: auto;
 }
 
@@ -14,4 +14,47 @@
 
 .label {
     margin-top: 5px;
+}
+
+.service_btn {
+    background-color: #DAA520;
+    border-color: #DAA520;
+}
+
+.service_btn:hover {
+    background-color: #00356f;
+    color: beige !important;
+}
+
+.service_btn:active {
+    background-color: #00356f !important;
+    color: beige !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.service_btn:focus {
+    box-shadow: none !important;
+    outline: none !important;
+    outline-offset: none !important;
+    background-color: #00356f !important;
+}
+
+.service_thd {
+    color: #00356f;
+}
+
+.label {
+    color: #00356f;
+}
+
+.service_input {
+    color: #00356f;
+}
+
+
+.service_input:focus {
+    color: #00356f;
+    box-shadow: none !important;
+    outline: none !important;
 }

@@ -1,0 +1,36 @@
+.about_subheader {
+    color: #DAA520
+}
+
+.about_p {
+    color: #00356f;
+    font-size: 20px;
+    line-height: 200%;
+}
+
+.about_btn {
+    background-color: #DAA520;
+    border-color: #DAA520;
+    color: beige !important;
+}
+
+.about_btn:hover {
+    background-color: #00356f;
+    border-color: #00356f;
+    color: beige !important;
+}
+
+.about_btn:active {
+    background-color: #00356f !important;
+    color: beige !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.about_btn:focus {
+    background-color: #00356f !important;
+    box-shadow: none !important;
+    outline: none !important;
+    outline-offset: none !important;
+}
+

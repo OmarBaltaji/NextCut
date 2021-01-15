@@ -20,23 +20,23 @@ export default function ProfileService() {
 
     return (
         <div className='div_table'>
-            <Table striped bordered hover>
+            <Table bordered hover>
                 <thead>
                     <tr>
-                        <th>#</th>
-                        <th>Type</th>
-                        <th>Price</th>
-                        <th>Time</th>
+                        <th className="profile_spans">#</th>
+                        <th className="profile_spans">Type</th>
+                        <th className="profile_spans">Price</th>
+                        <th className="profile_spans">Time</th>
                     </tr>
                 </thead>
                 <tbody>
                     {barberServices.map((barberService, index) => {
                         return (
                             <tr key={barberService.id}>
-                                <td>{index}</td>
-                                <td>{barberService.service.type}</td>
-                                <td>{barberService.price}</td>
-                                <td>{barberService.estimated_time}</td>
+                                <td className="profile_spans">{index}</td>
+                                <td className="profile_spans">{barberService.service.type}</td>
+                                <td className="profile_spans">{barberService.price}</td>
+                                <td className="profile_spans">{barberService.estimated_time}</td>
                             </tr>
                         )
                     })}

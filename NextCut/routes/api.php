@@ -59,7 +59,15 @@ Route::group(['middleware' => 'auth:api'], function () {
 
     Route::get('/users', [UserController::class, 'index']);
 
+    Route::post('/user/photo', [UserController::class, 'updatePhoto']);
+
     Route::post('/savefcmtoken', [ FirebaseController::class, 'save_fcm_token']);
+
+    Route::get('/user/customeraddress' , [AddressController::class, 'showCustomerAddress']);
+
+    Route::post('/user/customeraddress' , [AddressController::class, 'storeCustomerAddress']);
+
+    Route::put('/user/customeraddress/{address}' , [AddressController::class, 'updateCustomerAddress']);
 
     Route::put('/user/{user}', [UserController::class, 'update']);
 

@@ -5,10 +5,10 @@ export default function SalonInfo(props) {
     console.log(props.props[0])
     return (
         <>
-            <span>Opens: {props.props[0].hour_open}</span> &nbsp;
-            <span>| &nbsp;Closes: {props.props[0].hour_close}</span> <br/> <br/>
-            <span>From {props.props[0].day_open}</span> &nbsp;
-            <span>To {props.props[0].day_close}</span>
+            <span className="schedule_spans"><u>Opens:</u> {props.props[0].hour_open}</span> &nbsp;
+            <span className="schedule_spans">| &nbsp;<u>Closes:</u> {props.props[0].hour_close}</span> <br/>
+            <span className="schedule_spans"><u>From:</u> {props.props[0].day_open}</span> <br/>
+            <span className="schedule_spans"><u>To:</u> {props.props[0].day_close}</span>
         </>
     );
 }

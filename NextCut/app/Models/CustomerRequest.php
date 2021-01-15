@@ -15,6 +15,7 @@ class CustomerRequest extends Model
         'total_price',
         'total_time',
         'appointment_location',
+        'customer_address',
         'completed',
         'state',
     ];

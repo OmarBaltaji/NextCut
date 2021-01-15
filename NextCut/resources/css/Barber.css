@@ -1,10 +1,10 @@
-.show_barber:hover {
-    cursor: pointer;
+.show_barber {
+    background-color: beige;
 }
 
-.barber_header {
-    font-weight: bold;
-    font-size: 21px;
+.show_barber:hover {
+    cursor: pointer;
+    background-color: rgb(207, 207, 201);
 }
 
 .service {
@@ -17,21 +17,129 @@
 }
 
 .card_title {
-    font-weight: bold;
-    text-decoration: underline;
-    font-size: 23px;
+    /* font-weight: bold; */
+    color: #DAA520;
+    font-size: 24px;
 }
 
 .clickable_photos:hover {
     cursor: pointer;
+    -webkit-filter: brightness(50%);
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    -ms-transition: all 1s ease;
+    transition: all 1s ease;
+    background-color: rgb(105, 105, 98);
 }
 
-.div_table {
-    height: 45%;
-    overflow: auto;
+
+.clickable_photos:focus {
+    -webkit-filter: brightness(50%);
+    background-color: rgb(105, 105, 98);
 }
 
 .no_margin {
     margin-top: 0 !important;
     margin-bottom: 0 !important;
+}
+
+.barbers_header {
+    margin:0 0 20px 0;
+    color: #DAA520;
+}
+
+.barbers_info {
+    color: #00356f;
+    line-height: 200%;
+}
+
+.barbers_name {
+    color: #00356f;
+}
+
+.private_schedule {
+    color: #00356f;
+    line-height: 200%;
+}
+
+.onebarber_info {
+    color: #00356f;
+    line-height: 200%;
+}
+
+.onebarber_thd {
+    color: #00356f;
+}
+
+.onebarber_card {
+    background-color: beige;
+}
+
+.service_card {
+    background-color: beige;
+}
+
+.div_table {
+    overflow-y: scroll;
+}
+
+.div_table::-webkit-scrollbar-track {
+    padding: 2px 0;
+}
+
+.div_table::-webkit-scrollbar {
+    width: 6px;
+}
+
+.div_table::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: #00356f;
+    height: 70px;
+}
+
+.gallery_card {
+    height: 686px;
+    margin-bottom: 20px;
+    overflow-y: scroll;
+    background-color: beige;
+}
+
+.gallery_card::-webkit-scrollbar-track {
+    padding: 2px 0;
+}
+
+.gallery_card::-webkit-scrollbar {
+    width: 4px;
+}
+
+.gallery_card::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: #00356f;
+}
+
+.onebarber_btn {
+    background-color: #DAA520;
+    border-color: #DAA520;
+}
+
+.onebarber_btn:hover {
+    background-color: #00356f;
+    color: beige !important;
+}
+
+.onebarber_btn:active {
+    background-color: #00356f !important;
+    color: beige !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.onebarber_btn:focus {
+    box-shadow: none !important;
+    outline: none !important;
+    outline-offset: none !important;
+    background-color: #00356f !important;
 }

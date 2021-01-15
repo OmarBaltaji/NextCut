@@ -2,9 +2,9 @@ const images = {
     ic_logout: require('../../images/ic_logout.png'),
     ic_default_avatar: require('../../images/ic_default_avatar.png'),
     ic_input_file: require('../../images/ic_input_file.png'),
-    ic_photo: require('../../images/ic_photo.png'),
-    ic_sticker: require('../../images/ic_sticker.png'),
-    ic_send: require('../../images/ic_send.png'),
+    ic_photo: require('../../images/ic_photo1.png'),
+    ic_sticker: require('../../images/ic_sticker1.png'),
+    ic_send: require('../../images/ic_send1.png'),
     ic_wave_hand: require('../../images/ic_wave_hand.png'),
 
     mimi1: require('../../images/mimi1.gif'),

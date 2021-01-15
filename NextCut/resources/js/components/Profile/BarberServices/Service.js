@@ -70,27 +70,30 @@ export default function Service() {
                 {barberServices.length != 0 ? barberServices.map((barberService, index) => {
                     return (
                         <tr key={barberService.id}>
-                            <td>{index}</td>
-                            <td>{barberService.service.type}</td>
-                            <td>{barberService.price}</td>
-                            <td>{barberService.estimated_time}</td>
+                            <td className="service_thd">{index}</td>
+                            <td className="service_thd">{barberService.service.type}</td>
+                            <td className="service_thd">{barberService.price}</td>
+                            <td className="service_thd">{barberService.estimated_time}</td>
                             <td>
                                 <ButtonGroup>
                                     <Button
                                     onClick={() => {
                                     handleShowEditBarberService();
-                                    setEditBarberService(barberService);
-                                    }}>
+                                    setEditBarberService(barberService);}}
+                                    className="service_btn">
                                         Edit
                                     </Button>
                                     <Button
                                     onClick={() => hanldeDeleteBarberService(barberService.id)}
-                                    >Delete</Button>
+                                    className="service_btn"
+                                    style={{ borderLeft:'1px solid #00356f' }}>
+                                        Delete
+                                    </Button>
                                 </ButtonGroup>
                             </td>
                         </tr>
                         )
-                }) : <tr><td>Nothing Yet</td></tr>}
+                }) : <tr><td colSpan="5" style={{ color:'#00356f' }}>Nothing Yet</td></tr>}
             </>
         );
     }
@@ -113,9 +116,10 @@ export default function Service() {
             <br/>
             <Container fluid>
                 <div>
-                <h2 style={{ textDecoration: 'underline' }}>Manage Your Services</h2>
+                <h2 style={{ color:'#DAA520' }}>Manage Your Services</h2>
                 <Button onClick={() => handleShowAddBarberService()}
-                style={{ position: 'relative', top: '15px'}}>
+                style={{ position: 'relative', top: '15px'}}
+                className="service_btn">
                     Add Services
                 </Button>
                 {showAddBarberService ? displayAddBarberService(showAddBarberService) : ''}
@@ -124,14 +128,14 @@ export default function Service() {
                 <Row>
                     <Col lg={8}>
                         <div className='div_table'>
-                            <Table striped bordered hover className='service_table'>
+                            <Table bordered hover className='service_table'>
                                 <thead>
                                     <tr>
-                                        <th>#</th>
-                                        <th>Service Type</th>
-                                        <th>Price</th>
-                                        <th>Estimated Time</th>
-                                        <th>Action</th>
+                                        <th className="service_thd">#</th>
+                                        <th className="service_thd">Service Type</th>
+                                        <th className="service_thd">Price</th>
+                                        <th className="service_thd">Estimated Time</th>
+                                        <th className="service_thd">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>

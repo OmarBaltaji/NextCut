@@ -12,6 +12,7 @@ export default function AddSalon(props) {
     const [services, setServices] = useState([]);
     const [allBarberServices, setAllBarberServices] = useState([]);
     const [serviceResponse, setServiceResponse] = useState([]);
+    const [validated, setValidated] = useState(false);
 
     useEffect(() => {
         getServiceInfo();
@@ -23,8 +24,17 @@ export default function AddSalon(props) {
         props.setShow(false); //setting Show to false to update it in the parent's component (Profile)
     }
 
-    function BarberServiceSubmitHandler() {
+    function BarberServiceSubmitHandler(event) {
+        const form = event.currentTarget;
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+
         event.preventDefault();
+
+        setValidated(true);
+
 
         let isExist = false;
 
@@ -116,20 +126,24 @@ export default function AddSalon(props) {
 
     return(
         <Modal centered show={openForm ? props.props : false} onHide={() => handleClose()}>
-            <Modal.Header closeButton>
-            <Modal.Title>Enter A new Service</Modal.Title>
+            <Modal.Header style={{ backgroundColor:'beige' }} closeButton>
+                <Modal.Title style={{ color: '#DAA520' }}>Enter A new Service</Modal.Title>
             </Modal.Header>
-            <Modal.Body>
-                <Form onSubmit={BarberServiceSubmitHandler}>
+            <Modal.Body style={{ backgroundColor:'beige' }} >
+                <Form noValidate validated={validated} onSubmit={BarberServiceSubmitHandler}>
                     <Form.Row>
                         <Form.Label className="label">Price: </Form.Label> &nbsp;
                         <Form.Group as={Col}>
                             <Form.Control
                             type="number"
+                            className="service_input"
                             id="price"
                             placeholder="price"
                             onChange={(e) => setNewPrice(e.target.value)}
                             required />
+                            <Form.Control.Feedback type="invalid">
+                                Please provide a valid price.
+                            </Form.Control.Feedback>
                         </Form.Group>
                     </Form.Row>
                     <Form.Row>
@@ -137,17 +151,22 @@ export default function AddSalon(props) {
                         <Form.Group as={Col}>
                             <Form.Control
                             type="number"
+                            className="service_input"
                             id="time"
                             placeholder="Estimated Time"
                             onChange={(e) => setNewTime(e.target.value)}
                             required />
+                            <Form.Control.Feedback type="invalid">
+                                Please provide a valid time.
+                            </Form.Control.Feedback>
                         </Form.Group>
                     </Form.Row>
                     <hr/>
                     <Form.Row className="type_row">
-                        <Form.Label>Type: </Form.Label> &nbsp;
+                        <Form.Label className="label">Type: </Form.Label> &nbsp;
                         <Form.Group as={Col}>
                             <Form.Control
+                            className="service_input"
                             as="select"
                             id="select_type"
                             onChange={(e) => handleSelectBarberService(e.target.value)}
@@ -160,18 +179,22 @@ export default function AddSalon(props) {
                                     )
                                 })}
                             </Form.Control>
+                            <Form.Control.Feedback type="invalid">
+                                Please provide a valid type.
+                            </Form.Control.Feedback>
                         </Form.Group>
                     </Form.Row>
                     <Form.Row>
                         <InputGroup style={{ width:'60%', marginLeft:'10%' }}>
                             <Form.Control
+                            className="service_input"
                             type="text"
                             id="add_type"
                             placeholder="Add New Service Type"
                             onChange={(e) => {setType(e.target.value)}}
                             />
                             <InputGroup.Append>
-                                <Button onClick={() => typeSubmitHandler()} variant="outline-secondary">
+                                <Button className="service_btn" onClick={() => typeSubmitHandler()}>
                                     Add
                                 </Button>
                             </InputGroup.Append>
@@ -181,8 +204,8 @@ export default function AddSalon(props) {
                         Can't find the type you want? Add one!
                     </Form.Text>
                     <br/>
-                    <Button type='submit'>
-                        Enter
+                    <Button className="service_btn" type='submit'>
+                        Add
                     </Button>
                 </Form>
             </Modal.Body>

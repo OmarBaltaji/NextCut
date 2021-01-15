@@ -3,7 +3,7 @@ import {Link, useHistory} from 'react-router-dom';
 import CookieService from '../Service/CookieService';
 import api from '../api';
 import {Card, Form, Button, InputGroup} from 'react-bootstrap';
-import '../../css/Home.css';
+import '../../css/Head_Log_Reg.css';
 import firebaseConfig from '../Firebase/FirebaseConfig';
 import firebase from 'firebase/app';
 import 'firebase/auth';
@@ -59,19 +59,8 @@ export default function Login() {
                 }
             })
         }).catch(error => {
-            setErrs(error.message);
             setInvalid(error.message)
         });
-    }
-
-    function displayError (field) {
-        if (errs[field]) { //checks if field(username or password) exists within errs array
-            return (
-                <span style={{ color: 'red', fontWeight: "bold" }}>
-                    {errs[field]} {/*displays the value in errs assosiative array*/}
-                </span>
-            )
-        }
     }
 
     function redirectHome() {
@@ -88,7 +77,7 @@ export default function Login() {
                     <InputGroup>
                         <InputGroup.Prepend>
                             <InputGroup.Text id="inputGroupPrepend">
-                                <i className="fas fa-envelope" />
+                                <i className="fas fa-envelope icons"/>
                             </InputGroup.Text>
                         </InputGroup.Prepend>
                         <Form.Control
@@ -97,14 +86,14 @@ export default function Login() {
                         placeholder="Enter Email"
                         onChange={(e) => {setEmail(e.target.value)}}
                         style={{ color: '#00356f' }} />
-                        {displayError('email')}
                     </InputGroup>
+                    {invalid.includes('email') ? <span style={{ color:'#980000' }}>{invalid}</span> : ''}
                 </Form.Group>
                 <Form.Group controlId="formBasicPassword">
                     <InputGroup>
                         <InputGroup.Prepend>
                             <InputGroup.Text id="inputGroupPrepend">
-                            <i className="fas fa-lock" />
+                            <i className="fas fa-lock icons" />
                             </InputGroup.Text>
                         </InputGroup.Prepend>
                         <Form.Control
@@ -112,10 +101,9 @@ export default function Login() {
                         className="input"
                         placeholder="Enter Password"
                         onChange={(e) => {setPassword(e.target.value)}} />
-                        {displayError('password')}
                     </InputGroup>
+                    {invalid.includes('password') ? <span style={{ color:'#980000' }}>{invalid}</span> : ''}
                 </Form.Group>
-                <span style={{ color:'red', fontWeight:'bold' }}>{invalid}</span>
                 <Form.Group controlId="formBasicCheckbox" >
                 <div className="remember_me">
                     <Form.Check
@@ -129,7 +117,7 @@ export default function Login() {
                     Login
                 </Button>
             </Form>
-            <Form.Row style={{ padding: '15px 0', color: '#00356f' }}>
+            <Form.Row style={{ padding: '15px 5px', color: '#00356f' }}>
                 Don't have an account? &nbsp;<Link className='login_register' to="/register">Register</Link>
             </Form.Row>
         </Card>

@@ -16,15 +16,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call([
-            UserSeeder::class,
-            BarberSeeder::class,
-            BarberServiceSeeder::class,
-            GallerySeeder::class,
-            ScheduleSeeder::class,
-            ServiceSeeder::class,
-            AddressSeeder::class,
-            WorkDaySeeder::class,
-        ]);
+        // $this->call([
+        //     UserSeeder::class,
+        //     BarberSeeder::class,
+        //     BarberServiceSeeder::class,
+        //     GallerySeeder::class,
+        //     ScheduleSeeder::class,
+        //     ServiceSeeder::class,
+        //     AddressSeeder::class,
+        //     WorkDaySeeder::class,
+        // ]);
     }
 }

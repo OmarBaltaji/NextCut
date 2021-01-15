@@ -20,6 +20,7 @@ class CreateCustomerRequestTable extends Migration
             $table->unsignedSmallInteger('total_price');
             $table->unsignedTinyInteger('total_time');
             $table->string('appointment_location');
+            $table->string('customer_address')->nullable();
             $table->boolean('completed')->default(false);
             $table->unsignedTinyInteger('state')->default(0);
             $table->timestamps();

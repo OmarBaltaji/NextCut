@@ -29,6 +29,9 @@ export default{
     deleteProfile: (user_id) =>
     axios.delete(`${BASE_URL}/user/${user_id}`),
 
+    updateProfilPhoto: (photo, headers) =>
+    axios.post(`${BASE_URL}/user/photo`, photo, headers),
+
     updateUserInfo: (user_id, info, headers) =>
     axios.put(`${BASE_URL}/user/${user_id}`, info, headers),
 
@@ -49,6 +52,15 @@ export default{
 
     editAddress: (info, id) =>
     axios.put(`${BASE_URL}/user/address/${id}`, info),
+
+    getCustomerAddress: () =>
+    axios.get(`${BASE_URL}/user/customeraddress`),
+
+    createCustomerAddress: (info) =>
+    axios.post(`${BASE_URL}/user/customeraddress`, info),
+
+    editCustomerAddress: (info, id) =>
+    axios.put(`${BASE_URL}/user/customeraddress/${id}`, info),
 
     getSchedule: () =>
     axios.get(`${BASE_URL}/user/schedule`),

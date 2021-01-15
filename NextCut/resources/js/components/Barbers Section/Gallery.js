@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import {Modal, Carousel, ModalBody} from 'react-bootstrap';
-import api from '../api';
+import api from '../../api';
 
 export default function GallerySlideShow(props) {
+    const [index, setIndex] = useState(props.index);
     const [openForm, setOpenForm] = useState(true);
     const [galleryInfo, setGalleryInfo] = useState([]);
     const handleClose = () => {
@@ -21,19 +22,20 @@ export default function GallerySlideShow(props) {
         })
     }
 
+    function handleSelect(selectedIndex, e){
+        setIndex(selectedIndex);
+    }
+
     return (
-        <Modal show={openForm ? props.props : false} onHide={() => handleClose()}>
-            <Modal.Header closeButton>
-                <Modal.Title>Gallery</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-                <Carousel>
-                    {galleryInfo.map((photo, index) => {
+        <Modal show={openForm ? props.props : false} onHide={() => handleClose()} >
+
+                <Carousel style={{ width:'500px' }} activeIndex={index} onSelect={handleSelect}>
+                    {galleryInfo.map((photo) => {
                         return(
                             <Carousel.Item>
                                 <img
                                 className="d-block w-100"
-                                width="500px"
+                                width="1000px"
                                 height="500px"
                                 src={photo.image}
                                 />
@@ -42,7 +44,7 @@ export default function GallerySlideShow(props) {
                     )}
 
                 </Carousel>
-            </Modal.Body>
+
         </Modal>
     );
 }

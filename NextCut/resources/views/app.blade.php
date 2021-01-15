@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="{{asset('css/app.css')}}" rel="stylesheet">
+        {{-- <img src="{{ asset('/images/light-grey-terrazzo.png') }}" /> --}}
         <title>NextCut</title>
         <link rel="icon" type="image/png" href="/Images/logo1.png"/>
         <!-- Fonts -->
@@ -33,8 +34,10 @@
                 $(".se-pre-con").fadeOut("slow");
                 });
         </script>
+        <script src="/__/firebase/6.6.2/firebase-app.js"></script>
+        <script src="/__/firebase/6.6.2/firebase-messaging.js"></script>
     </head>
-    <body style="background-color:#C0C0C0">
+    <body style="background-image: url('/images/light-grey-terrazzo.png')">
         <div class="se-pre-con"></div>
 
         <div id="app">

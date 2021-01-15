@@ -3,7 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 import api from '../api';
 import { Button, Card, Form, FormControl, InputGroup } from 'react-bootstrap';
 import CookieService from '../Service/CookieService';
-import '../../css/Home.css';
+import '../../css/Head_Log_Reg.css';
 import firebaseConfig from '../Firebase/FirebaseConfig';
 import firebase from 'firebase/app';
 import 'firebase/auth';
@@ -20,10 +20,21 @@ export default function Register() {
     const [phoneNumber, setPhoneNumber] = useState('');
     const [role, setRole] = useState('Customer');
     const [errs, setErrs] = useState([]);
+    const[invalid, setInvalid] = useState('');
 
     useEffect(() => {
         redirectHome();
-    }, []);
+
+        var user = firebase.auth().currentUser;
+
+        if(errs.length != 0) { //delete a user from firebase in case there are additional errors
+            user.delete().then(function() {
+                 // User deleted.
+            }).catch(function(error) {
+                // An error happened.
+            });
+        }
+    }, [errs]);
 
     function RegistrationHandler(event) {
         event.preventDefault();
@@ -45,7 +56,7 @@ export default function Register() {
                     info.append('password', password);
                     info.append('password_confirmation', confirmedPassword);
                     info.append('profile_photo', profilePhoto);
-                    info.append('phone_number', phoneNumber);
+                    info.append('phone_number', String(phoneNumber));
                     info.append('roles', role);
 
                     api.register(info, {headers:{'Accept': "application/json", 'Content-Type':"multipart/form-data"}
@@ -56,36 +67,20 @@ export default function Register() {
                         history.push("/home");
                         window.location.reload();
                     }).catch(error => {
-                        if(name == '' | email == '' | password == '' | confirmedPassword == '' | phoneNumber == '') {
-                            setErrs(error.response.data.errors);
-                        }
+                        setErrs(error.response.data.errors);
                     });
                 }
             })
         }).catch((error) => {
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            // ..
+            setInvalid(error.message);
         });
     }
-
-        // api.register(info, {headers:{'Accept': "application/json", 'Content-Type':"multipart/form-data"}
-        // }).then(response => {
-        //     console.log(response.data);
-        //     const options = {Path: "/",Expires: response.data.expires, Secure: true};
-        //     CookieService.set('access_token', response.data.access_token, options);
-        //     history.push("/home");
-        // }).catch(error => {
-        //     if(name == '' | email == '' | password == '' | confirmedPassword == '' | phoneNumber == '') {
-        //         setErrs(error.response.data.errors);
-        //     }
-        // });
 
     function displayError (field) {
         if (errs[field]) {
             return (
-                <span style={{ color: 'red' }}>
-                    <strong>{errs[field]}</strong>
+                <span style={{ display:'block', color: '#980000' }}>
+                    {errs[field]}
                 </span>
             )
         }
@@ -98,15 +93,31 @@ export default function Register() {
         }
     }
 
+    function handleProfilePhoto(e) {
+        if (e.target.files && e.target.files[0]) {
+            // Check this file is an image
+            const prefixFiletype = e.target.files[0].type.toString()
+            if (prefixFiletype.indexOf('image/') !== 0) {
+                alert('This file is not an image');
+                document.getElementById('input_file').value = '';
+                return
+            }
+        } else {
+            alert('Something wrong with input file');
+        }
+
+        setProfilePhoto(e.target.files[0])
+    }
+
     return (
-        <Card style={{margin:'65px auto', width: '300px', padding: '20px', backgroundColor:'#DAA520'}}>
+        <Card style={{margin:'40px auto', width: '300px', padding: '20px', backgroundColor:'#DAA520'}}>
             <Form onSubmit={RegistrationHandler}
             encType="multipart/form-data">
                 <Form.Group controlId="formBasicEmail" style={{ paddingTop: '20px' }}>
                     <InputGroup>
                         <InputGroup.Prepend>
                             <InputGroup.Text id="inputGroupPrepend">
-                                <i className="fas fa-font" />
+                                <i className="fas fa-font icons" />
                             </InputGroup.Text>
                         </InputGroup.Prepend>
                         <Form.Control
@@ -114,14 +125,14 @@ export default function Register() {
                         className="input"
                         placeholder="Full Name"
                         onChange={(e) => {setName(e.target.value)}} />
-                        {displayError('name')}
                     </InputGroup>
+                    {displayError('name')}
                 </Form.Group>
                 <Form.Group controlId="formGroupEmail">
                     <InputGroup>
                         <InputGroup.Prepend>
                             <InputGroup.Text id="inputGroupPrepend">
-                                <i className="fas fa-envelope" />
+                                <i className="fas fa-envelope icons" />
                             </InputGroup.Text>
                         </InputGroup.Prepend>
                         <Form.Control
@@ -129,14 +140,14 @@ export default function Register() {
                         className="input"
                         placeholder="Email Address"
                         onChange={(e) => {setEmail(e.target.value)}} />
-                        {displayError('email')}
+                        {invalid.includes('email') ? <span style={{ color:'#980000' }}>{invalid}</span> : ''}
                     </InputGroup>
                 </Form.Group>
                 <Form.Group controlId="formGroupPassword">
                     <InputGroup>
                         <InputGroup.Prepend>
                             <InputGroup.Text id="inputGroupPrepend">
-                                <i className="fas fa-lock" />
+                                <i className="fas fa-lock icons" />
                             </InputGroup.Text>
                         </InputGroup.Prepend>
                         <Form.Control
@@ -144,14 +155,14 @@ export default function Register() {
                         className="input"
                         placeholder="Password"
                         onChange={(e) => {setPassword(e.target.value)}} />
-                        {displayError('password')}
+                        {invalid.includes('password') ? <span style={{ color:'#980000' }}>{invalid}</span> : ''}
                     </InputGroup>
                 </Form.Group>
                 <Form.Group controlId="formGroupPassword">
                     <InputGroup>
                         <InputGroup.Prepend>
                             <InputGroup.Text id="inputGroupPrepend">
-                                <i className="fas fa-lock" />
+                                <i className="fas fa-lock icons" />
                             </InputGroup.Text>
                         </InputGroup.Prepend>
                         <Form.Control
@@ -164,22 +175,24 @@ export default function Register() {
                 </Form.Group>
                 <Form.Group controlId="formGroupFile">
                     <Form.File
+                    className="position-relative"
                     label="Profile Photo"
+                    id="input_file"
                     style= {{ color: '#00356f', fontWeight: 'bold' }}
-                    onChange={(e) => {setProfilePhoto(e.target.files[0])}} />
+                    onChange={(e) => {handleProfilePhoto(e)}} />
                 </Form.Group>
                 <Form.Group controlId="formGroupInput">
                     <InputGroup>
                         <InputGroup.Prepend>
                             <InputGroup.Text id="inputGroupPrepend">
-                                <i className="fas fa-phone-square"/>
+                                <i className="fas fa-phone-square icons"/>
                             </InputGroup.Text>
                         </InputGroup.Prepend>
                         <Form.Control
-                        type="tel"
-                        className="input"
+                        type="number"
+                        className="input_phone"
                         placeholder="Phone Number"
-                        onChange={(e) => {setPhoneNumber(e.target.value)}}  />
+                        onChange={(e) => {setPhoneNumber(e.target.value)}} />
                         {displayError('phone_number')}
                     </InputGroup>
                 </Form.Group>

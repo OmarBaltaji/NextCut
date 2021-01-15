@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import api from '../../../api';
 import {Button, Form, Modal, Col} from 'react-bootstrap';
+import '../../../../css/Profile.css';
 
 export default function EditSalon(props) {
     console.log(props)
@@ -9,6 +10,7 @@ export default function EditSalon(props) {
     const [hourClose, setHourClose] = useState(props.info[0].hour_close);
     const [dayOpen, setDayOpen] = useState(props.info[0].day_open);
     const [dayClose, setDayClose] = useState(props.info[0].day_close);
+    const [validated, setValidated] = useState(false);
     const dayOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
     const handleClose = () => {
@@ -59,7 +61,16 @@ export default function EditSalon(props) {
     }
 
     function handleScheduleInfo() {
+        const form = event.currentTarget;
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+
         event.preventDefault();
+
+        setValidated(true);
+
         const salonInfo = {
             'hour_open': hourOpen,
             'hour_close': hourClose,
@@ -76,37 +87,46 @@ export default function EditSalon(props) {
 
     return(
         <Modal show={openForm ? props.props : false} onHide={() => handleClose()}>
-            <Modal.Header closeButton>
-            <Modal.Title>Salon Schedule</Modal.Title>
+            <Modal.Header style={{ backgroundColor:'beige' }} closeButton>
+            <Modal.Title style={{ color: '#DAA520' }}>Private Schedule</Modal.Title>
             </Modal.Header>
-            <Modal.Body>
-                <Form onSubmit={handleScheduleInfo}>
+            <Modal.Body style={{ backgroundColor:'beige' }}>
+                <Form noValidate validated={validated} onSubmit={handleScheduleInfo}>
                     <Form.Row>
                         <Form.Group as={Col}>
                             <Form.Control
                             type="time"
                             id='opening_hour'
                             placeholder="Opening Hour"
+                            className="profile_input"
                             onChange={(e) => {hourOpenHandler(e)}}
                             defaultValue={hourOpen}
                             required />
+                            <Form.Control.Feedback type="invalid">
+                                Please provide a valid hour.
+                            </Form.Control.Feedback>
                         </Form.Group>
                         <Form.Group as={Col}>
                             <Form.Control
                             type="time"
                             id='closing_hour'
+                            className="profile_input"
                             placeholder="Closing Hour"
                             onChange={(e) => {hourCloseHandler(e)}}
                             defaultValue={hourClose}
                             required />
+                            <Form.Control.Feedback type="invalid">
+                                Please provide a valid hour.
+                            </Form.Control.Feedback>
                         </Form.Group>
                     </Form.Row>
                     <Form.Row>
                         <Form.Group as={Col}>
-                            <Form.Text>From</Form.Text>
+                            <Form.Text style={{ color:'#00356f' }}>From</Form.Text>
                             <Form.Control
                             as="select"
                             id='opening_day'
+                            className="profile_input"
                             onChange={(e) => {dayOpenHandler(e)}}
                             defaultValue={props.info.day_open}
                             required>
@@ -115,12 +135,16 @@ export default function EditSalon(props) {
                                     }
                                 )}
                             </Form.Control>
+                            <Form.Control.Feedback type="invalid">
+                                Please provide a valid day.
+                            </Form.Control.Feedback>
                         </Form.Group>
                         <Form.Group as={Col}>
-                            <Form.Text>To</Form.Text>
+                            <Form.Text style={{ color:'#00356f' }}>To</Form.Text>
                             <Form.Control
                             as="select"
                             id='closing_day'
+                            className="profile_input"
                             onChange={(e) => {dayCloseHandler(e)}}
                             defaultValue={dayClose}
                             required>
@@ -129,9 +153,12 @@ export default function EditSalon(props) {
                                     }
                                 )}
                             </Form.Control>
+                            <Form.Control.Feedback type="invalid">
+                                Please provide a valid day.
+                            </Form.Control.Feedback>
                         </Form.Group>
                     </Form.Row>
-                    <Button type='submit'>
+                    <Button className="profile_btn" type='submit'>
                         Submit
                     </Button>
                 </Form>

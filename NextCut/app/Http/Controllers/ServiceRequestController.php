@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use App\Models\CustomerRequest;
 
 class ServiceRequestController extends Controller
 {
@@ -26,7 +27,7 @@ class ServiceRequestController extends Controller
             foreach($requests as $request) {
                 $customer_request = $request->customer_request;
                 if(!in_array($customer_request, $booking_details)) { //get the specific date/time booked
-                    $booking_details[] =  $customer_request;
+                    $booking_details[] =  $customer_request; //push to array
                 }
             }
         }
