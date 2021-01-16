@@ -7,11 +7,12 @@ use Illuminate\Http\Request;
 use App\Models\CustomerRequest;
 use App\Models\ServiceRequest;
 use Auth;
+use File;
 use Illuminate\Support\Facades\Mail;
 use Response;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-
+use Storage;
 
 class CustomerRequestController extends Controller
 {
@@ -115,25 +116,20 @@ class CustomerRequestController extends Controller
         $mail->SetFrom("nextcutb@gmail.com", "NextCut");
         $mail->AddReplyTo("nextcutb@gmail.com", "NextCut");
         $mail->Subject = "Booking Confirmation";
+
         $content =
-        "<span style='color:#00356f'>Hello " . request('name') . "</span>,<br/><br/>
-        <span style='color:#00356f'>Your booking is confirmed and has been sent to the barber. Please find the receipt below: </span><hr/>" .
+        "<h4 style='color:#00356f'>Hello " . request('name') . ",</h4>
+        <span style='color:#00356f'>Your booking with " . request('barber_name') . " is confirmed. Please find the booking details below: </span><hr/>" .
         "<span style='color:#00356f'>Barber: " .request('barber_name') . "</span><br/>" .
         "<span style='color:#00356f'>Payment Method: Cash </span><br/>
         <span style='color:#00356f'>Appointment Date: " . request('app_date')  . "</span><br/>" .
         "<span style='color:#00356f'>Appointment Time: " .request('app_time') . "</span><br/>" .
         "<span style='color:#00356f'>Appointment Location: " .request('app_location') . "</span><br/>" .
         "<span style='color:#00356f'>Chosen Services: " .request('services') . "</span><br/>" .
-        "<span style='color:#00356f'>Total: " .request('total') . "</span><br/>";
-// Barber: John Malek
-// Payment Method: Cash
-// Appointment Date: Thu, Jan 14 2021
-// Appointment Time: 19:30
-// Appointment Location: Salon
-// Chosen Services	Price	Estimated Time
-// Beard Trim	15$	10 mins
-// Hair Trim	25$	20 mins
-// Total: 40$ & 30 mins
+        "<span style='color:#00356f'>Total: " .request('total') . "</span><br/><br/>
+        <span style='color:#00356f'>Kind Regards,</span><br/>
+        <span style='color:#00356f'>Nextcut</span><br/>";
+
         $mail->MsgHTML($content);
         if(!$mail->Send()) {
             echo "Error while sending Email.";

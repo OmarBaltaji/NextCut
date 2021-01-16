@@ -424,7 +424,7 @@ export default function Profile() {
                                     </Card.Title>
                                     {barberServiceInfo.length == 0 ?
                                     <span className="nothing">
-                                        Nothing yet. You need to have services so the customer can browse for you information
+                                        Nothing yet. Services are needed so the customer can browse for you information
                                         and book an appointment with you
                                     </span>
                                     : ''}
@@ -552,9 +552,9 @@ export default function Profile() {
                                     </ButtonGroup>
                                     <br/> <br/>
                                     <small style={{ fontSize:'16px' }} className="text-muted">
-                                        This address will only be shown to the barber if
-                                        you choose <strong>Home</strong> as the appointment location.
-                                        Also, you must fill it if you wish to request an appointment at your home.
+                                        Your address information is needed in case you wish to request an appointment
+                                        at your <strong>Home</strong>.<br/>
+                                        It will be shared with your barber.
                                     </small>
                                 </Card.Title>
                                 <Card.Text>

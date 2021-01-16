@@ -193,9 +193,12 @@ a:hover {
 }
 
 .dropdown-menu .notification_dropItem:hover {
-    font-weight: bold;
-    color: #00356f;
     background-color: transparent !important;
+}
+
+.notif_msg:hover {
+    color: #00356f;
+    /* background-color: transparent !important; */
 }
 
 .dropdown-menu::-webkit-scrollbar-track {
@@ -272,3 +275,21 @@ a:hover {
     }
 
 }
+
+.notif_time {
+    /* margin-left: 200px; */
+    color: #00356f;
+    font-size: 13px;
+    font-style: italic;
+    position: relative;
+    left: 230px;
+}
+
+.notif_time:hover {
+    font-weight: normal !important;
+}
+
+.notif_time:focus {
+    font-weight: normal;
+}
+

@@ -5,7 +5,7 @@ import {useHistory} from 'react-router-dom';
 import CookieService from '../Service/CookieService';
 import '../../css/Head_Log_Reg.css';
 import logo from '../../../public/Images/logo.png';
-
+import moment from 'moment';
 import firebase from 'firebase';
 import firebaseConfig from '../Firebase/FirebaseConfig';
 import 'firebase/auth';
@@ -14,6 +14,7 @@ import 'firebase/firestore';
 // import $ from 'jquery';
 
 import { messaging } from "../Firebase/init-fcm";
+import times from 'lodash/times';
 
 
 if (!firebase.apps.length) {
@@ -96,13 +97,20 @@ export default function Header() {
     function getNotificationInfo(user_details) {
         const query = db.collection('notifications').orderBy('created', 'desc');
         let count = 0;
-        let messages = [];
+        // let messages = [];
+        let notifications_list = [];
+
 
         query.onSnapshot(snapshot => {
             snapshot.docChanges().forEach(change => {
                 if(change.type == 'added') {
                     if(user_details.FirebaseUID == change.doc.data().toUserID) {
-                        messages.push(change.doc.data().message);
+                        let timestamp = change.doc.data().created.toDate();
+                        let notification = {};
+                        notification['message'] = change.doc.data().message;
+                        notification['time'] = moment(timestamp).format('lll');
+                        notifications_list.push(notification);
+                        // messages.push(change.doc.data().message);
                         if(change.doc.data().isOpened == false) {
                             count += 1;
                         }
@@ -114,9 +122,9 @@ export default function Header() {
             })
             setNotificationInfo({
                 count: count,
-                messages: messages,
+                notifications_list: notifications_list,
             });
-            if(messages.length != 0) {
+            if(notifications_list.length != 0) {
                 setIsUserNotified(true);
             }
         })
@@ -220,16 +228,19 @@ export default function Header() {
                         onClick={() => handleNotifications()}>
 
                             {notificationInfo.length != 0 ?
-                            notificationInfo.messages ?
+                            notificationInfo.notifications_list ?
                             <div style={{ height:'180px',  minWidth:'400px' }}>
-                                {notificationInfo.messages.map((message, index) => {
+                                {notificationInfo.notifications_list.map((notification, index) => {
                                     return (
                                         <div key={'div'+index}>
                                             <Dropdown.Item href='/requests'  key={index}
                                             className="notification_dropItem">
-                                                {message}
+                                                <span className='notif_msg'>{notification.message}</span><br/>
+                                                <span className='notif_time'>
+                                                    {notification.time}
+                                                </span>
                                             </Dropdown.Item>
-                                            {index == notificationInfo.messages.length - 1 ?
+                                            {index == notificationInfo.notifications_list.length - 1 ?
                                             '' :
                                             <Dropdown.Divider key={index+'divider'}/>}
                                         </div>
