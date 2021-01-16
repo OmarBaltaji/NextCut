@@ -179,13 +179,13 @@ export default function ShowBarber(props) {
                         <Row style={{ position:'absolute', top:'270px', right:'15px', left:'15px' }}>
                         <Col lg={12} xs={12}>
                                 <Card className="gallery_card">
-                                    <h4 style={{ margin: '20px 0 0 10px', color:'#DAA520', fontSize:'24px' }}>
+                                    <h4 style={{ margin: '20px 0 0 20px', color:'#DAA520', fontSize:'24px' }}>
                                         Gallery
                                     </h4>
-                                    <CardColumns as={Row} style={{ width:'800px', marginLeft:'12px', marginTop:'10px'}}>
+                                    <CardColumns as={Row} style={{ width:'850px', marginLeft:'20px', marginTop:'10px'}}>
                                         {galleryInfo.length != 0 ? galleryInfo.map((gallery, index) => {
                                         return(
-                                            <Card key={gallery.id} lg={3} style={{width:'250px', }}
+                                            <Card key={gallery.id} lg={3} style={{width:'250px', marginRight:'20px' }}
                                             className="clickable_photos"
                                             onClick={() => handleShowGallerySlideShow(index)}>
                                                 <Card.Img src={gallery.image} height="190px"/>

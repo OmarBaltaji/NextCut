@@ -447,10 +447,10 @@ export default function Profile() {
                                 </Button>
                                 {showAddGallery ? displayAddGallery(showAddGallery) : ''}
                             </div>
-                            <CardColumns as={Row} style={{ marginLeft:'30px', width:'1205px' }}>
+                            <CardColumns as={Row} style={{ marginLeft:'30px', width:'1270px' }}>
                             {galleryInfo.length !=0 ? galleryInfo.map(gallery => {
                             return(
-                                <Card key={gallery.id} style={{width:'350px', margin:'20px 25px 20px 10px' }} lg={4}
+                                <Card key={gallery.id} style={{width:'350px', margin:'20px 50px 20px 10px' }} lg={4}
                                  className="profile_card">
                                     <Card.Img src={gallery.image} height="300px"/>
                                     <Card.Body>
