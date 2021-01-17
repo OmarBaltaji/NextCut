@@ -475,96 +475,94 @@ export default function Profile() {
     function displayProfileInfoCustomer() {
         return (
             <>
-                <Row>
-                    <Col lg={4}>
-                        <Card style={{ marginLeft:'15px' }} className="profile_card">
-                            <Card.Img src={userInfo.profile_photo} alt="profile photo" height="300px" />
-                            <div className="viewWrapInputFile">
-                                <img
-                                    className="imgInputFile"
-                                    alt="icon gallery"
-                                    src={images.ic_input_file}
-                                    onClick={() => refInput.click()}
-                                />
-                                <input
-                                    ref={el => {
-                                        refInput = el
-                                    }}
-                                    accept="image/*"
-                                    className="viewInputFile"
-                                    type="file"
-                                    id="input_file"
-                                    onChange={onChangeProfilePhoto}
-                                />
-                            </div>
-                            <Card.Body>
-                                <Card.Title className="profile_subheaders">
-                                    {userInfo.name}
-                                    <ButtonGroup style={{ position:'relative', left:'10px' }}>
-                                        <Button className="edit_profile profile_btn"
-                                        onClick={() => handleShowEditProfile()}>
-                                        Edit
-                                        </Button>
+                <Col lg={4}>
+                    <Card style={{ marginLeft:'15px' }} className="profile_card">
+                        <Card.Img src={userInfo.profile_photo} alt="profile photo" height="300px" />
+                        <div className="viewWrapInputFile">
+                            <img
+                                className="imgInputFile"
+                                alt="icon gallery"
+                                src={images.ic_input_file}
+                                onClick={() => refInput.click()}
+                            />
+                            <input
+                                ref={el => {
+                                    refInput = el
+                                }}
+                                accept="image/*"
+                                className="viewInputFile"
+                                type="file"
+                                id="input_file"
+                                onChange={onChangeProfilePhoto}
+                            />
+                        </div>
+                        <Card.Body>
+                            <Card.Title className="profile_subheaders">
+                                {userInfo.name}
+                                <ButtonGroup style={{ position:'relative', left:'10px' }}>
+                                    <Button className="edit_profile profile_btn"
+                                    onClick={() => handleShowEditProfile()}>
+                                    Edit
+                                    </Button>
 
-                                        {showEditProfile ? displayEditProfile(showEditProfile) : ''}
+                                    {showEditProfile ? displayEditProfile(showEditProfile) : ''}
 
+                                    <Button className="profile_btn"
+                                    onClick={() => {deleteProfileHandler()}}
+                                    style={{ borderLeft:'1px solid #00356f' }}>
+                                    Delete
+                                    </Button>
+                                </ButtonGroup>
+                            </Card.Title>
+                            <Card.Text>
+                                <span className="profile_spans"><u>Email:</u> {userInfo.email}</span> <br/>
+                                <span className="profile_spans"><u>Phone Number:</u> {userInfo.phone_number}</span> <br/>
+                            </Card.Text>
+                        </Card.Body>
+                        <Card.Footer>
+                            <small className="text-muted">
+                                Joined: &nbsp;<span>{moment(userInfo.created_at).format('DD/MM/YYYY')}</span>
+                            </small>
+                        </Card.Footer>
+                    </Card>
+                </Col>
+                <Col lg={4}>
+                    <Card style={{ height:'507px' }} className="profile_card">
+                        <Card.Body>
+                            <Card.Title className="profile_subheaders">
+                                Location
+                                <ButtonGroup style={{ position:'relative', left:'10px' }}>
+                                    {!customerAddress ?
                                         <Button className="profile_btn"
-                                        onClick={() => {deleteProfileHandler()}}
-                                        style={{ borderLeft:'1px solid #00356f' }}>
-                                        Delete
+                                        onClick = {() => handleShowAddCustomerAddress()}>
+                                            Add
                                         </Button>
-                                    </ButtonGroup>
-                                </Card.Title>
-                                <Card.Text>
-                                    <span className="profile_spans"><u>Email:</u> {userInfo.email}</span> <br/>
-                                    <span className="profile_spans"><u>Phone Number:</u> {userInfo.phone_number}</span> <br/>
-                                </Card.Text>
-                            </Card.Body>
-                            <Card.Footer>
-                                <small className="text-muted">
-                                    Joined: &nbsp;<span>{moment(userInfo.created_at).format('DD/MM/YYYY')}</span>
+                                    : ''}
+
+                                    {showAddCustomerAddress ? displayAddCustomerAddress(showAddCustomerAddress) : ''}
+
+                                    {customerAddress ?
+                                        <Button className="profile_btn"
+                                        onClick = {() => handleShowEditCustomerAddress()}>
+                                            Edit
+                                        </Button>
+                                    : ''}
+                                    {showEditCustomerAddress ? displayEditCustomerAddress(showEditCustomerAddress) : ''}
+                                </ButtonGroup>
+                                <br/> <br/>
+                                <small style={{ fontSize:'16px' }} className="text-muted">
+                                    Your address information is needed in case you wish to request an appointment
+                                    at your <strong>Home</strong>.<br/>
+                                    It will be shared with your barber.
                                 </small>
-                            </Card.Footer>
-                        </Card>
-                    </Col>
-                    <Col lg={4}>
-                        <Card style={{ height:'507px' }} className="profile_card">
-                            <Card.Body>
-                                <Card.Title className="profile_subheaders">
-                                    Location
-                                    <ButtonGroup style={{ position:'relative', left:'10px' }}>
-                                        {!customerAddress ?
-                                            <Button className="profile_btn"
-                                            onClick = {() => handleShowAddCustomerAddress()}>
-                                                Add
-                                            </Button>
-                                        : ''}
-
-                                        {showAddCustomerAddress ? displayAddCustomerAddress(showAddCustomerAddress) : ''}
-
-                                        {customerAddress ?
-                                            <Button className="profile_btn"
-                                            onClick = {() => handleShowEditCustomerAddress()}>
-                                                Edit
-                                            </Button>
-                                        : ''}
-                                        {showEditCustomerAddress ? displayEditCustomerAddress(showEditCustomerAddress) : ''}
-                                    </ButtonGroup>
-                                    <br/> <br/>
-                                    <small style={{ fontSize:'16px' }} className="text-muted">
-                                        Your address information is needed in case you wish to request an appointment
-                                        at your <strong>Home</strong>.<br/>
-                                        It will be shared with your barber.
-                                    </small>
-                                </Card.Title>
-                                <Card.Text>
-                                    {customerAddress ? <CustomerAddress props={customerAddress} />
-                                    : <span className="nothing">Nothing yet</span>}
-                                </Card.Text>
-                            </Card.Body>
-                        </Card>
-                    </Col>
-                </Row>
+                            </Card.Title>
+                            <Card.Text>
+                                {customerAddress ? <CustomerAddress props={customerAddress} />
+                                : <span className="nothing">Nothing yet</span>}
+                            </Card.Text>
+                        </Card.Body>
+                    </Card>
+                </Col>
             </>
         );
     }

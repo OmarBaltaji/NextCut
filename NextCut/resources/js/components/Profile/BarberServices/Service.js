@@ -118,10 +118,13 @@ export default function Service() {
             <Header/>
             <br/>
             <Container fluid>
+                <Button className="service_btn" style={{ marginBottom:'10px' }} href='/profile'>
+                    <i className="fas fa-arrow-left" />
+                </Button>
                 <div>
                 <h2 style={{ color:'#DAA520' }}>Manage Your Services</h2>
                 <Button onClick={() => handleShowAddBarberService()}
-                style={{ position: 'relative', top: '15px'}}
+                style={{ position: 'relative', top: '10px'}}
                 className="service_btn">
                     Add Services
                 </Button>
