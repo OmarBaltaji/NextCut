@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import api from '../../../api';
-import {Button, Form, Modal, Col, Row, InputGroup} from 'react-bootstrap';
+import {Button, Form, Modal, Col, InputGroup} from 'react-bootstrap';
 import '../../../../css/Service.css'
 
-export default function AddSalon(props) {
+export default function AddBarberService(props) {
     const [openForm, setOpenForm] = useState(true);
     const [type, setType] = useState();
     const [newPrice, setNewPrice] = useState();

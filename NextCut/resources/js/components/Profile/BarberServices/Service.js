@@ -103,7 +103,8 @@ export default function Service() {
 
     function displayBarberEditService() {
         return(
-            <EditBarberService props={showEditBarberService} services={services} info={editBarberService} setShow={setShowEditBarberService} />
+            <EditBarberService props={showEditBarberService} services={services} info={editBarberService}
+            setShow={setShowEditBarberService} />
         );
     }
 
@@ -122,13 +123,13 @@ export default function Service() {
                     <i className="fas fa-arrow-left" />
                 </Button>
                 <div>
-                <h2 style={{ color:'#DAA520' }}>Manage Your Services</h2>
-                <Button onClick={() => handleShowAddBarberService()}
-                style={{ position: 'relative', top: '10px'}}
-                className="service_btn">
-                    Add Services
-                </Button>
-                {showAddBarberService ? displayAddBarberService(showAddBarberService) : ''}
+                    <h2 style={{ color:'#DAA520' }}>Manage Your Services</h2>
+                    <Button onClick={() => handleShowAddBarberService()}
+                    style={{ position: 'relative', top: '10px'}}
+                    className="service_btn">
+                        Add Services
+                    </Button>
+                    {showAddBarberService ? displayAddBarberService(showAddBarberService) : ''}
                 </div>
                 <br/>
                 <Row>
@@ -145,13 +146,12 @@ export default function Service() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                {renderBarberService()}
+                                    {renderBarberService()}
                                 </tbody>
                             </Table>
                         </div>
                         {showEditBarberService ? displayBarberEditService() : ''}
                     </Col>
-
                 </Row>
             </Container>
         </>

@@ -7,7 +7,6 @@ export default function EditBarberService(props) {
     const [openForm, setOpenForm] = useState(true);
     const [newPrice, setNewPrice] = useState(props.info.price);
     const [newTime, setNewTime] = useState(props.info.estimated_time);
-    // const [newServiceType, setNewServiceType] = useState();
     const [type, setType] = useState();
     const [validated, setValidated] = useState(false);
     const [services, setServices] = useState([]);

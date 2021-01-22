@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import api from '../../../api';
-import {Button, Form, Modal, Col, InputGroup} from 'react-bootstrap';
+import {Button, Form, Modal, Col} from 'react-bootstrap';
 import '../../../../css/Profile.css';
 
 export default function AddSalon(props) {
@@ -92,7 +92,7 @@ export default function AddSalon(props) {
     return(
         <Modal show={openForm ? props.props : false} onHide={() => handleClose()}>
             <Modal.Header style={{ backgroundColor:'beige' }} closeButton>
-            <Modal.Title style={{ color: '#DAA520' }}>Salon Info</Modal.Title>
+                <Modal.Title style={{ color: '#DAA520' }}>Salon Info</Modal.Title>
             </Modal.Header>
             <Modal.Body style={{ backgroundColor:'beige' }}>
                 <Form noValidate validated={validated} onSubmit={handleSalonInfo}>
@@ -143,7 +143,8 @@ export default function AddSalon(props) {
                             className="profile_input"
                             id = 'opening_day'
                             onChange={(e) => {dayOpenHandler(e)}}
-                            required>
+                            required
+                            >
                                 {dayOfWeek.map((day, index) => {
                                     return <option key={index} value={day}>{day}</option>
                                     }
@@ -160,7 +161,8 @@ export default function AddSalon(props) {
                             className="profile_input"
                             onChange={(e) => {dayCloseHandler(e)}}
                             id = 'closing_day'
-                            required>
+                            required
+                            >
                                 {dayOfWeek.map((day, index) => {
                                     return <option key={index} value={day}>{day}</option>
                                     }

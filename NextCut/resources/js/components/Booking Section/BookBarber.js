@@ -92,7 +92,7 @@ export default function BookBarber() {
     }
 
     function getBarberServiceDetails() {
-        api.getOneBarberServiceDetails(param.id)
+        api.getBarberServices(param.id)
         .then(response => {
             setBarberServicesInfo(response.data);
         })

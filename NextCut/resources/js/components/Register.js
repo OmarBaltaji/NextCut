@@ -198,21 +198,21 @@ export default function Register() {
                 </Form.Group>
                 <Form.Group>
                     <InputGroup>
-                            <Form.Label style={{ margin: '5px 10px 0 0', color:'#00356f', fontWeight: 'bold' }}>
-                                Register As
-                            </Form.Label>
-                            <Form.Control
-                            style={{ color: '#00356f' }}
-                            onChange={(e) => setRole(e.target.value)}
-                            as="select">
-                                <option style={{ color: '#00356f' }} key={0} value={'Customer'}>
-                                    Customer
-                                </option>
-                                <option style={{ color: '#00356f' }} key={1} value={'Barber '}>
-                                    Barber
-                                </option>
-                            </Form.Control>
-                        </InputGroup>
+                        <Form.Label style={{ margin: '5px 10px 0 0', color:'#00356f', fontWeight: 'bold' }}>
+                            Register As
+                        </Form.Label>
+                        <Form.Control
+                        style={{ color: '#00356f' }}
+                        onChange={(e) => setRole(e.target.value)}
+                        as="select">
+                            <option style={{ color: '#00356f' }} key={0} value={'Customer'}>
+                                Customer
+                            </option>
+                            <option style={{ color: '#00356f' }} key={1} value={'Barber '}>
+                                Barber
+                            </option>
+                        </Form.Control>
+                    </InputGroup>
                 </Form.Group>
                 <Button className="btn_log_reg" type="submit">
                     Register

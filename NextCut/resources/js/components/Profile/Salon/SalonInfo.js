@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import api from '../../../api';
-import moment from 'moment';
+import React from 'react';
 import '../../../../css/Profile.css';
 
 export default function SalonInfo(props) {

@@ -6,10 +6,8 @@ import api from '../api';
 import moment from 'moment';
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
-import { error } from 'jquery';
 import '../../css/Request.css';
 import firebase from 'firebase';
-import { parse } from 'uuid';
 
 const db = firebase.firestore();
 db.settings({
@@ -33,14 +31,19 @@ export default function Requests() {
             let start_hour = parseInt(time_start[0]);
             let start_min = parseInt(time_start[1]);
             if(total_time_int < 60) {
-                if(start_min + total_time_int < 60) { //consider that the total_time_int is larger than 30 (35 for instance) and we booked at 16:30, that means it would add up to 16:65
+                if(start_min + total_time_int < 60) {
+                    //consider that the total_time_int is larger than 30 (35 for instance) and we booked at 16:30,
+                    //that means it would add up to 16:65
                     time_end = `${start_hour}:${start_min + total_time_int}:00`;
                 } else {
-                    let hour_to_add = Math.floor((total_time_int + start_min)/60); //hence in case the above case happens we need to count an additional hour and recalculate the remaining mins
+                    let hour_to_add = Math.floor((total_time_int + start_min)/60);
+                    //hence in case the above case happens we need to count an additional hour and recalculate the
+                    //remaining mins
                     let mins_remaining = total_time_int + start_min - hour_to_add*60;
                     time_end = `${start_hour + hour_to_add}:${mins_remaining}:00`;
                 }
-            } else { //in case total_time_int on its own is bigger than 60 mins then we need to add the necessary hours and recalculate remaining minutes
+            } else { //in case total_time_int on its own is bigger than 60 mins then we need to add the necessary hours
+                     //and recalculate remaining minutes
                 let hour_to_add = Math.floor(total_time_int/60);
                 let mins_remaining =  total_time_int - hour_to_add*60;
                 if(mins_remaining + start_min > 10) {
@@ -70,12 +73,12 @@ export default function Requests() {
     function getBookingDetails() {
         api.getRequestDetails()
         .then(response => {
-            // setBookingDetails(response.data);
             let array = response.data;
             let big_array = [];
             array.forEach(request => {
                 //turn the booked date and time to a Date Object
-                let date = new Date(`${request.date_booked} ${request.time_booked}:00 GMT+0200 (Eastern European Standard Time)`);
+                let date =
+                new Date(`${request.date_booked} ${request.time_booked}:00 GMT+0200 (Eastern European Standard Time)`);
                 //push the date object to the bigger object that we initially got from response
                 request['sortingDate'] = date;
                 //push to array
@@ -172,9 +175,14 @@ export default function Requests() {
                                     return <li key={service.id}>{service.barber_service.service.type}</li>
                                 })}</td>
                                 <td className="request_thd">{date} <br/> {' at ' + detail.time_booked}</td>
-                                <td className="td_request request_thd">{detail.total_price + '$, ' + detail.total_time + ' mins'}</td>
-                                <td className="td_request request_thd">{detail.appointment_location}</td>
-                                <td className="td_request request_thd">{detail.customer_address != '' ? detail.customer_address : ''}</td>
+                                <td className="td_request request_thd">
+                                {detail.total_price + '$, ' + detail.total_time + ' mins'}</td>
+                                <td className="td_request request_thd">
+                                    {detail.appointment_location}
+                                </td>
+                                <td className="td_request request_thd">
+                                    {detail.customer_address != '' ? detail.customer_address : ''}
+                                </td>
                                 <td className="request_thd" className="td_request request_thd">
                                     <div  style={{ display:'flex', alignItems:'center', justifyContent:'space-between' }}>
                                         <Form.Check
@@ -213,12 +221,16 @@ export default function Requests() {
                         <tr key={detail.id}>
                                 <td className="td_request request_thd">{index}</td>
                                 <td className="td_request request_thd">{detail.service_request[0].customer.user.name}</td>
-                                <td className="td_request request_thd">{detail.service_request[0].customer.user.phone_number}</td>
+                                <td className="td_request request_thd">
+                                    {detail.service_request[0].customer.user.phone_number}
+                                </td>
                                 <td className="request_thd">{detail.service_request.map(service => {
                                     return <li key={service.id}>{service.barber_service.service.type}</li>
                                 })}</td>
                                 <td className="request_thd">{date} <br/> {' at ' + detail.time_booked}</td>
-                                <td className="td_request request_thd">{detail.total_price + '$, ' + detail.total_time + ' mins'}</td>
+                                <td className="td_request request_thd">
+                                    {detail.total_price + '$, ' + detail.total_time + ' mins'}
+                                </td>
                                 <td className="td_request request_thd">{detail.appointment_location}</td>
                                 <td className="td_request request_thd">{detail.customer_address}</td>
                                 <td className="request_thd">
@@ -254,12 +266,16 @@ export default function Requests() {
                         <tr key={detail.id}>
                                 <td className="td_request request_thd">{index}</td>
                                 <td className="td_request request_thd">{detail.service_request[0].customer.user.name}</td>
-                                <td className="td_request request_thd">{detail.service_request[0].customer.user.phone_number}</td>
+                                <td className="td_request request_thd">
+                                    {detail.service_request[0].customer.user.phone_number}
+                                </td>
                                 <td className="request_thd">{detail.service_request.map(service => {
                                     return <li key={service.id}>{service.barber_service.service.type}</li>
                                 })}</td>
                                 <td className="request_thd">{date} <br/> {' at ' + detail.time_booked}</td>
-                                <td className="td_request request_thd">{detail.total_price + '$, ' + detail.total_time + ' mins'}</td>
+                                <td className="td_request request_thd">
+                                    {detail.total_price + '$, ' + detail.total_time + ' mins'}
+                                </td>
                                 <td className="td_request request_thd">{detail.appointment_location}</td>
                                 <td className="request_thd">
                                     {moment(detail.created_at).format('MMM DD YYYY')} <br/> {' at '
@@ -388,7 +404,9 @@ export default function Requests() {
                     </tbody>
                 </Table>
                 <hr style={{ backgroundColor:'#DAA520' }} />
-                <span style={{ fontWeight:'bold' }} className="text-muted"><u>You can press on old events to remove them</u></span>
+                <span style={{ fontWeight:'bold' }} className="text-muted">
+                    <u>You can press on old events to remove them</u>
+                </span>
                 <Calendar
                 localizer={localizer}
                 events={myEventsList}

@@ -2,31 +2,17 @@ import moment from 'moment'
 import React, {useState, useEffect} from 'react';
 import 'react-toastify/dist/ReactToastify.css'
 import images from '../Themes/Images';
-import './ChatBoard.css'
-import {AppString} from '../Const';
+import '../../../../css/ChatBoard.css'
 
 import firebase from 'firebase';
 import config from '../../../Firebase/FirebaseConfig';
 
 import api from '../../../api';
-import { useRouteMatch } from 'react-router-dom';
-
 
 if (!firebase.apps.length) {
   firebase.initializeApp(config);
 } else {
     firebase.app(); // if already initialized
-}
-
-if ("serviceWorker" in navigator) {
-    navigator.serviceWorker
-    .register("./firebase-messaging-sw.js")
-    .then(function(registration) {
-        console.log("Registration successful, scope is:", registration.scope);
-    })
-    .catch(function(err) {
-        console.log("Service worker registration failed, error:", err);
-    });
 }
 
 const db = firebase.firestore();
@@ -46,7 +32,6 @@ export  default function ChatBoard(props){
 
     let currentPeerUser = props.currentPeerUser;
     let groupChatId;
-    let removeListener = null;
     let currentPhotoFile = null;
     let messagesEnd= null;
     let refInput = null;
@@ -56,11 +41,6 @@ export  default function ChatBoard(props){
             setUserInfo(response.data)
             getListHistory(response.data.id)
         });
-
-        return () => {
-            // removeListener();
-        };
-
     }, [props.currentPeerUser, loading]);
 
     useEffect(() => {
@@ -68,28 +48,25 @@ export  default function ChatBoard(props){
     });
 
     function getListHistory(user_id) {
-        if (removeListener) {
-            // removeListener()
-        }
         if (hashString(user_id) <= hashString(currentPeerUser.id)) {
             groupChatId = `${user_id}-${currentPeerUser.id}`;
         } else {
             groupChatId = `${currentPeerUser.id}-${user_id}`;
         }
         let listMessage = [];
-        removeListener =
-            db.collection('messages')
-            .doc(groupChatId)
-            .collection(groupChatId)
-            .onSnapshot(snapshot => {
-                    snapshot.docChanges().forEach(change => {
-                        if (change.type === 'added') {
-                            listMessage.push(change.doc.data());
-                        }
-                    })
-                    setListOfMessages(listMessage);
-                    setLoading(false);
+
+        db.collection('messages')
+        .doc(groupChatId)
+        .collection(groupChatId)
+        .onSnapshot(snapshot => {
+                snapshot.docChanges().forEach(change => {
+                    if (change.type === 'added') {
+                        listMessage.push(change.doc.data());
+                    }
                 })
+                setListOfMessages(listMessage);
+                setLoading(false);
+            })
     }
 
     function openListSticker(){
@@ -281,7 +258,6 @@ export  default function ChatBoard(props){
                                     {moment(Number(item.timestamp)).format('lll')}
                                 </time>
                             </div>
-
                         )
                     } else {
                         viewListMessage.push( //if gif is sent

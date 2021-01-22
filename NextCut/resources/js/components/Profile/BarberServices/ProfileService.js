@@ -42,6 +42,5 @@ export default function ProfileService() {
                 </tbody>
             </Table>
         </div>
-);
-
+    );
 }

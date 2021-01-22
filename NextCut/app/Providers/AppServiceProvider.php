@@ -5,7 +5,6 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Foundation\Application;
 use App\Models\CustomerRequest;
-use App\Observers\RequestObserver;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -16,7 +15,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        CustomerRequest::observe(RequestObserver::class);
+
     }
 
     /**

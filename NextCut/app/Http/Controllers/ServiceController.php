@@ -60,18 +60,6 @@ class ServiceController extends Controller
         return response()->json($barber_service, 200);
     }
 
-    public function updateService(Service $service, Request $request) {
-        $attributes = $request->validate([
-            'type' => 'string|required',
-        ]);
-
-        $service->update([
-            'type' => $attributes['type'],
-        ]);
-
-        return response()->json($service, 200);
-    }
-
     public function updateBarberService(BarberService $barberService, Request $request) {
         $attrs = $request->validate([
             'price' => 'integer|required',
@@ -86,11 +74,6 @@ class ServiceController extends Controller
         ]);
 
         return response()->json($barberService, 200);
-    }
-
-    public function deleteService(Service $service) {
-        $service->delete();
-        return response()->json(['message' => 'deleted successfully'], 200);
     }
 
     public function deleteBarberService(BarberService $barberService) {

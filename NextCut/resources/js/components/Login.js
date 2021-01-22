@@ -14,7 +14,6 @@ export default function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [rememberMe, setRememberMe] = useState(false);
-    const [errs, setErrs] = useState([]);
     const [invalid, setInvalid] = useState('');
 
     useEffect(() => {
@@ -33,7 +32,6 @@ export default function Login() {
         firebase.auth().signInWithEmailAndPassword(email, password)
         .then((auth) => {
             auth.user.getIdToken().then(function(accessToken) {
-                // console.log(accessToken);
                 if(auth.additionalUserInfo.isNewUser == false) {
                     const credentials = {
                         'Firebasetoken': accessToken,
@@ -49,13 +47,6 @@ export default function Login() {
                         history.push('/home');
                         window.location.reload();
                     })
-                    // .catch(error => {
-                    //         if(error.response.status == 422) {
-                    //             setErrs(error.response.data.errors);
-                    //         } else if(error.response.status == 401) {
-                    //             setInvalid(error.response.data.message);
-                    //         }
-                    //     });
                 }
             })
         }).catch(error => {
@@ -93,7 +84,7 @@ export default function Login() {
                     <InputGroup>
                         <InputGroup.Prepend>
                             <InputGroup.Text id="inputGroupPrepend">
-                            <i className="fas fa-lock icons" />
+                                <i className="fas fa-lock icons" />
                             </InputGroup.Text>
                         </InputGroup.Prepend>
                         <Form.Control
@@ -105,12 +96,12 @@ export default function Login() {
                     {invalid.includes('password') ? <span style={{ color:'#980000' }}>{invalid}</span> : ''}
                 </Form.Group>
                 <Form.Group controlId="formBasicCheckbox" >
-                <div className="remember_me">
-                    <Form.Check
-                    type="checkbox"
-                    label="Remember Me"
-                    onChange={(e) => setRememberMe(!rememberMe)}
-                    />
+                    <div className="remember_me">
+                        <Form.Check
+                        type="checkbox"
+                        label="Remember Me"
+                        onChange={(e) => setRememberMe(!rememberMe)}
+                        />
                     </div>
                 </Form.Group>
                 <Button className="btn_log_reg" type="submit">

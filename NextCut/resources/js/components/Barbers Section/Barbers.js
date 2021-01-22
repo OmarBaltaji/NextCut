@@ -73,26 +73,26 @@ export default function Barber() {
                             return (
                                 <Card style={{ width:'350px', marginRight:'10px'}} lg={4} key={barber.id}
                                 className="show_barber" onClick={() => displayOneBarber(barber.id)}>
-                                <Card.Img variant="top" src={barber.user.profile_photo} height="300px"/>
-                                <Card.Body>
-                                    <Card.Title className="barbers_name">{barber.user.name}</Card.Title>
-                                    <Card.Text>
-                                    <span className="barbers_info"><u>Salon:</u> {barber.salon_name}</span> <br/>
-                                    <span className="barbers_info"><u>Opening Hours:</u> {barber.hour_open}</span>  <br/>
-                                    <span className="barbers_info"><u>Closing Hours:</u> {barber.hour_close}</span>  <br/>
-                                    <span className="barbers_info"><u>Mobile:</u> {barber.user.phone_number}</span>  <br/>
-                                    <span className="barbers_info">
-                                        <u>City:</u> {barber.user.address.length != 0 ?
-                                        barber.user.address[0].city : <>Not Available</>}
-                                    </span>
-                                    </Card.Text>
-                                </Card.Body>
-                                <Card.Footer>
-                                    <small className="text-muted">
-                                      Joined: {moment(barber.user.created_at).format('DD/MM/YYYY')}
-                                    </small>
-                                </Card.Footer>
-                            </Card>
+                                    <Card.Img variant="top" src={barber.user.profile_photo} height="300px"/>
+                                    <Card.Body>
+                                        <Card.Title className="barbers_name">{barber.user.name}</Card.Title>
+                                        <Card.Text>
+                                        <span className="barbers_info"><u>Salon:</u> {barber.salon_name}</span> <br/>
+                                        <span className="barbers_info"><u>Opening Hours:</u> {barber.hour_open}</span>  <br/>
+                                        <span className="barbers_info"><u>Closing Hours:</u> {barber.hour_close}</span>  <br/>
+                                        <span className="barbers_info"><u>Mobile:</u> {barber.user.phone_number}</span>  <br/>
+                                        <span className="barbers_info">
+                                            <u>City:</u> {barber.user.address.length != 0 ?
+                                            barber.user.address[0].city : <>Not Available</>}
+                                        </span>
+                                        </Card.Text>
+                                    </Card.Body>
+                                    <Card.Footer>
+                                        <small className="text-muted">
+                                        Joined: {moment(barber.user.created_at).format('DD/MM/YYYY')}
+                                        </small>
+                                    </Card.Footer>
+                                </Card>
                             )
                         }
                         return null;

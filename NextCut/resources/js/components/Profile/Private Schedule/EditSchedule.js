@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import api from '../../../api';
 import {Button, Form, Modal, Col} from 'react-bootstrap';
 import '../../../../css/Profile.css';
 
-export default function EditSalon(props) {
+export default function EditSchedule(props) {
     const [openForm, setOpenForm] = useState(true);
     const [hourOpen, setHourOpen] = useState(props.info[0].hour_open);
     const [hourClose, setHourClose] = useState(props.info[0].hour_close);
@@ -87,7 +87,7 @@ export default function EditSalon(props) {
     return(
         <Modal show={openForm ? props.props : false} onHide={() => handleClose()}>
             <Modal.Header style={{ backgroundColor:'beige' }} closeButton>
-            <Modal.Title style={{ color: '#DAA520' }}>Private Schedule</Modal.Title>
+                <Modal.Title style={{ color: '#DAA520' }}>Private Schedule</Modal.Title>
             </Modal.Header>
             <Modal.Body style={{ backgroundColor:'beige' }}>
                 <Form noValidate validated={validated} onSubmit={handleScheduleInfo}>
@@ -128,7 +128,8 @@ export default function EditSalon(props) {
                             className="profile_input"
                             onChange={(e) => {dayOpenHandler(e)}}
                             defaultValue={props.info.day_open}
-                            required>
+                            required
+                            >
                                 {dayOfWeek.map((day, index) => {
                                     return <option key={index} value={day}>{day}</option>
                                     }
@@ -146,7 +147,8 @@ export default function EditSalon(props) {
                             className="profile_input"
                             onChange={(e) => {dayCloseHandler(e)}}
                             defaultValue={dayClose}
-                            required>
+                            required
+                            >
                                 {dayOfWeek.map((day, index) => {
                                     return <option key={index} value={day}>{day}</option>
                                     }

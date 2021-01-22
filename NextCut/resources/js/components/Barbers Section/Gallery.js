@@ -28,23 +28,20 @@ export default function GallerySlideShow(props) {
 
     return (
         <Modal show={openForm ? props.props : false} onHide={() => handleClose()} >
-
-                <Carousel style={{ width:'500px' }} activeIndex={index} onSelect={handleSelect}>
-                    {galleryInfo.map((photo, index) => {
-                        return(
-                            <Carousel.Item key={index}>
-                                <img
-                                className="d-block w-100"
-                                width="1000px"
-                                height="500px"
-                                src={photo.image}
-                                />
-                            </Carousel.Item>
-                        )}
+            <Carousel style={{ width:'500px' }} activeIndex={index} onSelect={handleSelect}>
+                {galleryInfo.map((photo, index) => {
+                    return(
+                        <Carousel.Item key={index}>
+                            <img
+                            className="d-block w-100"
+                            width="1000px"
+                            height="500px"
+                            src={photo.image}
+                            />
+                        </Carousel.Item>
                     )}
-
-                </Carousel>
-
+                )}
+            </Carousel>
         </Modal>
     );
 }

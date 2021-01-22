@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import {useHistory} from 'react-router-dom';
+import React, { useState } from 'react';
 import {Button, Form, Modal, Col} from 'react-bootstrap';
 import api from '../../../api';
 import '../../../../css/Profile.css';
@@ -45,7 +44,7 @@ export default function AddAddress(props) {
     return(
         <Modal show={openForm ? props.props : false} onHide={() => handleClose()}>
             <Modal.Header style={{ backgroundColor:'beige' }} closeButton>
-            <Modal.Title style={{ color: '#DAA520' }}>Salon Address</Modal.Title>
+                <Modal.Title style={{ color: '#DAA520' }}>Salon Address</Modal.Title>
             </Modal.Header>
             <Modal.Body style={{ backgroundColor:'beige' }}>
                 <Form noValidate validated={validated} onSubmit={handleAddressInfo}>

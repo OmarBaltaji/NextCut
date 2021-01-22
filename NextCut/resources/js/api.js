@@ -1,5 +1,4 @@
 import axios from 'axios';
-import CookieService from './Service/CookieService';
 
 const BASE_URL = '/api';
 
@@ -7,15 +6,6 @@ export default{
 
     firebaseLogin: (credentials) =>
     axios.post(`${BASE_URL}/signin`, credentials),
-
-    firebaseRegister: (FirebaseToken) =>
-    axios.post(`${BASE_URL}/signin`, FirebaseToken),
-
-    storeNotification: (data) =>
-    axios.post(`${BASE_URL}/savefcmtoken`, data),
-
-    login: (credentials) =>
-    axios.post(`${BASE_URL}/login`, credentials),
 
     register: (info, headers) =>
     axios.post(`${BASE_URL}/register`, info, headers),
@@ -29,7 +19,7 @@ export default{
     deleteProfile: (user_id) =>
     axios.delete(`${BASE_URL}/user/${user_id}`),
 
-    updateProfilPhoto: (photo, headers) =>
+    updateProfilePhoto: (photo, headers) =>
     axios.post(`${BASE_URL}/user/photo`, photo, headers),
 
     updateUserInfo: (user_id, info, headers) =>
@@ -77,12 +67,6 @@ export default{
     createService: (type) =>
     axios.post(`${BASE_URL}/user/services`, type),
 
-    editService: (type, id) =>
-    axios.put(`${BASE_URL}/user/services/${id}`, type),
-
-    deleteService: (id) =>
-    axios.delete(`${BASE_URL}/user/services/${id}`),
-
     //the user is a barber we are getting his/her particular services
     getBarberService: () =>
     axios.get(`${BASE_URL}/user/barberservices`),
@@ -120,12 +104,6 @@ export default{
 
     getBarberGallery: (id) =>
     axios.get(`${BASE_URL}/barbers/${id}/gallery`),
-
-    getOneBarberServiceDetails: (id) =>
-    axios.get(`${BASE_URL}/barbers/${id}/barberservice`),
-
-    getSearchedBarber: (name) =>
-    axios.post(`${BASE_URL}/booking/searchedbarber`, name),
 
     storeCustomerRequest: (info) =>
     axios.post(`${BASE_URL}/booking/confirmation`,info),

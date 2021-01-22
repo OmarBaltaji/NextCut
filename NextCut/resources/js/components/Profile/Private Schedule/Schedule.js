@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import api from '../../../api';
+import React from 'react';
 
-export default function SalonInfo(props) {
+export default function ScheduleInfo(props) {
     return (
         <>
             <span className="schedule_spans"><u>Opens:</u> {props.props[0].hour_open}</span> &nbsp;

@@ -91,7 +91,7 @@ export default function AddSchedule(props) {
     return(
         <Modal show={openForm ? props.props : false} onHide={() => handleClose()}>
             <Modal.Header style={{ backgroundColor:'beige' }} closeButton>
-            <Modal.Title style={{ color: '#DAA520' }}>Private Schedule</Modal.Title>
+                <Modal.Title style={{ color: '#DAA520' }}>Private Schedule</Modal.Title>
             </Modal.Header>
             <Modal.Body style={{ backgroundColor:'beige' }}>
                 <Form noValidate validated={validated} onSubmit={handleScheduleInfo}>

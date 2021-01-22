@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import api from '../../api';
-import {Button, Form, InputGroup, Col, Card, Modal} from 'react-bootstrap';
+import {Button, Form, Modal} from 'react-bootstrap';
 import '../../../css/Profile.css';
 
 export default function EditProfile(props) {
@@ -51,7 +51,6 @@ export default function EditProfile(props) {
             </Modal.Header>
             <Modal.Body  style={{ backgroundColor:'beige' }} >
                 <Form onSubmit={editHandler}>
-                {/* encType="multipart/form-data"> */}
                     <Form.Group controlId="formGroupInput">
                         <Form.Label className="profile_label">Phone Number</Form.Label>
                         <Form.Control

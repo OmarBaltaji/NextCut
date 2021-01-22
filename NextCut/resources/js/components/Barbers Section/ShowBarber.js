@@ -50,32 +50,25 @@ export default function ShowBarber(props) {
         api.getBarberServices(param.id)
         .then(response => {
             setBarberService(response.data);
-        }).catch(error => {
-
-        });
+        })
     }
 
     function getBarberSchedule() {
         api.getBarberSchedule(param.id)
         .then(response => {
             if(Object.keys(response.data).length == 0) {
-                // console.log('empty')
+                console.log('empty')
             }else {
                 setBarberSchedule(response.data);;
             }
-        }).catch(error => {
-
-        });
+        })
     }
 
     function getGalleryInfo() {
         api.getBarberGallery(param.id)
         .then(response => {
-            // console.log(response.data);
             setGalleryInfo(response.data);
-        }).catch(error => {
-
-        });
+        })
     }
 
     function displayGallerySlideShow() {
@@ -96,12 +89,21 @@ export default function ShowBarber(props) {
                                 <Card.Title style={{ fontSize:'21px', color:'#DAA520' }}>{userDetails.name}</Card.Title>
                                 <Card.Text>
                                     <span className="onebarber_info"><u>Salon Name:</u> {barberDetails.salon_name}</span> <br/>
-                                    <span className="onebarber_info" style={{ color:'#DAA520', fontSize: '21px'}}>Salon Schedule</span> <br/>
-                                    <span className="onebarber_info"><u>Opening Hours:</u> {barberDetails.hour_open}</span> <br/>
-                                    <span className="onebarber_info"><u>Closing Hours:</u> {barberDetails.hour_close}</span> <br/>
+                                    <span className="onebarber_info" style={{ color:'#DAA520', fontSize: '21px'}}>
+                                        Salon Schedule
+                                    </span> <br/>
+                                    <span className="onebarber_info">
+                                        <u>Opening Hours:</u> {barberDetails.hour_open}
+                                    </span> <br/>
+                                    <span className="onebarber_info">
+                                        <u>Closing Hours:</u> {barberDetails.hour_close}
+                                    </span> <br/>
                                     <span className="onebarber_info"><u>From:</u> {barberDetails.day_open}</span><br/>
                                     <span className="onebarber_info"><u>To:</u> {barberDetails.day_close}</span> <br/>
-                                    <span className="onebarber_info" style={{ color:'#DAA520', fontSize: '21px'}}>Location</span> <br/>
+                                    <span className="onebarber_info" style={{ color:'#DAA520', fontSize: '21px'}}>
+                                        Location
+                                    </span> <br/>
+
                                     {addressDetails ?
                                     <>
                                         <span className="onebarber_info"><u>City:</u> {addressDetails.city}</span> <br/>
@@ -114,7 +116,9 @@ export default function ShowBarber(props) {
                                         <span style={{ color:'#00356f' }}>Address Not Available</span> <br/>
                                     </>}
 
-                                    <span className="onebarber_info" style={{ color:'#DAA520', fontSize: '21px'}}>Contact</span> <br/>
+                                    <span className="onebarber_info" style={{ color:'#DAA520', fontSize: '21px'}}>
+                                        Contact
+                                    </span> <br/>
                                     <span className="onebarber_info"><u>Mobile:</u> {userDetails.phone_number}</span>  <br/>
                                     <span className="onebarber_info"><u>Email:</u> {userDetails.email}</span>
                                 </Card.Text>
@@ -131,35 +135,45 @@ export default function ShowBarber(props) {
                             <Col lg={6} xs={12}>
                                 <Card style={{ height:'250px' }} className="service_card">
                                     <Card.Body>
-                                        <Card.Title style={{ paddingTop: '15px', position:'absolute', left:'13px', top:'5px' }} className="card_title">Services</Card.Title>
+                                        <Card.Title
+                                        style={{ paddingTop: '15px', position:'absolute', left:'13px', top:'5px' }}
+                                        className="card_title">
+                                            Services
+                                        </Card.Title>
                                     </Card.Body>
                                     <br/>
                                     <div className="div_table">
-                                            <Table className="table_barber" hover bordered>
-                                                <thead>
-                                                    <tr>
-                                                        <th className="onebarber_thd">Type</th>
-                                                        <th className="onebarber_thd">Price</th>
-                                                        <th className="onebarber_thd">Time</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    {barberService.length != 0 ?
-                                                    barberService.map(barber_service => {
-                                                        return (
-                                                            <tr key={barber_service.id}>
-                                                                <td className="onebarber_thd">{barber_service.service.type}</td>
-                                                                <td className="onebarber_thd">{barber_service.price}</td>
-                                                                <td className="onebarber_thd">{barber_service.estimated_time}</td>
-                                                            </tr>
-                                                        );
-                                                    })
-                                                    :   <tr><td colSpan="3" style={{color: '#00356f'}}>
+                                        <Table className="table_barber" hover bordered>
+                                            <thead>
+                                                <tr>
+                                                    <th className="onebarber_thd">Type</th>
+                                                    <th className="onebarber_thd">Price</th>
+                                                    <th className="onebarber_thd">Time</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {barberService.length != 0 ?
+                                                barberService.map(barber_service => {
+                                                    return (
+                                                        <tr key={barber_service.id}>
+                                                            <td className="onebarber_thd">
+                                                                {barber_service.service.type}
+                                                            </td>
+                                                            <td className="onebarber_thd">{barber_service.price}</td>
+                                                            <td className="onebarber_thd">
+                                                                {barber_service.estimated_time}
+                                                            </td>
+                                                        </tr>
+                                                    );
+                                                })
+                                                :   <tr>
+                                                        <td colSpan="3" style={{color: '#00356f'}}>
                                                             Not Available
-                                                        </td></tr>}
-                                                </tbody>
-                                            </Table>
-                                        </div>
+                                                        </td>
+                                                    </tr>}
+                                            </tbody>
+                                        </Table>
+                                    </div>
                                 </Card>
                             </Col>
                             <Col lg={6} xs={12}>
@@ -167,17 +181,20 @@ export default function ShowBarber(props) {
                                     <Card.Body>
                                         <Card.Title  className="card_title">Private Schedule</Card.Title>
                                         <Card.Text>
-                                            {barberSchedule ? <BarberSchedule props={barberSchedule} /> :  <span style={{ color:'#00356f' }}>Not Available</span>}
+                                            {barberSchedule ? <BarberSchedule props={barberSchedule} /> :
+                                            <span style={{ color:'#00356f' }}>Not Available</span>}
                                         </Card.Text>
                                     </Card.Body>
                                     <Card.Footer>
-                                        <small>Last Updated: {moment(barberSchedule.last_updated).format('DD/MM/YYYY')}</small>
+                                        <small>
+                                            Last Updated: {moment(barberSchedule.last_updated).format('DD/MM/YYYY')}
+                                        </small>
                                     </Card.Footer>
                                 </Card>
                             </Col>
                         </Row>
                         <Row style={{ position:'absolute', top:'270px', right:'15px', left:'15px' }}>
-                        <Col lg={12} xs={12}>
+                            <Col lg={12} xs={12}>
                                 <Card className="gallery_card">
                                     <h4 style={{ margin: '20px 0 0 20px', color:'#DAA520', fontSize:'24px' }}>
                                         Gallery

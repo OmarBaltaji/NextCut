@@ -6,11 +6,8 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
-// use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Firebase\Auth\Token\Exception\InvalidToken;
-use Lcobucci\JWT\Token\Plain;
-use Lcobucci\JWT\Token\Parser;
 
 class AuthController extends Controller
 {
@@ -20,7 +17,7 @@ class AuthController extends Controller
         // Retrieve the Firebase credential's token
         $idTokenString = $request->input('Firebasetoken');
 
-        try { // Try to verify the Firebase credential token with Google
+        try { // Verify the Firebase credential token with Google
 
             $verifiedIdToken = $auth->verifyIdToken($idTokenString);
 
@@ -30,7 +27,7 @@ class AuthController extends Controller
                 'message' => 'Unauthorized - Can\'t parse the token: ' . $e->getMessage()
             ], 401);
 
-        } catch (InvalidToken $e) { // If the token is invalid (expired ...)
+        } catch (InvalidToken $e) { // If the token is invalid (expired)
 
             return response()->json([
                 'message' => 'Unauthorized - Token is invalid: ' . $e->getMessage()
@@ -65,6 +62,7 @@ class AuthController extends Controller
         // Store the created token
         $token = $tokenResult->token;
 
+        // Add a expiration date to the token
         if($attributes['remember_me']) {
             $token->expires_at = Carbon::now()->addWeeks(1);
             $user->remember_token = $tokenResult->accessToken;
@@ -73,14 +71,10 @@ class AuthController extends Controller
             $token->expires_at = Carbon::now()->addDay();
         }
 
-        // Add a expiration date to the token
-        // $token->expires_at = Carbon::now()->addWeeks(1);
-
         // Save the token to the user
         $token->save();
 
         // Return a JSON object containing the token datas
-        // You may format this object to suit your needs
         return response()->json([
             'id' => $user->id,
             'access_token' => $tokenResult->accessToken,
@@ -107,7 +101,7 @@ class AuthController extends Controller
         $idTokenString = $request->input('Firebasetoken');
 
 
-        try { // Try to verify the Firebase credential token with Google
+        try { // Verify the Firebase credential token with Google
 
             $verifiedIdToken = $auth->verifyIdToken($idTokenString);
 
@@ -117,7 +111,7 @@ class AuthController extends Controller
                 'message' => 'Unauthorized - Can\'t parse the token: ' . $e->getMessage()
             ], 401);
 
-        } catch (InvalidToken $e) { // If the token is invalid (expired ...)
+        } catch (InvalidToken $e) { // If the token is invalid (expired)
 
             return response()->json([
                 'message' => 'Unauthorized - Token is invalide: ' . $e->getMessage()
@@ -129,12 +123,12 @@ class AuthController extends Controller
         $uid = $verifiedIdToken->getClaim('sub');
 
         //Image
-        if($request->hasFile('profile_photo')) {
+        if($request->hasFile('profile_photo')) { //Ensure user uploaded an image
             $profile_photo = $request->file('profile_photo');
-            $photo = $request['profile_photo']->store(env('PROFILE_PICTURES_PATH'));
-            $photoInDB = Storage::url($photo);
+            $photo = $request['profile_photo']->store(env('PROFILE_PICTURES_PATH')); //Store the picture locally
+            $photoInDB = Storage::url($photo); //Obtain the url of the photo
         } else {
-            $defaultPhoto = env('PROFILE_PICTURES_PATH') . "/none.png";
+            $defaultPhoto = env('PROFILE_PICTURES_PATH') . "/none.png"; //If not photo is uploaded than use this default one
             $photoInDB = Storage::url($defaultPhoto);
         }
 
@@ -149,7 +143,7 @@ class AuthController extends Controller
             'FirebaseUID' => $uid,
         ]);
 
-        $result_token = $user->createToken('Personal Access Token'); //to login immediately after registering
+        $result_token = $user->createToken('Personal Access Token'); //To login immediately after registering
         $token = $result_token->token;
 
         $token->expires_at = Carbon::now()->addDay();
@@ -162,13 +156,13 @@ class AuthController extends Controller
     }
 
     public function logout() {
-        $user = auth()->user();
-        $user->token()->revoke(); //destroy token
+        $user = auth()->user(); //Get logged in user
+        $user->token()->revoke(); //Destroy token
         return response()->json(['message' => 'logged out'], 200);
     }
 
     public function userInfo() {
-        $user = auth()->user(); //instance of user
+        $user = auth()->user(); //Get user details
         return response()->json($user, 200);
     }
 }

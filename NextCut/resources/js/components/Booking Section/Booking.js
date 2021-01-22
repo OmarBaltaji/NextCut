@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {useHistory} from 'react-router-dom';
 import Header from '../Header';
 import api from '../../api';
-import {CardColumns, Card, Button, Container, Col, Row, InputGroup, Form, FormControl} from 'react-bootstrap';
+import {CardColumns, Card, Button, Container, Row, InputGroup, FormControl} from 'react-bootstrap';
 import '../../../css/Booking.css';
 
 export default function Booking() {
@@ -64,7 +64,7 @@ export default function Booking() {
                     />
                     <InputGroup.Append>
                         <InputGroup.Text><i className="fas fa-search" style={{ color:'#00356f' }} /></InputGroup.Text>
-                </InputGroup.Append>
+                    </InputGroup.Append>
                 </InputGroup>
                 <br/>
                 <CardColumns as= {Row}>
@@ -73,26 +73,26 @@ export default function Booking() {
                             return (
                                 <Card style={{ width:'350px', marginRight:'15px'}} lg={4} key={barber.id}
                                 className='barberBooking_cards'>
-                                <Card.Img src={barber.user.profile_photo} height="300px"/>
-                                <Card.Body>
-                                    <Card.Title className="booking_spans">{barber.user.name}</Card.Title>
-                                    <Card.Text>
-                                        <span className="booking_spans">
-                                            {barber.salon_name ?
-                                            <> Salon Name: {barber.salon_name} </>
-                                            : <>Not Available </>}
-                                        </span> <br/>
-                                        <span className="booking_spans">
-                                            Location: {barber.user.address.length != 0 ?
-                                            barber.user.address[0].city : <>Not Available</>}
-                                        </span>
-                                    </Card.Text>
-                                </Card.Body>
-                                <Card.Footer>
-                                    <Button className="booking_btn"
-                                    href={`/booking/${barber.id}`}>Book This Barber</Button>
-                                </Card.Footer>
-                            </Card>
+                                    <Card.Img src={barber.user.profile_photo} height="300px"/>
+                                    <Card.Body>
+                                        <Card.Title className="booking_spans">{barber.user.name}</Card.Title>
+                                        <Card.Text>
+                                            <span className="booking_spans">
+                                                {barber.salon_name ?
+                                                <> Salon Name: {barber.salon_name} </>
+                                                : <>Not Available </>}
+                                            </span> <br/>
+                                            <span className="booking_spans">
+                                                Location: {barber.user.address.length != 0 ?
+                                                barber.user.address[0].city : <>Not Available</>}
+                                            </span>
+                                        </Card.Text>
+                                    </Card.Body>
+                                    <Card.Footer>
+                                        <Button className="booking_btn"
+                                        href={`/booking/${barber.id}`}>Book This Barber</Button>
+                                    </Card.Footer>
+                                </Card>
                             )
                         }
                         return null;
@@ -102,26 +102,26 @@ export default function Booking() {
                             return (
                                 <Card style={{ width:'350px', marginRight:'15px'}} lg={4} key={barber.id}
                                 className='barberBooking_cards'>
-                                <Card.Img src={barber.user.profile_photo} height="300px"/>
-                                <Card.Body>
-                                    <Card.Title className="booking_spans">{barber.user.name}</Card.Title>
-                                    <Card.Text>
-                                        <span className="booking_spans">
-                                            {barber.salon_name ?
-                                            <> Salon Name: {barber.salon_name} </>
-                                            : <>Not Available </>}
-                                        </span> <br/>
-                                        <span className="booking_spans">
-                                            Location: {barber.user.address.length != 0 ?
-                                            barber.user.address[0].city : <>Not Available</>}
-                                        </span>
-                                    </Card.Text>
-                                </Card.Body>
-                                <Card.Footer>
-                                    <Button className="booking_btn"
-                                    href={`/booking/${barber.id}`}>Book This Barber</Button>
-                                </Card.Footer>
-                            </Card>
+                                    <Card.Img src={barber.user.profile_photo} height="300px"/>
+                                    <Card.Body>
+                                        <Card.Title className="booking_spans">{barber.user.name}</Card.Title>
+                                        <Card.Text>
+                                            <span className="booking_spans">
+                                                {barber.salon_name ?
+                                                <> Salon Name: {barber.salon_name} </>
+                                                : <>Not Available </>}
+                                            </span> <br/>
+                                            <span className="booking_spans">
+                                                Location: {barber.user.address.length != 0 ?
+                                                barber.user.address[0].city : <>Not Available</>}
+                                            </span>
+                                        </Card.Text>
+                                    </Card.Body>
+                                    <Card.Footer>
+                                        <Button className="booking_btn"
+                                        href={`/booking/${barber.id}`}>Book This Barber</Button>
+                                    </Card.Footer>
+                                </Card>
                             )
                         }
                         return null;

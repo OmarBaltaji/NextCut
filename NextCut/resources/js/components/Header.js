@@ -11,11 +11,7 @@ import firebaseConfig from '../Firebase/FirebaseConfig';
 import 'firebase/auth';
 import 'firebase/firestore';
 
-// import $ from 'jquery';
-
 import { messaging } from "../Firebase/init-fcm";
-import times from 'lodash/times';
-
 
 if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
@@ -79,7 +75,7 @@ export default function Header() {
                 });
             })
             .catch(function(err) {
-              console.log("Unable to get permission to notify.", err);
+                console.log("Unable to get permission to notify.", err);
             });
             navigator.serviceWorker.addEventListener("message", (message) => console.log(message));
 
@@ -97,7 +93,6 @@ export default function Header() {
     function getNotificationInfo(user_details) {
         const query = db.collection('notifications').orderBy('created', 'desc');
         let count = 0;
-        // let messages = [];
         let notifications_list = [];
 
 
@@ -110,7 +105,7 @@ export default function Header() {
                         notification['message'] = change.doc.data().message;
                         notification['time'] = moment(timestamp).format('lll');
                         notifications_list.push(notification);
-                        // messages.push(change.doc.data().message);
+
                         if(change.doc.data().isOpened == false) {
                             count += 1;
                         }
@@ -163,16 +158,14 @@ export default function Header() {
 
     function displayUser() {
         return (
-
-                <NavDropdown style={{ marginRight: '20px' }} className="user-dropdown"
-                title={userInfo.length != 0 ? userInfo.name : ''} id="collasible-nav-dropdown">
-                    <NavDropdown.Item style = {{ color: '#40E0D0'}} href="/profile">Profile</NavDropdown.Item>
-                    <NavDropdown.Divider />
-                    <NavDropdown.Item style = {{ color: '#40E0D0' }} onClick={(e) => logoutHandler(e)} href='/login'>
-                        Logout
-                    </NavDropdown.Item>
-                </NavDropdown>
-
+            <NavDropdown style={{ marginRight: '20px' }} className="user-dropdown"
+            title={userInfo.length != 0 ? userInfo.name : ''} id="collasible-nav-dropdown">
+                <NavDropdown.Item style = {{ color: '#40E0D0'}} href="/profile">Profile</NavDropdown.Item>
+                <NavDropdown.Divider />
+                <NavDropdown.Item style = {{ color: '#40E0D0' }} onClick={(e) => logoutHandler(e)} href='/login'>
+                    Logout
+                </NavDropdown.Item>
+            </NavDropdown>
         );
     }
 
@@ -186,12 +179,11 @@ export default function Header() {
     }
 
     return (
-       <>
         <Navbar collapseOnSelect expand='lg' sticky="top" style={{ backgroundColor: '#DAA520' }}>
             <Navbar.Brand  href="/home">
                 <Image src={logo} height="50px" width="60px"
                 alt="logo" />
-             </Navbar.Brand>
+            </Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="mr-auto">
@@ -210,47 +202,46 @@ export default function Header() {
                 </Nav>
 
                 {cookie && (userInfo.roles == 'Barber' || role == 'Barber') ?
-                    <div className="dropdown-container" style={{ position: 'relative' }}>
-
-                        <DropdownButton
-                        menuAlign='right'
-                        id="notification_dropdown"
-                        title={
-                            <>
-                                <i className="far fa-bell" />
-                                &nbsp;
-                                <span
-                                style={{ backgroundColor:'#00356f' }}>
-                                    <Badge style={{ color: 'white' }}>{notificationInfo.count}</Badge>
-                                </span>
-                            </>
-                        }
-                        onClick={() => handleNotifications()}>
-
-                            {notificationInfo.length != 0 ?
-                            notificationInfo.notifications_list ?
-                            <div style={{ height:'180px',  minWidth:'400px' }}>
-                                {notificationInfo.notifications_list.map((notification, index) => {
-                                    return (
-                                        <div key={'div'+index}>
-                                            <Dropdown.Item href='/requests'  key={index}
-                                            className="notification_dropItem">
-                                                <span className='notif_msg'>{notification.message}</span><br/>
-                                                <span className='notif_time'>
-                                                    {notification.time}
-                                                </span>
-                                            </Dropdown.Item>
-                                            {index == notificationInfo.notifications_list.length - 1 ?
-                                            '' :
-                                            <Dropdown.Divider key={index+'divider'}/>}
-                                        </div>
-                                    );
-                                })}
-                            </div>
+                <div className="dropdown-container" style={{ position: 'relative' }}>
+                    <DropdownButton
+                    menuAlign='right'
+                    id="notification_dropdown"
+                    title={
+                        <>
+                            <i className="far fa-bell" />
+                            &nbsp;
+                            <span
+                            style={{ backgroundColor:'#00356f' }}>
+                                <Badge style={{ color: 'white' }}>{notificationInfo.count}</Badge>
+                            </span>
+                        </>
+                    }
+                    onClick={() => handleNotifications()}
+                    >
+                        {notificationInfo.length != 0 ?
+                        notificationInfo.notifications_list ?
+                        <div style={{ height:'180px',  minWidth:'400px' }}>
+                            {notificationInfo.notifications_list.map((notification, index) => {
+                                return (
+                                    <div key={'div'+index}>
+                                        <Dropdown.Item href='/requests'  key={index}
+                                        className="notification_dropItem">
+                                            <span className='notif_msg'>{notification.message}</span><br/>
+                                            <span className='notif_time'>
+                                                {notification.time}
+                                            </span>
+                                        </Dropdown.Item>
+                                        {index == notificationInfo.notifications_list.length - 1 ?
+                                        '' :
+                                        <Dropdown.Divider key={index+'divider'}/>}
+                                    </div>
+                                );
+                            })}
+                        </div>
                             : <li key={'random1200'} style={{ marginLeft:'20px', color:'beige' }}>no notifications</li>
                             : ''}
-                        </DropdownButton>
-                    </div>
+                    </DropdownButton>
+                </div>
                 : ''}
 
                 {cookie ? <Nav.Link href="/chat"><i className="fas fa-comments" /></Nav.Link>
@@ -259,8 +250,7 @@ export default function Header() {
                 <Nav>
                     {cookie ? displayUser() : displayGuest()}
                 </Nav>
-                </Navbar.Collapse>
+            </Navbar.Collapse>
         </Navbar>
-        </>
     );
 }

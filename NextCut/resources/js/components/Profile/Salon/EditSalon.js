@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import api from '../../../api';
-import {Button, Form, Modal, Col, InputGroup} from 'react-bootstrap';
+import {Button, Form, Modal, Col} from 'react-bootstrap';
 import '../../../../css/Profile.css';
-import { validate } from 'uuid';
 
 export default function EditSalon(props) {
     const [openForm, setOpenForm] = useState(true);
@@ -91,7 +90,7 @@ export default function EditSalon(props) {
     return(
         <Modal show={openForm ? props.props : false} onHide={() => handleClose()}>
             <Modal.Header  style={{ backgroundColor:'beige' }} closeButton>
-            <Modal.Title style={{ color: '#DAA520' }}>Salon Info</Modal.Title>
+                <Modal.Title style={{ color: '#DAA520' }}>Salon Info</Modal.Title>
             </Modal.Header>
             <Modal.Body  style={{ backgroundColor:'beige' }}>
                 <Form noValidate validated={validated} onSubmit={handleSalonInfo}>
@@ -164,7 +163,8 @@ export default function EditSalon(props) {
                             id='closing_day'
                             onChange={(e) => {dayCloseHandler(e)}}
                             defaultValue={dayClose}
-                            required >
+                            required
+                            >
                                 {dayOfWeek.map((day, index) => {
                                     return <option key={index} value={day}>{day}</option>
                                     }

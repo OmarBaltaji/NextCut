@@ -2,17 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Customer;
 use Illuminate\Http\Request;
 use App\Models\CustomerRequest;
 use App\Models\ServiceRequest;
 use Auth;
-use File;
-use Illuminate\Support\Facades\Mail;
-use Response;
 use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
-use Storage;
 
 class CustomerRequestController extends Controller
 {
@@ -89,16 +83,6 @@ class CustomerRequestController extends Controller
 
         return response()->json(['message' => 'request is deleted'], 200);
     }
-
-    // public function storeToMail() {
-    //     Mail::raw('It Works!', function ($message) {
-    //         $message->from('nextcut@gmail.com', 'NextCut');
-    //         $message->to(request('email'), request('name'));
-    //         $message->subject('Booking Confirmation');
-    //     });
-
-    //     return response()->json(['message' => 'Mail Sent'], 200);
-    // }
 
     public function storeToMail() {
         $mail = new PHPMailer();

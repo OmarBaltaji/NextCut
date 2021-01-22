@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
-import {useHistory, Link} from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import {useHistory} from 'react-router-dom';
 import Header from '../Header';
 import api from '../../api';
 import {Button, Card, CardColumns, Row, Col, ButtonGroup, Container} from 'react-bootstrap';
@@ -223,7 +223,8 @@ export default function Profile() {
 
     function displayEditCustomerAddress() {
         return(
-            <EditCustomerAddress props={showEditCustomerAddress} info={customerAddress} setShow={setShowEditCustomerAddress} />
+            <EditCustomerAddress props={showEditCustomerAddress} info={customerAddress}
+            setShow={setShowEditCustomerAddress} />
         );
     }
 
@@ -252,7 +253,7 @@ export default function Profile() {
         const formData = new FormData();
         formData.append('profile_photo', event.target.files[0]);
 
-        api.updateProfilPhoto(formData, {headers:{'Accept': "application/json", 'Content-Type':"multipart/form-data"}})
+        api.updateProfilePhoto(formData, {headers:{'Accept': "application/json", 'Content-Type':"multipart/form-data"}})
         .then(response => {
             window.location.reload();
         })
@@ -288,14 +289,14 @@ export default function Profile() {
                                 <ButtonGroup style={{ position:'relative', left:'10px' }}>
                                     <Button className="edit_profile profile_btn"
                                     onClick={() => handleShowEditProfile()}>
-                                    Edit
+                                        Edit
                                     </Button>
 
                                     {showEditProfile ? displayEditProfile(showEditProfile) : ''}
 
                                     <Button className="profile_btn" onClick={() => {deleteProfileHandler()}}
                                     style={{ borderLeft:'1px solid #00356f' }}>
-                                    Delete
+                                        Delete
                                     </Button>
                                 </ButtonGroup>
                             </Card.Title>
@@ -341,7 +342,8 @@ export default function Profile() {
                                         </ButtonGroup>
                                     </Card.Title>
                                     <Card.Text>
-                                        {salonInfo ? <SalonInfo props={salonInfo}/> : <span className="nothing">Nothing yet</span> }
+                                        {salonInfo ? <SalonInfo props={salonInfo}/> :
+                                        <span className="nothing">Nothing yet</span> }
                                     </Card.Text>
                                 </Card.Body>
                             </Card>
@@ -405,7 +407,8 @@ export default function Profile() {
                                         </ButtonGroup>
                                     </Card.Title>
                                     <Card.Text>
-                                        {addressInfo ? <Address props={addressInfo} /> : <span className="nothing">Nothing yet</span>}
+                                        {addressInfo ? <Address props={addressInfo} /> :
+                                        <span className="nothing">Nothing yet</span>}
                                     </Card.Text>
                                 </Card.Body>
                             </Card>
@@ -449,26 +452,29 @@ export default function Profile() {
                             </div>
                             <CardColumns as={Row} style={{ marginLeft:'30px', width:'1270px' }}>
                             {galleryInfo.length !=0 ? galleryInfo.map(gallery => {
-                            return(
-                                <Card key={gallery.id} style={{width:'350px', margin:'20px 50px 20px 10px' }} lg={4}
-                                 className="profile_card">
-                                    <Card.Img src={gallery.image} height="300px"/>
-                                    <Card.Body>
-                                        <Card.Title>
-                                            <Button className="profile_btn"
-                                            onClick={() => {deleteGalleryHandler(gallery.id)}}>
-                                                Delete
-                                            </Button>
-                                        </Card.Title>
-                                    </Card.Body>
-                                </Card>
-                            )
-                            }) : <span style={{  marginLeft: '12px', marginTop:'20px' }} className="nothing">No Photos yet</span>}
+                                return(
+                                    <Card key={gallery.id} style={{width:'350px', margin:'20px 50px 20px 10px' }} lg={4}
+                                    className="profile_card">
+                                        <Card.Img src={gallery.image} height="300px"/>
+                                        <Card.Body>
+                                            <Card.Title>
+                                                <Button className="profile_btn"
+                                                onClick={() => {deleteGalleryHandler(gallery.id)}}>
+                                                    Delete
+                                                </Button>
+                                            </Card.Title>
+                                        </Card.Body>
+                                    </Card>
+                                )
+                            })
+                            :
+                            <span style={{  marginLeft: '12px', marginTop:'20px' }} className="nothing">No Photos yet</span>
+                            }
                             </CardColumns>
                         </Card>
                     </Col>
                 </Row>
-                </>
+            </>
         );
     }
 

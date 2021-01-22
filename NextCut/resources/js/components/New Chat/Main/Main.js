@@ -1,10 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import {useHistory} from 'react-router-dom';
-import images from '../Themes/Images';
 import WelcomeBoard from '../WelcomeBoard/WelcomeBoard';
-import './Main.css'
+import '../../../../css/Main.css';
 import ChatBoard from '../ChatBoard/ChatBoard';
-import {AppString} from '../Const';
 import Header from '../../Header';
 
 import api from '../../../api';
@@ -46,7 +44,6 @@ export  default function Main(){
             return(
                 <i  key={user.id}>
                 {user.id !== userInfo.id && user.roles == "Customer" ?
-
                     <button
                     style={{ backgroundColor:'beige' }}
                     key={user.id}
@@ -56,7 +53,6 @@ export  default function Main(){
                     ? 'viewWrapItemFocused'
                     : 'viewWrapItem'}
                     onClick={() => {setCurrentPeerUser(user)}} >
-
                         <img
                             className="viewAvatarItem"
                             src={user.profile_photo}
@@ -67,7 +63,6 @@ export  default function Main(){
                                 {`${user.name}`}
                             </span>
                         </div>
-
                     </button>
                     : '' }
             </i>
@@ -79,36 +74,32 @@ export  default function Main(){
         return listUser.map(user => {
             return(
                 <i  key={user.id}>
-                {user.id !== userInfo.id && user.roles == "Barber" ?
-
-                    <button
-                    style={{ backgroundColor:'beige' }}
-                    key={user.id}
-                    className={
-                    currentPeerUser &&
-                    currentPeerUser.id === user.id
-                    ? 'viewWrapItemFocused'
-                    : 'viewWrapItem'}
-                    onClick={() => {setCurrentPeerUser(user)}} >
-
-                        <img
-                            className="viewAvatarItem"
-                            src={user.profile_photo}
-                            alt="icon avatar"
-                        />
-                        <div className="viewWrapContentItem">
-                            <span className="textItem">
-                                {`${user.name}`}
-                            </span>
-                        </div>
-
-                    </button>
+                    {user.id !== userInfo.id && user.roles == "Barber" ?
+                        <button
+                        style={{ backgroundColor:'beige' }}
+                        key={user.id}
+                        className={
+                        currentPeerUser &&
+                        currentPeerUser.id === user.id
+                        ? 'viewWrapItemFocused'
+                        : 'viewWrapItem'}
+                        onClick={() => {setCurrentPeerUser(user)}} >
+                            <img
+                                className="viewAvatarItem"
+                                src={user.profile_photo}
+                                alt="icon avatar"
+                            />
+                            <div className="viewWrapContentItem">
+                                <span className="textItem">
+                                    {`${user.name}`}
+                                </span>
+                            </div>
+                        </button>
                     : '' }
-            </i>
+                </i>
             )
         })
     }
-
 
     return (
         <>

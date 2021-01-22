@@ -97,28 +97,29 @@ export default function ConfirmationPage() {
                                 <h2 style={{ color:'#DAA520' }}>Appointment Successfully Booked</h2>
                             </Card.Header>
                             <Card.Body>
-                            <Card.Title className="confirmed_subheaders">Booking Information</Card.Title>
-                                    <span className="booking_info">
-                                        <u>Barber:</u> {location.state ? location.state.barber_name : ''}
-                                    </span> <br/>
-                                    <span className="booking_info">
-                                        <u>Payment Method:</u> {location.state ? location.state.payment_method : ''}
-                                    </span> <br/>
-                                    <span className="booking_info">
-                                        <u>Appointment Date:</u> {`${date[0]}, ${date[1]} ${date[2]} ${date[3]}`}
-                                    </span> <br/>
-                                    <span className="booking_info">
-                                        <u>Appointment Time:</u> {`${time[0]}:${time[1]}`}
-                                    </span> <br/>
-                                    <span className="booking_info">
-                                        <u>Appointment Location:</u> {location.state ? location.state.app_location : ''}
-                                    </span> <br/>
+                                <Card.Title className="confirmed_subheaders">Booking Information</Card.Title>
+                                <span className="booking_info">
+                                    <u>Barber:</u> {location.state ? location.state.barber_name : ''}
+                                </span> <br/>
+                                <span className="booking_info">
+                                    <u>Payment Method:</u> {location.state ? location.state.payment_method : ''}
+                                </span> <br/>
+                                <span className="booking_info">
+                                    <u>Appointment Date:</u> {`${date[0]}, ${date[1]} ${date[2]} ${date[3]}`}
+                                </span> <br/>
+                                <span className="booking_info">
+                                    <u>Appointment Time:</u> {`${time[0]}:${time[1]}`}
+                                </span> <br/>
+                                <span className="booking_info">
+                                    <u>Appointment Location:</u> {location.state ? location.state.app_location : ''}
+                                </span> <br/>
 
-                                    {location.state && location.state.customer_address.length != 0 && location.state.app_location == 'Home' ?
-                                    <span className="booking_info">
-                                        <u>Your Address:</u> {`${address.city}, ${street}, ${building}, ${address.near}`}
-                                        </span>
-                                    : ''}
+                                {location.state && location.state.customer_address.length != 0
+                                && location.state.app_location == 'Home' ?
+                                <span className="booking_info">
+                                    <u>Your Address:</u> {`${address.city}, ${street}, ${building}, ${address.near}`}
+                                    </span>
+                                : ''}
 
                                 <Table bordered size='md' className="confirmed_table">
                                     <thead>

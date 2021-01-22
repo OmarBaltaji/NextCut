@@ -2,18 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Facades\Storage;
 use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable
 {
     use HasFactory, Notifiable, HasApiTokens;
 
-    // protected $appends = ['profile_picture_url'];
     /**
      * The attributes that are mass assignable.
      *
@@ -60,8 +57,4 @@ class User extends Authenticatable
     public function address() {
         return $this->hasMany(Address::class);
     }
-
-    // public function getProfilePictureUrlAttribute(){
-    //     return Storage::url(env('PROFILE_PICTURES_PATH') . $this->id . '/' .$this->profile_photo);
-    // }
 }

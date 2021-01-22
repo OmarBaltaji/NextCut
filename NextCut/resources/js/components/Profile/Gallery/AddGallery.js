@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import {useHistory} from 'react-router-dom';
+import React, { useState } from 'react';
 import {Button, Form, Modal, Col} from 'react-bootstrap';
 import api from '../../../api';
 import '../../../../css/Profile.css';
 
-export default function AddAddress(props) {
+export default function AddGallery(props) {
     const [openForm, setOpenForm] = useState(true);
     const [newImage, setNewImage] = useState('');
 
@@ -14,7 +13,7 @@ export default function AddAddress(props) {
         props.setShow(false); //setting Show to false to update it in the parent's component (Profile)
     }
 
-    function handleAddressInfo() {
+    function handleGalleryInfo() {
         event.preventDefault();
 
         const info = new FormData();
@@ -30,10 +29,10 @@ export default function AddAddress(props) {
     return(
         <Modal show={openForm ? props.props : false} onHide={() => handleClose()}>
             <Modal.Header style={{ backgroundColor:'beige' }} closeButton>
-            <Modal.Title style={{ color: '#DAA520' }}>Upload Image</Modal.Title>
+                <Modal.Title style={{ color: '#DAA520' }}>Upload Image</Modal.Title>
             </Modal.Header>
             <Modal.Body style={{ backgroundColor:'beige' }}>
-                <Form onSubmit={handleAddressInfo}
+                <Form onSubmit={handleGalleryInfo}
                 encType="multipart/form-data">
                     <Form.Row>
                         <Form.Group as={Col}>

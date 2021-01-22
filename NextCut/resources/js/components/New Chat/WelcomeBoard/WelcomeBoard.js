@@ -1,5 +1,5 @@
-import React from 'react'
-import './WelcomeBoard.css'
+import React from 'react';
+import '../../../../css/WelcomeBoard.css';
 
 export default function WelcomeBoard(props) {
 
