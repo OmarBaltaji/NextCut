@@ -17,22 +17,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('{path?}', 'app');
 
-// Route::view('/', 'app');
-
-// Route::view('/home', 'app');
-
-// Route::view('/aboutus', 'app');
-
-// Route::view('/booking', 'app');
-
-// Route::view('/barbers', 'app');
-
-// Route::view('/profile', 'app');
-
-// Route::view('/login', 'app');
-
-// Route::view('/register', 'app');
-
 Route::get('/profile/{profile}/edit', function(){
     return view('app');
 });
