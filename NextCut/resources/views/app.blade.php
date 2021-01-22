@@ -4,7 +4,6 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="{{asset('css/app.css')}}" rel="stylesheet">
-        {{-- <img src="{{ asset('/images/light-grey-terrazzo.png') }}" /> --}}
         <title>NextCut</title>
         <link rel="icon" type="image/png" href="/Images/logo1.png"/>
         <!-- Fonts -->
@@ -26,8 +25,9 @@
 
         <link rel="manifest" href="/manifest.json"/>
 
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
-        <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.js"></script> <script> //paste this code under head tag or in a seperate js file.
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+        <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.js"></script>
+        <script>
             // Wait for window load
             $(window).load(function() {
                 // Animate loader off screen
