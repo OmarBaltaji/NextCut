@@ -35,8 +35,8 @@
             "token_uri": "",<br/>
             "auth_provider_x509_cert_url": "",<br/>
             "client_x509_cert_url": ""<br/>
-        }<br/><br/>
-    </pre>
+        }
+    </pre><br/>
     10. php artisan ui react<br/><br/>
     11. npm install <br/><br/>
     12. From Firebase navigate to Project settings -> General -> Your apps -> Copy the following:<br/><br/>
