@@ -27,15 +27,15 @@
      The file should look like:<br/>
      <pre>
         {  <br/>
-            "type": "",<br/>
-            "project_id": "",<br/>
-            "private_key_id": "",<br/>
-            "private_key": "",<br/>
-            "client_id": "",<br/>
-            "auth_uri": "",<br/>
-            "token_uri": "",<br/>
-            "auth_provider_x509_cert_url": "",<br/>
-            "client_x509_cert_url": ""<br/>
+            "type": "",
+            "project_id": "",
+            "private_key_id": "",
+            "private_key": "",
+            "client_id": "",
+            "auth_uri": "",
+            "token_uri": "",
+            "auth_provider_x509_cert_url": "",
+            "client_x509_cert_url": ""
         }</pre><br/>
     10. php artisan ui react<br/><br/>
     11. npm install <br/><br/>
@@ -54,12 +54,12 @@
     Manifest.json should contain:<br/>
     <pre>
     {
-        "Gsm_sender_id":"sender-id"
+        "gsm_sender_id":"sender-id"
     }</pre>
     Be sure to also include your Firebase Configuration to the firebase-message-sw.js file (which can also be found in the public folder)<br/><br/>
     14. Firebase Rules:<br/>
     In order to have Firebase fully functioning, slight modifications in the rules are needed: (to ensure only authenticated users can access the collections)<br/><br/>
-    Firebase Firestore rules:<br/>
+    Firebase Firestore Rules:<br/>
     <pre>
     rules_version = '2';
     service cloud.firestore {
@@ -69,7 +69,7 @@
             }
         }
     }</pre> <br/>
-    Firebase Storage rules:<br/>
+    Firebase Storage Rules:<br/>
     <pre>
     rules_version = '2';
     service firebase.storage {
