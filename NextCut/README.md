@@ -2,8 +2,8 @@
     1. Install laravel: Please check the official laravel installation guide for server requirements before you start. (https://laravel.com/docs/8.x/installation) <br/> <br/>
     2. Clone the repository: git clone https://github.com/OmarBaltaji/NextCut.git  <br/><br/>
     3. Go to the project directory: composer install  <br/><br/>
-    4. Copy the example env file and make the required configuration changes in the .env file:  <br/>
-    Run the command in the terminal: cp .env.example .env  <br/>
+    4. Copy the example env file and make the required configuration changes in the .env file.  <br/>
+    You can run the command in the terminal: cp .env.example .env (to copy the file) <br/>
     Create a new database "database-name" and edit the below in the .env accordingly:  <br/>
     <pre>
         DB_CONNECTION=mysql
@@ -22,9 +22,9 @@
     8.  php artisan storage:link<br/>
     This creates a symbolic link from public/storage to storage/app/public<br/><br/>
     9. Create a Firebase project:<br/>
-     - Go to Authentication and enable authentication with email and password get the Firebase Credentials file (json file)<br/>
-     - From Firebase navigate to Project settings -> Service accounts -> Generate a new private key -> Generate Key.<br/>
-     - Open the downloaded file and copy and paste it to the firebase credentials file (json file) in the project<br/>
+     &nbsp;- Go to Authentication and enable authentication with email and password get the Firebase Credentials file (json file)<br/>
+      &nbsp;- From Firebase navigate to Project settings -> Service accounts -> Generate a new private key -> Generate Key.<br/>
+      &nbsp;- Open the downloaded file and copy and paste it to the firebase credentials file (json file) in the project<br/>
      The file should look like:<br/>
      <pre>
         {  <br/>
@@ -53,8 +53,7 @@
         measurementId: "G-MEASUREMENT_ID",
     </pre><br/>
     Then paste it to the Firebase Configuration file (Javascript file)<br/><br/>
-    13. In the public folder, you should insert the GSM sender id in the  manifest.json file. This can be obtained from
-    <br/>Firebase: Project settings -> Cloud Messaging -> Project credentials -> Sender ID.
+    13. In the public folder, you should insert the GSM sender id in the  manifest.json file. This can be obtained from Firebase:<br/> Project settings -> Cloud Messaging -> Project credentials -> Sender ID.
     Manifest.json should contain:<br/>
     <pre>
     {
@@ -63,7 +62,7 @@
     </pre><br/>
     Be sure to also include your Firebase Configuration to the firebase-message-sw.js file (which can also be found in the public folder)<br/><br/>
     14. Firebase Rules:<br/>
-    In order to have Firebase fully functioning, slight modifications in the rules are needed:<br/>
+    In order to have Firebase fully functioning, slight modifications in the rules are needed:<br/><br/>
     Firebase Firestore rules: (to ensure only authenticated users can access the collections)<br/>
     <pre>
     rules_version = '2';
