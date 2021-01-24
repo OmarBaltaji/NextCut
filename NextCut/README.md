@@ -22,9 +22,9 @@
     8.  php artisan storage:link<br/>
     This creates a symbolic link from public/storage to storage/app/public<br/><br/>
     9. Create a Firebase project:<br/>
-     &nbsp;- Go to Authentication and enable authentication with email and password get the Firebase Credentials file (json file)<br/>
-      &nbsp;- From Firebase navigate to Project settings -> Service accounts -> Generate a new private key -> Generate Key.<br/>
-      &nbsp;- Open the downloaded file and copy and paste it to the firebase credentials file (json file) in the project<br/>
+        - Go to Authentication and enable authentication with email and password get the Firebase Credentials file (json file)<br/>
+        - From Firebase navigate to Project settings -> Service accounts -> Generate a new private key -> Generate Key.<br/>
+        - Open the downloaded file and copy and paste it to the firebase credentials file (json file) in the project<br/>
      The file should look like:<br/>
      <pre>
         {  <br/>
@@ -59,7 +59,7 @@
     {
         "Gsm_sender_id":"sender-id"
     }
-    </pre><br/>
+    </pre>
     Be sure to also include your Firebase Configuration to the firebase-message-sw.js file (which can also be found in the public folder)<br/><br/>
     14. Firebase Rules:<br/>
     In order to have Firebase fully functioning, slight modifications in the rules are needed:<br/><br/>
