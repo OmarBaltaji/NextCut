@@ -22,7 +22,8 @@
     9. Create a Firebase project:<br/>
         - Go to the Authentication section and enable authentication with email and password get the Firebase Credentials file (json file)<br/>
         - From Firebase navigate to Project settings -> Service accounts -> Generate a new private key -> Generate Key.<br/>
-        - Open the downloaded file and copy and paste it to the firebase credentials file (json file) in the project.<br/>
+        - Open the downloaded file and copy and paste it to the firebase credentials file (json file) in the project.
+        <br/><br/>
      The file should look like:<br/>
      <pre>
         {  <br/>
@@ -79,5 +80,5 @@
             }
         }
     }</pre><br/>
-    15. Finally, Run command in terminal: php artisan serve (to access the website)<br/>
+    15. Finally, run this command in the terminal: php artisan serve (to access the website)<br/>
 </p>
