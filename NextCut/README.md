@@ -24,7 +24,7 @@
      - From Firebase navigate to Project settings -> Service accounts -> Generate a new private key -> Generate Key.<br/>
      - Open the downloaded file and copy and paste it to the firebase credentials file (json file) in the project<br/>
      The file should look like:<br/>
-     <span style="text-indent:100px">
+     <pre>
         {  <br/>
             "type": "",<br/>
             "project_id": "",<br/>
@@ -36,7 +36,7 @@
             "auth_provider_x509_cert_url": "",<br/>
             "client_x509_cert_url": ""<br/>
         }<br/><br/>
-    </span>
+    </pre>
     10. php artisan ui react<br/><br/>
     11. npm install <br/><br/>
     12. From Firebase navigate to Project settings -> General -> Your apps -> Copy the following:<br/><br/>
