@@ -5,12 +5,14 @@
     4. Copy the example env file and make the required configuration changes in the .env file:  <br/>
     Run the command in the terminal: cp .env.example .env  <br/>
     Create a new database "database-name" and edit the below in the .env accordingly:  <br/>
-    DB_CONNECTION=mysql<br/>
-    DB_HOST=127.0.0.1<br/>
-    DB_PORT=3306<br/>
-    DB_DATABASE="database-name" <br/>
-    DB_USERNAME="mysql-username"<br/>
-    DB_PASSWORD= "mysql-password"<br/><br/>
+    <pre>
+        DB_CONNECTION=mysql
+        DB_HOST=127.0.0.1
+        DB_PORT=3306
+        DB_DATABASE="database-name" 
+        DB_USERNAME="mysql-username"
+        DB_PASSWORD= "mysql-password"
+    </pre><br/>
     5. Run command in terminal: php artisan migrate (to deploy the database)<br/><br/>
     6. php artisan passport:install<br/><br/>
     7. php artisan passport:client --personal <br/><br/>
@@ -39,46 +41,54 @@
     </pre><br/>
     10. php artisan ui react<br/><br/>
     11. npm install <br/><br/>
-    12. From Firebase navigate to Project settings -> General -> Your apps -> Copy the following:<br/><br/>
-        apiKey: "API_KEY",<br/>
-        authDomain: "PROJECT_ID.firebaseapp.com",<br/>
-        databaseURL: "https://PROJECT_ID.firebaseio.com",<br/>
-        projectId: "PROJECT_ID",<br/>
-        storageBucket: "PROJECT_ID.appspot.com",<br/>
-        messagingSenderId: "SENDER_ID",<br/>
-        appId: "APP_ID",<br/>
-        measurementId: "G-MEASUREMENT_ID",<br/>
+    12. From Firebase navigate to Project settings -> General -> Your apps -> Copy the following:<br/>
+    <pre>
+        apiKey: "API_KEY",
+        authDomain: "PROJECT_ID.firebaseapp.com",
+        databaseURL: "https://PROJECT_ID.firebaseio.com",
+        projectId: "PROJECT_ID",
+        storageBucket: "PROJECT_ID.appspot.com",
+        messagingSenderId: "SENDER_ID",
+        appId: "APP_ID",
+        measurementId: "G-MEASUREMENT_ID",
+    </pre><br/>
     Then paste it to the Firebase Configuration file (Javascript file)<br/><br/>
     13. In the public folder, you should insert the GSM sender id in the  manifest.json file. This can be obtained from
     <br/>Firebase: Project settings -> Cloud Messaging -> Project credentials -> Sender ID.
     Manifest.json should contain:<br/>
-    {<br/>
-        "Gsm_sender_id":"sender-id"<br/>
-    }<br/>
+    <pre>
+    {
+        "Gsm_sender_id":"sender-id"
+    }
+    </pre><br/>
     Be sure to also include your Firebase Configuration to the firebase-message-sw.js file (which can also be found in the <br/>public folder)<br/><br/>
     14. Firebase Rules:<br/>
     In order to have Firebase fully functioning, slight modifications in the rules are needed:<br/>
     <u>Firestore:</u><br/>
     Firebase Firestore rules: (to ensure only authenticated users can access the collections)<br/>
-    rules_version = '2';<br/>
-    service cloud.firestore {<br/>
-        match /databases/{database}/documents {<br/>
-            match /{document=**} {<br/>
-                allow read, write: if true && request.auth != null;<br/>
-            }<br/>
-        }<br/>
-    }<br/>
-    <u>Storage:</u><br/>
-    Firebase Storage rules: (to ensure only authenticated users can access the collections)<br/>
-    rules_version = '2';<br/>
-    service firebase.storage {<br/>
-        match /b/{bucket}/o {<br/>
-            match /{allPaths=**} {<br/>
-                allow read: if true && request.auth != null;<br/>
-                allow write: if true && request.auth != null && request.resource.contentType.matches('image/.*');<br/>
-            }<br/>
-        }<br/>
-    }<br/><br/>
+    <pre>
+    rules_version = '2';
+    service cloud.firestore {
+        match /databases/{database}/documents {
+            match /{document=**} {
+                allow read, write: if true && request.auth != null;
+            }
+        }
+    }
+    </pre> <br/>
+    <pre>
+    <u>Storage:</u>
+    Firebase Storage rules: (to ensure only authenticated users can access the collections)
+    rules_version = '2';
+    service firebase.storage {
+        match /b/{bucket}/o {
+            match /{allPaths=**} {
+                allow read: if true && request.auth != null;
+                allow write: if true && request.auth != null && request.resource.contentType.matches('image/.*');
+            }
+        }
+    }
+    </pre><br/>
     15. Head to resources/js/Firebase<br/>
     Inside Init-fcm.js, paste the vapid key in the following line: <br/>
     messaging.usePublicVapidKey(“Vapidkey”)<br/><br/>
