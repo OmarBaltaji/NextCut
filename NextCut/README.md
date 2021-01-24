@@ -20,7 +20,7 @@
     8.  php artisan storage:link<br/>
     This creates a symbolic link from public/storage to storage/app/public<br/><br/>
     9. Create a Firebase project:<br/>
-        - Go to the Authentication section and enable authentication with email and password get the Firebase Credentials file (json file)<br/>
+        - Go to the Authentication section and enable authentication with email and password. Then get the Firebase Credentials file (json file)<br/>
         - From Firebase navigate to Project settings -> Service accounts -> Generate a new private key -> Generate Key.<br/>
         - Open the downloaded file and copy and paste it to the firebase credentials file (json file) in the project.
         <br/><br/>
