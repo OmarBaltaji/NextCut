@@ -34,8 +34,7 @@
             "auth_uri": "",
             "token_uri": "",
             "auth_provider_x509_cert_url": "",
-            "client_x509_cert_url": ""
-        </pre><br/>
+            "client_x509_cert_url": ""</pre><br/>
     10. php artisan ui react<br/><br/>
     11. npm install <br/><br/>
     12. From Firebase navigate to Project settings -> General -> Your apps and Copy the following:<br/>
@@ -51,9 +50,7 @@
     Then paste it to the Firebase Configuration file (Javascript file)<br/><br/>
     13. In the public folder, you should insert the GSM sender id in the  manifest.json file. This can be obtained from Firebase:<br/> Project settings -> Cloud Messaging -> Project credentials -> Sender ID.<br/>
     Manifest.json should contain:<br/>
-    <pre>
-        "gsm_sender_id":"sender-id"
-    </pre>
+    <pre>"gsm_sender_id":"sender-id"</pre>
     Be sure to also include your Firebase Configuration to the firebase-message-sw.js file (which can also be found in the public folder)<br/><br/>
     14. Firebase Rules:<br/>
     In order to have Firebase fully functioning, slight modifications in the rules are needed: (to ensure only authenticated users can access the collections)<br/><br/>
