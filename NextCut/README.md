@@ -64,7 +64,6 @@
     Be sure to also include your Firebase Configuration to the firebase-message-sw.js file (which can also be found in the public folder)<br/><br/>
     14. Firebase Rules:<br/>
     In order to have Firebase fully functioning, slight modifications in the rules are needed:<br/>
-    <u>Firestore:</u><br/>
     Firebase Firestore rules: (to ensure only authenticated users can access the collections)<br/>
     <pre>
     rules_version = '2';
@@ -76,9 +75,8 @@
         }
     }
     </pre> <br/>
-    <u>Storage:</u><br/>
+    Firebase Storage rules: (to ensure only authenticated users can access the collections)<br/>
     <pre>
-    Firebase Storage rules: (to ensure only authenticated users can access the collections)
     rules_version = '2';
     service firebase.storage {
         match /b/{bucket}/o {
