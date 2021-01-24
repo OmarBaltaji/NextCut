@@ -57,7 +57,7 @@ class AuthController extends Controller
         // Retrieve the user model linked with the Firebase UID
         $user = User::where('firebaseUID',$uid)->first();
 
-        $tokenResult = $user->createToken('access_token');
+        $tokenResult = $user->createToken('Personal Access Token');
 
         // Store the created token
         $token = $tokenResult->token;

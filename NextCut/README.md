@@ -2,9 +2,9 @@
     1. Install laravel: Please check the official laravel installation guide for server requirements before you start. (https://laravel.com/docs/8.x/installation) <br/> <br/>
     2. Clone the repository: git clone https://github.com/OmarBaltaji/NextCut.git  <br/><br/>
     3. Go to the project directory: composer install  <br/><br/>
-    4. Copy the example env file and make the required configuration changes in the .env file.  <br/>
+    4. Copy the .env.example file and make the required configuration changes in the .env file.  <br/>
     You can run the command in the terminal: cp .env.example .env (to copy the file) <br/>
-    Create a new database "database-name" and edit the below in the .env accordingly:  <br/>
+    Create a new database "database-name" and edit the information below in the .env accordingly:  <br/>
     <pre>
         DB_CONNECTION=mysql
         DB_HOST=127.0.0.1
@@ -16,14 +16,13 @@
     6. php artisan passport:install<br/><br/>
     7. php artisan passport:client --personal <br/>
     Name the personal access token: “Personal Access Token” <br/>
-    For more details on Laravel passport, check the official documentation:<br/>
-    (Laravel Passport - Laravel - The PHP Framework For Web Artisans)<br/><br/>
+    For more details on Laravel passport, check the official documentation: https://laravel.com/docs/8.x/passport<br/><br/>
     8.  php artisan storage:link<br/>
     This creates a symbolic link from public/storage to storage/app/public<br/><br/>
     9. Create a Firebase project:<br/>
-        - Go to Authentication and enable authentication with email and password get the Firebase Credentials file (json file)<br/>
+        - Go to the Authentication section and enable authentication with email and password get the Firebase Credentials file (json file)<br/>
         - From Firebase navigate to Project settings -> Service accounts -> Generate a new private key -> Generate Key.<br/>
-        - Open the downloaded file and copy and paste it to the firebase credentials file (json file) in the project<br/>
+        - Open the downloaded file and copy and paste it to the firebase credentials file (json file) in the project.<br/>
      The file should look like:<br/>
      <pre>
         {  <br/>
@@ -39,7 +38,7 @@
         }</pre><br/>
     10. php artisan ui react<br/><br/>
     11. npm install <br/><br/>
-    12. From Firebase navigate to Project settings -> General -> Your apps -> Copy the following:<br/>
+    12. From Firebase navigate to Project settings -> General -> Your apps and Copy the following:<br/>
     <pre>
         apiKey: "API_KEY",
         authDomain: "PROJECT_ID.firebaseapp.com",
@@ -58,8 +57,8 @@
     }</pre>
     Be sure to also include your Firebase Configuration to the firebase-message-sw.js file (which can also be found in the public folder)<br/><br/>
     14. Firebase Rules:<br/>
-    In order to have Firebase fully functioning, slight modifications in the rules are needed:<br/><br/>
-    Firebase Firestore rules: (to ensure only authenticated users can access the collections)<br/>
+    In order to have Firebase fully functioning, slight modifications in the rules are needed: (to ensure only authenticated users can access the collections)<br/><br/>
+    Firebase Firestore rules:<br/>
     <pre>
     rules_version = '2';
     service cloud.firestore {
@@ -69,7 +68,7 @@
             }
         }
     }</pre> <br/>
-    Firebase Storage rules: (to ensure only authenticated users can access the collections)<br/>
+    Firebase Storage rules:<br/>
     <pre>
     rules_version = '2';
     service firebase.storage {
