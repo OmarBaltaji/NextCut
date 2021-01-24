@@ -14,7 +14,7 @@ export default function AddSalon(props) {
     const dayOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
     useEffect(() => {
-        document.getElementById('closing_day').value = '';
+        document.getElementById('closing_day').value = ''; // To clear the closing day input so it appears blank at first
     }, [])
 
     const handleClose = () => {
@@ -24,13 +24,13 @@ export default function AddSalon(props) {
 
     function handleSalonInfo() {
         const form = event.currentTarget;
-        if (form.checkValidity() === false) {
+        if (form.checkValidity() === false) {  // Check whether all inputs are validated
             event.preventDefault();
             event.stopPropagation();
         }
 
         event.preventDefault();
-        setValidated(true);
+        setValidated(true); // To confirm that all fields are validated
 
         const salonInfo = {
             'salon_name': salon,
@@ -48,7 +48,7 @@ export default function AddSalon(props) {
     }
 
     function hourOpenHandler(e) {
-        if((e.target.value != hourClose) && (e.target.value < hourClose) || hourClose == '')
+        if((e.target.value != hourClose) && (e.target.value < hourClose) || hourClose == '') // The opening hour cannot be later than the closing hour
             setHourOpen(String(e.target.value));
         else {
             alert('Closing Hours needs to be later than Opening Hours');
@@ -65,7 +65,7 @@ export default function AddSalon(props) {
         }
     }
 
-    function dayOpenHandler(e) {
+    function dayOpenHandler(e) { // The opening day should not be later than the closing day
         let openIndex = dayOfWeek.indexOf(e.target.value);
         let closeIndex = dayOfWeek.indexOf(dayClose);
         if((openIndex != closeIndex && openIndex < closeIndex) || dayClose == '')

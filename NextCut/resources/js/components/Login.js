@@ -29,7 +29,7 @@ export default function Login() {
             firebase.app(); // if already initialized
         }
 
-        firebase.auth().signInWithEmailAndPassword(email, password)
+        firebase.auth().signInWithEmailAndPassword(email, password) // Firstly the user is authenticated by Firebase
         .then((auth) => {
             auth.user.getIdToken().then(function(accessToken) {
                 if(auth.additionalUserInfo.isNewUser == false) {
@@ -40,23 +40,23 @@ export default function Login() {
                         'remember_me': rememberMe,
                     }
 
-                    api.firebaseLogin(credentials)
+                    api.firebaseLogin(credentials) // Secondly the user is authenticated by Laravel Passport
                     .then(response => {
                         const options = {Path: '/' , Expires: response.data.expires_at, Secure: true};
-                        CookieService.set('access_token', response.data.access_token, options);
+                        CookieService.set('access_token', response.data.access_token, options); // Store token in Cookie Storage
                         history.push('/home');
                         window.location.reload();
                     })
                 }
             })
         }).catch(error => {
-            setInvalid(error.message)
+            setInvalid(error.message) // To catch and display the errors that may result for certain fields
         });
     }
 
     function redirectHome() {
         let cookie = CookieService.get('access_token');
-        if(cookie) {
+        if(cookie) { // in case the email and password match and the account exists, the user gets redirected to the home page
             history.push('/home');
         }
     }

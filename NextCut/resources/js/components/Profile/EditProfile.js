@@ -10,8 +10,8 @@ export default function EditProfile(props) {
     const [errs, setErrs] = useState([]);
 
     const handleClose = () => {
-        setOpenForm(false); //to be able to close the form after opening it
-        props.setShow(false); //setting Show to false to update it in the parent's component (Profile)
+        setOpenForm(false); // To be able to close the form after opening it
+        props.setShow(false); // Setting Show to false to update it in the parent's component (Profile)
     }
 
     function editHandler(event) {
@@ -26,7 +26,7 @@ export default function EditProfile(props) {
                 handleClose();
                 window.location.reload();
             }).catch(error => {
-                if(error.response.status == 500) {
+                if(error.response.status == 500) { // There was an error with the backend, the phone number already exist in the database
                     setDuplicateError('Phone number already in use. Duplicate phone numbers cannot exist')
                 } else {
                     setErrs(error.response.data.errors);
@@ -34,7 +34,7 @@ export default function EditProfile(props) {
             })
     }
 
-    function displayError (field) {
+    function displayError (field) { // To display certain errors resulting from bad input
         if (errs[field]) {
             return (
                 <span style={{ color: '#980000' }}>

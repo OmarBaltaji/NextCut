@@ -14,7 +14,7 @@ import ShowBarber from './Barbers Section/ShowBarber';
 import Service from './Profile/BarberServices/Service';
 import BookBarber from './Booking Section/BookBarber';
 import Booking from './Booking Section/Booking';
-import ConfirmationPage from './ConfirmationPage';
+import ConfirmationPage from './Booking Section/ConfirmationPage';
 import Requests from './Requests';
 import Main from './New Chat/Main/Main';
 

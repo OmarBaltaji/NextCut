@@ -20,13 +20,13 @@ export default function EditSalon(props) {
 
     function handleSalonInfo(event) {
         const form = event.currentTarget;
-        if (form.checkValidity() === false) {
+        if (form.checkValidity() === false) {  // Check whether all inputs are validated
             event.preventDefault();
             event.stopPropagation();
         }
 
         event.preventDefault();
-        setValidated(true);
+        setValidated(true); // To confirm that all fields are validated
 
         const salonInfo = {
             'salon_name': salon,
@@ -43,7 +43,7 @@ export default function EditSalon(props) {
         })
     }
 
-    function hourOpenHandler(e) {
+    function hourOpenHandler(e) { // The opening hour cannot be later than the closing hour
         if((e.target.value != hourClose) && (e.target.value < hourClose) || hourClose == '')
             setHourOpen(String(e.target.value));
         else {
@@ -63,7 +63,7 @@ export default function EditSalon(props) {
         }
     }
 
-    function dayOpenHandler(e) {
+    function dayOpenHandler(e) { // The opening day should not be later than the closing day
         let openIndex = dayOfWeek.indexOf(e.target.value);
         let closeIndex = dayOfWeek.indexOf(dayClose);
         if((openIndex != closeIndex && openIndex < closeIndex) || dayClose == '')

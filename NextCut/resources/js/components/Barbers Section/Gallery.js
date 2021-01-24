@@ -3,12 +3,12 @@ import {Modal, Carousel, ModalBody} from 'react-bootstrap';
 import api from '../../api';
 
 export default function GallerySlideShow(props) {
-    const [index, setIndex] = useState(props.index);
+    const [index, setIndex] = useState(props.index); // Index represents which image was clicked on from the gallery section in the parent component (ShowBarber.js) (the clicked on image is the first image that appears in the carousel)
     const [openForm, setOpenForm] = useState(true);
     const [galleryInfo, setGalleryInfo] = useState([]);
     const handleClose = () => {
-        setOpenForm(false); //to be able to close the form after opening it
-        props.setShow(false); //setting Show to false to update it in the parent's component (Profile)
+        setOpenForm(false); // To be able to close the form after opening it
+        props.setShow(false); // Setting show to false to update it in the parent's component (ShowBarber.js)
     }
 
     useEffect(() => {
@@ -23,7 +23,7 @@ export default function GallerySlideShow(props) {
     }
 
     function handleSelect(selectedIndex, e){
-        setIndex(selectedIndex);
+        setIndex(selectedIndex); // To change from one picture to another when clicking on the right and left arrows on the Carousel
     }
 
     return (

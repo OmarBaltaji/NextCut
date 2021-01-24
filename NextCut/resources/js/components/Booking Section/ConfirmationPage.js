@@ -1,22 +1,22 @@
 import React, { useEffect } from 'react';
 import {useLocation, useHistory} from 'react-router-dom';
-import Header from './Header';
+import Header from '../Header';
 import { Col, Container, Row, Card, Table } from 'react-bootstrap';
-import '../../css/ConfirmationPage.css';
-import api from '../api';
+import '../../../css/ConfirmationPage.css';
+import api from '../../api';
 
 export default function ConfirmationPage() {
     const history = useHistory();
-    const location = useLocation();
+    const location = useLocation(); // Grabs the information transfered from the BookBarber component (After a customer book an appointment)
     const date = location.state ? location.state.time_selected : '';
     const time = location.state ? location.state.time_selected[4].split(':') : '';
     const services = location.state ? location.state.chosen_services : '';
     const address = location.state ? location.state.customer_address : '';
     const app_location = location.state ? location.state.app_location : '';
     const building =
-    address.length != 0 ? (address.building.includes('Building') ? address.building : address.building + ' Building') : '';
+    address.length != 0 ? (address.building.includes('Building') || address.building.includes('building') ? address.building : address.building + ' Building') : ''; // Check if the user included Building in his address information
     const street =
-    address.length != 0 ? (address.street.includes('Street') ? address.street : address.street + ' Street') : '';
+    address.length != 0 ? (address.street.includes('Street') || address.street.includes('street') ? address.street : address.street + ' Street') : ''; // Check if the user included Street in his address information
 
     useEffect(() => {
         getUserDetails();
@@ -33,12 +33,12 @@ export default function ConfirmationPage() {
                 }
             }
             let services_str = '';
-            services.forEach(service => {
+            services.forEach(service => { // Get the services the user ordered while booking
                 let service_array = service.split(',');
                 services_str += service_array[3] + ', ';
             })
 
-            let services_tosend = services_str.slice(0, services_str.length - 2);
+            let services_tosend = services_str.slice(0, services_str.length - 2); // To remove the last comma and white space
 
             const info = {
                 'email': response.data.email,
@@ -53,7 +53,7 @@ export default function ConfirmationPage() {
 
             api.sendMailConfirmation(info)
             .then(response => {
-                console.log(response.data);
+                //Email Sent Successfully
             });
 
         }).catch(error => {

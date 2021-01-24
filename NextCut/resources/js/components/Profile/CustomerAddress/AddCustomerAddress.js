@@ -12,20 +12,20 @@ export default function AddAddress(props) {
     const [validated, setValidated] = useState(false);
 
     const handleClose = () => {
-        setOpenForm(false); //to be able to close the form after opening it
-        props.setShow(false); //setting Show to false to update it in the parent's component (Profile)
+        setOpenForm(false); // To be able to close the form after opening it
+        props.setShow(false); // Setting Show to false to update it in the parent's component (Profile)
     }
 
     function handleAddressInfo(event) {
         const form = event.currentTarget;
-        if (form.checkValidity() === false) {
+        if (form.checkValidity() === false) {  // Check whether all inputs are validated
             event.preventDefault();
             event.stopPropagation();
         }
 
         event.preventDefault();
 
-        setValidated(true);
+        setValidated(true); // To confirm that all fields are validated
 
         const customerAddressInfo = {
             'city': city,

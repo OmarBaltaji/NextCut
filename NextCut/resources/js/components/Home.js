@@ -9,7 +9,7 @@ export default function Home() {
     const role = localStorage.getItem('role');
 
     useEffect(() => {
-        if(role) {
+        if(role) { // if not that means the user is a guest and there is no need for this api call
             getUserDetails();
         }
     }, []);

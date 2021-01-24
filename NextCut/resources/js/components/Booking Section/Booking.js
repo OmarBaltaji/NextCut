@@ -14,7 +14,7 @@ export default function Booking() {
 
     useEffect(() => {
         getUserDetails();
-        if(role) {
+        if(role) { // If user is not logged in don't display the list of barbers
             getAllBarbers();
         }
     }, []);
@@ -39,7 +39,7 @@ export default function Booking() {
         });
     }
 
-    async function updateInput(input) {
+    async function updateInput(input) { // Get the barber(s) whose name matches the one in the search bar
         const filtered = listDefault.filter(barber => {
             return barber.user.name.toLowerCase().includes(input.toLowerCase());
         })
@@ -68,7 +68,7 @@ export default function Booking() {
                 </InputGroup>
                 <br/>
                 <CardColumns as= {Row}>
-                    {list.length != 0 ? list.map((barber) => {
+                    {list.length != 0 ? list.map((barber) => { // Display the barber searched for
                         if(barber) {
                             return (
                                 <Card style={{ width:'350px', marginRight:'15px'}} lg={4} key={barber.id}
@@ -97,7 +97,7 @@ export default function Booking() {
                         }
                         return null;
                     }) :
-                    listDefault.length != 0 ? listDefault.map((barber) => {
+                    listDefault.length != 0 ? listDefault.map((barber) => { // Display all barbers
                         if(barber) {
                             return (
                                 <Card style={{ width:'350px', marginRight:'15px'}} lg={4} key={barber.id}

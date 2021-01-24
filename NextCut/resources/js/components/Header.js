@@ -23,10 +23,10 @@ if ("serviceWorker" in navigator) {
     navigator.serviceWorker
       .register("./firebase-messaging-sw.js")
       .then(function(registration) {
-        console.log("Registration successful, scope is:", registration.scope);
+            //Registration is successful
       })
       .catch(function(err) {
-        console.log("Service worker registration failed, error:", err);
+            //Registration failed
       });
 }
 
@@ -47,85 +47,91 @@ export default function Header() {
     let role = localStorage.getItem('role');
 
     useEffect(() => {
-        if(cookie) {
+        if(cookie) { // If the user is not logged in or register do not perform the api call
             getUserDetails();
         }
     }, []);
 
     useEffect(() => {
         if(cookie) {
-            getNotificationInfo(userInfo);
+            getNotificationInfo(userInfo); // Retrieve notifications of the authenticated user
         }
-    }, [userInfo, isUserNotified, notificationOpened])
+    }, [userInfo, isUserNotified, notificationOpened]) // Each time the user is notified or opens the notifications icon the screen re-renders
 
     function getUserDetails() {
         api.getUserInfo()
         .then(response => {
             setUserInfo(response.data);
 
-            messaging.requestPermission()
+            messaging.requestPermission() // Asks for the user permission to be notified
             .then(async function() {
                 const token = await messaging.getToken();
 
                 const userRef = db.collection('fcm_token').doc(token);
 
-                userRef.set({
+                userRef.set({ // Store the firebase cloud messaging token and the user UID in Firestore
                     userToken: token,
                     userID: response.data.FirebaseUID,
                 });
             })
             .catch(function(err) {
-                console.log("Unable to get permission to notify.", err);
+                //Unable to get permission to notify
             });
-            navigator.serviceWorker.addEventListener("message", (message) => console.log(message));
+
+            navigator.serviceWorker.addEventListener("message", (message) => {
+                //
+            });
 
             localStorage.setItem('role', response.data.roles);
-            if(response.data.roles == 'Customer') {
+
+            if(response.data.roles == 'Customer') { // If the authenticated user is a customer then set them as customers in the database
                 api.setCustomer()
                 .then(response => {
                 }).catch(error => {
-                    console.log('user already exist')
+                    //User already exist
                 });
             }
         })
     }
 
     function getNotificationInfo(user_details) {
-        const query = db.collection('notifications').orderBy('created', 'desc');
+        const query = db.collection('notifications').orderBy('created', 'desc'); // Order notifications from earliest to latest
         let count = 0;
         let notifications_list = [];
 
 
         query.onSnapshot(snapshot => {
             snapshot.docChanges().forEach(change => {
-                if(change.type == 'added') {
+                if(change.type == 'added') { // If a new notification is added enter this condition
                     if(user_details.FirebaseUID == change.doc.data().toUserID) {
-                        let timestamp = change.doc.data().created.toDate();
+                        let timestamp = change.doc.data().created.toDate(); // Change timestamp to human readable
                         let notification = {};
-                        notification['message'] = change.doc.data().message;
-                        notification['time'] = moment(timestamp).format('lll');
-                        notifications_list.push(notification);
+                        notification['message'] = change.doc.data().message; // Insert message as a key inside the object and assign a value for it
+                        notification['time'] = moment(timestamp).format('lll'); // Insert time as a key inside the object and assign a value for it
+                        notifications_list.push(notification); // Push this object to an array
 
                         if(change.doc.data().isOpened == false) {
-                            count += 1;
+                            count += 1; // To count the sum of unopened notifications
                         }
                     }
                 }
-                if(change.type == 'modified') {
+                if(change.type == 'modified') { // If a notification is modified/changed enter here
                     setNotificationOpened(!notificationOpened);
                 }
             })
+
             setNotificationInfo({
                 count: count,
                 notifications_list: notifications_list,
-            });
+            }); // This useState is used later in the rendering
+
             if(notifications_list.length != 0) {
-                setIsUserNotified(true);
+                setIsUserNotified(true); // If the notifications_list array is populated then the user received notifications
             }
         })
     }
 
-    function handleNotifications() {
+    function handleNotifications() { // In case the user clicked the notifications open the state ('isOpened') of each notification is changed to true
         const query = db.collection('notifications');
         query.get().then(snapshot => {
             snapshot.forEach(doc => {
@@ -139,24 +145,24 @@ export default function Header() {
     function logoutHandler(e) {
         e.preventDefault();
         api.logout().then(response => {
-            CookieService.remove('access_token', {path: '/'});
+            CookieService.remove('access_token', {path: '/'}); // Remve token from Cookie Storage
 
-            firebase.auth().signOut()
+            firebase.auth().signOut() // Sign out from Firebase
             .then(function() {
 
             }, function(error) {
                 // An error happened.
             });
 
-            window.localStorage.clear();
-            messaging.deleteToken();
+            window.localStorage.clear(); // Clear the localStorage
+            messaging.deleteToken(); // Delete the firebase cloud messaging token so a new user can receive a new token (in case more than one user is accessing the website from the same device)
 
-            history.push('/login');
+            history.push('/login'); // Redirect to the login page
             window.location.reload();
         })
     }
 
-    function displayUser() {
+    function displayUser() { // If user is signed in
         return (
             <NavDropdown style={{ marginRight: '20px' }} className="user-dropdown"
             title={userInfo.length != 0 ? userInfo.name : ''} id="collasible-nav-dropdown">
@@ -169,7 +175,7 @@ export default function Header() {
         );
     }
 
-    function displayGuest() {
+    function displayGuest() { // If user is not signed in
         return (
             <>
                 <Nav.Link className='navlink' href="/login">Login</Nav.Link>

@@ -12,17 +12,17 @@ class GalleryController extends Controller
     public function index() {
         $user = Auth::user();
         $barber = $user->barber->first();
-        $galleries = $barber->gallery;
+        $galleries = $barber->gallery; // Get the authenticated barber's gallery
         return response()->json($galleries, 200);
     }
 
     public function store(Request $request) {
         $user = Auth::user();
-        $barber = $user->barber->first();
+        $barber = $user->barber->first(); // Only barbers have access to gallery
 
         if($request->hasFile('image')) {
-            $photo = $request['image']->store(env('BARBER_GALLERIES_PATH') . '/' .  $user->id);
-            $photoInDB = Storage::url($photo);
+            $photo = $request['image']->store(env('BARBER_GALLERIES_PATH') . '/' .  $user->id); // To store the image locally
+            $photoInDB = Storage::url($photo); // The url which we store in the database to be called later
             }
 
         $gallery = Gallery::create([

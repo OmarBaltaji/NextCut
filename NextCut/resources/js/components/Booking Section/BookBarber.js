@@ -17,10 +17,10 @@ if ("serviceWorker" in navigator) {
     navigator.serviceWorker
       .register("./firebase-messaging-sw.js")
       .then(function(registration) {
-        console.log("Registration successful, scope is:", registration.scope);
+            //Registration is successful
       })
       .catch(function(err) {
-        console.log("Service worker registration failed, error:", err);
+            //Registration failed
       });
 }
 
@@ -51,13 +51,6 @@ export default function BookBarber() {
     const weekdays = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
     const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
-    if(barber.length != 0 && appLocation == 'Salon')
-        getOpenHours(barber);
-    else if (barberPrivateSchedule.length != 0 && appLocation == 'Home')
-        getOpenHours(barberPrivateSchedule);
-
-    insertBookedTimes();
-
     useEffect(() => {
         getUserDetails();
         if(role) {
@@ -69,6 +62,15 @@ export default function BookBarber() {
             getCustomerAddressInfo();
         }
     }, []);
+
+    useEffect(() => {
+        insertBookedTimes(); // Get the booked timeslots
+    }, [bookedTimeslots])
+
+    if(barber.length != 0 && appLocation == 'Salon') // Get the salon opening hours
+        getOpenHours(barber);
+    else if (barberPrivateSchedule.length != 0 && appLocation == 'Home') // Get the private schedule of the barber (Home service)
+        getOpenHours(barberPrivateSchedule);
 
     function getUserDetails() {
         api.getUserInfo()
@@ -102,15 +104,14 @@ export default function BookBarber() {
         api.getBarberSchedule(param.id)
         .then(response => {
             if(Object.keys(response.data).length == 0) {
-                // console.log('empty')
+                // object is empty
             }else {
                 setBarberPrivateSchedule(response.data);
             }
         });
     }
 
-    //check if user has previous incomplete bookings
-    function getPreviousBookignsDetails() {
+    function getPreviousBookignsDetails() {  // Check if user has previous incomplete bookings
         api.getPreviousBookings()
         .then(response => {
             setCustomerRequest(response.data.service_request);
@@ -122,8 +123,6 @@ export default function BookBarber() {
             })
         });
     }
-
-    console.log(previousBookings)
 
     function getAllPrevBookedTimes() {
         api.getBookedTimes()
@@ -140,11 +139,11 @@ export default function BookBarber() {
     }
 
     function getOpenHours(schedule) {
-        let open_hours = schedule.hour_open.split(':'); //the opening hours in the db is a string
-        if(open_hours[0] < 10) { //if the hour is for example 09
-            open_hours = parseInt(open_hours[0].split('')[1]); //it would take a single digit without the 0(so it works properly with the external library)
+        let open_hours = schedule.hour_open.split(':'); // The opening hours in the db is a string
+        if(open_hours[0] < 10) { // If the hour is for example 09
+            open_hours = parseInt(open_hours[0].split('')[1]); // It would take a single digit without the 0(so it works properly with the external library)
         } else {
-            open_hours = parseInt(open_hours[0]); //here it's a double digit
+            open_hours = parseInt(open_hours[0]); // Here it's a double digit
         }
 
         let closing_hours = schedule.hour_close.split(':');
@@ -156,24 +155,24 @@ export default function BookBarber() {
 
         if(schedule.day_close != 'Sunday') {
             let remaining_days = 0;
-            openHours.push([0,0]) //Fill Sunday where the barber is not open
-            for (let l = 1; l < weekdays.indexOf(schedule.day_open); l++) { //Fill Days where barber is not open before the opening_day
+            openHours.push([0,0]) // Fill Sunday where the barber is not open
+            for (let l = 1; l < weekdays.indexOf(schedule.day_open); l++) { // Fill Days where barber is not open before the opening_day
                 openHours.push([0,0]);
             }
             for(let i = weekdays.indexOf(schedule.day_open); i <= weekdays.indexOf(schedule.day_close); i++) {
-                openHours.push([open_hours, closing_hours]); //Fill all days up to closing_day
+                openHours.push([open_hours, closing_hours]); // Fill all days up to closing_day
                 remaining_days = i;
             }
             for (let j = remaining_days; j < weekdays.indexOf('Saturday'); j++ ) {
-                openHours.push([0,0]); //Fill the remaining days where the barber is not open
+                openHours.push([0,0]); // Fill the remaining days where the barber is not open
             }
         } else {
-            openHours.push([open_hours, closing_hours]); //Fill Sunday
-            for (let m = 1; m < weekdays.indexOf(schedule.day_open); m++) { //Fill Days where barber is not open before the opening_day
+            openHours.push([open_hours, closing_hours]); // Fill Sunday
+            for (let m = 1; m < weekdays.indexOf(schedule.day_open); m++) { // Fill Days where barber is not open before the opening_day
                 openHours.push([0,0]);
             }
             for(let k = weekdays.indexOf(schedule.day_open); k < weekdays.indexOf(schedule.day_close) + 6; k++) {
-                openHours.push([open_hours, closing_hours]); //Fill all days before Sunday
+                openHours.push([open_hours, closing_hours]); // Fill all days before Sunday
             }
         }
     }
@@ -183,26 +182,26 @@ export default function BookBarber() {
         if(bookedTimeslots.length != 0) {
             bookedTimeslots.forEach(timeSlot => {
                 let splitDate = timeSlot.date_booked.split(' ');
-                let month = months.indexOf(splitDate[1]) + 1
-                if (month < 10) {
+                let month = months.indexOf(splitDate[1]) + 1 // Get which month (in numbers)
+                if (month < 10) { // In case the month is less than 10 we prefix a 0 to it
                     month = '0' + String(month);
                 }
                 let startTime = timeSlot.time_booked;
-                let start_date_time = `${splitDate[3]}-${month}-${splitDate[2]} ${startTime}:00`;
+                let start_date_time = `${splitDate[3]}-${month}-${splitDate[2]} ${startTime}:00`; // The format that is needed to be used in the calendar
 
                 let timeSplit = timeSlot.time_booked.split(':'); //split hour and mins
                 let endTime;
                 if(parseInt(timeSlot.total_time) < 60) {
                     endTime= `${timeSplit[0]}:${parseInt(timeSplit[1]) + parseInt(timeSlot.total_time)}:00`
                 } else {
-                    let hour_to_add = Math.floor(parseInt(timeSlot.total_time)/60);
-                    let mins_remaining =  parseInt(timeSlot.total_time) - hour_to_add*60;
+                    let hour_to_add = Math.floor(parseInt(timeSlot.total_time)/60); // Get the additional hours that we need to add to the inital hour
+                    let mins_remaining =  parseInt(timeSlot.total_time) - hour_to_add*60; // Get the remaining minutes
                     endTime = `${parseInt(timeSplit[0])+parseInt(hour_to_add)}:${parseInt(timeSplit[1])+mins_remaining}:00`;
                 }
 
                 let end_date_time = `${splitDate[3]}-${month}-${splitDate[2]} ${endTime}`;
 
-                let time_booked = {
+                let time_booked = { // To insert booked times we need to pass them as an object to the calendar library
                     id: id_to_insert,
                     start_time: start_date_time,
                     end_time: end_date_time,
@@ -214,7 +213,7 @@ export default function BookBarber() {
             bookings.forEach(booking => {
                 let start_date = new Date(booking.start_time);
                 let today_date = new Date();
-                if(start_date < today_date) {
+                if(start_date < today_date) { // If the start_date of the booking is older than the current's date than we can remove it from the bookings list
                     let index_to_remove = bookings.indexOf(booking);
                     bookings.splice(index_to_remove, 1);
                 }
@@ -223,7 +222,7 @@ export default function BookBarber() {
     }
 
     function hanldeChosenServices(e) {
-        setChosenServices(Array.from(e.target.selectedOptions, option => option.value));
+        setChosenServices(Array.from(e.target.selectedOptions, option => option.value)); // To set an array consisting of services' type, duration and price
     }
 
     function displayChosenServices() {
@@ -327,7 +326,7 @@ export default function BookBarber() {
                     }
                 });
 
-            const query = db.collection('fcm_token').where('userID', '==', barber.user.FirebaseUID).get();
+            const query = db.collection('fcm_token').where('userID', '==', barber.user.FirebaseUID).get(); // Get the firebase could message token where the userID is equal to the barber UID
 
             query.then(snapshot => {
                     let data = snapshot.docs[0].data();
@@ -335,7 +334,7 @@ export default function BookBarber() {
                 })
 
         }).catch(error => {
-            console.log(error)
+            //Error while fetching request
         })
     }
 
@@ -353,7 +352,7 @@ export default function BookBarber() {
         />
       );
 
-      function notification(fcm_token, request_id) {
+      function notification(fcm_token, request_id) { // Send notification to the barber about the booking that was just made
         const notification = {
             "notification": {
                 "title": "Incoming Request",
@@ -375,7 +374,7 @@ export default function BookBarber() {
                 let request_id_str = String(request_id);
                 const notificationRef = db.collection('notifications').doc(request_id_str);
 
-                notificationRef.set({
+                notificationRef.set({ // Save notification in Firestore
                     title: 'Booking Request',
                     message: `${userInfo.name} wants to book an appointment`,
                     toUserID: barber.user.FirebaseUID, //barber
@@ -383,7 +382,6 @@ export default function BookBarber() {
                     isOpened: false,
                     created: firebase.firestore.Timestamp.now(),
                 });
-                console.log(response.data);
             });
     }
 

@@ -10,7 +10,7 @@ export default function ProfileService() {
         getBarberServiceInfo();
     }, []);
 
-    function getBarberServiceInfo() {
+    function getBarberServiceInfo() {  // Obtain the services provided by the barber
         api.getBarberService()
         .then(response => {
             setBarberServices(response.data);

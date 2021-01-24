@@ -10,7 +10,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 
 class CustomerRequestController extends Controller
 {
-    public function store(Request $request) {
+    public function store(Request $request) { // Create a new request after the customer confirmed their booking
 
         $user = Auth::user();
 
@@ -26,6 +26,8 @@ class CustomerRequestController extends Controller
         $services_id = $request->validate([
             'barber_service_id' => 'array',
         ]);
+
+        // CustomerRequest and ServiceRequest are models for separate tables
 
         $customer_request =
             CustomerRequest::create([
@@ -50,7 +52,7 @@ class CustomerRequestController extends Controller
         return response()->json($customer_request, 200);
     }
 
-    public function updateStatus(Request $request) {
+    public function updateStatus(Request $request) { // Update the status of the request (ie: change from incomplete to complete, or from pending to accepted)
         $customerRequest = CustomerRequest::find($request['customer_request_id']);
 
         $customerRequest->update([
@@ -61,7 +63,7 @@ class CustomerRequestController extends Controller
         return response()->json($customerRequest, 200);
     }
 
-    public function CheckPreviousBookings() {
+    public function CheckPreviousBookings() { // Get the previous bookings of the authenticated user (customer)
         $user = Auth::user();
         $customer = $user->customer->first();
         $servicesRequested =  $customer->service_request;
@@ -84,7 +86,7 @@ class CustomerRequestController extends Controller
         return response()->json(['message' => 'request is deleted'], 200);
     }
 
-    public function storeToMail() {
+    public function storeToMail() { // Send the customer an email as soon as the booking is confirmed
         $mail = new PHPMailer();
         $mail->IsSMTP();
         $mail->Mailer = "smtp";

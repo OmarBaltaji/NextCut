@@ -9,8 +9,8 @@ export default function AddGallery(props) {
 
 
     const handleClose = () => {
-        setOpenForm(false); //to be able to close the form after opening it
-        props.setShow(false); //setting Show to false to update it in the parent's component (Profile)
+        setOpenForm(false); // To be able to close the form after opening it
+        props.setShow(false); // Setting Show to false to update it in the parent's component (Profile)
     }
 
     function handleGalleryInfo() {

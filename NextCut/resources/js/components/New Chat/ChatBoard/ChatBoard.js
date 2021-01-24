@@ -44,14 +44,14 @@ export  default function ChatBoard(props){
     }, [props.currentPeerUser, loading]);
 
     useEffect(() => {
-        scrollToBottom();
+        scrollToBottom(); // To scroll at the bottom of the screen everytime a message is sent
     });
 
     function getListHistory(user_id) {
-        if (hashString(user_id) <= hashString(currentPeerUser.id)) {
+        if (hashString(user_id) <= hashString(currentPeerUser.id)) { // To set the document name in the firestore collection as a hash
             groupChatId = `${user_id}-${currentPeerUser.id}`;
         } else {
-            groupChatId = `${currentPeerUser.id}-${user_id}`;
+            groupChatId = `${currentPeerUser.id}-${user_id}`; // The conditions ensure that the document name stays consistent so the sender and receiver have the same document
         }
         let listMessage = [];
 
@@ -59,7 +59,7 @@ export  default function ChatBoard(props){
         .doc(groupChatId)
         .collection(groupChatId)
         .onSnapshot(snapshot => {
-                snapshot.docChanges().forEach(change => {
+                snapshot.docChanges().forEach(change => { // Every a message is sent we display it on the screen
                     if (change.type === 'added') {
                         listMessage.push(change.doc.data());
                     }
@@ -69,11 +69,11 @@ export  default function ChatBoard(props){
             })
     }
 
-    function openListSticker(){
+    function openListSticker(){ // Shows the stickers that the user can send
         setIsShowSticker(!isShowSticker)
     }
 
-    function onSendMessage (content, type){
+    function onSendMessage (content, type){ // To track when and what is the user sending as a message
         if (isShowSticker && type === 2) {
             setIsShowSticker(false)
         }
@@ -104,13 +104,13 @@ export  default function ChatBoard(props){
         .set(itemMessage)
         .then(() => {
             setInputValue('');
-            setLoading(false);
+            setLoading(false); // To re-render the screen in case a new message is sent
         })
         .catch(err => {
         })
     }
 
-    function onChoosePhoto(event){
+    function onChoosePhoto(event){ // Ensuring that the set photo is of type image and nothing else
         if (event.target.files && event.target.files[0]) {
             currentPhotoFile = event.target.files[0]
             // Check if this file is an image
@@ -128,7 +128,7 @@ export  default function ChatBoard(props){
             const uploadTask = storage
                 .ref()
                 .child(timestamp)
-                .put(currentPhotoFile);
+                .put(currentPhotoFile); // To store the image uploaded inside Firebase storage
 
             uploadTask.on(
                 'state_changed',
@@ -137,11 +137,10 @@ export  default function ChatBoard(props){
                 },
                 () => {
                     uploadTask.snapshot.ref.getDownloadURL().then(downloadURL => {
-                        onSendMessage(downloadURL, 1);
+                        onSendMessage(downloadURL, 1); // To send the new message (which is an image)
                     })
                 }
             )
-        } else {
         }
     }
 
@@ -234,19 +233,19 @@ export  default function ChatBoard(props){
     )
 
     function renderListMessage(){
-        if (listOfMessages.length > 0) { //changed it from listMessages
+        if (listOfMessages.length > 0) {
             let viewListMessage = []
             listOfMessages.forEach((item, index) => {
                 if (item.idFrom === userInfo.id) {
                     // Item right (logged in user message)
-                    if (item.type === 0) {
+                    if (item.type === 0) { // If item is a text
                         viewListMessage.push(
                             <div className="viewItemRight" key={item.timestamp}>
                                 <p className="textContentItem">{item.content}</p>
                                 <time>{moment(Number(item.timestamp)).format('lll')}</time>
                             </div>
                         )
-                    } else if (item.type === 1) { //if image is sent
+                    } else if (item.type === 1) { // If image is sent
                         viewListMessage.push(
                             <div className="viewItemRight2" key={item.timestamp}>
                                 <img
@@ -260,7 +259,7 @@ export  default function ChatBoard(props){
                             </div>
                         )
                     } else {
-                        viewListMessage.push( //if gif is sent
+                        viewListMessage.push( // If gif is sent
                             <div className="viewItemRight3" key={item.timestamp}>
                                 <img
                                     className="gifItemRight"
@@ -275,7 +274,7 @@ export  default function ChatBoard(props){
                     }
                 } else {
                     // Item left (peer message)
-                    if (item.type === 0) {
+                    if (item.type === 0) { // If item is a text
                         viewListMessage.push(
                             <div className="viewWrapItemLeft" key={item.timestamp}>
                                 <div className="viewWrapItemLeft3">
@@ -286,7 +285,7 @@ export  default function ChatBoard(props){
                                 </div>
                             </div>
                         )
-                    } else if (item.type === 1) { //if image sent
+                    } else if (item.type === 1) { // If image sent
                         viewListMessage.push(
                             <>
                                 <div className="viewWrapItemLeft2" key={item.timestamp}>
@@ -307,7 +306,7 @@ export  default function ChatBoard(props){
                             </>
                         )
                     } else {
-                        viewListMessage.push( //if gif sent
+                        viewListMessage.push( // If gif sent
                             <div className="viewWrapItemLeft2" key={item.timestamp}>
                                 <div className="viewWrapItemLeft3">
                                     <div className="viewItemLeft3" key={item.timestamp}>
@@ -327,9 +326,9 @@ export  default function ChatBoard(props){
                 }
             })
 
-            return viewListMessage
+            return viewListMessage // Render the list of messages
         } else {
-            return (
+            return ( // Initial screen before starting a chat
                 <div className="viewWrapSayHi">
                     <span className="textSayHi">Say hi to new friend</span>
                     <img
@@ -421,7 +420,7 @@ export  default function ChatBoard(props){
         )
     }
 
-    function hashString(str){ //to have a hashed name for our document in firestore
+    function hashString(str){ // To have a hashed name for the document in firestore
         let hash = 0
         str = String(str);
         for (let i = 0; i < str.length; i++) {

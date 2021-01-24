@@ -12,7 +12,7 @@ export default function EditBarberService(props) {
     const [services, setServices] = useState([]);
     const [serviceResponse, setServiceResponse] = useState([]);
     const [allBarberServices, setAllBarberServices] = useState([]);
-    const [newBarberService, setNewBarberService] = useState(props.info.service.id);
+    const [newServiceType, setNewServiceType] = useState(props.info.service.id);
 
     useEffect(() => {
         showBarberServices();
@@ -20,42 +20,42 @@ export default function EditBarberService(props) {
     }, [])
 
     const handleClose = () => {
-        setOpenForm(false); //to be able to close the form after opening it
-        props.setShow(false); //setting Show to false to update it in the parent's component (Profile)
+        setOpenForm(false); // To be able to close the form after opening it
+        props.setShow(false); // Setting Show to false to update it in the parent's component (Profile)
     }
 
     function handleBarberService(event) {
         const form = event.currentTarget;
-        if (form.checkValidity() === false) {
+        if (form.checkValidity() === false) { // Check whether all inputs are validated
             event.preventDefault();
             event.stopPropagation();
         }
 
         event.preventDefault();
 
-        setValidated(true);
+        setValidated(true); // To confirm that all fields are validated
 
-        let isExist = false;
+        let isExist = false; // Check if the service type already exists
 
         allBarberServices.forEach(barberService => {
-            if(barberService.service.id == newBarberService) {
-                alert('You Already Have This Service Type Included');
+            if(barberService.service.id == newServiceType) {
+                alert("You Already Have This Service's Type Included");
                 isExist = true;
                 document.getElementById('price').value = '';
                 document.getElementById('time').value = '';
-                document.getElementById('select_type').value = '';
-                return;
+                document.getElementById('select_type').value = ''; // To make all the fields blank again
+                return; // Exit the loop
             }
         })
 
-        if(isExist == true) {
+        if(isExist == true) { // If the service's type already exists, exit the function
             return;
         }
 
         const info = {
             'price': newPrice,
             'estimated_time': newTime,
-            'service_id': parseInt(newBarberService),
+            'service_id': parseInt(newServiceType),
         }
 
         api.editBarberService(info, props.info.id)
@@ -79,30 +79,26 @@ export default function EditBarberService(props) {
         })
     }
 
-    function handleSelectBarberService(value) {
-        if(value == "Add Type") {
-
-        } else {
-            setNewBarberService(value);
-        }
+    function handleSelectServiceType(value) {
+        setNewServiceType(value);
     }
 
     function typeSubmitHandler() {
         event.preventDefault();
 
-        let isExist = false;
+        let isExist = false; // Ensures that the service's type is not already included
 
         services.forEach(service => {
             if(service.type === type) {
                 isExist = true;
                 alert('Type Already Exist');
                 document.getElementById('add_type').value = '';
-                return; //exit the loop
+                return; // Exit the loop
             }
         })
 
         if(isExist == true) {
-            return; //exit the function
+            return; // Exit the function
         }
 
         const newType = {
@@ -111,12 +107,12 @@ export default function EditBarberService(props) {
 
         api.createService(newType)
         .then(response => {
-            setServiceResponse(response.data);
+            setServiceResponse(response.data); // To render the new addition immediately
             let select = document.getElementById('select_type');
             let option = document.createElement('option');
             option.value = response.data.id;
             option.text = response.data.type;
-            select.append(option);
+            select.append(option); // To instantly add the new type to the list of services' type
             document.getElementById('add_type').value = '';
             alert('New Service Type Added!');
         });
@@ -167,7 +163,7 @@ export default function EditBarberService(props) {
                             as="select"
                             id="select_type"
                             className="service_input"
-                            onChange={(e) => {handleSelectBarberService(e.target.value)}}
+                            onChange={(e) => {handleSelectServiceType(e.target.value)}}
                             defaultValue={props.info.service.id}
                             required>
                                 {props.services.map(service => {

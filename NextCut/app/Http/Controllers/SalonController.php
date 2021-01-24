@@ -10,7 +10,7 @@ class SalonController extends Controller
 {
     public function show() {
         $user = Auth::user();
-        $barber = $user->barber;
+        $barber = $user->barber; // Salon's information is known once we know which barber the user is logged in as
         return response()->json($barber, 200);
     }
 

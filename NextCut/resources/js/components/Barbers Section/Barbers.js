@@ -23,7 +23,7 @@ export default function Barber() {
         });
     }
 
-    async function updateInput(input) {
+    async function updateInput(input) { // re-render the screen and show the barber that matches the name in the search field
         const filtered = listDefault.filter(barber => {
             return barber.user.name.toLowerCase().includes(input.toLowerCase());
         })
@@ -31,14 +31,14 @@ export default function Barber() {
         setList(filtered);
     }
 
-    function displayOneBarber(id) {
+    function displayOneBarber(id) { // Display the chosen barber details
         history.push(`/barbers/${id}`);
     }
 
     function displayBarbers() {
         return (
             <CardColumns as={Row} style={{ marginLeft:'0' }}>
-                {list.length != 0 ? list.map((barber) => {
+                {list.length != 0 ? list.map((barber) => { // Display the searched for barber(s)
                     if(barber) {
                         return (
                             <Card style={{ width:'350px', marginRight:'10px'}} lg={4} key={barber.id}
@@ -68,7 +68,7 @@ export default function Barber() {
                     }
                     return null;
                     }) :
-                    listDefault.length != 0 ? listDefault.map((barber) => {
+                    listDefault.length != 0 ? listDefault.map((barber) => { // Display all barbers
                         if(barber) {
                             return (
                                 <Card style={{ width:'350px', marginRight:'10px'}} lg={4} key={barber.id}

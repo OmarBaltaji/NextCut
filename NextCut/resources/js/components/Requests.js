@@ -20,74 +20,39 @@ export default function Requests() {
     const history = useHistory();
     const localizer = momentLocalizer(moment);
     let myEventsList = [];
-    const CURRENT_DATE = new Date().setDate(new Date().getDate()-1);
+    const CURRENT_DATE = new Date().setDate(new Date().getDate()-1); // The day before the current_date which will be used in the Calendar to display different colors to the days before and after the current date
     const role = localStorage.getItem('role');
-
-    if(bookingDetails.length != 0) {
-        bookingDetails.forEach(detail => {
-            let time_end;
-            let time_start = detail.time_booked.split(':');
-            let total_time_int = parseInt(detail.total_time);
-            let start_hour = parseInt(time_start[0]);
-            let start_min = parseInt(time_start[1]);
-            if(total_time_int < 60) {
-                if(start_min + total_time_int < 60) {
-                    //consider that the total_time_int is larger than 30 (35 for instance) and we booked at 16:30,
-                    //that means it would add up to 16:65
-                    time_end = `${start_hour}:${start_min + total_time_int}:00`;
-                } else {
-                    let hour_to_add = Math.floor((total_time_int + start_min)/60);
-                    //hence in case the above case happens we need to count an additional hour and recalculate the
-                    //remaining mins
-                    let mins_remaining = total_time_int + start_min - hour_to_add*60;
-                    time_end = `${start_hour + hour_to_add}:${mins_remaining}:00`;
-                }
-            } else { //in case total_time_int on its own is bigger than 60 mins then we need to add the necessary hours
-                     //and recalculate remaining minutes
-                let hour_to_add = Math.floor(total_time_int/60);
-                let mins_remaining =  total_time_int - hour_to_add*60;
-                if(mins_remaining + start_min > 10) {
-                    time_end = `${start_hour + hour_to_add}:${mins_remaining + start_min}:00`;
-                } else {
-                    time_end = `${start_hour + hour_to_add}:0${mins_remaining + start_min}:00`;
-                }
-            }
-
-            myEventsList.push(
-                    {
-                        title: detail.service_request[0].customer.user.name,
-                        start: new Date(`${detail.date_booked} ${detail.time_booked} GMT+0200 (Eastern European Standard Time)`),
-                        end: new Date(`${detail.date_booked} ${time_end} GMT+0200 (Eastern European Standard Time)`),
-                    }
-                );
-        })
-    }
 
     useEffect(() => {
         getUserDetails();
         if(role) {
             getBookingDetails();
         }
-    }, [changedRequestStatus]);
+    }, [changedRequestStatus]); // Everytime a request's status change the page gets re-rendered
+
+    useEffect(() => {
+        if(bookingDetails.length != 0) {
+            getBookingDetailsForCalendar();
+        }
+    }, [bookingDetails]);
 
     function getBookingDetails() {
         api.getRequestDetails()
         .then(response => {
-            let array = response.data;
-            let big_array = [];
-            array.forEach(request => {
-                //turn the booked date and time to a Date Object
+            let request_array = response.data;
+            let request_array_sorted = [];
+            request_array.forEach(request => {
                 let date =
-                new Date(`${request.date_booked} ${request.time_booked}:00 GMT+0200 (Eastern European Standard Time)`);
-                //push the date object to the bigger object that we initially got from response
-                request['sortingDate'] = date;
-                //push to array
-                big_array.push(request);
+                new Date(`${request.date_booked} ${request.time_booked}:00 GMT+0200 (Eastern European Standard Time)`);  // Turn the booked date and time to a Date Object
+
+                request['sortingDate'] = date; // Push the date object to the bigger object that we initially got from response
+
+                request_array_sorted.push(request);
             })
-            //sort from earliest to latest dates
-            big_array.sort((a, b) => (a.sortingDate > b.sortingDate) ? 1 : -1);
-            //if 1 b takes precedence, else a takes precedence
-            setBookingDetails(big_array);
+
+            // Sort from earliest to latest dates
+            request_array_sorted.sort((a, b) => (a.sortingDate > b.sortingDate) ? 1 : -1); // If 1 b takes precedence, else a takes precedence
+            setBookingDetails(request_array_sorted);
         });
     }
 
@@ -104,19 +69,56 @@ export default function Requests() {
         })
     }
 
+    function getBookingDetailsForCalendar() {
+        bookingDetails.forEach(detail => {
+            let time_end;
+            let time_start = detail.time_booked.split(':');
+            let total_time_int = parseInt(detail.total_time); // total_time and time_booked are initially strings, this is why they are parsed to Integers
+            let start_hour = parseInt(time_start[0]);
+            let start_min = parseInt(time_start[1]);
+            if(total_time_int < 60) {
+                if(start_min + total_time_int < 60) {
+                    // Consider that the total_time_int is larger than 30 (35 for instance) and we booked at 16:30, that means it would add up to 16:65, which is incorrect
+                    time_end = `${start_hour}:${start_min + total_time_int}:00`;
+                } else {
+                    let hour_to_add = Math.floor((total_time_int + start_min)/60);
+                    // Hence in case the above case happens we need to count an additional hour and recalculate the remaining mins
+                    let mins_remaining = total_time_int + start_min - hour_to_add*60;
+                    time_end = `${start_hour + hour_to_add}:${mins_remaining}:00`;
+                }
+            } else { // In case total_time_int on its own is bigger than 60 mins then we need to add the necessary hours and recalculate remaining minutes
+                let hour_to_add = Math.floor(total_time_int/60);
+                let mins_remaining =  total_time_int - hour_to_add*60;
+                if(mins_remaining + start_min > 10) {
+                    time_end = `${start_hour + hour_to_add}:${mins_remaining + start_min}:00`;
+                } else {
+                    time_end = `${start_hour + hour_to_add}:0${mins_remaining + start_min}:00`;
+                }
+            }
+
+            myEventsList.push( // The events that are placed in the Calendar
+                    {
+                        title: detail.service_request[0].customer.user.name,
+                        start: new Date(`${detail.date_booked} ${detail.time_booked} GMT+0200 (Eastern European Standard Time)`),
+                        end: new Date(`${detail.date_booked} ${time_end} GMT+0200 (Eastern European Standard Time)`),
+                    }
+                );
+        })
+    }
+
     function changeStatus(e, request_id) {
         let info;
         if(e.target.checked) {
             info = {
-                completed: 1, //the request has been completed
+                completed: 1, // The request has been completed
                 customer_request_id: request_id,
-                state: 1, //this means the request was accepted
+                state: 1, // The request has been accepted
             };
         } else {
             info = {
-                completed: 0,
+                completed: 0, // The request is incomplete
                 customer_request_id: request_id,
-                state: 0,
+                state: 0, // The request is still pending
             };
         }
 
@@ -126,7 +128,7 @@ export default function Requests() {
         });
     }
 
-    function statusToAccept(e, request_id) {
+    function statusToAccept(e, request_id) { // Request gets accepted
         let info;
         if(e.target.checked) {
             info = {
@@ -141,8 +143,7 @@ export default function Requests() {
         });
     }
 
-    function statusToDecline(e, request_id) {
-        let info;
+    function statusToDecline(e, request_id) { // Request gets declined
         if(e.target.checked) {
             api.deleteRequest(request_id)
             .then(response => {
@@ -150,19 +151,18 @@ export default function Requests() {
 
                 db.collection('notifications').doc(`${request_id}`).delete()
                 .then((response) => {
-                    console.log('doc deleted');
+                    // Document is deleted
                 }).catch((error) => {
-                   console.log('delete error', error)
-            })
+                    // Error while deleting document
+                })
             })
         }
-
     }
 
     function displayPendingRequests() {
         return (
             <>
-             {bookingDetails.length != 0 ?
+                {bookingDetails.length != 0 ?
                 bookingDetails.map((detail, index) => {
                    if(detail.completed == 0 && detail.state == 0) {
                         let date = detail.date_booked.split(' ');
@@ -209,7 +209,7 @@ export default function Requests() {
         );
     }
 
-    function displayIncompletedBookingDetails() {
+    function displayIncompletedBookingRequests() {
         return (
             <>
                 {bookingDetails.length != 0 ?
@@ -254,7 +254,7 @@ export default function Requests() {
         );
     }
 
-    function displayCompletedBookingDetails() {
+    function displayCompletedBookingRequests() {
         return (
             <>
                 {bookingDetails.length != 0 ?
@@ -293,7 +293,7 @@ export default function Requests() {
         );
     }
 
-    function ColoredDateCellWrapper({children, value}) {
+    function ColoredDateCellWrapper({children, value}) { // To color the days in the Calendar
        return(
            React.cloneElement(Children.only(children), {
                 style: {
@@ -304,7 +304,7 @@ export default function Requests() {
        );
     }
 
-    function eventStyle(event, start, end, isSelected) {
+    function eventStyle(event, start, end, isSelected) { // To change the style of the Calendar
         var backgroundColor = '#00356f';
         var style = {
             backgroundColor: backgroundColor,
@@ -316,7 +316,7 @@ export default function Requests() {
         };
     }
 
-    function handleOnSelectEvent(event) { //user can delete old events
+    function handleOnSelectEvent(event) { // User can delete old events
         const confirm = window.confirm("Are you sure you want to remove this session from the calendar?");
         if(confirm) {
             let start_date_utc = String(event.start);
@@ -327,13 +327,13 @@ export default function Requests() {
             let event_id;
             bookingDetails.forEach(detail => {
                 if(detail.date_booked == start_date && detail.time_booked == start_hour) {
-                    event_id = detail.id; //to get the customer request id so it can be used in line 302
+                    event_id = detail.id; // Get the customer request id so it can be used in the api call below
                 }
             });
             const index = myEventsList.indexOf(event);
-            myEventsList.splice(index, 1); //remove event from React list to render latest results
+            myEventsList.splice(index, 1); // Remove event from React list to render latest results
 
-            api.deleteRequest(event_id) //remove customer request from backend
+            api.deleteRequest(event_id) // Remove customer request from backend
             .then(response => {
                 //
             });
@@ -381,7 +381,7 @@ export default function Requests() {
                         </tr>
                     </thead>
                     <tbody>
-                        {displayIncompletedBookingDetails()}
+                        {displayIncompletedBookingRequests()}
                     </tbody>
                 </Table>
                 <hr style={{ backgroundColor:'#DAA520' }} />
@@ -400,7 +400,7 @@ export default function Requests() {
                         </tr>
                     </thead>
                     <tbody>
-                        {displayCompletedBookingDetails()}
+                        {displayCompletedBookingRequests()}
                     </tbody>
                 </Table>
                 <hr style={{ backgroundColor:'#DAA520' }} />

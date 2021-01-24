@@ -16,7 +16,7 @@ export  default function Main(){
 
     useEffect(() => {
         getAuthInfo();
-        if(role) {
+        if(role) { // If not signed in do not show the list of users
             getListUser();
         }
     },[]);
@@ -32,14 +32,16 @@ export  default function Main(){
         })
     }
 
-   function  getListUser() {
+   function  getListUser() { // Get list of all users
         api.getUsers()
         .then(response => {
             setListUser(response.data);
         })
     }
 
-    function renderListCustomer (){
+    //Only customers can chat to barbers and vice versa
+
+    function renderListCustomer (){ // Render this list for barbers
         return listUser.map(user => {
             return(
                 <i  key={user.id}>
@@ -70,7 +72,7 @@ export  default function Main(){
         })
     }
 
-    function renderListBarber() {
+    function renderListBarber() { // Render this list for customers
         return listUser.map(user => {
             return(
                 <i  key={user.id}>
@@ -108,7 +110,6 @@ export  default function Main(){
                 <div className="body_chat">
                     <div className="viewListUser">
                         {listUser.length > 0 ? (role == 'Barber' ? renderListCustomer() : renderListBarber()) : ''}
-                        {/*if logged user is customer then can see only barbers and vice versa */}
                     </div>
                     <div className="viewBoard">
                         {currentPeerUser.length != 0 ? (

@@ -14,8 +14,8 @@ export default function Service() {
 
     const [editBarberService, setEditBarberService] = useState();
 
-    const [showEditBarberService, setShowEditBarberService] = useState(false);
-    const handleShowEditBarberService = () => setShowEditBarberService(true);
+    const [showEditBarberService, setShowEditBarberService] = useState(false); // To close the popup window
+    const handleShowEditBarberService = () => setShowEditBarberService(true); // To open the popup window
 
     const [showAddBarberService, setShowAddBarberService] = useState(false);
     const handleShowAddBarberService = () => setShowAddBarberService(true);
@@ -24,7 +24,7 @@ export default function Service() {
 
     useEffect(() => {
         getUserDetails();
-        if(role) {
+        if(role) { // Ensure the user is barber before running the api calls
             showServices();
             showBarberServices();
         }
@@ -43,21 +43,21 @@ export default function Service() {
         })
     }
 
-    function showServices() {
+    function showServices() { // To show services' type
         api.getService()
         .then(response => {
             setServices(response.data);
         })
     }
 
-    function showBarberServices() {
+    function showBarberServices() { // Shows a list of services with their type, price and duration
         api.getBarberService()
         .then(response => {
             setBarberServices(response.data);
         })
     }
 
-    function hanldeDeleteBarberService(id) {
+    function hanldeDeleteBarberService(id) { // Delete a service that a barber has inserted previously
         let confirm_delete = confirm('Delete Service?');
         if (confirm_delete == true) {
             api.deleteBarberService(id)
@@ -67,7 +67,7 @@ export default function Service() {
         }
     }
 
-    function renderBarberService() {
+    function renderBarberService() { // Renders the services provided by the barber
         return (
             <>
                 {barberServices.length != 0 ? barberServices.map((barberService, index) => {
@@ -101,7 +101,7 @@ export default function Service() {
         );
     }
 
-    function displayBarberEditService() {
+    function displayBarberEditService() { // Renders the popup window
         return(
             <EditBarberService props={showEditBarberService} services={services} info={editBarberService}
             setShow={setShowEditBarberService} />

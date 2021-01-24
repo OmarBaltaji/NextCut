@@ -10,7 +10,7 @@ class ScheduleController extends Controller
 {
     public function show() {
         $user = Auth::user();
-        $barber = $user->barber->first();
+        $barber = $user->barber->first(); // Only barbers have access to schedule
         $schedule = $barber->schedule;
 
         return response()->json($schedule, 200);

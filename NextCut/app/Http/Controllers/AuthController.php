@@ -123,12 +123,11 @@ class AuthController extends Controller
         $uid = $verifiedIdToken->getClaim('sub');
 
         //Image
-        if($request->hasFile('profile_photo')) { //Ensure user uploaded an image
-            $profile_photo = $request->file('profile_photo');
-            $photo = $request['profile_photo']->store(env('PROFILE_PICTURES_PATH')); //Store the picture locally
-            $photoInDB = Storage::url($photo); //Obtain the url of the photo
+        if($request->hasFile('profile_photo')) { // Ensure user uploaded an image
+            $photo = $request['profile_photo']->store(env('PROFILE_PICTURES_PATH')); // Store the picture locally
+            $photoInDB = Storage::url($photo); // Obtain the url of the photo
         } else {
-            $defaultPhoto = env('PROFILE_PICTURES_PATH') . "/none.png"; //If not photo is uploaded than use this default one
+            $defaultPhoto = env('PROFILE_PICTURES_PATH') . "/none.png"; // If not photo is uploaded than use this default one
             $photoInDB = Storage::url($defaultPhoto);
         }
 
@@ -146,18 +145,19 @@ class AuthController extends Controller
         $result_token = $user->createToken('Personal Access Token'); //To login immediately after registering
         $token = $result_token->token;
 
-        $token->expires_at = Carbon::now()->addDay();
+        $token->expires_at = Carbon::now()->addDay(); // Set expiration date of token
         $token->save();
 
         return response()->json([
             'access_token' => $result_token->accessToken,
             'token_type' => 'Bearer',
-            'expires_at' => Carbon::parse($token->expires_at)->toDateTimeString()],200);
+            'expires_at' => Carbon::parse($token->expires_at)->toDateTimeString()
+        ],200);
     }
 
     public function logout() {
-        $user = auth()->user(); //Get logged in user
-        $user->token()->revoke(); //Destroy token
+        $user = auth()->user();
+        $user->token()->revoke(); //Destroy previously stored token
         return response()->json(['message' => 'logged out'], 200);
     }
 

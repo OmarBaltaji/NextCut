@@ -27,14 +27,14 @@ export default function Register() {
 
         var user = firebase.auth().currentUser;
 
-        if(errs.length != 0) { //delete a user from firebase in case there are additional errors
+        if(errs.length != 0) { // Delete a user from firebase in case there are additional errors
             user.delete().then(function() {
                  // User deleted.
             }).catch(function(error) {
                 // An error happened.
             });
         }
-    }, [errs]);
+    }, [errs]); // Everytime an error occurs the user's account is deleted from firebase in case the account was created before ensuring that Laravel api call was correct
 
     function RegistrationHandler(event) {
         event.preventDefault();
@@ -45,7 +45,7 @@ export default function Register() {
             firebase.app(); // if already initialized
         }
 
-        firebase.auth().createUserWithEmailAndPassword(email, password)
+        firebase.auth().createUserWithEmailAndPassword(email, password) // Create a user through Firebase first
         .then((auth) => {
             auth.user.getIdToken().then(function(accessToken) {
                 if(auth.additionalUserInfo.isNewUser == true) {
@@ -59,24 +59,23 @@ export default function Register() {
                     info.append('phone_number', String(phoneNumber));
                     info.append('roles', role);
 
-                    api.register(info, {headers:{'Accept': "application/json", 'Content-Type':"multipart/form-data"}
+                    api.register(info, {headers:{'Accept': "application/json", 'Content-Type':"multipart/form-data"} // Then create user through Laravel Passport
                     }).then(response => {
-                        console.log(response.data);
                         const options = {Path: "/",Expires: response.data.expires, Secure: true};
-                        CookieService.set('access_token', response.data.access_token, options);
+                        CookieService.set('access_token', response.data.access_token, options); // Store token in Cookie Storage
                         history.push("/home");
                         window.location.reload();
                     }).catch(error => {
-                        setErrs(error.response.data.errors);
+                        setErrs(error.response.data.errors); // To catch errors that may result from the Laravel api call
                     });
                 }
             })
         }).catch((error) => {
-            setInvalid(error.message);
+            setInvalid(error.message); // To catch errors that may result from the Firebase api call
         });
     }
 
-    function displayError (field) {
+    function displayError (field) { // To display the errors below the incorrect fields
         if (errs[field]) {
             return (
                 <span style={{ display:'block', color: '#980000' }}>
@@ -88,12 +87,12 @@ export default function Register() {
 
     function redirectHome() {
         let cookie = CookieService.get('access_token');
-        if(cookie) {
+        if(cookie) { // The user is correctly authenticated and instantly redirected to the home page
             history.push('/home');
         }
     }
 
-    function handleProfilePhoto(e) {
+    function handleProfilePhoto(e) { // To ensure the selected file is of type image only (not a video or other formats)
         if (e.target.files && e.target.files[0]) {
             // Check this file is an image
             const prefixFiletype = e.target.files[0].type.toString()

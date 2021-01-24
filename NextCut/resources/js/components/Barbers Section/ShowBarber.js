@@ -16,16 +16,14 @@ export default function ShowBarber(props) {
     const [userDetails, setUserDetails] = useState([]);
     const [addressDetails, setAddressDetails] = useState([]);;
     const [barberService, setBarberService] = useState([]);
-    const [openHours, setOpenHours] = useState([]);
-    const [closeHours, setCloseHours] = useState([]);
     const [barberSchedule, setBarberSchedule] = useState([]);
     const [galleryInfo, setGalleryInfo] = useState([]);
     const [activeIdx, setActiveIdx] = useState();
 
     const [showGallerySlideShow, setShowGallerySlideShow] = useState(false);
     const handleShowGallerySlideShow = (index) => {
-        setShowGallerySlideShow(true)
-        setActiveIdx(index);
+        setShowGallerySlideShow(true) // To show the gallery popup
+        setActiveIdx(index); // To obtain the index of the clicked on photo, which will be used in the Gallery.js component. (it is the first image that will appear in the carousel)
     };
 
     useEffect(() => {
@@ -36,28 +34,26 @@ export default function ShowBarber(props) {
     }, []);
 
     function getBarberDetails() {
-        api.getOneBarber(param.id)
+        api.getOneBarber(param.id) // param contains the elements from the slug
         .then(response => {
             setBarberDetails(response.data);
             setUserDetails(response.data.user);
             setAddressDetails(response.data.user.address[0]);
-            setOpenHours(response.data.salon_open);
-            setCloseHours(response.data.salon_close);
         });
     }
 
     function getServices() {
-        api.getBarberServices(param.id)
+        api.getBarberServices(param.id) // Get this particular barber's services
         .then(response => {
             setBarberService(response.data);
         })
     }
 
     function getBarberSchedule() {
-        api.getBarberSchedule(param.id)
+        api.getBarberSchedule(param.id) // Get this particular barber's schedule
         .then(response => {
             if(Object.keys(response.data).length == 0) {
-                console.log('empty')
+                //the object is empty
             }else {
                 setBarberSchedule(response.data);;
             }
@@ -65,13 +61,13 @@ export default function ShowBarber(props) {
     }
 
     function getGalleryInfo() {
-        api.getBarberGallery(param.id)
+        api.getBarberGallery(param.id) // Get this particular barber's gallery
         .then(response => {
             setGalleryInfo(response.data);
         })
     }
 
-    function displayGallerySlideShow() {
+    function displayGallerySlideShow() { // To display the popup gallery
         return (
             <Gallery props={showGallerySlideShow} info={param.id} index={activeIdx} setShow={setShowGallerySlideShow}/>
         )

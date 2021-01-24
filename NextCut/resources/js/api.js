@@ -25,6 +25,16 @@ export default{
     updateUserInfo: (user_id, info, headers) =>
     axios.put(`${BASE_URL}/user/${user_id}`, info, headers),
 
+    getCustomerAddress: () =>
+    axios.get(`${BASE_URL}/user/customeraddress`),
+
+    createCustomerAddress: (info) =>
+    axios.post(`${BASE_URL}/user/customeraddress`, info),
+
+    editCustomerAddress: (info, id) =>
+    axios.put(`${BASE_URL}/user/customeraddress/${id}`, info),
+
+    // The following api calls are meant for barbers' profiles only
     getSalonInfo: () =>
     axios.get(`${BASE_URL}/user/salon`),
 
@@ -43,15 +53,6 @@ export default{
     editAddress: (info, id) =>
     axios.put(`${BASE_URL}/user/address/${id}`, info),
 
-    getCustomerAddress: () =>
-    axios.get(`${BASE_URL}/user/customeraddress`),
-
-    createCustomerAddress: (info) =>
-    axios.post(`${BASE_URL}/user/customeraddress`, info),
-
-    editCustomerAddress: (info, id) =>
-    axios.put(`${BASE_URL}/user/customeraddress/${id}`, info),
-
     getSchedule: () =>
     axios.get(`${BASE_URL}/user/schedule`),
 
@@ -61,14 +62,13 @@ export default{
     editSchedule: (info, id) =>
     axios.put(`${BASE_URL}/user/schedule/${id}`, info),
 
-    getService: () =>
+    getService: () => // This means Service's type
     axios.get(`${BASE_URL}/user/services`),
 
     createService: (type) =>
     axios.post(`${BASE_URL}/user/services`, type),
 
-    //the user is a barber we are getting his/her particular services
-    getBarberService: () =>
+    getBarberService: () => // Barber's service as in the service type, price, and duration
     axios.get(`${BASE_URL}/user/barberservices`),
 
     createBarberService: (info) =>
@@ -89,13 +89,15 @@ export default{
     deleteGallery: (id) =>
     axios.delete(`${BASE_URL}/user/galleries/${id}`),
 
+    // End of api calls for barbers' profiles
+
     getAllBarbers: () =>
     axios.get(`${BASE_URL}/barbers`),
 
     getOneBarber: (id) =>
     axios.get(`${BASE_URL}/barbers/${id}`),
 
-    //get a particular barber's services after browsing through barbers as a customer
+    // Get details of a chosen barber after browsing through barbers as a customer
     getBarberServices: (id) =>
     axios.get(`${BASE_URL}/barbers/${id}/services`),
 
@@ -104,6 +106,8 @@ export default{
 
     getBarberGallery: (id) =>
     axios.get(`${BASE_URL}/barbers/${id}/gallery`),
+
+    // End of obtaining the details for the chosen barber
 
     storeCustomerRequest: (info) =>
     axios.post(`${BASE_URL}/booking/confirmation`,info),

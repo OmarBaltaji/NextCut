@@ -13,11 +13,11 @@ export default function EditSchedule(props) {
     const dayOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
     const handleClose = () => {
-        setOpenForm(false); //to be able to close the form after opening it
-        props.setShow(false); //setting Show to false to update it in the parent's component (Profile)
+        setOpenForm(false); // To be able to close the form after opening it
+        props.setShow(false); // Setting Show to false to update it in the parent's component (Profile)
     }
 
-    function hourOpenHandler(e) {
+    function hourOpenHandler(e) { // The opening hour cannot be later than the closing hour
         if((e.target.value != hourClose) && (e.target.value < hourClose) || hourClose == '')
             setHourOpen(String(e.target.value));
         else {
@@ -35,7 +35,7 @@ export default function EditSchedule(props) {
         }
     }
 
-    function dayOpenHandler(e) {
+    function dayOpenHandler(e) { // The opening day should not be later than the closing day
         let openIndex = dayOfWeek.indexOf(e.target.value);
         let closeIndex = dayOfWeek.indexOf(dayClose);
         if((openIndex != closeIndex && openIndex < closeIndex) || dayClose == '')
@@ -61,14 +61,14 @@ export default function EditSchedule(props) {
 
     function handleScheduleInfo() {
         const form = event.currentTarget;
-        if (form.checkValidity() === false) {
+        if (form.checkValidity() === false) {  // Check whether all inputs are validated
             event.preventDefault();
             event.stopPropagation();
         }
 
         event.preventDefault();
 
-        setValidated(true);
+        setValidated(true); // To confirm that all fields are validated
 
         const salonInfo = {
             'hour_open': hourOpen,

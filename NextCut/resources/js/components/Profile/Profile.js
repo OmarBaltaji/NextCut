@@ -42,8 +42,8 @@ export default function Profile() {
     const [customerAddress, setCustomerAddress] = useState([]);
     const history = useHistory();
 
-    const [showEditProfile, setShowEditProfile] = useState(false);
-    const handleShowEditProfile = () => setShowEditProfile(true);
+    const [showEditProfile, setShowEditProfile] = useState(false); // To close the popup window
+    const handleShowEditProfile = () => setShowEditProfile(true); // To open the popup window
 
     const [showAddSalon, setShowAddSalon] = useState(false);
     const handleShowAddSalon = () => setShowAddSalon(true);
@@ -72,7 +72,7 @@ export default function Profile() {
 
     useEffect(() => {
         getUserDetails();
-        if(role =='Barber') {
+        if(role =='Barber') { // Ensure that the user is a barber before running the api calls
             getSalonInfo();
             if (salonInfo) {
                 getAddressInfo();
@@ -80,7 +80,7 @@ export default function Profile() {
                 getServicesDetails();
                 getGalleryInfo();
             }
-        } else if(role == 'Customer') {
+        } else if(role == 'Customer') { // Ensure that the user is a customer to run the below api call
             getCustomerAddressInfo();
         }
     }, []);
@@ -96,7 +96,7 @@ export default function Profile() {
         });
     }
 
-    function deleteProfileHandler() {
+    function deleteProfileHandler() { // If the user wishes to terminate their profile
         let confirm_delete = confirm('Delete profile permanently?');
         if (confirm_delete == true) {
             api.deleteProfile(userInfo.id).then(response => {
@@ -106,7 +106,7 @@ export default function Profile() {
         }
     }
 
-    function displayEditProfile() {
+    function displayEditProfile() { // Renders the popup window
         return(
             <EditProfile props={showEditProfile} info={userInfo} setShow={setShowEditProfile} />
         );
@@ -183,8 +183,7 @@ export default function Profile() {
             let servicesByBarber = [];
             response.data.forEach(barberService => {
                 servicesByBarber.push(barberService.service.id);
-                localStorage.setItem('services_by_barber', JSON.stringify(servicesByBarber));
-                //this will be used later in Service.js
+                localStorage.setItem('services_by_barber', JSON.stringify(servicesByBarber)); // Store barber services in the Local storage which will be used later in Service.js
             })
         }).catch(error => {
 
@@ -228,8 +227,8 @@ export default function Profile() {
         );
     }
 
-    function deleteGalleryHandler(id) {
-        let confirm_delete = confirm('Delete gallery?');
+    function deleteGalleryHandler(id) { // Delete Photo from gallery
+        let confirm_delete = confirm('Delete image?');
         if (confirm_delete == true) {
             api.deleteGallery(id).then(response => {
                 window.location.reload();
@@ -237,7 +236,7 @@ export default function Profile() {
         }
     }
 
-    function onChangeProfilePhoto(event) {
+    function onChangeProfilePhoto(event) { // Ensures that the file being uploaded is an image and nothing else
         if (event.target.files && event.target.files[0]) {
             // Check this file is an image
             const prefixFiletype = event.target.files[0].type.toString()
@@ -259,7 +258,7 @@ export default function Profile() {
         })
     }
 
-    function displayProfileInfoBarber() {
+    function displayProfileInfoBarber() { // Renders the profile of a barber
         return (
             <>
                 <Col lg={4}>
@@ -478,7 +477,7 @@ export default function Profile() {
         );
     }
 
-    function displayProfileInfoCustomer() {
+    function displayProfileInfoCustomer() { // Renders the profile of a customer
         return (
             <>
                 <Col lg={4}>
@@ -573,7 +572,7 @@ export default function Profile() {
         );
     }
 
-    function checkRole() {
+    function checkRole() { // Ensure whether the user is a customer or barber to know what type of profile to show
         if(userInfo.roles == 'Barber') {
             return displayProfileInfoBarber();
         } else
