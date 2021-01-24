@@ -11,8 +11,7 @@
         DB_PORT=3306
         DB_DATABASE="database-name" 
         DB_USERNAME="mysql-username"
-        DB_PASSWORD= "mysql-password"
-    </pre><br/>
+        DB_PASSWORD= "mysql-password"</pre><br/>
     5. Run command in terminal: php artisan migrate (to deploy the database)<br/><br/>
     6. php artisan passport:install<br/><br/>
     7. php artisan passport:client --personal <br/>
@@ -37,8 +36,7 @@
             "token_uri": "",<br/>
             "auth_provider_x509_cert_url": "",<br/>
             "client_x509_cert_url": ""<br/>
-        }
-    </pre><br/>
+        }</pre><br/>
     10. php artisan ui react<br/><br/>
     11. npm install <br/><br/>
     12. From Firebase navigate to Project settings -> General -> Your apps -> Copy the following:<br/>
@@ -50,16 +48,14 @@
         storageBucket: "PROJECT_ID.appspot.com",
         messagingSenderId: "SENDER_ID",
         appId: "APP_ID",
-        measurementId: "G-MEASUREMENT_ID",
-    </pre>
+        measurementId: "G-MEASUREMENT_ID",</pre>
     Then paste it to the Firebase Configuration file (Javascript file)<br/><br/>
     13. In the public folder, you should insert the GSM sender id in the  manifest.json file. This can be obtained from Firebase:<br/> Project settings -> Cloud Messaging -> Project credentials -> Sender ID.<br/>
     Manifest.json should contain:<br/>
     <pre>
     {
         "Gsm_sender_id":"sender-id"
-    }
-    </pre>
+    }</pre>
     Be sure to also include your Firebase Configuration to the firebase-message-sw.js file (which can also be found in the public folder)<br/><br/>
     14. Firebase Rules:<br/>
     In order to have Firebase fully functioning, slight modifications in the rules are needed:<br/><br/>
@@ -72,8 +68,7 @@
                 allow read, write: if true && request.auth != null;
             }
         }
-    }
-    </pre> <br/>
+    }</pre> <br/>
     Firebase Storage rules: (to ensure only authenticated users can access the collections)<br/>
     <pre>
     rules_version = '2';
@@ -84,7 +79,6 @@
                 allow write: if true && request.auth != null && request.resource.contentType.matches('image/.*');
             }
         }
-    }
-    </pre><br/>
+    }</pre><br/>
     15. Finally, Run command in terminal: php artisan serve (to access the website)<br/>
 </p>
