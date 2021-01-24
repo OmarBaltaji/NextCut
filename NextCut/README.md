@@ -15,7 +15,7 @@
     </pre><br/>
     5. Run command in terminal: php artisan migrate (to deploy the database)<br/><br/>
     6. php artisan passport:install<br/><br/>
-    7. php artisan passport:client --personal <br/><br/>
+    7. php artisan passport:client --personal <br/>
     Name the personal access token: “Personal Access Token” <br/>
     For more details on Laravel passport, check the official documentation:<br/>
     (Laravel Passport - Laravel - The PHP Framework For Web Artisans)<br/><br/>
@@ -51,7 +51,7 @@
         messagingSenderId: "SENDER_ID",
         appId: "APP_ID",
         measurementId: "G-MEASUREMENT_ID",
-    </pre><br/>
+    </pre>
     Then paste it to the Firebase Configuration file (Javascript file)<br/><br/>
     13. In the public folder, you should insert the GSM sender id in the  manifest.json file. This can be obtained from Firebase:<br/> Project settings -> Cloud Messaging -> Project credentials -> Sender ID.
     Manifest.json should contain:<br/>
@@ -86,8 +86,5 @@
         }
     }
     </pre><br/>
-    15. Head to resources/js/Firebase<br/>
-    Inside Init-fcm.js, paste the vapid key in the following line: <br/>
-    messaging.usePublicVapidKey(“Vapidkey”)<br/><br/>
-    16. Finally, Run command in terminal: php artisan serve (to access the website)<br/>
+    15. Finally, Run command in terminal: php artisan serve (to access the website)<br/>
 </p>
