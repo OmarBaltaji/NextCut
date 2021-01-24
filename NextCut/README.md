@@ -61,7 +61,7 @@
         "Gsm_sender_id":"sender-id"
     }
     </pre><br/>
-    Be sure to also include your Firebase Configuration to the firebase-message-sw.js file (which can also be found in the <br/>public folder)<br/><br/>
+    Be sure to also include your Firebase Configuration to the firebase-message-sw.js file (which can also be found in the public folder)<br/><br/>
     14. Firebase Rules:<br/>
     In order to have Firebase fully functioning, slight modifications in the rules are needed:<br/>
     <u>Firestore:</u><br/>
@@ -76,8 +76,8 @@
         }
     }
     </pre> <br/>
+    <u>Storage:</u><br/>
     <pre>
-    <u>Storage:</u>
     Firebase Storage rules: (to ensure only authenticated users can access the collections)
     rules_version = '2';
     service firebase.storage {
