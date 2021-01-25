@@ -3,8 +3,8 @@
     2. Clone the repository: git clone https://github.com/OmarBaltaji/NextCut.git  <br/><br/>
     3. Go to the project directory: composer install  <br/><br/>
     4. Copy the .env.example file and make the required configuration changes in the .env file.  <br/>
-    You can run the command in the terminal: cp .env.example .env (to copy the file) <br/>
-    Create a new database "database-name" and edit the information below in the .env accordingly:  <br/>
+    &emsp;You can run the command in the terminal: cp .env.example .env (to copy the file) <br/>
+    &emsp;Create a new database "database-name" and edit the information below in the .env accordingly:  <br/>
     <pre>
         DB_CONNECTION=mysql
         DB_HOST=127.0.0.1
