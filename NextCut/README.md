@@ -76,8 +76,8 @@
         }
     }</pre><br/>
     15. In order to receive emails on your gmail account after a booking, you need to:<br/>
-    - Go to your Google Account Security Settings<br/>
-    - Ensure that the 2-Step-Verification is disabled<br/>
-    - Turn ON the "Less Secure App" access<br/><br/>
+    &emsp;- Go to your Google Account Security Settings<br/>
+    &emsp;- Ensure that the 2-Step-Verification is disabled<br/>
+    &emsp;- Turn ON the "Less Secure App" access<br/><br/>
     16. Finally, run this command in the terminal: php artisan serve (to access the website)<br/>
 </p>
