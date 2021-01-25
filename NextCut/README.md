@@ -51,10 +51,11 @@
     13. In the public folder, you should insert the GSM sender id in the  manifest.json file. This can be obtained from Firebase:<br/>   
     &emsp;&ensp;&nbsp;Project settings -> Cloud Messaging -> Project credentials -> Sender ID.<br/><br/>
     &emsp;&ensp;&nbsp;Manifest.json should contain:<br/>
-    <pre> "gsm_sender_id":"sender-id"</pre>
+    <pre>  "gsm_sender_id":"sender-id"</pre>
     Be sure to also include your Firebase Configuration to the firebase-message-sw.js file (which can also be found in the public folder)<br/><br/>
     14. Firebase Rules:<br/>
-    In order to have Firebase fully functioning, slight modifications in the rules are needed: (to ensure only authenticated users can access the collections)<br/><br/>
+    &emsp;&ensp;&nbsp;In order to have Firebase fully functioning, slight modifications in the rules are needed: (to ensure only authenticated users can access the<br/>
+    &emsp;&ensp;&nbsp;collections)<br/><br/>
     Firebase Firestore Rules:<br/>
     <pre>
     rules_version = '2';
