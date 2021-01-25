@@ -24,7 +24,7 @@
         &emsp;&emsp;- From Firebase navigate to Project settings -> Service accounts -> Generate a new private key -> Generate Key.<br/>
         &emsp;&emsp;- Open the downloaded file and copy and paste it to the firebase credentials file (json file) in the project.
         <br/><br/>
-     The file should look like:<br/>
+    &emsp;&ensp;&nbsp;The file should look like:<br/>
         <pre>
             "type": "",
             "project_id": "",
@@ -47,7 +47,7 @@
         messagingSenderId: "SENDER_ID",
         appId: "APP_ID",
         measurementId: "G-MEASUREMENT_ID",</pre>
-    Then paste it to the Firebase Configuration file (Javascript file)<br/><br/>
+    &emsp;&ensp;&nbsp;Then paste it to the Firebase Configuration file (Javascript file)<br/><br/>
     13. In the public folder, you should insert the GSM sender id in the  manifest.json file. This can be obtained from Firebase:<br/>   
     &emsp;&ensp;&nbsp;Project settings -> Cloud Messaging -> Project credentials -> Sender ID.<br/><br/>
     &emsp;&ensp;&nbsp;Manifest.json should contain:<br/>
