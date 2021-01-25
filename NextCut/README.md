@@ -18,11 +18,11 @@
     &emsp;Name the personal access token: “Personal Access Token” <br/>
     &emsp;For more details on Laravel passport, check the official documentation: https://laravel.com/docs/8.x/passport<br/><br/>
     8.  php artisan storage:link<br/>
-    This creates a symbolic link from public/storage to storage/app/public<br/><br/>
+      &emsp;This creates a symbolic link from public/storage to storage/app/public<br/><br/>
     9. Create a Firebase project:<br/>
         &emsp;&emsp;- Go to the Authentication section and enable authentication with email and password. Then get the Firebase Credentials file (json file)<br/>
         &emsp;&emsp;- From Firebase navigate to Project settings -> Service accounts -> Generate a new private key -> Generate Key.<br/>
-        - Open the downloaded file and copy and paste it to the firebase credentials file (json file) in the project.
+        &emsp;&emsp;- Open the downloaded file and copy and paste it to the firebase credentials file (json file) in the project.
         <br/><br/>
      The file should look like:<br/>
         <pre>
