@@ -1,5 +1,5 @@
 <p>
-    1. Install laravel: Please check the official laravel installation guide for server requirements before you start. <br/>&emsp;&emsp;(https://laravel.com/docs/8.x/installation) <br/> <br/>
+    1. Install laravel: Please check the official laravel installation guide for server requirements before you start. <br/>&emsp;(https://laravel.com/docs/8.x/installation) <br/> <br/>
     2. Clone the repository: git clone https://github.com/OmarBaltaji/NextCut.git  <br/><br/>
     3. Go to the project directory: composer install  <br/><br/>
     4. Copy the .env.example file and make the required configuration changes in the .env file.  <br/>
