@@ -56,7 +56,7 @@
     14. Firebase Rules:<br/>
     &emsp;&ensp;&nbsp;In order to have Firebase fully functioning, slight modifications in the rules are needed: (to ensure only authenticated users can access the<br/>
     &emsp;&ensp;&nbsp;collections)<br/><br/>
-    Firebase Firestore Rules:<br/>
+    &emsp;&ensp;&nbsp;Firebase Firestore Rules:<br/>
     <pre>
     rules_version = '2';
     service cloud.firestore {
@@ -66,7 +66,7 @@
             }
         }
     }</pre> <br/>
-    Firebase Storage Rules:<br/>
+    &emsp;&ensp;&nbsp;Firebase Storage Rules:<br/>
     <pre>
     rules_version = '2';
     service firebase.storage {
