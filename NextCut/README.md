@@ -48,7 +48,8 @@
         appId: "APP_ID",
         measurementId: "G-MEASUREMENT_ID",</pre>
     Then paste it to the Firebase Configuration file (Javascript file)<br/><br/>
-    13. In the public folder, you should insert the GSM sender id in the  manifest.json file. This can be obtained from Firebase:<br/> Project settings -> Cloud Messaging -> Project credentials -> Sender ID.<br/><br/>
+    13. In the public folder, you should insert the GSM sender id in the  manifest.json file. This can be obtained from Firebase:<br/>   
+    &emsp;&emsp;Project settings -> Cloud Messaging -> Project credentials -> Sender ID.<br/><br/>
     Manifest.json should contain:<br/>
     <pre>"gsm_sender_id":"sender-id"</pre>
     Be sure to also include your Firebase Configuration to the firebase-message-sw.js file (which can also be found in the public folder)<br/><br/>
