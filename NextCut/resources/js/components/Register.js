@@ -109,7 +109,7 @@ export default function Register() {
     }
 
     return (
-        <Card style={{margin:'40px auto', width: '300px', padding: '20px', backgroundColor:'#DAA520'}}>
+        <Card className='reg_form' style={{margin:'40px auto', width: '320px', padding: '20px', backgroundColor:'#DAA520'}}>
             <Form onSubmit={RegistrationHandler}
             encType="multipart/form-data">
                 <Form.Group controlId="formBasicEmail" style={{ paddingTop: '20px' }}>

@@ -187,7 +187,7 @@ export default function Header() {
     return (
         <Navbar collapseOnSelect expand='lg' sticky="top" style={{ backgroundColor: '#DAA520' }}>
             <Navbar.Brand  href="/home">
-                <Image src={logo} height="50px" width="60px"
+                <Image className='Logo' src={logo} height="50px" width="60px"
                 alt="logo" />
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -250,7 +250,7 @@ export default function Header() {
                 </div>
                 : ''}
 
-                {cookie ? <Nav.Link href="/chat"><i className="fas fa-comments" /></Nav.Link>
+                {cookie ? <Nav.Link className='chat_icon' href="/chat"><i className="fas fa-comments" /></Nav.Link>
                 : ''}
 
                 <Nav>

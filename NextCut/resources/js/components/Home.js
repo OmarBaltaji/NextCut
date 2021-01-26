@@ -9,7 +9,7 @@ export default function Home() {
     const role = localStorage.getItem('role');
 
     useEffect(() => {
-        if(role) { // if not that means the user is a guest and there is no need for this api call
+        if(role) { // If not that means the user is a guest and there is no need for this api call
             getUserDetails();
         }
     }, []);
@@ -34,13 +34,13 @@ export default function Home() {
                             with your favorite barber at your very own household!
                         </p>
                     </Col>
-                    <Col lg={4}>
+                    <Col lg={4} xs={4}>
                         <Image className="home_images" src="../images/couch-laptop.png"
                          alt="person sitting at home with laptop"
                         width="370px" height="270px" />
                     </Col>
                     <Col lg={4}>
-                        <Image src="../images/barber-wearing-mask.jpg" alt="barber with protective mask on"
+                        <Image className="home_images" src="../images/barber-wearing-mask.jpg" alt="barber with protective mask on"
                         width="370px" height="270px" />
                     </Col>
                 </Row>
@@ -53,7 +53,7 @@ export default function Home() {
                             Eliminate the unnecessary wait by reserving your spot weeks ahead.
                         </p>
                         <br/>
-                        {userInfo.roles == 'Customer' || role == 'Customer'  ?
+                        {userInfo.roles == 'Customer' || role == 'Customer' ?
                         <Button size="lg" href="/booking" className="book_button">Book Here!</Button>
                         : ''}
                     </Col>
@@ -63,7 +63,7 @@ export default function Home() {
                         width="370px" height="270px" />
                     </Col>
                     <Col lg={4}>
-                        <Image src="../images/barber-styling.jpg" alt="barber styling customer's hair"
+                        <Image className="home_images" src="../images/barber-styling.jpg" alt="barber styling customer's hair"
                         width="370px" height="270px" />
                     </Col>
                 </Row>

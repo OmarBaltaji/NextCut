@@ -34,3 +34,11 @@
     outline-offset: none !important;
 }
 
+
+@media only screen and (max-width: 320px) {
+    .about_btn {
+        font-size: 25px !important;
+        margin-left: 7px !important;
+    }
+
+}

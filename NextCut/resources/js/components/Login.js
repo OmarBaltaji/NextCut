@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {Link, useHistory} from 'react-router-dom';
 import CookieService from '../Service/CookieService';
 import api from '../api';
-import {Card, Form, Button, InputGroup} from 'react-bootstrap';
+import {Card,Col, Container, Form, Button, InputGroup} from 'react-bootstrap';
 import '../../css/Head_Log_Reg.css';
 import firebaseConfig from '../Firebase/FirebaseConfig';
 import firebase from 'firebase/app';
@@ -62,7 +62,7 @@ export default function Login() {
     }
 
     return (
-        <Card style={{margin:'150px auto', width: '320px', padding: '20px', backgroundColor:'#DAA520'}}>
+        <Card className='log_form' style={{margin:'150px auto', width: '320px', padding: '20px', backgroundColor:'#DAA520'}}>
             <Form onSubmit={logInHandler}>
                 <Form.Group controlId="formBasicEmail" style={{ paddingTop: '20px' }}>
                     <InputGroup>

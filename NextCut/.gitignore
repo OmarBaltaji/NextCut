@@ -3,14 +3,7 @@
 /public/storage
 /public/app
 /public/Images
-/public/app
-/public/js
-/public/.htaccess
-/public/favicon.ico
-/public/index.php
 /public/mix-manifest.json
-/public/robots.txt
-/public/web.config
 /storage
 /storage/*.key
 /vendor
@@ -21,11 +14,9 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
-firebase_credentials.json
 yarn.lock
 _ide_helper_models.php
 _ide_helper.php
 /PHPMailer-master
-/resources/Config
-/resources/js/Firebase/FirebaseConfig.js
+
 

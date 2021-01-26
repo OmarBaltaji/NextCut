@@ -239,43 +239,6 @@ a:hover {
   -moz-appearance: textfield;
 }
 
-@media only screen and (min-width: 1024px) {
-
-    .show-desktop {
-        display: block;
-        margin:0 auto 13% auto;
-    }
-
-    .hide-desktop {
-        display: none;
-    }
-
-    nav ul {
-        position: inherit;
-        width: auto;
-        background: none;
-        height: auto;
-        display: flex;
-        padding-top: 0;
-    }
-
-    nav ul li {
-        float: left;
-    }
-
-    nav ul li a {
-        color: black;
-        background-color: inherit;
-        text-align: right;
-        padding: 1em 2em;
-    }
-
-    nav ul li a:hover {
-        background-color: inherit;
-    }
-
-}
-
 .notif_time {
     /* margin-left: 200px; */
     color: #00356f;
@@ -292,4 +255,28 @@ a:hover {
 .notif_time:focus {
     font-weight: normal;
 }
+
+
+@media only screen and (max-width: 320px) {
+    .chat_icon {
+        margin-left: 20px;
+    }
+
+    .Logo {
+        margin-left: 25px;
+    }
+
+    .user-dropdown {
+        margin-left: 32px;
+    }
+
+    .log_form {
+        width: 300px !important;
+    }
+
+    .reg_form {
+        width: 300px !important;
+    }
+}
+
 
