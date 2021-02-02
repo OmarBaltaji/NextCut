@@ -427,9 +427,9 @@ export default function BookBarber() {
                         </Col>
                         <Col lg={6}>
                             <InputGroup>
-                                <Form.Label className="book_labels">Appointment Location:  &nbsp;</Form.Label>
+                                <Form.Label className="book_labels app_label">Appointment Location:  &nbsp;</Form.Label>
                                 <Form.Control
-                                className="booking_input"
+                                className="booking_input app_select_input"
                                 as="select"
                                 id = 'appointment'
                                 required

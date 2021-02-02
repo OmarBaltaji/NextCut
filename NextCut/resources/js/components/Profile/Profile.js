@@ -263,7 +263,8 @@ export default function Profile() {
             <>
                 <Col lg={4}>
                     <Card style={{ marginLeft:'15px', height:'601px' }} className="profile_card">
-                        <Card.Img src={userInfo.profile_photo} alt="profile photo" height="350px"/>
+                        <Card.Img src={userInfo.profile_photo} alt="profile photo" height="350px"
+                        className='profile_image'/>
                         <div className="viewWrapInputFile">
                             <img
                                 className="imgInputFile"
@@ -285,7 +286,7 @@ export default function Profile() {
                         <Card.Body>
                             <Card.Title className="profile_subheaders">
                                 {userInfo.name}
-                                <ButtonGroup style={{ position:'relative', left:'10px' }}>
+                                <ButtonGroup className='edit_delete_profile' style={{ position:'relative', left:'10px' }}>
                                     <Button className="edit_profile profile_btn"
                                     onClick={() => handleShowEditProfile()}>
                                         Edit
@@ -314,7 +315,7 @@ export default function Profile() {
                 <Col lg={8}>
                     <Row>
                         <Col lg={6}>
-                            <Card className="profile_card" style={{ height:'210px' }}>
+                            <Card className="barber_info" style={{ height:'210px' }}>
                                 <Card.Body>
                                     <Card.Title className="profile_subheaders">
                                         Salon Information
@@ -348,7 +349,7 @@ export default function Profile() {
                             </Card>
                         </Col>
                         <Col lg={6}>
-                            <Card style={{ height:'100%' }} className="profile_card">
+                            <Card style={{ height:'100%' }} className="barber_info">
                                 <Card.Body>
                                     <Card.Title className="profile_subheaders">
                                         Private Schedule
@@ -382,7 +383,7 @@ export default function Profile() {
                     <br/>
                     <Row>
                         <Col lg={6}>
-                            <Card style={{ height:'367px' }} className="profile_card">
+                            <Card style={{ height:'367px' }} className="barber_info">
                                 <Card.Body>
                                     <Card.Title className="profile_subheaders">
                                         Location
@@ -413,14 +414,14 @@ export default function Profile() {
                             </Card>
                         </Col>
                         <Col lg={6}>
-                            <Card style={{ height:'367px' }} className="profile_card">
+                            <Card style={{ height:'367px' }} className="barber_info">
                                 <Card.Body>
                                     <Card.Title className="profile_subheaders">
                                         Services
                                         <Card.Link href="/profile/services" className="card_link">
-                                            <Button className="profile_btn"
+                                            <Button className="profile_btn service_profile_btn"
                                             style={{ marginLeft: '20px' }}>
-                                                Manage Your Services
+                                                Manage Services
                                             </Button>
                                         </Card.Link>
                                     </Card.Title>
@@ -436,7 +437,8 @@ export default function Profile() {
                         </Col>
                     </Row>
                 </Col>
-                <Row style={{position:'absolute', top:'740px' , right:'15px', left:'30px', paddingBottom:'20px' }} >
+                <Row className='gallery_profile_row'
+                style={{position:'absolute', top:'740px' , right:'15px', left:'30px', paddingBottom:'20px' }} >
                     <Col lg={12}>
                         <Card className="profile_galleryCard">
                             <div style={{ display:'flex', alignItems:'center' }}>
@@ -449,12 +451,13 @@ export default function Profile() {
                                 </Button>
                                 {showAddGallery ? displayAddGallery(showAddGallery) : ''}
                             </div>
-                            <CardColumns as={Row} style={{ marginLeft:'30px', width:'1270px' }}>
+                            <CardColumns className='profile_all_gallery'
+                             as={Row} style={{ marginLeft:'30px', width:'1270px' }}>
                             {galleryInfo.length !=0 ? galleryInfo.map(gallery => {
                                 return(
                                     <Card key={gallery.id} style={{width:'350px', margin:'20px 50px 20px 10px' }} lg={4}
-                                    className="profile_card">
-                                        <Card.Img src={gallery.image} height="300px"/>
+                                    className="barber_info">
+                                        <Card.Img src={gallery.image} height="300px" className='profile_gallery_image'/>
                                         <Card.Body>
                                             <Card.Title>
                                                 <Button className="profile_btn"
@@ -482,7 +485,8 @@ export default function Profile() {
             <>
                 <Col lg={4}>
                     <Card style={{ marginLeft:'15px' }} className="profile_card">
-                        <Card.Img src={userInfo.profile_photo} alt="profile photo" height="300px" />
+                        <Card.Img src={userInfo.profile_photo} alt="profile photo" height="300px"
+                        className="profile_image" />
                         <div className="viewWrapInputFile">
                             <img
                                 className="imgInputFile"
@@ -532,7 +536,7 @@ export default function Profile() {
                     </Card>
                 </Col>
                 <Col lg={4}>
-                    <Card style={{ height:'507px' }} className="profile_card">
+                    <Card style={{ height:'507px' }} className="barber_info">
                         <Card.Body>
                             <Card.Title className="profile_subheaders">
                                 Location
@@ -583,7 +587,7 @@ export default function Profile() {
         <>
             <Header/>
             <br/>
-            <Container fluid>
+            <Container fluid className='profile_container'>
                 <Row>
                     {userInfo ? checkRole() : ''}
                 </Row>

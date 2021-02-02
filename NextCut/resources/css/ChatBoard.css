@@ -351,3 +351,69 @@ input::placeholder {
 a:hover {
     cursor: pointer;
 }
+
+
+@media only screen and (max-width:320px) {
+    .viewChatBoard {
+        width: 200px;
+    }
+
+    .viewBottom {
+        width: 240px !important;
+        margin-bottom: 40px;
+    }
+
+    .viewInput {
+        width: 160px !important;
+        margin-left: 80px !important;
+        position: absolute;
+        bottom: 65px;
+        right: 30px;
+    }
+
+    .icOpenGallery {
+        height: 25px;
+        width: 25px;
+        margin-left: 40px !important;
+        position: absolute;
+        right:213px;
+        bottom: 70px;
+    }
+
+    .icOpenSticker {
+        position: absolute;
+        height: 25px;
+        width: 25px;
+        left: 25px;
+        bottom: 70px;
+    }
+
+    .icSend {
+        position: absolute;
+        bottom: 70px;
+        right:0px;
+        left: 210px;
+    }
+
+    .viewItemRight {
+        width: 150px;
+    }
+
+    .viewItemLeft {
+        width: 150px;
+    }
+
+    .viewListContentChat {
+        overflow-x: hidden;
+    }
+
+    .imgItemRight {
+        height: 150px;
+        width: 150px;
+    }
+
+    .imgItemLeft {
+        height: 150px;
+        width: 150px;
+    }
+}

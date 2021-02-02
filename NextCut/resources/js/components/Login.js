@@ -40,6 +40,8 @@ export default function Login() {
                         'remember_me': rememberMe,
                     }
 
+                    console.log(credentials)
+
                     api.firebaseLogin(credentials) // Secondly the user is authenticated by Laravel Passport
                     .then(response => {
                         const options = {Path: '/' , Expires: response.data.expires_at, Secure: true};

@@ -80,7 +80,7 @@ export default function ShowBarber(props) {
                     <Col lg={4} xs>
                         <Card key={barberDetails.id} className="onebarber_card">
                             <Card.Img variant="top" src={userDetails.profile_photo}
-                            height='350px' />
+                            height='350px' className='barber_image'/>
                             <Card.Body>
                                 <Card.Title style={{ fontSize:'21px', color:'#DAA520' }}>{userDetails.name}</Card.Title>
                                 <Card.Text>
@@ -173,7 +173,7 @@ export default function ShowBarber(props) {
                                 </Card>
                             </Col>
                             <Col lg={6} xs={12}>
-                                <Card style={{ height:'250px' }} className="onebarber_card">
+                                <Card style={{ height:'250px' }} className="privateschedule_card">
                                     <Card.Body>
                                         <Card.Title  className="card_title">Private Schedule</Card.Title>
                                         <Card.Text>
@@ -189,19 +189,21 @@ export default function ShowBarber(props) {
                                 </Card>
                             </Col>
                         </Row>
-                        <Row style={{ position:'absolute', top:'270px', right:'15px', left:'15px' }}>
+                        <Row className='gallery_row'
+                        style={{ position:'absolute', top:'270px', right:'15px', left:'15px' }}>
                             <Col lg={12} xs={12}>
                                 <Card className="gallery_card">
                                     <h4 style={{ margin: '20px 0 0 20px', color:'#DAA520', fontSize:'24px' }}>
                                         Gallery
                                     </h4>
-                                    <CardColumns as={Row} style={{ width:'850px', marginLeft:'20px', marginTop:'10px'}}>
+                                    <CardColumns as={Row} className='all_gallery_card'
+                                    style={{ width:'850px', marginLeft:'20px', marginTop:'10px'}}>
                                         {galleryInfo.length != 0 ? galleryInfo.map((gallery, index) => {
                                         return(
                                             <Card key={gallery.id} lg={3} style={{width:'250px', marginRight:'20px' }}
                                             className="clickable_photos"
                                             onClick={() => handleShowGallerySlideShow(index)}>
-                                                <Card.Img src={gallery.image} height="190px"/>
+                                                <Card.Img src={gallery.image} height="190px" className='gallery_image'/>
                                             </Card>
                                         )
                                         })

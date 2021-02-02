@@ -346,7 +346,7 @@ export default function Requests() {
             <br/>
             <Container fluid>
                 <h3 className="request_subheaders">Pending Requests</h3>
-                <Table className="request_table" bordered hover style={{ marginBottom:'25px', width: '1100px' }}>
+                <Table responsive className="request_table" bordered hover style={{ marginBottom:'25px', width: '1100px' }}>
                     <thead>
                         <tr>
                             <th className="request_thd" style={{ width: '30px' }}>#</th>
@@ -365,7 +365,8 @@ export default function Requests() {
                 </Table>
                 <hr style={{ backgroundColor:'#DAA520' }} />
                 <h3 className="request_subheaders">Incomplete Requests</h3>
-                <Table className="request_table" bordered hover style={{ marginBottom:'25px', width:'1300px' }}>
+                <Table responsive className="request_table" bordered hover
+                style={{ marginBottom:'25px', width:'1300px' }}>
                     <thead>
                         <tr>
                             <th className="request_thd" style={{ width: '30px' }}>#</th>
@@ -386,7 +387,7 @@ export default function Requests() {
                 </Table>
                 <hr style={{ backgroundColor:'#DAA520' }} />
                 <h3 className="request_subheaders">Complete Requests</h3>
-                <Table className="request_table" bordered hover style={{ width:'1025px' }}>
+                <Table responsive className="request_table" bordered hover style={{ width:'1025px' }}>
                     <thead>
                         <tr>
                             <th className="request_thd" style={{ width:'30px' }}>#</th>

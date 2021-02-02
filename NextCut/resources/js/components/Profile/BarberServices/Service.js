@@ -135,7 +135,7 @@ export default function Service() {
                 <Row>
                     <Col lg={8}>
                         <div className='div_table'>
-                            <Table bordered hover className='service_table'>
+                            <Table responsive bordered hover className='service_table'>
                                 <thead>
                                     <tr>
                                         <th className="service_thd">#</th>

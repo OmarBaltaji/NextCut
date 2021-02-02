@@ -48,6 +48,10 @@
     background-color: beige;
 }
 
+.barber_info {
+    background-color: beige;
+}
+
 .profile_subheaders {
     color: #DAA520;
     font-size: 24px;
@@ -158,3 +162,53 @@ input[type="time"]::-webkit-calendar-picker-indicator{
     z-index: -1;
     opacity: 0;
 }
+
+@media only screen and (max-width:320px) {
+    .profile_image {
+        height: 200px;
+    }
+
+    .viewWrapInputFile {
+        left:220px;
+    }
+
+    .profile_card {
+        height: 440px !important;
+        margin-left: 5px !important;
+        margin-top: 10px;
+    }
+
+    .barber_info {
+        margin-top: 10px;
+        margin-left: 5px;
+    }
+
+    .gallery_profile_row {
+        top: 1770px !important;
+        left: 3px !important;
+        right: 1px !important;
+        margin-left: 2px !important;
+        margin-right: 0 !important;
+    }
+
+    .profile_all_gallery {
+        width: 246px !important;
+    }
+
+    .profile_gallery_image {
+        height: 200px !important;
+    }
+
+    .profile_btn {
+        font-size: 15px;
+    }
+
+    .service_profile_btn {
+        font-size: 13px;
+    }
+
+    .profile_container{
+        overflow-x: hidden;
+    }
+}
+

@@ -24,3 +24,9 @@
 .confirmed_table > thead > tr > th {
     border: 1px beige solid !important;
 }
+
+@media only screen and (max-width:320px) {
+    .confirmation_card {
+        margin-bottom: 20px !important;
+    }
+}

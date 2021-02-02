@@ -187,8 +187,6 @@ a:hover {
 
 .dropdown-menu {
     background-color: #DAA520;
-    /* height: 197px; */
-    /* min-width: 400px; */
     overflow-y: auto;
 }
 
@@ -198,7 +196,6 @@ a:hover {
 
 .notif_msg:hover {
     color: #00356f;
-    /* background-color: transparent !important; */
 }
 
 .dropdown-menu::-webkit-scrollbar-track {
@@ -240,7 +237,6 @@ a:hover {
 }
 
 .notif_time {
-    /* margin-left: 200px; */
     color: #00356f;
     font-size: 13px;
     font-style: italic;
@@ -256,6 +252,10 @@ a:hover {
     font-weight: normal;
 }
 
+.dropdown-container {
+    position:absolute;
+    left: 1110px;
+}
 
 @media only screen and (max-width: 320px) {
     .chat_icon {
@@ -276,6 +276,21 @@ a:hover {
 
     .reg_form {
         width: 300px !important;
+    }
+
+    .dropdown-container {
+        position:absolute;
+        left: 170px;
+        top: 20px
+    }
+
+    .dropdown-container .dropdown-menu {
+        width: 8rem !important;
+        max-height: 140px !important;
+    }
+
+    .dropdown-menu::-webkit-scrollbar {
+        height: 7px;
     }
 }
 

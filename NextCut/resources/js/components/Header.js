@@ -191,24 +191,8 @@ export default function Header() {
                 alt="logo" />
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-            <Navbar.Collapse id="responsive-navbar-nav">
-                <Nav className="mr-auto">
-                    <Nav.Link className="navlink" href="/home">Home</Nav.Link>
-                    <Nav.Link className="navlink" href="/aboutus">About Us</Nav.Link>
-                    <Nav.Link className="navlink" href="/barbers">Barbers</Nav.Link>
-
-                    {userInfo.roles == 'Customer' || role == 'Customer' ?
-                    <Nav.Link className="navlink" href="/booking">Book!</Nav.Link>
-                    : ''}
-
-                    {userInfo.roles == 'Barber' || role == 'Barber'?
-                    <Nav.Link className="navlink" href="/requests" >Requests</Nav.Link>
-                    : ''}
-
-                </Nav>
-
-                {cookie && (userInfo.roles == 'Barber' || role == 'Barber') ?
-                <div className="dropdown-container" style={{ position: 'relative' }}>
+            {cookie && (userInfo.roles == 'Barber' || role == 'Barber') ?
+                <div className="dropdown-container">
                     <DropdownButton
                     menuAlign='right'
                     id="notification_dropdown"
@@ -249,6 +233,21 @@ export default function Header() {
                     </DropdownButton>
                 </div>
                 : ''}
+            <Navbar.Collapse id="responsive-navbar-nav">
+                <Nav className="mr-auto">
+                    <Nav.Link className="navlink" href="/home">Home</Nav.Link>
+                    <Nav.Link className="navlink" href="/aboutus">About Us</Nav.Link>
+                    <Nav.Link className="navlink" href="/barbers">Barbers</Nav.Link>
+
+                    {userInfo.roles == 'Customer' || role == 'Customer' ?
+                    <Nav.Link className="navlink" href="/booking">Book!</Nav.Link>
+                    : ''}
+
+                    {userInfo.roles == 'Barber' || role == 'Barber'?
+                    <Nav.Link className="navlink" href="/requests" >Requests</Nav.Link>
+                    : ''}
+
+                </Nav>
 
                 {cookie ? <Nav.Link className='chat_icon' href="/chat"><i className="fas fa-comments" /></Nav.Link>
                 : ''}

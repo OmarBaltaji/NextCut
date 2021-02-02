@@ -76,6 +76,10 @@
     background-color: beige;
 }
 
+.privateschedule_card {
+    background-color: beige;
+}
+
 .service_card {
     background-color: beige;
 }
@@ -143,3 +147,52 @@
     outline-offset: none !important;
     background-color: #00356f !important;
 }
+
+@media only screen and (max-width: 320px) {
+
+    .barbers_header {
+        margin-left: 40px;
+    }
+
+    .search_barber {
+        margin-left: 40px !important;
+        width: 200px !important;
+    }
+
+    .show_barber {
+        width: 200px !important;
+        margin-left: 40px;
+    }
+
+    .barber_image {
+        height: 200px;
+    }
+
+    .privateschedule_card {
+        margin-top: 10px;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    .onebarber_card {
+        margin-left: 20px !important;
+        width: 250px !important;
+    }
+
+    .service_card {
+        margin-top: 10px;
+        margin-left: 20px !important;
+        width: 250px !important;
+    }
+
+    .gallery_row {
+        margin-top: 260px;
+        margin-left: 6px;
+        margin-right: 2px;
+    }
+
+    .all_gallery_card {
+        width: 225px !important;
+    }
+}
+

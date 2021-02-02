@@ -156,3 +156,43 @@
     -webkit-box-shadow: none;
     box-shadow: none;
   }
+
+@media only screen and (max-width:320px) {
+    .booking_sub_header {
+        margin-left: 10px !important;
+    }
+
+    .search_booking_bar{
+        margin-left: 10px !important;
+        width: 260px !important;
+    }
+
+    .barberBooking_cards {
+        margin-left: 25px !important;
+        margin-right: 35px !important;
+    }
+
+    .booking_barber_image {
+        height: 200px !important;
+    }
+
+    .booking_input {
+        overflow-x: scroll;
+    }
+
+    .booking_input::-webkit-scrollbar {
+        height: 8px;
+    }
+
+    .app_label {
+        margin-top:20px !important;
+    }
+
+    .app_select_input {
+        margin-top: 20px !important;
+    }
+
+    .calendar .body .row .col{
+        height: 40px !important;
+    }
+}

@@ -52,8 +52,11 @@ export default function Booking() {
             <Header/>
             <br/>
             <Container>
-                <h1 style={{margin: '0 0 20px -15px', color:'#DAA520'}}>Book Your Next Appointment</h1>
-                <InputGroup as={Row} lg={4}>
+                <h1 className='booking_sub_header'
+                style={{margin: '0 0 20px -15px', color:'#DAA520'}}>
+                    Book Your Next Appointment
+                </h1>
+                <InputGroup as={Row} lg={4} className='search_booking_bar'>
                     <FormControl
                     type="text"
                     key="random1"
@@ -73,7 +76,8 @@ export default function Booking() {
                             return (
                                 <Card style={{ width:'350px', marginRight:'15px'}} lg={4} key={barber.id}
                                 className='barberBooking_cards'>
-                                    <Card.Img src={barber.user.profile_photo} height="300px"/>
+                                    <Card.Img src={barber.user.profile_photo} height="300px"
+                                    className='booking_barber_image'/>
                                     <Card.Body>
                                         <Card.Title className="booking_spans">{barber.user.name}</Card.Title>
                                         <Card.Text>
@@ -102,7 +106,8 @@ export default function Booking() {
                             return (
                                 <Card style={{ width:'350px', marginRight:'15px'}} lg={4} key={barber.id}
                                 className='barberBooking_cards'>
-                                    <Card.Img src={barber.user.profile_photo} height="300px"/>
+                                    <Card.Img src={barber.user.profile_photo} height="300px"
+                                    className='booking_barber_image'/>
                                     <Card.Body>
                                         <Card.Title className="booking_spans">{barber.user.name}</Card.Title>
                                         <Card.Text>

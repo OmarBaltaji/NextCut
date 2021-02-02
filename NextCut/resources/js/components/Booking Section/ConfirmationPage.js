@@ -92,7 +92,7 @@ export default function ConfirmationPage() {
             <Container fluid>
                 <Col lg={12}>
                     <Row>
-                        <Card style={{ margin:'auto', backgroundColor: 'beige' }}>
+                        <Card style={{ margin:'auto', backgroundColor: 'beige' }} className='confirmation_card'>
                             <Card.Header>
                                 <h2 style={{ color:'#DAA520' }}>Appointment Successfully Booked</h2>
                             </Card.Header>
