@@ -1,7 +1,7 @@
 <p>
     1. Install laravel: Please check the official laravel installation guide for server requirements before you start. <br/>&emsp;(https://laravel.com/docs/8.x/installation) <br/> <br/>
     2. Clone the repository: git clone https://github.com/OmarBaltaji/NextCut.git  <br/><br/>
-    3. Go to the project directory: composer install  <br/><br/>
+    3. Go to the project directory: in the terminal composer update, then composer install  <br/><br/>
     4. Copy the .env.example file and make the required configuration changes in the .env file.  <br/>
     &emsp;You can run the command in the terminal: cp .env.example .env (to copy the file) <br/>
     &emsp;Create a new database "database-name" and edit the information below in the .env accordingly:  <br/>

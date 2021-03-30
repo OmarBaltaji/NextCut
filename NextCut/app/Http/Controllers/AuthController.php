@@ -127,7 +127,7 @@ class AuthController extends Controller
             $photo = $request['profile_photo']->store(env('PROFILE_PICTURES_PATH')); // Store the picture locally
             $photoInDB = Storage::url($photo); // Obtain the url of the photo
         } else {
-            $defaultPhoto = env('PROFILE_PICTURES_PATH') . "/none.png"; // If not photo is uploaded than use this default one
+            $defaultPhoto = env('PROFILE_PICTURES_PATH') . "/none.jpg"; // If photo is not uploaded then use default one
             $photoInDB = Storage::url($defaultPhoto);
         }
 

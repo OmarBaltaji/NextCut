@@ -24,7 +24,7 @@ class CreateCustomerRequestTable extends Migration
             $table->boolean('completed')->default(false);
             $table->unsignedTinyInteger('state')->default(0);
             $table->timestamps();
-            $table->unique(['date_booked', 'time_booked', 'appointment_location']);
+            $table->unique(['date_booked', 'time_booked', 'appointment_location'], 'date_time_booked_app_location');
         });
     }
 

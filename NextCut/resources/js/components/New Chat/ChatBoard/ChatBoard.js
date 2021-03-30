@@ -59,7 +59,7 @@ export  default function ChatBoard(props){
         .doc(groupChatId)
         .collection(groupChatId)
         .onSnapshot(snapshot => {
-                snapshot.docChanges().forEach(change => { // Every a message is sent we display it on the screen
+                snapshot.docChanges().forEach(change => { // Every time a message is sent we display it on the screen
                     if (change.type === 'added') {
                         listMessage.push(change.doc.data());
                     }
