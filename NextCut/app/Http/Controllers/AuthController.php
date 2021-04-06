@@ -36,7 +36,7 @@ class AuthController extends Controller
         }
 
         // Retrieve the UID (User ID) from the verified Firebase credential's token
-        $uid = $verifiedIdToken->getClaim('sub');
+        $uid = $verifiedIdToken->claims()->get('sub');
 
         $attributes = $request->validate([
             'email' => 'required|string|email',
@@ -49,7 +49,7 @@ class AuthController extends Controller
             'password' => $attributes['password'],
         ];
 
-        //if user not logged in
+        // If user not logged in
         if (!Auth::attempt($credentials)) {
             return response()->json(['message' => 'invalid email/password combination'], 401);
         }
@@ -120,7 +120,7 @@ class AuthController extends Controller
         }
 
         // Retrieve the UID (User ID) from the verified Firebase credential's token
-        $uid = $verifiedIdToken->getClaim('sub');
+        $uid = $verifiedIdToken->claims()->get('sub');
 
         //Image
         if($request->hasFile('profile_photo')) { // Ensure user uploaded an image
@@ -131,7 +131,7 @@ class AuthController extends Controller
             $photoInDB = Storage::url($defaultPhoto);
         }
 
-        //create a new user
+        // Create a new user
         $user = User::create([
             'name' => $attributes['name'],
             'email' => $attributes['email'],
